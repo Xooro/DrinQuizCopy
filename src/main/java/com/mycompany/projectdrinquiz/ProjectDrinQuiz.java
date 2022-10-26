@@ -5,9 +5,8 @@
 
 package com.mycompany.projectdrinquiz;
 
-import com.mycompany.projectdrinquiz.WebHandlers.Web_NapiKvizHandler;
+import com.mycompany.projectdrinquiz.WebHandlers.WebHandler;
 import java.io.IOException;
-import java.util.List;
 
 /**
  *
@@ -16,7 +15,7 @@ import java.util.List;
 public class ProjectDrinQuiz {
 
     public static void main(String[] args) throws IOException {
-        Web_NapiKvizHandler napiKvizHandler = new Web_NapiKvizHandler();
-        //List<String> test = napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=tortenelem");
+//        WebHandler webHandler = new WebHandler();
+//        webHandler.importNapikvizToDatabase();
     }
 }
