@@ -5,13 +5,18 @@
 
 package com.mycompany.projectdrinquiz;
 
+import com.mycompany.projectdrinquiz.WebHandlers.Web_NapiKvizHandler;
+import java.io.IOException;
+import java.util.List;
+
 /**
  *
  * @author kkris
  */
 public class ProjectDrinQuiz {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+    public static void main(String[] args) throws IOException {
+        Web_NapiKvizHandler napiKvizHandler = new Web_NapiKvizHandler();
+        List<String> test = napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=tortenelem");
     }
 }
