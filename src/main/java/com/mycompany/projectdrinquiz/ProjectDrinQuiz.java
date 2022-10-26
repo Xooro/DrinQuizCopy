@@ -17,6 +17,6 @@ public class ProjectDrinQuiz {
 
     public static void main(String[] args) throws IOException {
         Web_NapiKvizHandler napiKvizHandler = new Web_NapiKvizHandler();
-        List<String> test = napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=tortenelem");
+        //List<String> test = napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=tortenelem");
     }
 }

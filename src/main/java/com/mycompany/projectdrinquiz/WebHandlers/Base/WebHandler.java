@@ -5,8 +5,14 @@
 package com.mycompany.projectdrinquiz.WebHandlers.Base;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
 import java.util.Scanner;
 
@@ -18,20 +24,27 @@ public abstract class WebHandler {
     protected String webpageToString(String webURL) 
             throws MalformedURLException, IOException
     {
-      //Instantiating the URL class
       URL url = new URL(webURL);
-      //Retrieving the contents of the specified page
       Scanner sc = new Scanner(url.openStream());
-      //Instantiating the StringBuffer class to hold the result
       StringBuffer sb = new StringBuffer();
       while(sc.hasNext()) {
          sb.append(sc.next());
-         //System.out.println(sc.next());
       }
-      //Retrieving the String from the String Buffer object
-      String result = sb.toString();
-      //Removing the HTML tags
-      //result = result.replaceAll("<[^>]*>", "");
+
+//      String result = sb.toString();
+//      byte[] germanBytes = result.getBytes("UTF-8");
+//      result = new String(germanBytes, "ISO-8859-2");
+
+      byte[] germanBytes = sb.toString().getBytes("ISO8859_2");
+      String result = new String(germanBytes, "UTF-8");
+      
+      PrintWriter out = new PrintWriter("filename.txt");
+      out.println(result);
+      
+//      InputStreamReader isr = new InputStreamReader(url.openStream());
+//        String encoding = isr.getEncoding();
+//        System.out.println(encoding);
+      
       return result;
     } 
     
