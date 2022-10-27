@@ -5,6 +5,7 @@
 package com.mycompany.projectdrinquiz;
 
 import com.mycompany.projectdrinquiz.WebHandlers.WebHandler;
+import Data.DatabaseService;
 import java.io.IOException;
 import javax.swing.SwingUtilities;
 import userInterface.HostJFrame;
@@ -15,9 +16,14 @@ import userInterface.HostJFrame;
  */
 public class ProjectDrinQuiz {
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) 
+            throws IOException {
 //        WebHandler webHandler = new WebHandler();
 //        webHandler.importNapikvizToDatabase();
+
+//        dbService dService = new dbService();
+//        dService.getAll();
+
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 HostJFrame hostJFrame = new HostJFrame();
