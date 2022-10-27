@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Data;
+import Data.ModelServices.QuestionModelService;
 import java.sql.*;
 import java.util.*;
 
@@ -10,33 +11,13 @@ import java.util.*;
  *
  * @author akile
  */
-public class DatabaseService {
-    
-    private Connection connect() {
-        String url = "jdbc:sqlite:db_DrinkinQuiz.db";
-        Connection conn = null;
-        try {
-            conn = DriverManager.getConnection(url);
-        } catch (SQLException e) {
-            System.out.print("Error: " + e.getMessage());
-        }
+public class DrinQuizContext {    
+    public QuestionModelService Question = new QuestionModelService();
+}
 
-        return conn;
-    }
-    
-    
-    public void add(){}
-    public void addRange(){}
-    
-    public void update(){}
-    public void updateRange(){}
-    
-    public void remove(){}
-    public void removeRange(){}
-    
-    public void getAll()
-    {
-        String sql = "SELECT * FROM Person";
+
+/*
+    String sql = "SELECT * FROM Person";
 
         try ( Connection conn = connect();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
             while (rs.next()) {
@@ -46,15 +27,7 @@ public class DatabaseService {
         catch (SQLException e) {
             System.out.println("FUCK ME" + e.getMessage());
         }
-    }
-    public void removeAll(){}
-    
-    
-    
-}
 
-
-/*
 
     public void SelectAll() throws SQLException {
         Person person;

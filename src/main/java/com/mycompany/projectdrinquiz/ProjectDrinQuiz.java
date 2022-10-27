@@ -5,7 +5,8 @@
 package com.mycompany.projectdrinquiz;
 
 import WebHandlers.WebHandler;
-import Data.DatabaseService;
+import Data.DrinQuizContext;
+import Models.Question;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
@@ -17,13 +18,17 @@ import userInterface.HostJFrame;
  */
 public class ProjectDrinQuiz {
 
-    public static void main(String[] args) 
+    public static void main(String[] args)
             throws IOException {
+        //WEBHANDLER TEST
 //        WebHandler webHandler = new WebHandler();
 //        webHandler.importNapikvizToDatabase();
 
-//        DatabaseService _context = new DatabaseService();
-//        _context.getAll();
+        //DEPENDENCY INJECTION TEST
+//        DrinQuizContext _context = new DrinQuizContext();
+//        Question question = new Question();
+//        question.setQuestion("TestQuestion");
+//        _context.Question.add(question);
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
