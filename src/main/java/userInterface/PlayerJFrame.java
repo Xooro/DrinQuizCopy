@@ -35,6 +35,7 @@ public class PlayerJFrame extends javax.swing.JFrame {
         jPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel.setBackground(new java.awt.Color(0, 0, 150));
 
@@ -103,9 +104,11 @@ public class PlayerJFrame extends javax.swing.JFrame {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice[] gd = ge.getScreenDevices();
         if (screen > -1 && screen < gd.length) {
-            gd[screen].setFullScreenWindow(frame);
+            //gd[screen].setFullScreenWindow(frame);
+            frame.setLocation(gd[screen].getDefaultConfiguration().getBounds().x, frame.getY());
         } else if (gd.length > 0) {
-            gd[0].setFullScreenWindow(frame);
+            //gd[0].setFullScreenWindow(frame);
+            frame.setLocation(gd[0].getDefaultConfiguration().getBounds().x, frame.getY());
         } else {
             throw new RuntimeException("No screen found!");
 
