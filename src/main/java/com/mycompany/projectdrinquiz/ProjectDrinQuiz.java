@@ -4,7 +4,7 @@
  */
 package com.mycompany.projectdrinquiz;
 
-import com.mycompany.projectdrinquiz.WebHandlers.WebHandler;
+import WebHandlers.WebHandler;
 import Data.DatabaseService;
 import java.io.IOException;
 import javax.swing.ImageIcon;
@@ -22,8 +22,8 @@ public class ProjectDrinQuiz {
 //        WebHandler webHandler = new WebHandler();
 //        webHandler.importNapikvizToDatabase();
 
-//        dbService dService = new dbService();
-//        dService.getAll();
+//        DatabaseService _context = new DatabaseService();
+//        _context.getAll();
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {

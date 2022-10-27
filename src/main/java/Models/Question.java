@@ -17,6 +17,17 @@ public class Question {
     private String category;
     private String source;
 
+    public Question() {}
+    public Question(int id, String question, String answers, int rightAnswerID, String category, String source)
+    {
+        this.id = id;
+        this.question = question;
+        this.answers = answers;
+        this.rightAnswerID = rightAnswerID;
+        this.category = category;
+        this.source = source;
+    }
+            
     
     //GETTERS
     public int getID() {

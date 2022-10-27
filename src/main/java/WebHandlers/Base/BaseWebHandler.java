@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.projectdrinquiz.WebHandlers.Base;
+package WebHandlers.Base;
 
+import Models.Question;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -27,7 +28,7 @@ public abstract class BaseWebHandler {
         this.encoding = encoding;
     }
 
-    protected String webpageToString(String url, String category)
+    protected String webpageToString(String url)
             throws MalformedURLException, IOException {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
@@ -54,11 +55,12 @@ public abstract class BaseWebHandler {
         
     }
 
-    protected abstract List<String> convertWebPageStringToList(String htmlDataString);
+    protected abstract List<Question> convertWebPageStringToQuestionList(String htmlDataString, String category);
 
-    public List<String> getDataFromWebpage(String url, String category)
+    
+    public List<Question> getDataFromWebpage(String url, String category)
             throws IOException {
-        return convertWebPageStringToList(webpageToString(url, category));
+        return convertWebPageStringToQuestionList(webpageToString(url), category);
     }
 
 }

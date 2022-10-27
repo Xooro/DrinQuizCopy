@@ -16,7 +16,7 @@ public class QuestionHistory {
     private int questionID;
     private int pickedAnswer;
 
-    //GETTER
+    //GETTERS
     public int getID() {
         return id;
     }
@@ -37,7 +37,7 @@ public class QuestionHistory {
         return pickedAnswer;
     }
 
-    //SETTER
+    //SETTERS
     public void setID(int newID) {
         id = newID;
     }
