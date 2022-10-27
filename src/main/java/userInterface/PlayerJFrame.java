@@ -6,6 +6,7 @@ package userInterface;
 
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -35,6 +36,7 @@ public class PlayerJFrame extends javax.swing.JFrame {
         jPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(logo.getImage());
         setUndecorated(true);
 
         jPanel.setBackground(new java.awt.Color(0, 0, 150));
@@ -64,9 +66,8 @@ public class PlayerJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+    ImageIcon logo = new ImageIcon(".//resources/images/icon.png");
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -118,4 +119,8 @@ public class PlayerJFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel;
     // End of variables declaration//GEN-END:variables
+
+    private void setIconImage(String resourcesimaginesiconpng) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -4,7 +4,7 @@
  */
 package userInterface;
 
-import java.util.Locale;
+import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
 /**
@@ -17,6 +17,8 @@ public class HostJFrame extends javax.swing.JFrame {
      * Creates new form HostJFrame
      */
     public HostJFrame() {
+        this.logo = new ImageIcon(".//resources/images/icon.png");
+        this.logo = new ImageIcon(".//resources/images/icon.png");
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -35,6 +37,7 @@ public class HostJFrame extends javax.swing.JFrame {
         exitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(logo.getImage());
 
         jPanel.setBackground(new java.awt.Color(150, 0, 0));
 
@@ -104,9 +107,8 @@ public class HostJFrame extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_exitButtonMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
+    ImageIcon logo = new ImageIcon(".//resources/images/icon.png");
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
