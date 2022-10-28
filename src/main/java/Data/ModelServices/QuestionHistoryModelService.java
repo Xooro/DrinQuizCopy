@@ -1,0 +1,108 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package Data.ModelServices;
+
+import Data.ModelServices.Base.BaseModelService;
+import Models.QuestionHistory;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *
+ * @author akile
+ */
+public class QuestionHistoryModelService extends BaseModelService<QuestionHistory> {
+//    private int id;
+//    private int gameID;
+//    private int playerID;
+//    private int questionID;
+//    private int pickedAnswer;
+
+    public void add(QuestionHistory questionHistoryToAdd) {
+
+        String sql = "INSERT INTO QuestionHistory(gameID,playerID,questionID,pickedAnswer) VALUES(?,?,?,?)";
+
+        try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            pstmt.setInt(1, questionHistoryToAdd.getGameID());
+            pstmt.setInt(2, questionHistoryToAdd.getPlayerID());
+            pstmt.setInt(3, questionHistoryToAdd.getQuestionID());
+            pstmt.setInt(4, questionHistoryToAdd.getPickedAnswer());
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void update(QuestionHistory questionHistoryToUpdate) {
+
+        String sql = "UPDATE QuestionHistory SET gameID = ? , "
+                + "playerID = ?, "
+                + "questionID = ?, "
+                + "pickedAnswer = ? "
+                + "WHERE id = ?";
+
+        try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setInt(1, questionHistoryToUpdate.getGameID());
+            pstmt.setInt(2, questionHistoryToUpdate.getPlayerID());
+            pstmt.setInt(3, questionHistoryToUpdate.getQuestionID());
+            pstmt.setInt(4, questionHistoryToUpdate.getPickedAnswer());
+            pstmt.setInt(5, questionHistoryToUpdate.getID());
+            // update 
+            pstmt.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public void remove(QuestionHistory questionHistoryToRemove) {
+
+        String sql = "DELETE FROM QuestionHistory WHERE ID = ?";
+
+        try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            // set the corresponding param
+            pstmt.setInt(1, questionHistoryToRemove.getID());
+            // execute the delete statement
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<QuestionHistory> getAll() {
+        String sql = "SELECT * FROM QuestionHistory";
+        List<QuestionHistory> questionHistoryList = new ArrayList<QuestionHistory>();
+        try ( Connection conn = this.connect();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
+
+            // loop through the result set
+            while (rs.next()) {
+                QuestionHistory questionHistory = new QuestionHistory();
+
+                questionHistory.setID(rs.getInt("id"));
+                questionHistory.setGameID(rs.getInt("gameID"));
+                questionHistory.setQuestionID(rs.getInt("questionID"));
+                questionHistory.setPickedAnswer(rs.getInt("pickedAnswer"));
+
+                questionHistoryList.add(questionHistory);
+
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return questionHistoryList;
+    }
+}

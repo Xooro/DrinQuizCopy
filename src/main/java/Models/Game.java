@@ -15,7 +15,7 @@ public class Game {
 
     private int id;
     private String gameName;
-    private LocalDateTime creationDate;
+    private Date creationDate;
 
     
     //GETTERS
@@ -27,7 +27,7 @@ public class Game {
         return gameName;
     }
 
-    public LocalDateTime getCreationDate() {
+    public Date getCreationDate() {
         return creationDate;
     }
 
@@ -41,7 +41,7 @@ public class Game {
         gameName = newGameName;
     }
 
-    public void setCreationDate(LocalDateTime newCreationDate) {
+    public void setCreationDate(Date newCreationDate) {
         creationDate = newCreationDate;
     }
 }
