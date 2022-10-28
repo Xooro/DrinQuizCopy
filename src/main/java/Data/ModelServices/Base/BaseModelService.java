@@ -7,6 +7,7 @@ package Data.ModelServices.Base;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,34 +15,35 @@ import java.util.List;
  * @author kkris
  */
 public abstract class BaseModelService<T> {
-    public abstract void add(T modelToAdd);
-    public abstract void update(T modelToUpdate);
-    public abstract void remove(T modelToRemove);
+    public abstract void addRange(List<T> modelsToAdd);
+    public abstract void updateRange(List<T> modelsToUpdate);
+    public abstract void removeRange(List<T> modelsToRemove);
     public abstract List<T> getAll();
     
-    public void addRange(List<T> modelsToAdd)
-    {
-        for(int i=0;i<modelsToAdd.size();++i)
-        {
-            add(modelsToAdd.get(i));
-        
-        }
+    public void add(T modelToAdd)
+    {  
+        List<T> soloModel = new ArrayList<T>();
+        soloModel.add(modelToAdd);
+        addRange(soloModel);
     }
     
-    public void updateRange(List<T> modelsToUpdate)
+    public void update(T modelToUpdate)
     {
-        for(int i=0;i<modelsToUpdate.size();++i)
-        {
-            update(modelsToUpdate.get(i));
-        }
+        List<T> soloModel = new ArrayList<T>();
+        soloModel.add(modelToUpdate);
+        updateRange(soloModel);
     }
     
-    public void removeRange(List<T> modelsToRemove)
+    public void remove(T modelToRemove)
     {
-        for(int i=0;i<modelsToRemove.size();++i)
-        {
-            remove(modelsToRemove.get(i));
-        }
+        List<T> soloModel = new ArrayList<T>();
+        soloModel.add(modelToRemove);
+        removeRange(soloModel);
+    }
+    
+    public void clear()
+    {
+        removeRange(getAll());
     }
     
     protected Connection connect() {
@@ -49,10 +51,12 @@ public abstract class BaseModelService<T> {
         Connection conn = null;
         try {
             conn = DriverManager.getConnection(url);
+            conn.setAutoCommit(false);
         } catch (SQLException e) {
             System.out.print("Error: " + e.getMessage());
         }
         return conn;
     }
+    
 }           
 
