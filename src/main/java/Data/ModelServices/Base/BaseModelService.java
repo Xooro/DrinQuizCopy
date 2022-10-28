@@ -17,13 +17,14 @@ public abstract class BaseModelService {
     public abstract void add(Object modelToAdd);
     public abstract void update(Object modelToUpdate);
     public abstract void remove(Object modelToRemove);
-    public abstract List<Object> GetAll();
+    public abstract List<Object> getAll();
     
     public void addRange(List<Object> modelsToAdd)
     {
         for(int i=0;i<modelsToAdd.size();++i)
         {
             add(modelsToAdd.get(i));
+        
         }
     }
     
@@ -43,7 +44,7 @@ public abstract class BaseModelService {
         }
     }
     
-    private Connection connect() {
+    protected Connection connect() {
         String url = "jdbc:sqlite:db_DrinkinQuiz.db";
         Connection conn = null;
         try {
@@ -51,7 +52,7 @@ public abstract class BaseModelService {
         } catch (SQLException e) {
             System.out.print("Error: " + e.getMessage());
         }
-        
         return conn;
     }
-}
+}           
+

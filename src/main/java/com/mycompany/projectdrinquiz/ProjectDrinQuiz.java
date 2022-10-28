@@ -8,6 +8,8 @@ import WebHandlers.WebHandler;
 import Data.DrinQuizContext;
 import Models.Question;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import userInterface.HostJFrame;
@@ -24,11 +26,18 @@ public class ProjectDrinQuiz {
 //        WebHandler webHandler = new WebHandler();
 //        webHandler.importNapikvizToDatabase();
 
-        //DEPENDENCY INJECTION TEST
-//        DrinQuizContext _context = new DrinQuizContext();
-//        Question question = new Question();
-//        question.setQuestion("TestQuestion");
-//        _context.Question.add(question);
+////        DEPENDENCY INJECTION TEST
+        DrinQuizContext _context = new DrinQuizContext();
+//        Question question = new Question(0,"testQuestion", "testAnswers", 0, "testCategory", "testSource");
+//        Question question1 = new Question(0,"testQuestion1", "testAnswers1", 01, "testCategory1", "testSource1");
+//        
+//        List<Object> lst = new ArrayList<Object>();
+//        lst.add(question);
+//        lst.add(question1);
+//        
+//        _context.Question.addRange(lst);
+//          List<Question> lst = (List<Question>)(Object)_context.Question.getAll();
+          
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
