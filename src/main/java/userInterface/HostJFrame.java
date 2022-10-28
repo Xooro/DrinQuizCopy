@@ -4,8 +4,6 @@
  */
 package userInterface;
 
-import java.awt.Component;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 
@@ -19,10 +17,10 @@ public class HostJFrame extends javax.swing.JFrame {
      * Creates new form HostJFrame
      */
     public HostJFrame() {
-        this.logo = new ImageIcon("/resources/images/icon.png");
+        this.logo = new ImageIcon(".//resources/images/icon.png");
+        this.logo = new ImageIcon(".//resources/images/icon.png");
         initComponents();
         setLocationRelativeTo(null);
-
     }
 
     /**
@@ -34,178 +32,67 @@ public class HostJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLayeredPane = new javax.swing.JLayeredPane();
-        mainPanel = new com.k33ptoo.components.KGradientPanel();
-        gameButton = new com.k33ptoo.components.KButton();
-        settingsButton = new com.k33ptoo.components.KButton();
-        exitButton = new com.k33ptoo.components.KButton();
-        loadButton = new com.k33ptoo.components.KButton();
+        jPanel = new javax.swing.JPanel();
+        playerButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(logo.getImage());
 
-        mainPanel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        mainPanel.setAlignmentY(Component.CENTER_ALIGNMENT);
-        mainPanel.setkEndColor(new java.awt.Color(201, 0, 53));
-        mainPanel.setkStartColor(new java.awt.Color(91, 22, 71));
+        jPanel.setBackground(new java.awt.Color(150, 0, 0));
 
-        gameButton.setText("New Game");
-        gameButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        gameButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        gameButton.setBorderPainted(false);
-        gameButton.setFont(new java.awt.Font("Century Gothic", 3, 24)); // NOI18N
-        gameButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        gameButton.setkBorderRadius(50);
-        gameButton.setkEndColor(new java.awt.Color(69, 30, 62));
-        gameButton.setkHoverEndColor(new java.awt.Color(23, 7, 43));
-        gameButton.setkHoverStartColor(new java.awt.Color(140, 21, 233));
-        gameButton.setkStartColor(new java.awt.Color(6, 30, 63));
-        gameButton.setMargin(new java.awt.Insets(8, 16, 8, 16));
-        gameButton.setMaximumSize(new java.awt.Dimension(175, 50));
-        gameButton.setMinimumSize(new java.awt.Dimension(175, 50));
-        gameButton.setPreferredSize(new java.awt.Dimension(175, 50));
-        gameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+        playerButton.setText("Open Player Window");
+        playerButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                gameButtonMouseClicked(evt);
+                playerButtonMouseClicked(evt);
             }
         });
 
-        settingsButton.setText("Settings");
-        settingsButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        settingsButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        settingsButton.setBorderPainted(false);
-        settingsButton.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
-        settingsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        settingsButton.setkBorderRadius(50);
-        settingsButton.setkEndColor(new java.awt.Color(60, 30, 62));
-        settingsButton.setkHoverEndColor(new java.awt.Color(23, 7, 43));
-        settingsButton.setkHoverStartColor(new java.awt.Color(140, 21, 233));
-        settingsButton.setkStartColor(new java.awt.Color(6, 30, 63));
-        settingsButton.setMargin(new java.awt.Insets(8, 16, 8, 16));
-        settingsButton.setMaximumSize(new java.awt.Dimension(175, 50));
-        settingsButton.setMinimumSize(new java.awt.Dimension(175, 50));
-        settingsButton.setPreferredSize(new java.awt.Dimension(175, 50));
-
-        exitButton.setText("Exit");
-        exitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        exitButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        exitButton.setBorderPainted(false);
-        exitButton.setFont(new java.awt.Font("Century Gothic", 3, 24)); // NOI18N
-        exitButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        exitButton.setkBorderRadius(50);
-        exitButton.setkEndColor(new java.awt.Color(60, 30, 62));
-        exitButton.setkHoverEndColor(new java.awt.Color(23, 7, 43));
-        exitButton.setkHoverStartColor(new java.awt.Color(140, 21, 233));
-        exitButton.setkStartColor(new java.awt.Color(6, 30, 63));
-        exitButton.setMargin(new java.awt.Insets(8, 16, 8, 16));
-        exitButton.setMaximumSize(new java.awt.Dimension(175, 50));
-        exitButton.setMinimumSize(new java.awt.Dimension(175, 50));
-        exitButton.setPreferredSize(new java.awt.Dimension(175, 50));
+        exitButton.setText("EXIT");
         exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 exitButtonMouseClicked(evt);
             }
         });
 
-        loadButton.setText("Load Game");
-        loadButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-        loadButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-        loadButton.setBorderPainted(false);
-        loadButton.setContentAreaFilled(false);
-        loadButton.setFont(new java.awt.Font("Century Gothic", 3, 24)); // NOI18N
-        loadButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        loadButton.setkBorderRadius(50);
-        loadButton.setkEndColor(new java.awt.Color(69, 30, 62));
-        loadButton.setkHoverEndColor(new java.awt.Color(23, 7, 43));
-        loadButton.setkHoverStartColor(new java.awt.Color(140, 21, 233));
-        loadButton.setkStartColor(new java.awt.Color(6, 30, 63));
-        loadButton.setMargin(new java.awt.Insets(8, 16, 8, 16));
-        loadButton.setMaximumSize(new java.awt.Dimension(175, 50));
-        loadButton.setMinimumSize(new java.awt.Dimension(175, 50));
-        loadButton.setPreferredSize(new java.awt.Dimension(175, 50));
-        loadButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                loadButtonMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
-        mainPanel.setLayout(mainPanelLayout);
-        mainPanelLayout.setHorizontalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(gameButton, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                    .addComponent(loadButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(settingsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(300, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
+        jPanel.setLayout(jPanelLayout);
+        jPanelLayout.setHorizontalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(exitButton)
+                .addContainerGap())
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(playerButton)
+                .addContainerGap(253, Short.MAX_VALUE))
         );
-        mainPanelLayout.setVerticalGroup(
-            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addComponent(gameButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(loadButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(settingsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25)
-                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(125, 125, 125))
+        jPanelLayout.setVerticalGroup(
+            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(playerButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
+                .addComponent(exitButton)
+                .addContainerGap())
         );
-
-        gameButton.getAccessibleContext().setAccessibleName("gameButton");
-        settingsButton.getAccessibleContext().setAccessibleName("settingsButton");
-        exitButton.getAccessibleContext().setAccessibleName("exitButton");
-        loadButton.getAccessibleContext().setAccessibleName("loadButton");
-
-        jLayeredPane.setLayer(mainPanel, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jLayeredPaneLayout = new javax.swing.GroupLayout(jLayeredPane);
-        jLayeredPane.setLayout(jLayeredPaneLayout);
-        jLayeredPaneLayout.setHorizontalGroup(
-            jLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
-            .addGroup(jLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jLayeredPaneLayout.setVerticalGroup(
-            jLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
-            .addGroup(jLayeredPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jLayeredPaneLayout.createSequentialGroup()
-                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-
-        mainPanel.getAccessibleContext().setAccessibleName("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLayeredPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_exitButtonMouseClicked
-
-    private void gameButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameButtonMouseClicked
+    private void playerButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_playerButtonMouseClicked
         // TODO add your handling code here:
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
@@ -213,11 +100,12 @@ public class HostJFrame extends javax.swing.JFrame {
                 playerJFrame.setVisible(true);
             }
         });
-    }//GEN-LAST:event_gameButtonMouseClicked
+    }//GEN-LAST:event_playerButtonMouseClicked
 
-    private void loadButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadButtonMouseClicked
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_loadButtonMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_exitButtonMouseClicked
 
     ImageIcon logo = new ImageIcon(".//resources/images/icon.png");
 
@@ -254,11 +142,8 @@ public class HostJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.k33ptoo.components.KButton exitButton;
-    private com.k33ptoo.components.KButton gameButton;
-    private javax.swing.JLayeredPane jLayeredPane;
-    private com.k33ptoo.components.KButton loadButton;
-    private com.k33ptoo.components.KGradientPanel mainPanel;
-    private com.k33ptoo.components.KButton settingsButton;
+    private javax.swing.JButton exitButton;
+    private javax.swing.JPanel jPanel;
+    private javax.swing.JButton playerButton;
     // End of variables declaration//GEN-END:variables
 }
