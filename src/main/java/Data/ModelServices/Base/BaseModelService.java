@@ -13,13 +13,13 @@ import java.util.List;
  *
  * @author kkris
  */
-public abstract class BaseModelService {
-    public abstract void add(Object modelToAdd);
-    public abstract void update(Object modelToUpdate);
-    public abstract void remove(Object modelToRemove);
-    public abstract List<Object> getAll();
+public abstract class BaseModelService<T> {
+    public abstract void add(T modelToAdd);
+    public abstract void update(T modelToUpdate);
+    public abstract void remove(T modelToRemove);
+    public abstract List<T> getAll();
     
-    public void addRange(List<Object> modelsToAdd)
+    public void addRange(List<T> modelsToAdd)
     {
         for(int i=0;i<modelsToAdd.size();++i)
         {
@@ -28,7 +28,7 @@ public abstract class BaseModelService {
         }
     }
     
-    public void updateRange(List<Object> modelsToUpdate)
+    public void updateRange(List<T> modelsToUpdate)
     {
         for(int i=0;i<modelsToUpdate.size();++i)
         {
@@ -36,7 +36,7 @@ public abstract class BaseModelService {
         }
     }
     
-    public void removeRange(List<Object> modelsToRemove)
+    public void removeRange(List<T> modelsToRemove)
     {
         for(int i=0;i<modelsToRemove.size();++i)
         {

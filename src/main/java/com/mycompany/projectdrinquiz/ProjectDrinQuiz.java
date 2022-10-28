@@ -27,7 +27,7 @@ public class ProjectDrinQuiz {
 //        webHandler.importNapikvizToDatabase();
 
 ////        DEPENDENCY INJECTION TEST
-        DrinQuizContext _context = new DrinQuizContext();
+//        DrinQuizContext _context = new DrinQuizContext();
 //        Question question = new Question(0,"testQuestion", "testAnswers", 0, "testCategory", "testSource");
 //        Question question1 = new Question(0,"testQuestion1", "testAnswers1", 01, "testCategory1", "testSource1");
 //        
@@ -36,7 +36,12 @@ public class ProjectDrinQuiz {
 //        lst.add(question1);
 //        
 //        _context.Question.addRange(lst);
-//          List<Question> lst = (List<Question>)(Object)_context.Question.getAll();
+//          List<Question> lst = _context.Question.getAll();
+//          for(int i=0;i<lst.size();++i)
+//          {
+//              System.out.println(lst.get(i).getQuestion());
+//              System.out.println(lst.get(i).getAnswers());
+//          }
           
 
         SwingUtilities.invokeLater(new Runnable() {

@@ -14,11 +14,10 @@ import java.sql.*;
  *
  * @author kkris
  */
-public class QuestionModelService extends BaseModelService {
+public class QuestionModelService extends BaseModelService<Question> {
 
     @Override
-    public void add(Object modelToAdd) {
-        Question questionToAdd = (Question) modelToAdd;
+    public void add(Question questionToAdd) {
 
         String sql = "INSERT INTO Question(question, answers, rightAnswerID, category, source) VALUES(?,?,?,?,?)";
 
@@ -36,8 +35,7 @@ public class QuestionModelService extends BaseModelService {
 
 
     @Override
-    public void update(Object modelToUpdate) {
-        Question questionToUpdate = (Question) modelToUpdate;
+    public void update(Question questionToUpdate) {
 
         String sql = "UPDATE Question SET question = ? , "
                 + "answers = ? "
@@ -63,8 +61,7 @@ public class QuestionModelService extends BaseModelService {
     }
 
     @Override
-    public void remove(Object modelToRemove) {
-        Question questionToRemove = (Question) modelToRemove;
+    public void remove(Question questionToRemove) {
 
         String sql = "DELETE FROM Question WHERE ID = ?";
 
@@ -81,9 +78,9 @@ public class QuestionModelService extends BaseModelService {
     }
 
         @Override
-        public List<Object> getAll() {
+        public List<Question> getAll() {
         String sql = "SELECT * FROM Question";
-        List<Object> questionList = new ArrayList<Object>(); 
+        List<Question> questionList = new ArrayList<Question>(); 
             try ( Connection conn = this.connect();  Statement stmt = conn.createStatement();  ResultSet rs = stmt.executeQuery(sql)) {
 
                 // loop through the result set
