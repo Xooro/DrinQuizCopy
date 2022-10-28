@@ -24,6 +24,8 @@ public class PlayerJFrame extends javax.swing.JFrame {
         showOnScreen(1, this);
     }
 
+    ImageIcon icon = new ImageIcon("/resources/images/icon.png");
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -34,22 +36,36 @@ public class PlayerJFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel = new javax.swing.JPanel();
+        exitButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setIconImage(logo.getImage());
+        setIconImage(icon.getImage());
         setUndecorated(true);
 
         jPanel.setBackground(new java.awt.Color(0, 0, 150));
+
+        exitButton.setText("EXIT");
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
         jPanel.setLayout(jPanelLayout);
         jPanelLayout.setHorizontalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                .addContainerGap(322, Short.MAX_VALUE)
+                .addComponent(exitButton)
+                .addContainerGap())
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
+                .addContainerGap(271, Short.MAX_VALUE)
+                .addComponent(exitButton)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -66,7 +82,10 @@ public class PlayerJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    ImageIcon logo = new ImageIcon(".//resources/images/icon.png");
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitButtonMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -117,6 +136,7 @@ public class PlayerJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton exitButton;
     private javax.swing.JPanel jPanel;
     // End of variables declaration//GEN-END:variables
 
