@@ -25,56 +25,84 @@ public class QuestionHistoryModelService extends BaseModelService<QuestionHistor
 //    private int questionID;
 //    private int pickedAnswer;
 
-    public void add(QuestionHistory questionHistoryToAdd) {
+    public void addRange(List<QuestionHistory> questionHistoriesToAdd) {
 
         String sql = "INSERT INTO QuestionHistory(gameID,playerID,questionID,pickedAnswer) VALUES(?,?,?,?)";
 
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
-            pstmt.setInt(1, questionHistoryToAdd.getGameID());
-            pstmt.setInt(2, questionHistoryToAdd.getPlayerID());
-            pstmt.setInt(3, questionHistoryToAdd.getQuestionID());
-            pstmt.setInt(4, questionHistoryToAdd.getPickedAnswer());
-            pstmt.executeUpdate();
+            int index = 0;
+            for (QuestionHistory questionHistoryToAdd : questionHistoriesToAdd) {
+                pstmt.setInt(1, questionHistoryToAdd.getGameID());
+                pstmt.setInt(2, questionHistoryToAdd.getPlayerID());
+                pstmt.setInt(3, questionHistoryToAdd.getQuestionID());
+                pstmt.setInt(4, questionHistoryToAdd.getPickedAnswer());
+
+                pstmt.addBatch();
+                index++;
+
+                if (index % 1000 == 0 || index == questionHistoriesToAdd.size()) {
+                    pstmt.executeBatch();
+                    conn.commit();
+                }
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
     @Override
-    public void update(QuestionHistory questionHistoryToUpdate) {
+    public void updateRange(List<QuestionHistory> questionHistoriesToUpdate) {
 
         String sql = "UPDATE QuestionHistory SET gameID = ? , "
                 + "playerID = ?, "
                 + "questionID = ?, "
                 + "pickedAnswer = ? "
                 + "WHERE id = ?";
-
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            int index = 0;
+            for (QuestionHistory questionHistoryToUpdate : questionHistoriesToUpdate) {
 
-            // set the corresponding param
-            pstmt.setInt(1, questionHistoryToUpdate.getGameID());
-            pstmt.setInt(2, questionHistoryToUpdate.getPlayerID());
-            pstmt.setInt(3, questionHistoryToUpdate.getQuestionID());
-            pstmt.setInt(4, questionHistoryToUpdate.getPickedAnswer());
-            pstmt.setInt(5, questionHistoryToUpdate.getID());
-            // update 
-            pstmt.executeUpdate();
+                // set the corresponding param
+                pstmt.setInt(1, questionHistoryToUpdate.getGameID());
+                pstmt.setInt(2, questionHistoryToUpdate.getPlayerID());
+                pstmt.setInt(3, questionHistoryToUpdate.getQuestionID());
+                pstmt.setInt(4, questionHistoryToUpdate.getPickedAnswer());
+                pstmt.setInt(5, questionHistoryToUpdate.getID());
+
+                pstmt.addBatch();
+                index++;
+
+                if (index % 1000 == 0 || index == questionHistoriesToUpdate.size()) {
+                    pstmt.executeBatch();
+                    conn.commit();
+                }
+            }
+
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
 
     @Override
-    public void remove(QuestionHistory questionHistoryToRemove) {
+    public void removeRange(List<QuestionHistory> questionHistoriesToRemove) {
 
         String sql = "DELETE FROM QuestionHistory WHERE ID = ?";
 
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
+            int index = 0;
+            for (QuestionHistory questionHistoryToRemove : questionHistoriesToRemove) {
 
-            // set the corresponding param
-            pstmt.setInt(1, questionHistoryToRemove.getID());
-            // execute the delete statement
-            pstmt.executeUpdate();
+                // set the corresponding param
+                pstmt.setInt(1, questionHistoryToRemove.getID());
+                // execute the delete statement
+                pstmt.addBatch();
+                index++;
+
+                if (index % 1000 == 0 || index == questionHistoriesToRemove.size()) {
+                    pstmt.executeBatch();
+                }
+                conn.commit();
+            }
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
