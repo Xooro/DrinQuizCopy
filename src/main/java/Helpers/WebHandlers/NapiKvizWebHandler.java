@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package WebHandlers;
+package Helpers.WebHandlers;
 
+import Models.Enums.Categories;
+import Models.Enums.Sources;
 import Models.Question;
-import WebHandlers.Base.BaseWebHandler;
+import Helpers.WebHandlers.Base.BaseWebHandler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,14 +17,14 @@ import java.util.Locale;
  *
  * @author kkris
  */
-public class Web_NapiKvizHandler extends BaseWebHandler {
+public class NapiKvizWebHandler extends BaseWebHandler {
 
-    public Web_NapiKvizHandler(String source, String encoding) {
+    public NapiKvizWebHandler(Sources source, String encoding) {
         super(source, encoding);
     }
 
     @Override
-    protected List<Question> convertWebPageStringArrayToQuestionList(String[] htmlDataSeparated, String category) {
+    protected List<Question> convertWebPageStringArrayToQuestionList(String[] htmlDataSeparated, Categories category) {
 
         List<Question> questions = new ArrayList<Question>();
 
@@ -34,17 +36,8 @@ public class Web_NapiKvizHandler extends BaseWebHandler {
                 String[] htmlAnswersRow = htmlDataSeparated[i].split(". Megoldás:");
                 String htmlAnswers = htmlAnswersRow[0].replace(",", separator).replace("Válaszok:", "");
                 int htmlRightAnswerID = Arrays.asList(htmlAnswers.split(separator)).indexOf(htmlAnswersRow[1]);
-
-                questions.add(new Question(0,htmlQuestion,htmlAnswers,htmlRightAnswerID,category,source));
                 
-                //DEBUG------------
-//                System.out.println(htmlDataSeparated[i]);
-//                System.out.println("Question:        " + htmlQuestions);
-//                System.out.println("Answers:         " + htmlAnswers);
-//                System.out.println("Right Answer ID: " + htmlRightAnswerID);
-//                System.out.println("\n");
-                //DEBUG.END--------
-                //lists to questions here
+                questions.add(new Question(0,htmlQuestion,htmlAnswers,htmlRightAnswerID,category.toString(),source.toString()));
             }
         }
 

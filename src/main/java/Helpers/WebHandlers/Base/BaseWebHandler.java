@@ -2,8 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package WebHandlers.Base;
+package Helpers.WebHandlers.Base;
 
+import Models.Enums.Categories;
+import Models.Enums.Sources;
 import Models.Question;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,13 +19,14 @@ import java.util.Scanner;
  *
  * @author kkris
  */
+
 public abstract class BaseWebHandler {
 
-    protected String source;
+    protected Sources source;
     protected String encoding;
     protected String separator = ";;SEP;;";
 
-    public BaseWebHandler(String source, String encoding) {
+    public BaseWebHandler(Sources source, String encoding) {
         this.source = source;
         this.encoding = encoding;
     }
@@ -57,10 +60,10 @@ public abstract class BaseWebHandler {
         
     }
 
-    protected abstract List<Question> convertWebPageStringArrayToQuestionList(String[] htmlDataString, String category);
+    protected abstract List<Question> convertWebPageStringArrayToQuestionList(String[] htmlDataString, Categories category);
 
     
-    public List<Question> getDataFromWebpage(String url, String category)
+    public List<Question> getDataFromWebpage(String url, Categories category)
             throws IOException {
         return convertWebPageStringArrayToQuestionList(webpageToStringArray(url), category);
     }

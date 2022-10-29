@@ -4,7 +4,7 @@
  */
 package com.mycompany.projectdrinquiz;
 
-import WebHandlers.WebHandler;
+import Helpers.WebHandler;
 import Data.DrinQuizContext;
 import Models.Question;
 import java.io.IOException;

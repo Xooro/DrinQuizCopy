@@ -3,7 +3,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Data;
-import Data.ModelServices.*;
+import Models.ModelServices.QuestionModelService;
+import Models.ModelServices.QuestionHistoryModelService;
+import Models.ModelServices.PlayerModelService;
+import Models.ModelServices.GameModelService;
 import java.sql.*;
 import java.util.*;
 
