@@ -28,7 +28,7 @@ public abstract class BaseWebHandler {
         this.encoding = encoding;
     }
 
-    protected String webpageToString(String url)
+    protected String[] webpageToStringArray(String url)
             throws MalformedURLException, IOException {
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(
@@ -43,7 +43,9 @@ public abstract class BaseWebHandler {
 
         String result = new String(sb.toString().getBytes(), "UTF-8");
 
-        return result;
+        String[] htmlDataSeparated = result.split("<br>");
+        
+        return htmlDataSeparated;
         
         //Into file for encode checking
 //        PrintWriter out = new PrintWriter("EncodeCheck.txt");
@@ -55,12 +57,12 @@ public abstract class BaseWebHandler {
         
     }
 
-    protected abstract List<Question> convertWebPageStringToQuestionList(String htmlDataString, String category);
+    protected abstract List<Question> convertWebPageStringArrayToQuestionList(String[] htmlDataString, String category);
 
     
     public List<Question> getDataFromWebpage(String url, String category)
             throws IOException {
-        return convertWebPageStringToQuestionList(webpageToString(url), category);
+        return convertWebPageStringArrayToQuestionList(webpageToStringArray(url), category);
     }
 
 }

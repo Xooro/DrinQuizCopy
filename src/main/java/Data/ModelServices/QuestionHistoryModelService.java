@@ -91,17 +91,14 @@ public class QuestionHistoryModelService extends BaseModelService<QuestionHistor
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
             for (QuestionHistory questionHistoryToRemove : questionHistoriesToRemove) {
-
-                // set the corresponding param
                 pstmt.setInt(1, questionHistoryToRemove.getID());
-                // execute the delete statement
                 pstmt.addBatch();
                 index++;
 
                 if (index % 1000 == 0 || index == questionHistoriesToRemove.size()) {
                     pstmt.executeBatch();
-                }
-                conn.commit();
+                    conn.commit();
+                }        
             }
 
         } catch (SQLException e) {

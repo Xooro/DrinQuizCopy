@@ -80,11 +80,9 @@ public class GameModelService extends BaseModelService<Game> {
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
             for (Game gameToRemove : gamesToRemove) {
-
-                // set the corresponding param
                 pstmt.setInt(1, gameToRemove.getID());
-                // execute the delete statement
                 pstmt.addBatch();
+                
                 index++;
 
                 if (index % 1000 == 0 || index == gamesToRemove.size()) {

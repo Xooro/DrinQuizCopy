@@ -88,9 +88,7 @@ public class PlayerModelService extends BaseModelService<Player> {
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
             for (Player playerToRemove : playersToRemove) {
-                // set the corresponding param
                 pstmt.setInt(1, playerToRemove.getID());
-                // execute the delete statement
                 pstmt.addBatch();
                 index++;
                 if (index % 1000 == 0 || index == playersToRemove.size()) {

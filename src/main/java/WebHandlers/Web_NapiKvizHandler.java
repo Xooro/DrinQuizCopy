@@ -22,9 +22,8 @@ public class Web_NapiKvizHandler extends BaseWebHandler {
     }
 
     @Override
-    protected List<Question> convertWebPageStringToQuestionList(String htmlDataString, String category) {
+    protected List<Question> convertWebPageStringArrayToQuestionList(String[] htmlDataSeparated, String category) {
 
-        String[] htmlDataSeparated = htmlDataString.split("<br>");
         List<Question> questions = new ArrayList<Question>();
 
         for (int i = 0; i < htmlDataSeparated.length; ++i) {
