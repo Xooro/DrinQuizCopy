@@ -6,6 +6,7 @@ package com.mycompany.projectdrinquiz;
 
 import Helpers.WebHandler;
 import Data.DrinQuizContext;
+import Helpers.GameHandler;
 import Models.Question;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -27,11 +28,20 @@ public class ProjectDrinQuiz {
 //        WebHandler webHandler = new WebHandler();
 //        webHandler.importNapikvizToDatabase();
 
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                HostJFrame hostJFrame = new HostJFrame();
-                hostJFrame.setVisible(true);
-            }
-        });
+//        SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                HostJFrame hostJFrame = new HostJFrame();
+//                hostJFrame.setVisible(true);
+//            }
+//        });
+
+        GameHandler game = new GameHandler(1);
+        
+        Question question = game.getNewQuestion();
+        
+        String[] test = game.getAnswersSeparated(question.getAnswers());
+        
+        System.out.print(test[0] + test[1] + test[2]);
+        
     }
 }

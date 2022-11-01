@@ -42,9 +42,15 @@ public class HostJFrame extends javax.swing.JFrame {
         jPanel.setBackground(new java.awt.Color(150, 0, 0));
 
         playerButton.setText("Open Player Window");
+        playerButton.setPreferredSize(new java.awt.Dimension(200, 50));
         playerButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 playerButtonMouseClicked(evt);
+            }
+        });
+        playerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                playerButtonActionPerformed(evt);
             }
         });
 
@@ -65,15 +71,15 @@ public class HostJFrame extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(playerButton)
-                .addContainerGap(253, Short.MAX_VALUE))
+                .addComponent(playerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(194, Short.MAX_VALUE))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(playerButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
+                .addComponent(playerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 215, Short.MAX_VALUE)
                 .addComponent(exitButton)
                 .addContainerGap())
         );
@@ -106,6 +112,10 @@ public class HostJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_exitButtonMouseClicked
+
+    private void playerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playerButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_playerButtonActionPerformed
 
     ImageIcon logo = new ImageIcon(".//resources/images/icon.png");
 
