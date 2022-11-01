@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
-import userInterface.HostJFrame;
+import userInterface.hostFrame;
 
 /**
  *
@@ -27,21 +27,20 @@ public class ProjectDrinQuiz {
         //WEBHANDLER TEST
 //        WebHandler webHandler = new WebHandler();
 //        webHandler.importNapikvizToDatabase();
-
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                HostJFrame hostJFrame = new HostJFrame();
-//                hostJFrame.setVisible(true);
-//            }
-//        });
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                hostFrame hostJFrame = new hostFrame();
+                hostJFrame.setVisible(true);
+            }
+        });
 
         GameHandler game = new GameHandler(1);
-        
+
         Question question = game.getNewQuestion();
-        
+
         String[] test = game.getAnswersSeparated(question.getAnswers());
-        
+
         System.out.print(test[0] + test[1] + test[2]);
-        
+
     }
 }
