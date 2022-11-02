@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userInterface.hostPanels;
+package Views.HostJPanels;
 
 /**
  *
  * @author Jani
  */
-public class gameName extends javax.swing.JPanel {
+public class JPanelNameName extends javax.swing.JPanel {
 
     /**
      * Creates new form gameName
      */
-    public gameName() {
+    public JPanelNameName() {
         initComponents();
     }
 
@@ -30,11 +30,13 @@ public class gameName extends javax.swing.JPanel {
         startButton = new com.k33ptoo.components.KButton();
         gameName = new javax.swing.JTextField();
 
+        backButton.setBorder(null);
         backButton.setText("Back");
         backButton.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         backButton.setkBorderRadius(50);
         backButton.setPreferredSize(new java.awt.Dimension(200, 50));
 
+        startButton.setBorder(null);
         startButton.setText("Create Game");
         startButton.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         startButton.setkBorderRadius(50);

@@ -2,18 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userInterface.hostPanels;
+package Views.HostJPanels;
+
+import java.awt.Frame;
+import javax.swing.WindowConstants;
 
 /**
  *
  * @author Jani
  */
-public class mainMenu extends javax.swing.JPanel {
+public class JPanelMainMenu extends javax.swing.JPanel {
 
     /**
      * Creates new form mainMenu
      */
-    public mainMenu() {
+    public JPanelMainMenu() {
         initComponents();
     }
 
@@ -31,25 +34,39 @@ public class mainMenu extends javax.swing.JPanel {
         settingsButton = new com.k33ptoo.components.KButton();
         exitButton = new com.k33ptoo.components.KButton();
 
+        gameButton.setBorder(null);
         gameButton.setText("New Game");
         gameButton.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         gameButton.setkBorderRadius(50);
         gameButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        gameButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gameButtonMouseClicked(evt);
+            }
+        });
 
+        loadButton.setBorder(null);
         loadButton.setText("Load Game");
         loadButton.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         loadButton.setkBorderRadius(50);
         loadButton.setPreferredSize(new java.awt.Dimension(200, 50));
 
+        settingsButton.setBorder(null);
         settingsButton.setText("Settings");
         settingsButton.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settingsButton.setkBorderRadius(50);
         settingsButton.setPreferredSize(new java.awt.Dimension(200, 50));
 
+        exitButton.setBorder(null);
         exitButton.setText("Exit");
         exitButton.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         exitButton.setkBorderRadius(50);
         exitButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        exitButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exitButtonMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,6 +98,16 @@ public class mainMenu extends javax.swing.JPanel {
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void exitButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitButtonMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exitButtonMouseClicked
+
+    private void gameButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameButtonMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_gameButtonMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KButton exitButton;

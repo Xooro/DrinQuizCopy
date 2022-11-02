@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userInterface.hostPanels;
+package Views.HostJPanels;
 
 /**
  *
  * @author Jani
  */
-public class categories extends javax.swing.JPanel {
+public class JPanelDataBases extends javax.swing.JPanel {
 
     /**
      * Creates new form dataBases
      */
-    public categories() {
+    public JPanelDataBases() {
         initComponents();
     }
 
@@ -30,13 +30,15 @@ public class categories extends javax.swing.JPanel {
         backButton = new com.k33ptoo.components.KButton();
         jLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        categoriesList = new javax.swing.JList<>();
+        dataBasesList = new javax.swing.JList<>();
 
+        nextButton.setBorder(null);
         nextButton.setText("Next");
         nextButton.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         nextButton.setkBorderRadius(50);
         nextButton.setPreferredSize(new java.awt.Dimension(200, 50));
 
+        backButton.setBorder(null);
         backButton.setText("Back");
         backButton.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         backButton.setkBorderRadius(50);
@@ -44,17 +46,17 @@ public class categories extends javax.swing.JPanel {
 
         jLabel.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         jLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel.setText("CATEGORIES");
+        jLabel.setText("DATABASES");
         jLabel.setPreferredSize(new java.awt.Dimension(200, 50));
 
-        categoriesList.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        categoriesList.setModel(new javax.swing.AbstractListModel<String>() {
+        dataBasesList.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        dataBasesList.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        categoriesList.setToolTipText("Press CTRL to select multiple items");
-        jScrollPane1.setViewportView(categoriesList);
+        dataBasesList.setToolTipText("Press CTRL to select multiple items");
+        jScrollPane1.setViewportView(dataBasesList);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -75,8 +77,8 @@ public class categories extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(250, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(250, 250, 250)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -88,7 +90,7 @@ public class categories extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KButton backButton;
-    private javax.swing.JList<String> categoriesList;
+    private javax.swing.JList<String> dataBasesList;
     private javax.swing.JLabel jLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private com.k33ptoo.components.KButton nextButton;

@@ -53,6 +53,9 @@
   <SubComponents>
     <Component class="com.k33ptoo.components.KButton" name="backButton">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Back"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="18" style="3"/>
@@ -65,6 +68,9 @@
     </Component>
     <Component class="com.k33ptoo.components.KButton" name="startButton">
       <Properties>
+        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+          <Border info="null"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="Create Game"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="18" style="3"/>

@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userInterface.hostPanels;
+package Views.HostJPanels;
 
 /**
  *
  * @author Jani
  */
-public class backGround extends javax.swing.JPanel {
+public class JPanelBackGround extends javax.swing.JPanel {
 
     /**
      * Creates new form backGround
      */
-    public backGround() {
+    public JPanelBackGround() {
         initComponents();
     }
 

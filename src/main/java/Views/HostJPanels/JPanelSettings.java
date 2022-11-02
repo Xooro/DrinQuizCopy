@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userInterface.hostPanels;
+package Views.HostJPanels;
 
 /**
  *
  * @author Jani
  */
-public class settings extends javax.swing.JPanel {
+public class JPanelSettings extends javax.swing.JPanel {
 
     /**
      * Creates new form settings
      */
-    public settings() {
+    public JPanelSettings() {
         initComponents();
     }
 
