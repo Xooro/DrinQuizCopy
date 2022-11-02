@@ -42,12 +42,12 @@ public class JPanelSettings extends javax.swing.JPanel {
         applyButton.setkBorderRadius(50);
         applyButton.setPreferredSize(new java.awt.Dimension(200, 50));
 
-        applyButton1.setText("Apply");
+        applyButton1.setText("Delete Database");
         applyButton1.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         applyButton1.setkBorderRadius(50);
         applyButton1.setPreferredSize(new java.awt.Dimension(200, 50));
 
-        applyButton2.setText("Apply");
+        applyButton2.setText("Add Database");
         applyButton2.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         applyButton2.setkBorderRadius(50);
         applyButton2.setPreferredSize(new java.awt.Dimension(200, 50));

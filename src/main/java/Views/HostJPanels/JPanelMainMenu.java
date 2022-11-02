@@ -34,6 +34,8 @@ public class JPanelMainMenu extends javax.swing.JPanel {
         settingsButton = new com.k33ptoo.components.KButton();
         exitButton = new com.k33ptoo.components.KButton();
 
+        setOpaque(false);
+
         gameButton.setBorder(null);
         gameButton.setText("New Game");
         gameButton.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N

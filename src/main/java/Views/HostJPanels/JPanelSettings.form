@@ -83,7 +83,7 @@
     </Component>
     <Component class="com.k33ptoo.components.KButton" name="applyButton1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Apply"/>
+        <Property name="text" type="java.lang.String" value="Delete Database"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="18" style="3"/>
         </Property>
@@ -95,7 +95,7 @@
     </Component>
     <Component class="com.k33ptoo.components.KButton" name="applyButton2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Apply"/>
+        <Property name="text" type="java.lang.String" value="Add Database"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Century Gothic" size="18" style="3"/>
         </Property>
