@@ -9,20 +9,24 @@ package Helpers;
  * @author akile
  */
 public class ConverterHelper {
-    public static String[] convertSeparatedStringToStringArray(String stringBlock){
-       String[] separatedItems = stringBlock.split(";;SEP;;");
-       
-       return separatedItems;
-   } 
-    
-   public static String convertStringArrayToSeparatedString(String[] items){
-       String separatedBlock = items[0];
-       
-       for(int i = 1; i < items.length; ++i){
-           separatedBlock += ";;SEP;;";
-           separatedBlock += items[i];
-       }
-       
-       return separatedBlock;
-   }
+
+    public static String[] convertSeparatedStringToStringArray(String separatedBlock) {
+        if (!separatedBlock.contains(";;SEP;;")) {
+            return new String[]{separatedBlock};
+        }
+        String[] separatedArray = separatedBlock.split(";;SEP;;");
+
+        return separatedArray;
+    }
+
+    public static String convertStringArrayToSeparatedString(String[] separatedArray) {
+        String separatedBlock = separatedArray[0];
+
+        for (int i = 1; i < separatedArray.length; ++i) {
+            separatedBlock += ";;SEP;;";
+            separatedBlock += separatedArray[i];
+        }
+
+        return separatedBlock;
+    }
 }

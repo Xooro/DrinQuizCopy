@@ -5,13 +5,7 @@
 package com.mycompany.projectdrinquiz;
 
 import Helpers.WebHandler;
-import Data.DrinQuizContext;
-import Helpers.GameHandler;
-import Models.Question;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.SwingUtilities;
 import userInterface.hostFrame;
 
@@ -27,6 +21,7 @@ public class ProjectDrinQuiz {
         //WEBHANDLER TEST
 //        WebHandler webHandler = new WebHandler();
 //        webHandler.importNapikvizToDatabase();
+
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 hostFrame hostJFrame = new hostFrame();

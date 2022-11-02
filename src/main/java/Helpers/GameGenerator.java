@@ -7,13 +7,10 @@ package Helpers;
 import Data.DrinQuizContext;
 import Models.Game;
 import java.util.List;
-import static Helpers.ConverterHelper.convertSeparatedStringToStringArray;
-import static Helpers.ConverterHelper.convertStringArrayToSeparatedString;
 import Models.Question;
-import java.sql.PreparedStatement;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  *
@@ -33,11 +30,11 @@ public class GameGenerator {
             System.out.print("Nem választottál kategóriát!");
             return;
         }
-        game.setSources(convertStringArrayToSeparatedString(sources));
+        game.setSources(ConverterHelper.convertStringArrayToSeparatedString(sources));
         
     }
     public void setChosenCategories(String[] categories){
-        game.setCategories(convertStringArrayToSeparatedString(categories));       
+        game.setCategories(ConverterHelper.convertStringArrayToSeparatedString(categories));       
     }
     
     public String[] getSourcesCategories(){
@@ -45,25 +42,20 @@ public class GameGenerator {
             System.out.print("Nincsen kiválasztott forrás");
             throw null;
         }
-//        List<Question> questions = _context.Question.getAll();
-//        Map<String, Map<Integer, List<Question>>> map = questions.stream()
-//        .collect(Collectors.groupingBy(e -> YearMonth.from(e.getWhen()),
-//                    Collectors.groupingBy(x -> x.getWhat(), Collectors.counting()))
-//                   );
-//        String[] sources;
-//        List<String> categories;
-//        List<Question> questions = _context.Question.getAll();
-//        
-//        for(Question question : questions){ 
-//            for(int i = 0; i < sources.length;++i){
-//                if(question.getSource().contains(sources[i])) 
-//                    categories.add(question.getCategory());
-//            }
-//        }
-//        
-//        questions.stream().filter(q -> q.getSource().);
+    
+        String[] sources = ConverterHelper.convertSeparatedStringToStringArray(game.getSources());
+        String[] categories;
+
+        List<Question> questions = _context.Question.getAll();
+        questions = questions.stream().filter(
+                q -> Arrays.stream(sources).anyMatch(q.getSource()::contains)
+        ).toList();
         
-        return null;
+        Map<String, List<Question>> questionMap =
+            questions.stream().collect(Collectors.groupingBy(q->q.getCategory()));
         
+        categories = questionMap.keySet().toArray(new String[0]);
+
+        return categories; 
     }
 }
