@@ -5,6 +5,11 @@
 package Views;
 
 import javax.swing.*;
+import Helpers.GameGenerator;
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JCheckBox;
 
 /**
  *
@@ -12,6 +17,7 @@ import javax.swing.*;
  */
 public class JFrameTestHost extends javax.swing.JFrame {
 
+    GameGenerator gameGenerator;
     /**
      * Creates new form JFrameTestHost
      */
@@ -20,11 +26,12 @@ public class JFrameTestHost extends javax.swing.JFrame {
     public JFrameTestHost() {
         initComponents();
 
-        newGame_kGrdntPnlSources.setVisible(false);
+        gameGenerator = new GameGenerator();
+
         settings_kGrdntPnl.setVisible(false);
+        newGame_kGrdntPnlSources.setVisible(false);
         newGame_kGrdntPnlCategories.setVisible(false);
         newGame_kGrdntPnlGameName.setVisible(false);
-
     }
 
     /**
@@ -510,15 +517,6 @@ public class JFrameTestHost extends javax.swing.JFrame {
     private void menu_bttnNewGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnNewGameMouseClicked
         // TODO add your handling code here:
         menu_kGrdntPnl.setVisible(false);
-
-//        javax.swing.JCheckBox[] jCheckboxArray;
-//        int CheckBoxNumber = 5;
-//        jCheckboxArray = new javax.swing.JCheckBox[CheckBoxNumber];
-//        for (int x = 0; x < CheckBoxNumber; x++) {
-//            jCheckboxArray[x] = new javax.swing.JCheckBox();
-//            jCheckboxArray[x].setText("CheckBox " + x);
-//            newGame_kGrdntPnlSources.add(jCheckboxArray[x]);
-//        }
         newGame_kGrdntPnlSources.setVisible(true);
     }//GEN-LAST:event_menu_bttnNewGameMouseClicked
 
@@ -529,14 +527,23 @@ public class JFrameTestHost extends javax.swing.JFrame {
 
     private void newGame_Sources_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnBackMouseClicked
         // TODO add your handling code here:
+        newGame_kGrdntPnlSources.setVisible(false);
+        menu_kGrdntPnl.setVisible(true);
     }//GEN-LAST:event_newGame_Sources_kBttnBackMouseClicked
 
     private void newGame_Categories_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Categories_kBttnBackMouseClicked
         // TODO add your handling code here:
+        newGame_kGrdntPnlCategories.setVisible(false);
+        newGame_kGrdntPnlSources.setVisible(true);
     }//GEN-LAST:event_newGame_Categories_kBttnBackMouseClicked
 
     private void newGame_Categories_kBttnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Categories_kBttnNextMouseClicked
         // TODO add your handling code here:
+
+        chosenCategoriesToString();
+        newGame_kGrdntPnlCategories.setVisible(false);
+        newGame_kGrdntPnlGameName.setVisible(true);
+
     }//GEN-LAST:event_newGame_Categories_kBttnNextMouseClicked
 
     private void newGame_GameName_kBttnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_kBttnStartMouseClicked
@@ -545,11 +552,26 @@ public class JFrameTestHost extends javax.swing.JFrame {
 
     private void newGame_GameName_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_kBttnBackMouseClicked
         // TODO add your handling code here:
+        newGame_kGrdntPnlGameName.setVisible(false);
+        newGame_kGrdntPnlCategories.setVisible(true);
     }//GEN-LAST:event_newGame_GameName_kBttnBackMouseClicked
 
     private void newGame_Sources_kBttnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnNextMouseClicked
         // TODO add your handling code here:
         newGame_kGrdntPnlSources.setVisible(false);
+
+        String[] categories = gameGenerator.getCategoriesBySourcesInDatabase();
+
+        javax.swing.JCheckBox[] jCheckboxArray;
+        int CheckBoxNumber = categories.length;
+        jCheckboxArray = new javax.swing.JCheckBox[CheckBoxNumber];
+        for (int x = 0; x < CheckBoxNumber; x++) {
+            jCheckboxArray[x] = new javax.swing.JCheckBox();
+            jCheckboxArray[x].setText(categories[x]);
+            jCheckboxArray[x].setBounds(20, x * 50, 300, 30);
+            jCheckboxArray[x].doClick();
+            newGame_kGrdntPnlCategories.add(jCheckboxArray[x]);
+        }
         newGame_kGrdntPnlCategories.setVisible(true);
     }//GEN-LAST:event_newGame_Sources_kBttnNextMouseClicked
 
@@ -586,6 +608,30 @@ public class JFrameTestHost extends javax.swing.JFrame {
                 new JFrameTestHost().setVisible(true);
             }
         });
+    }
+
+    private String chosenCategoriesToString() {
+        String str = "";
+        JCheckBox tryIt = new JCheckBox();
+
+        List<JCheckBox> jCheckboxArray = new ArrayList<>();
+
+        for (Component box : newGame_kGrdntPnlCategories.getComponents()) {
+            if (box.getClass() == tryIt.getClass()) {
+                jCheckboxArray.add((JCheckBox) box);
+                if (!jCheckboxArray.get(jCheckboxArray.size() - 1).isSelected()) {
+                    jCheckboxArray.remove(jCheckboxArray.size() - 1);
+                }
+            }
+        }
+
+        str += jCheckboxArray.get(0).getText();
+        for (int i = 1; i < jCheckboxArray.size(); ++i) {
+            str += ";;SEP;;";
+            str += jCheckboxArray.get(i).getText();
+        }
+        System.out.println(str);
+        return str;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

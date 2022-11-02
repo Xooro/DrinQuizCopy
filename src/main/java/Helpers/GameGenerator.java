@@ -37,13 +37,25 @@ public class GameGenerator {
         game.setCategories(ConverterHelper.convertStringArrayToSeparatedString(categories));       
     }
     
-    public String[] getSourcesCategories(){
-        if(game.getSources() == null){
-            System.out.print("Nincsen kiválasztott forrás");
-            throw null;
-        }
+    public String[] getSourcesInDatabase(){
+        String[] sources;
+        List<Question> questions = _context.Question.getAll();
+        
+        Map<String, List<Question>> questionMap =
+            questions.stream().collect(Collectors.groupingBy(q->q.getSource()));
+        
+        sources = questionMap.keySet().toArray(new String[0]);
+        return sources;
+    }
     
-        String[] sources = ConverterHelper.convertSeparatedStringToStringArray(game.getSources());
+    public String[] getCategoriesBySourcesInDatabase(){
+//        if(game.getSources() == null){
+//            System.out.print("Nincsen kiválasztott forrás");
+//            throw null;
+//        }
+    
+//        String[] sources = ConverterHelper.convertSeparatedStringToStringArray(game.getSources());
+        String[] sources = {"NapiKvíz","TEST"};
         String[] categories;
 
         List<Question> questions = _context.Question.getAll();
@@ -55,7 +67,7 @@ public class GameGenerator {
             questions.stream().collect(Collectors.groupingBy(q->q.getCategory()));
         
         categories = questionMap.keySet().toArray(new String[0]);
-
+        
         return categories; 
     }
 }
