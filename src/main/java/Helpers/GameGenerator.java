@@ -8,7 +8,10 @@ import Data.DrinQuizContext;
 import Models.Game;
 import java.util.List;
 import Models.Question;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -24,18 +27,7 @@ public class GameGenerator {
         game = new Game();
         _context = new DrinQuizContext();
     }
-    
-    public void setChosenSources(String[] sources){
-        if(sources.length == 0) {
-            System.out.print("Nem választottál kategóriát!");
-            return;
-        }
-        game.setSources(ConverterHelper.convertStringArrayToSeparatedString(sources));
-        
-    }
-    public void setChosenCategories(String[] categories){
-        game.setCategories(ConverterHelper.convertStringArrayToSeparatedString(categories));       
-    }
+
     
     public String[] getSourcesInDatabase(){
         String[] sources;
@@ -49,13 +41,12 @@ public class GameGenerator {
     }
     
     public String[] getCategoriesBySourcesInDatabase(){
-//        if(game.getSources() == null){
-//            System.out.print("Nincsen kiválasztott forrás");
-//            throw null;
-//        }
+        if(game.getSources() == null){
+            System.out.print("Nincsen kiválasztott forrás");
+            throw null;
+        }
     
-//        String[] sources = ConverterHelper.convertSeparatedStringToStringArray(game.getSources());
-        String[] sources = {"NapiKvíz","TEST"};
+        String[] sources = ConverterHelper.convertSeparatedStringToStringArray(game.getSources());
         String[] categories;
 
         List<Question> questions = _context.Question.getAll();
@@ -69,5 +60,38 @@ public class GameGenerator {
         categories = questionMap.keySet().toArray(new String[0]);
         
         return categories; 
+    }
+    
+    
+    public void setChosenSources(String[] sources){
+        if(sources.length == 0) {
+            System.out.print("Nem választottál kategóriát!");
+            return;
+        }
+        game.setSources(ConverterHelper.convertStringArrayToSeparatedString(sources));
+        
+    }
+    
+    public void setChosenCategories(String[] categories){
+        game.setCategories(ConverterHelper.convertStringArrayToSeparatedString(categories));       
+    }
+    
+    public void setChosenName(String name){
+        game.setGameName(name);
+    }
+    
+    public void generateGame(String name)
+    {
+        setChosenName(name);
+        Date todayDate = new Date();
+        game.setCreationDate(new java.sql.Date(todayDate.getTime()));
+        
+        _context.Game.add(game);
+        
+        Game testgame = _context.Game.getAll().get(0);
+//        System.out.println(game.getGameName());
+//        System.out.println(game.getCreationDate());
+//        System.out.println(game.getSources());
+//        System.out.println(game.getCategories());
     }
 }

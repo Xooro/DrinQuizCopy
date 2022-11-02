@@ -160,6 +160,9 @@
                   <Dimension value="[200, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menu_bttnSettingsMouseClicked"/>
+              </Events>
             </Component>
             <Component class="com.k33ptoo.components.KButton" name="menu_bttnLoadGame">
               <Properties>
@@ -297,6 +300,9 @@
                   <Dimension value="[200, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settings_kBttnBackMouseClicked"/>
+              </Events>
             </Component>
             <Component class="com.k33ptoo.components.KButton" name="settings_kBttnImportQuizzes">
               <Properties>

@@ -59,7 +59,4 @@ public class GameHandler {
        }       
        return false;
    } 
-   
-   
-//   public void giveAnswersToButtons(){}
 }
