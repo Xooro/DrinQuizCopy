@@ -5,6 +5,7 @@
 package com.mycompany.projectdrinquiz;
 
 import Helpers.WebHandler;
+import Views.MainMenu;
 import java.io.IOException;
 import javax.swing.SwingUtilities;
 import Views.testHostFrame;
@@ -23,11 +24,11 @@ public class ProjectDrinQuiz {
 //        webHandler.importNapikvizToDatabase();
 //        SwingUtilities.invokeLater(new Runnable() {
 //            public void run() {
-//                hostFrame hostJFrame = new hostFrame();
-//                hostJFrame.setVisible(true);
+//                JFrameMainMenu mainFrame = new JFrameMainMenu();
+//                mainFrame.setVisible(true);
 //            }
 //        });
-        testHostFrame hostFrame = new testHostFrame();
+        MainMenu hostFrame = new MainMenu();
 
     }
 }

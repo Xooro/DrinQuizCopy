@@ -111,7 +111,7 @@ public class JPanelMainMenu extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KButton exitButton;
-    private com.k33ptoo.components.KButton gameButton;
+    public com.k33ptoo.components.KButton gameButton;
     private com.k33ptoo.components.KButton loadButton;
     private com.k33ptoo.components.KButton settingsButton;
     // End of variables declaration//GEN-END:variables

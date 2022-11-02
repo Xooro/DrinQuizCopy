@@ -8,12 +8,12 @@ package Views.HostJPanels;
  *
  * @author Jani
  */
-public class JPanelNameName extends javax.swing.JPanel {
+public class JPanelGameName extends javax.swing.JPanel {
 
     /**
      * Creates new form gameName
      */
-    public JPanelNameName() {
+    public JPanelGameName() {
         initComponents();
     }
 
