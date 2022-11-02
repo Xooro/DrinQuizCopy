@@ -486,7 +486,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
         // TODO add your handling code here:
         newGame_kGrdntPnlSources.setVisible(false);
         
-        String[] categories = gameGenerator.getCategoriesBySources();
+        String[] categories = gameGenerator.getCategoriesBySourcesInDatabase();
         
         javax.swing.JCheckBox[] jCheckboxArray;
         int CheckBoxNumber = 5;
