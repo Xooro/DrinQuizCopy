@@ -8,12 +8,12 @@ package Views.HostJPanels;
  *
  * @author Jani
  */
-public class JPanelDataBases extends javax.swing.JPanel {
+public class JPanelSources extends javax.swing.JPanel {
 
     /**
      * Creates new form dataBases
      */
-    public JPanelDataBases() {
+    public JPanelSources() {
         initComponents();
     }
 

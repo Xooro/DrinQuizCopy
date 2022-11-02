@@ -28,6 +28,9 @@ public class JPanelSettings extends javax.swing.JPanel {
 
         backButton = new com.k33ptoo.components.KButton();
         applyButton = new com.k33ptoo.components.KButton();
+        applyButton1 = new com.k33ptoo.components.KButton();
+        applyButton2 = new com.k33ptoo.components.KButton();
+        applyButton3 = new com.k33ptoo.components.KButton();
 
         backButton.setText("Back");
         backButton.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
@@ -39,21 +42,50 @@ public class JPanelSettings extends javax.swing.JPanel {
         applyButton.setkBorderRadius(50);
         applyButton.setPreferredSize(new java.awt.Dimension(200, 50));
 
+        applyButton1.setText("Apply");
+        applyButton1.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        applyButton1.setkBorderRadius(50);
+        applyButton1.setPreferredSize(new java.awt.Dimension(200, 50));
+
+        applyButton2.setText("Apply");
+        applyButton2.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        applyButton2.setkBorderRadius(50);
+        applyButton2.setPreferredSize(new java.awt.Dimension(200, 50));
+
+        applyButton3.setText("Apply");
+        applyButton3.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        applyButton3.setkBorderRadius(50);
+        applyButton3.setPreferredSize(new java.awt.Dimension(200, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(376, Short.MAX_VALUE)
-                .addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 370, Short.MAX_VALUE)
+                        .addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(applyButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(applyButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(92, 92, 92)
+                        .addComponent(applyButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(544, Short.MAX_VALUE)
+                .addContainerGap(267, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(applyButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(applyButton3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(applyButton2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(227, 227, 227)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(applyButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -63,6 +95,9 @@ public class JPanelSettings extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KButton applyButton;
+    private com.k33ptoo.components.KButton applyButton1;
+    private com.k33ptoo.components.KButton applyButton2;
+    private com.k33ptoo.components.KButton applyButton3;
     private com.k33ptoo.components.KButton backButton;
     // End of variables declaration//GEN-END:variables
 }
