@@ -34,13 +34,5 @@ public class ProjectDrinQuiz {
             }
         });
 
-        GameHandler game = new GameHandler(1);
-
-        Question question = game.getNewQuestion();
-
-        String[] test = game.getAnswersSeparated(question.getAnswers());
-
-        System.out.print(test[0] + test[1] + test[2]);
-
     }
 }

@@ -19,13 +19,15 @@ public class GameModelService extends BaseModelService<Game> {
 
     public void addRange(List<Game> gamesToAdd) {
 
-        String sql = "INSERT INTO Game(gameName,creationDate) VALUES(?,?)";
+        String sql = "INSERT INTO Game(gameName,creationDate, sources, categories) VALUES(?,?,?,?)";
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
             for (Game gameToAdd : gamesToAdd) {
 
                 pstmt.setString(1, gameToAdd.getGameName());
                 pstmt.setDate(2, gameToAdd.getCreationDate());
+                pstmt.setString(3, gameToAdd.getSources());
+                pstmt.setString(4, gameToAdd.getCategories());
 
                 pstmt.addBatch();
                 index++;
@@ -46,17 +48,21 @@ public class GameModelService extends BaseModelService<Game> {
     @Override
     public void updateRange(List<Game> gamesToUpdate) {
 
-        String sql = "UPDATE Game SET gameName = ? , "
-                + "creationDate = ? "
+        String sql = "UPDATE Game SET gameName = ? , " 
+                + "creationDate = ?, "
+                + "sources = ?, "
+                + "categories = ? "
                 + "WHERE id = ?";
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
-            for (Game gameToUpdate : gamesToUpdate) {
+            for (Game gameToUpdate : gamesToUpdate) { 
 
                 // set the corresponding param
                 pstmt.setString(1, gameToUpdate.getGameName());
                 pstmt.setDate(2, gameToUpdate.getCreationDate());
-                pstmt.setInt(3, gameToUpdate.getID());
+                pstmt.setString(3, gameToUpdate.getSources());
+                pstmt.setString(4, gameToUpdate.getCategories());
+                pstmt.setInt(5, gameToUpdate.getID());
                 // update 
                 pstmt.addBatch();
                 index++;
@@ -109,6 +115,8 @@ public class GameModelService extends BaseModelService<Game> {
                 game.setID(rs.getInt("id"));
                 game.setGameName(rs.getString("gameName"));
                 game.setCreationDate(rs.getDate("creationDate"));
+                game.setSources(rs.getString("sources"));
+                game.setCategories(rs.getString("categories"));
 
                 gameList.add(game);
 

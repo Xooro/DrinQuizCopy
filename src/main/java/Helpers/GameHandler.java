@@ -48,10 +48,6 @@ public class GameHandler {
        return false;
    } 
    
-   public String[] getAnswersSeparated(String answerBlock){
-       String[] answers = answerBlock.split(";;SEP;;");
-       
-       return answers;
-   } 
+   
 //   public void giveAnswersToButtons(){}
 }

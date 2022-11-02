@@ -16,6 +16,8 @@ public class Game {
     private int id;
     private String gameName;
     private Date creationDate;
+    private String sources;
+    private String categories;
 
     
     //GETTERS
@@ -30,6 +32,12 @@ public class Game {
     public Date getCreationDate() {
         return creationDate;
     }
+    public String getSources() {
+        return sources;
+    }
+    public String getCategories() {
+        return categories;
+    }
 
     
     //SETTERS
@@ -43,5 +51,11 @@ public class Game {
 
     public void setCreationDate(Date newCreationDate) {
         creationDate = newCreationDate;
+    }
+    public void setSources(String newSources) {
+        sources = newSources;
+    }
+    public void setCategories(String newCategories) {
+        categories = newCategories;
     }
 }
