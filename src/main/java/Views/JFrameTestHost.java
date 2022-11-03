@@ -695,13 +695,39 @@ public class JFrameTestHost extends javax.swing.JFrame {
         });
     }
 
+    
+    private void removeOldCheckBox(JPanel panel){
+        JCheckBox comparerBox = new JCheckBox();
+        
+        for (Component box : panel.getComponents()) {
+            if (box.getClass() == comparerBox.getClass()) {
+                panel.remove(box);
+            }
+        }
+        
+    }
+    
+//    private void removeOldCheckBoxFromCategories(){
+//        JCheckBox comparerBox = new JCheckBox();
+//        
+//        for (Component box : newGame_kGrdntPnlCategories.getComponents()) {
+//            if (box.getClass() == comparerBox.getClass()) {
+//                newGame_kGrdntPnlCategories.remove(box);
+//            }
+//        }
+//    }
     ///SAJÁT ELJÁRÁSOK
     private void addSourceCheckboxesToPanel() {
         String[] sources = gameGenerator.getSourcesInDatabase();
 
+        removeOldCheckBox(newGame_kGrdntPnlSources);
+                
         javax.swing.JCheckBox[] jCheckboxArray;
         int CheckBoxNumber = sources.length;
         jCheckboxArray = new javax.swing.JCheckBox[CheckBoxNumber];
+        
+        
+        
         for (int x = 0; x < CheckBoxNumber; x++) {
             jCheckboxArray[x] = new javax.swing.JCheckBox();
             jCheckboxArray[x].setText(sources[x]);
@@ -714,7 +740,9 @@ public class JFrameTestHost extends javax.swing.JFrame {
     private void addCategoryCheckboxesToPanel() {
         String[] categories = gameGenerator.getCategoriesBySourcesInDatabase();
 
-        javax.swing.JCheckBox[] jCheckboxArray;
+        removeOldCheckBox(newGame_kGrdntPnlCategories);
+        
+        javax.swing.JCheckBox[] jCheckboxArray = null;
         int CheckBoxNumber = categories.length;
         jCheckboxArray = new javax.swing.JCheckBox[CheckBoxNumber];
         for (int x = 0; x < CheckBoxNumber; x++) {
@@ -727,7 +755,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
     }
 
     private String[] chosenSourcesToStringArray() {
-        String[] choosenSources;
+        String[] choosenSources = null;
         JCheckBox tryIt = new JCheckBox();
 
         List<JCheckBox> jCheckboxArray = new ArrayList<>();
@@ -746,10 +774,11 @@ public class JFrameTestHost extends javax.swing.JFrame {
             choosenSources[i] = jCheckboxArray.get(i).getText();
         }
 
-//        for(String s : choosenSources)
-//        {
-//            System.out.println(s);
-//        }
+        for(String s : choosenSources)
+        {
+            System.out.println(s);
+        }
+        System.out.println("");
         return choosenSources;
     }
 
@@ -773,10 +802,11 @@ public class JFrameTestHost extends javax.swing.JFrame {
             choosenCategories[i] = jCheckboxArray.get(i).getText();
         }
 
-//        for(String s : choosenCategories)
-//        {
-//            System.out.println(s);
-//        }
+        for(String s : choosenCategories)
+        {
+            System.out.println(s);
+        }
+        System.out.println("");
         return choosenCategories;
     }
     ///SAJÁT ELJÁRÁSOK VÉGE
