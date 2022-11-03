@@ -824,6 +824,22 @@ public class JFrameMain extends javax.swing.JFrame {
 //        System.out.println("");
         return choosenCheckboxesString;
     }
+    
+    
+    private void changeCheckBoxStatus(JPanel panel, boolean toCheck){
+        JCheckBox tryIt = new JCheckBox();
+        
+        for (Component box : panel.getComponents()) {
+            if (box.getClass() == tryIt.getClass()) {
+                tryIt = (JCheckBox) box;
+                
+                if(toCheck) tryIt.setSelected(true);
+                else tryIt.setSelected(false);
+                }
+            }
+        }
+        
+    
     ///SAJÁT ELJÁRÁSOK VÉGE
 
     /**
