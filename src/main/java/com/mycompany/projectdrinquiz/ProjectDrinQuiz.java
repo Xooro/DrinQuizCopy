@@ -4,7 +4,7 @@
  */
 package com.mycompany.projectdrinquiz;
 
-import Views.JFrameTestHost;
+import Views.JFrameMain;
 import java.io.IOException;
 import javax.swing.SwingUtilities;
 
@@ -19,9 +19,9 @@ public class ProjectDrinQuiz {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-//                JFrameTestHost mainFrame = new JFrameTestHost();
+//                JFrameMain mainFrame = new JFrameMain();
 //                mainFrame.setVisible(true);
-                JFrameTestHost.main(new String[]{});
+                JFrameMain.main(new String[]{});
             }
         });
     }

@@ -23,18 +23,18 @@ import javax.swing.JCheckBox;
  *
  * @author Jani
  */
-public class JFrameTestHost extends javax.swing.JFrame {
+public class JFrameMain extends javax.swing.JFrame {
 
     Game game;
     GameGenerator gameGenerator;
     GameHandler gameHandler;
     DatabaseHandler databaseHandler;
     /**
-     * Creates new form JFrameTestHost
+     * Creates new form JFrameMain
      */
     ImageIcon icon = new ImageIcon(".//resources/images/icon.png");
 
-    public JFrameTestHost() {
+    public JFrameMain() {
         initComponents();
 
         gameGenerator = new GameGenerator();
@@ -707,7 +707,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
             // TODO add your handling code here:
             databaseHandler.importAllKvizToDatabase();
         } catch (IOException ex) {
-            Logger.getLogger(JFrameTestHost.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JFrameMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_settings_kBttnImportQuizesMouseClicked
 
@@ -716,7 +716,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
             // TODO add your handling code here:
             databaseHandler.importNapikvizToDatabase();
         } catch (IOException ex) {
-            Logger.getLogger(JFrameTestHost.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JFrameMain.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_settings_kBttnImportQuizesFromNapiKvizMouseClicked
 
@@ -757,13 +757,34 @@ public class JFrameTestHost extends javax.swing.JFrame {
         int CheckBoxNumber = source.length;
         jCheckboxArray = new javax.swing.JCheckBox[CheckBoxNumber];
 
+//        for (int i = 0; i < CheckBoxNumber; i++) {
+//            jCheckboxArray[i] = new javax.swing.JCheckBox();
+//            jCheckboxArray[i].setText(source[i]);
+//            jCheckboxArray[i].setBounds(20, 50 + i * 50, 250, 50);
+//            jCheckboxArray[i].doClick();
+//            jCheckboxArray[i].setFont(new java.awt.Font("Century Gothic", 3, 18));
+//            panel.add(jCheckboxArray[i]);
+//        }
+
+        int defaultX=25,incX=250,incY=40;
+        int X=defaultX, Y=250;
         for (int i = 0; i < CheckBoxNumber; i++) {
             jCheckboxArray[i] = new javax.swing.JCheckBox();
             jCheckboxArray[i].setText(source[i]);
-            jCheckboxArray[i].setBounds(20, 50 + i * 50, 250, 50);
+            jCheckboxArray[i].setBounds(X, Y, 250, 40);
             jCheckboxArray[i].doClick();
             jCheckboxArray[i].setFont(new java.awt.Font("Century Gothic", 3, 18));
             panel.add(jCheckboxArray[i]);
+            
+            if(X!=defaultX+2*incX)
+            {
+                X+=incX;
+            }
+            else
+            {
+                X=defaultX;
+                Y+=incY;
+            }
         }
     }
 
@@ -817,14 +838,15 @@ public class JFrameTestHost extends javax.swing.JFrame {
         try {
             UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameTestHost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(JFrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameTestHost().setVisible(true);
+                new JFrameMain().setVisible(true);
             }
         });
     }
