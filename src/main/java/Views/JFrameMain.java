@@ -68,6 +68,9 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_Sources_kBttnBack = new com.k33ptoo.components.KButton();
         newGame_Sources_kBttnNext = new com.k33ptoo.components.KButton();
         newGame_Sources_JLblLogo = new javax.swing.JLabel();
+        newGame_Sources_kBttnSelectAllCheckbox = new com.k33ptoo.components.KButton();
+        newGame_Sources_kBttnUnselectAllCheckbox = new com.k33ptoo.components.KButton();
+        newGame_Sources_jLblChooseSource = new javax.swing.JLabel();
         newGame_kGrdntPnlCategories = new com.k33ptoo.components.KGradientPanel();
         newGame_Categories_kBttnBack = new com.k33ptoo.components.KButton();
         newGame_Categories_kBttnNext = new com.k33ptoo.components.KButton();
@@ -216,19 +219,53 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_Sources_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         newGame_Sources_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
 
+        newGame_Sources_kBttnSelectAllCheckbox.setBorder(null);
+        newGame_Sources_kBttnSelectAllCheckbox.setText("Összes kijelölése");
+        newGame_Sources_kBttnSelectAllCheckbox.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        newGame_Sources_kBttnSelectAllCheckbox.setkBorderRadius(50);
+        newGame_Sources_kBttnSelectAllCheckbox.setPreferredSize(new java.awt.Dimension(200, 50));
+        newGame_Sources_kBttnSelectAllCheckbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newGame_Sources_kBttnSelectAllCheckboxMouseClicked(evt);
+            }
+        });
+
+        newGame_Sources_kBttnUnselectAllCheckbox.setBorder(null);
+        newGame_Sources_kBttnUnselectAllCheckbox.setText("Kijelölések törlése");
+        newGame_Sources_kBttnUnselectAllCheckbox.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        newGame_Sources_kBttnUnselectAllCheckbox.setkBorderRadius(50);
+        newGame_Sources_kBttnUnselectAllCheckbox.setPreferredSize(new java.awt.Dimension(200, 50));
+        newGame_Sources_kBttnUnselectAllCheckbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newGame_Sources_kBttnUnselectAllCheckboxMouseClicked(evt);
+            }
+        });
+
+        newGame_Sources_jLblChooseSource.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        newGame_Sources_jLblChooseSource.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        newGame_Sources_jLblChooseSource.setText("Válassz forrást a kvízekhez!");
+        newGame_Sources_jLblChooseSource.setPreferredSize(new java.awt.Dimension(350, 50));
+
         javax.swing.GroupLayout newGame_kGrdntPnlSourcesLayout = new javax.swing.GroupLayout(newGame_kGrdntPnlSources);
         newGame_kGrdntPnlSources.setLayout(newGame_kGrdntPnlSourcesLayout);
         newGame_kGrdntPnlSourcesLayout.setHorizontalGroup(
             newGame_kGrdntPnlSourcesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newGame_kGrdntPnlSourcesLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(newGame_kGrdntPnlSourcesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(newGame_kGrdntPnlSourcesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(newGame_Sources_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlSourcesLayout.createSequentialGroup()
-                        .addGap(0, 370, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(newGame_Sources_kBttnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(newGame_Sources_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(newGame_Sources_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlSourcesLayout.createSequentialGroup()
+                        .addComponent(newGame_Sources_jLblChooseSource, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(26, 26, 26)
+                        .addComponent(newGame_Sources_kBttnSelectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(newGame_Sources_kBttnUnselectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         newGame_kGrdntPnlSourcesLayout.setVerticalGroup(
@@ -236,7 +273,12 @@ public class JFrameMain extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlSourcesLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(newGame_Sources_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newGame_kGrdntPnlSourcesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newGame_Sources_kBttnSelectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newGame_Sources_kBttnUnselectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newGame_Sources_jLblChooseSource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
                 .addGroup(newGame_kGrdntPnlSourcesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newGame_Sources_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newGame_Sources_kBttnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -749,6 +791,16 @@ public class JFrameMain extends javax.swing.JFrame {
         loadGame_kGrdntPnl.setVisible(true);
     }//GEN-LAST:event_menu_bttnLoadGameMouseClicked
 
+    private void newGame_Sources_kBttnSelectAllCheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnSelectAllCheckboxMouseClicked
+        // TODO add your handling code here:
+        changeCheckBoxStatus(newGame_kGrdntPnlSources, true);
+    }//GEN-LAST:event_newGame_Sources_kBttnSelectAllCheckboxMouseClicked
+
+    private void newGame_Sources_kBttnUnselectAllCheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnUnselectAllCheckboxMouseClicked
+        // TODO add your handling code here:
+        changeCheckBoxStatus(newGame_kGrdntPnlSources, false);
+    }//GEN-LAST:event_newGame_Sources_kBttnUnselectAllCheckboxMouseClicked
+
 ///SAJÁT ELJÁRÁSOK
     private void addCheckboxesToPanel(JPanel panel, String[] source) {
         removeOldCheckBoxes(panel);
@@ -765,25 +817,22 @@ public class JFrameMain extends javax.swing.JFrame {
 //            jCheckboxArray[i].setFont(new java.awt.Font("Century Gothic", 3, 18));
 //            panel.add(jCheckboxArray[i]);
 //        }
-
-        int defaultX=25,incX=250,incY=40;
-        int X=defaultX, Y=250;
+        int defaultX = 25, defaultY = 300; 
+        int incX = 250, incY = 40;
+        int X = defaultX, Y = defaultY;
         for (int i = 0; i < CheckBoxNumber; i++) {
             jCheckboxArray[i] = new javax.swing.JCheckBox();
             jCheckboxArray[i].setText(source[i]);
             jCheckboxArray[i].setBounds(X, Y, 250, 40);
-            jCheckboxArray[i].doClick();
+            jCheckboxArray[i].setSelected(true);
             jCheckboxArray[i].setFont(new java.awt.Font("Century Gothic", 3, 18));
             panel.add(jCheckboxArray[i]);
-            
-            if(X!=defaultX+2*incX)
-            {
-                X+=incX;
-            }
-            else
-            {
-                X=defaultX;
-                Y+=incY;
+
+            if (X != defaultX + 2 * incX) {
+                X += incX;
+            } else {
+                X = defaultX;
+                Y += incY;
             }
         }
     }
@@ -824,24 +873,25 @@ public class JFrameMain extends javax.swing.JFrame {
 //        System.out.println("");
         return choosenCheckboxesString;
     }
-    
-    
-    private void changeCheckBoxStatus(JPanel panel, boolean toCheck){
+
+    private void changeCheckBoxStatus(JPanel panel, boolean toCheck) {
         JCheckBox tryIt = new JCheckBox();
-        
+
         for (Component box : panel.getComponents()) {
             if (box.getClass() == tryIt.getClass()) {
                 tryIt = (JCheckBox) box;
-                
-                if(toCheck) tryIt.setSelected(true);
-                else tryIt.setSelected(false);
+
+                if (toCheck) {
+                    tryIt.setSelected(true);
+                } else {
+                    tryIt.setSelected(false);
                 }
             }
         }
         
-    
-    ///SAJÁT ELJÁRÁSOK VÉGE
+    }
 
+    ///SAJÁT ELJÁRÁSOK VÉGE
     /**
      * @param args the command line arguments
      */
@@ -887,8 +937,11 @@ public class JFrameMain extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton newGame_GameName_kBttnBack;
     private com.k33ptoo.components.KButton newGame_GameName_kBttnStart;
     private javax.swing.JLabel newGame_Sources_JLblLogo;
+    private javax.swing.JLabel newGame_Sources_jLblChooseSource;
     private com.k33ptoo.components.KButton newGame_Sources_kBttnBack;
     private com.k33ptoo.components.KButton newGame_Sources_kBttnNext;
+    private com.k33ptoo.components.KButton newGame_Sources_kBttnSelectAllCheckbox;
+    private com.k33ptoo.components.KButton newGame_Sources_kBttnUnselectAllCheckbox;
     private javax.swing.JLayeredPane newGame_jLyrdPn;
     private com.k33ptoo.components.KGradientPanel newGame_kGrdntPnlCategories;
     private com.k33ptoo.components.KGradientPanel newGame_kGrdntPnlGameName;
