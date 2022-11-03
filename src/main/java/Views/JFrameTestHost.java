@@ -40,6 +40,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
         gameGenerator = new GameGenerator();
         databaseHandler = new DatabaseHandler();
 
+        loadGame_kGrdntPnl.setVisible(false);
         settings_kGrdntPnl.setVisible(false);
         newGame_kGrdntPnlSources.setVisible(false);
         newGame_kGrdntPnlCategories.setVisible(false);
@@ -62,17 +63,6 @@ public class JFrameTestHost extends javax.swing.JFrame {
         menu_bttnLoadGame = new com.k33ptoo.components.KButton();
         menu_bttnNewGame = new com.k33ptoo.components.KButton();
         menu_JLblLogo = new javax.swing.JLabel();
-        settings_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
-        settings_kBttnBack = new com.k33ptoo.components.KButton();
-        settings_kBttnImportQuizes = new com.k33ptoo.components.KButton();
-        settings_jLblImportQuizes = new javax.swing.JLabel();
-        settings_kBttnImportQuizesFromNapiKviz = new com.k33ptoo.components.KButton();
-        settings_jLblImportQuizesFromNapiKviz = new javax.swing.JLabel();
-        settings_kBttnClearQuestion = new com.k33ptoo.components.KButton();
-        settings_jLblClearQuestion = new javax.swing.JLabel();
-        settings_kBttnClearGames = new com.k33ptoo.components.KButton();
-        settings_jLblClearGames = new javax.swing.JLabel();
-        settings_JLblLogo = new javax.swing.JLabel();
         newGame_jLyrdPn = new javax.swing.JLayeredPane();
         newGame_kGrdntPnlSources = new com.k33ptoo.components.KGradientPanel();
         newGame_Sources_kBttnBack = new com.k33ptoo.components.KButton();
@@ -87,6 +77,21 @@ public class JFrameTestHost extends javax.swing.JFrame {
         newGame_GameName_kBttnBack = new com.k33ptoo.components.KButton();
         newGame_GameName_jTxtFldGameName = new javax.swing.JTextField();
         newGame_GameName_JLblLogo1 = new javax.swing.JLabel();
+        loadGame_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
+        loadGame_jLbl = new javax.swing.JLabel();
+        loadGame_kBttnBack = new com.k33ptoo.components.KButton();
+        menu_JLblLogo1 = new javax.swing.JLabel();
+        settings_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
+        settings_kBttnBack = new com.k33ptoo.components.KButton();
+        settings_kBttnImportQuizes = new com.k33ptoo.components.KButton();
+        settings_jLblImportQuizes = new javax.swing.JLabel();
+        settings_kBttnImportQuizesFromNapiKviz = new com.k33ptoo.components.KButton();
+        settings_jLblImportQuizesFromNapiKviz = new javax.swing.JLabel();
+        settings_kBttnClearQuestion = new com.k33ptoo.components.KButton();
+        settings_jLblClearQuestion = new javax.swing.JLabel();
+        settings_kBttnClearGames = new com.k33ptoo.components.KButton();
+        settings_jLblClearGames = new javax.swing.JLabel();
+        settings_JLblLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 800, 600));
@@ -100,7 +105,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
         menu_kGrdntPnl.setkStartColor(new java.awt.Color(78, 20, 140));
 
         menu_bttnExit.setBorder(null);
-        menu_bttnExit.setText("Exit");
+        menu_bttnExit.setText("Kilépés");
         menu_bttnExit.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         menu_bttnExit.setkBorderRadius(50);
         menu_bttnExit.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -111,7 +116,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
         });
 
         menu_bttnSettings.setBorder(null);
-        menu_bttnSettings.setText("Settings");
+        menu_bttnSettings.setText("Beállítások");
         menu_bttnSettings.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         menu_bttnSettings.setkBorderRadius(50);
         menu_bttnSettings.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -122,13 +127,18 @@ public class JFrameTestHost extends javax.swing.JFrame {
         });
 
         menu_bttnLoadGame.setBorder(null);
-        menu_bttnLoadGame.setText("Load Game");
+        menu_bttnLoadGame.setText("Játék betöltése");
         menu_bttnLoadGame.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         menu_bttnLoadGame.setkBorderRadius(50);
         menu_bttnLoadGame.setPreferredSize(new java.awt.Dimension(200, 50));
+        menu_bttnLoadGame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_bttnLoadGameMouseClicked(evt);
+            }
+        });
 
         menu_bttnNewGame.setBorder(null);
-        menu_bttnNewGame.setText("New Game");
+        menu_bttnNewGame.setText("Új játék");
         menu_bttnNewGame.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         menu_bttnNewGame.setkBorderRadius(50);
         menu_bttnNewGame.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -175,140 +185,6 @@ public class JFrameTestHost extends javax.swing.JFrame {
                 .addComponent(menu_bttnSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(menu_bttnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        settings_kGrdntPnl.setkEndColor(new java.awt.Color(44, 7, 53));
-        settings_kGrdntPnl.setkStartColor(new java.awt.Color(78, 20, 140));
-        settings_kGrdntPnl.setkTransparentControls(false);
-
-        settings_kBttnBack.setBorder(null);
-        settings_kBttnBack.setText("Vissza");
-        settings_kBttnBack.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_kBttnBack.setkBorderRadius(50);
-        settings_kBttnBack.setPreferredSize(new java.awt.Dimension(200, 50));
-        settings_kBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                settings_kBttnBackMouseClicked(evt);
-            }
-        });
-
-        settings_kBttnImportQuizes.setBorder(null);
-        settings_kBttnImportQuizes.setText("Importálás");
-        settings_kBttnImportQuizes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_kBttnImportQuizes.setkBorderRadius(50);
-        settings_kBttnImportQuizes.setPreferredSize(new java.awt.Dimension(200, 50));
-        settings_kBttnImportQuizes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                settings_kBttnImportQuizesMouseClicked(evt);
-            }
-        });
-
-        settings_jLblImportQuizes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_jLblImportQuizes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        settings_jLblImportQuizes.setText("Kvízek importálása a webhelyekről:");
-        settings_jLblImportQuizes.setPreferredSize(new java.awt.Dimension(350, 50));
-
-        settings_kBttnImportQuizesFromNapiKviz.setBorder(null);
-        settings_kBttnImportQuizesFromNapiKviz.setText("NapiKvíz");
-        settings_kBttnImportQuizesFromNapiKviz.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_kBttnImportQuizesFromNapiKviz.setkBorderRadius(50);
-        settings_kBttnImportQuizesFromNapiKviz.setPreferredSize(new java.awt.Dimension(200, 50));
-        settings_kBttnImportQuizesFromNapiKviz.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                settings_kBttnImportQuizesFromNapiKvizMouseClicked(evt);
-            }
-        });
-
-        settings_jLblImportQuizesFromNapiKviz.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_jLblImportQuizesFromNapiKviz.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        settings_jLblImportQuizesFromNapiKviz.setText("Kvízek importálása NapiKvízről:");
-        settings_jLblImportQuizesFromNapiKviz.setPreferredSize(new java.awt.Dimension(350, 50));
-
-        settings_kBttnClearQuestion.setBorder(null);
-        settings_kBttnClearQuestion.setText("Kvízek törlése");
-        settings_kBttnClearQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_kBttnClearQuestion.setkBorderRadius(50);
-        settings_kBttnClearQuestion.setPreferredSize(new java.awt.Dimension(200, 50));
-        settings_kBttnClearQuestion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                settings_kBttnClearQuestionMouseClicked(evt);
-            }
-        });
-
-        settings_jLblClearQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_jLblClearQuestion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        settings_jLblClearQuestion.setText("Kvízek, adatok törlése");
-        settings_jLblClearQuestion.setPreferredSize(new java.awt.Dimension(350, 50));
-
-        settings_kBttnClearGames.setBorder(null);
-        settings_kBttnClearGames.setText("Játékok törlése");
-        settings_kBttnClearGames.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_kBttnClearGames.setkBorderRadius(50);
-        settings_kBttnClearGames.setPreferredSize(new java.awt.Dimension(200, 50));
-        settings_kBttnClearGames.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                settings_kBttnClearGamesMouseClicked(evt);
-            }
-        });
-
-        settings_jLblClearGames.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_jLblClearGames.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        settings_jLblClearGames.setText("Eddigi játékok törlése:");
-        settings_jLblClearGames.setPreferredSize(new java.awt.Dimension(350, 50));
-
-        settings_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        settings_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
-
-        javax.swing.GroupLayout settings_kGrdntPnlLayout = new javax.swing.GroupLayout(settings_kGrdntPnl);
-        settings_kGrdntPnl.setLayout(settings_kGrdntPnlLayout);
-        settings_kGrdntPnlLayout.setHorizontalGroup(
-            settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
-                        .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(settings_jLblClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_jLblImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_jLblClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_jLblImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(settings_kBttnClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_kBttnImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_kBttnClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_kBttnImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 206, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settings_kGrdntPnlLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(settings_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(settings_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        settings_kGrdntPnlLayout.setVerticalGroup(
-            settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settings_kGrdntPnlLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(settings_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(settings_kBttnImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(settings_jLblImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(settings_kBttnImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(settings_jLblImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(settings_kBttnClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(settings_jLblClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(settings_jLblClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(settings_kBttnClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
-                .addComponent(settings_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -399,23 +275,22 @@ public class JFrameTestHost extends javax.swing.JFrame {
         newGame_kGrdntPnlCategories.setLayout(newGame_kGrdntPnlCategoriesLayout);
         newGame_kGrdntPnlCategoriesLayout.setHorizontalGroup(
             newGame_kGrdntPnlCategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(newGame_kGrdntPnlCategoriesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(newGame_kGrdntPnlCategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlCategoriesLayout.createSequentialGroup()
-                        .addGap(0, 370, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlCategoriesLayout.createSequentialGroup()
+                .addContainerGap(256, Short.MAX_VALUE)
+                .addGroup(newGame_kGrdntPnlCategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(newGame_Categories_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(newGame_kGrdntPnlCategoriesLayout.createSequentialGroup()
                         .addComponent(newGame_Categories_kBttnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(newGame_Categories_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(newGame_Categories_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(newGame_Categories_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         newGame_kGrdntPnlCategoriesLayout.setVerticalGroup(
             newGame_kGrdntPnlCategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlCategoriesLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(newGame_Categories_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 294, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(newGame_Categories_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
                 .addGroup(newGame_kGrdntPnlCategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newGame_Categories_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newGame_Categories_kBttnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -426,7 +301,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
         newGame_kGrdntPnlGameName.setkStartColor(new java.awt.Color(78, 20, 140));
 
         newGame_GameName_kBttnStart.setBorder(null);
-        newGame_GameName_kBttnStart.setText("Játék indítás");
+        newGame_GameName_kBttnStart.setText("Játék indítása");
         newGame_GameName_kBttnStart.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_GameName_kBttnStart.setkBorderRadius(50);
         newGame_GameName_kBttnStart.setPreferredSize(new java.awt.Dimension(200, 50));
@@ -524,9 +399,196 @@ public class JFrameTestHost extends javax.swing.JFrame {
                 .addComponent(newGame_kGrdntPnlGameName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        loadGame_kGrdntPnl.setkEndColor(new java.awt.Color(44, 7, 53));
+        loadGame_kGrdntPnl.setkStartColor(new java.awt.Color(78, 20, 140));
+
+        loadGame_jLbl.setFont(new java.awt.Font("Century Gothic", 3, 36)); // NOI18N
+        loadGame_jLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        loadGame_jLbl.setText("Fejlesztés alatt... :(");
+
+        loadGame_kBttnBack.setBorder(null);
+        loadGame_kBttnBack.setText("Vissza");
+        loadGame_kBttnBack.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        loadGame_kBttnBack.setkBorderRadius(50);
+        loadGame_kBttnBack.setPreferredSize(new java.awt.Dimension(200, 50));
+        loadGame_kBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loadGame_kBttnBackMouseClicked(evt);
+            }
+        });
+
+        menu_JLblLogo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menu_JLblLogo1.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
+
+        javax.swing.GroupLayout loadGame_kGrdntPnlLayout = new javax.swing.GroupLayout(loadGame_kGrdntPnl);
+        loadGame_kGrdntPnl.setLayout(loadGame_kGrdntPnlLayout);
+        loadGame_kGrdntPnlLayout.setHorizontalGroup(
+            loadGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loadGame_kGrdntPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(loadGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loadGame_kGrdntPnlLayout.createSequentialGroup()
+                        .addGap(0, 588, Short.MAX_VALUE)
+                        .addComponent(loadGame_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(menu_JLblLogo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(loadGame_jLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        loadGame_kGrdntPnlLayout.setVerticalGroup(
+            loadGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(loadGame_kGrdntPnlLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(menu_JLblLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(loadGame_jLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(loadGame_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        settings_kGrdntPnl.setkEndColor(new java.awt.Color(44, 7, 53));
+        settings_kGrdntPnl.setkStartColor(new java.awt.Color(78, 20, 140));
+        settings_kGrdntPnl.setkTransparentControls(false);
+
+        settings_kBttnBack.setBorder(null);
+        settings_kBttnBack.setText("Vissza");
+        settings_kBttnBack.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_kBttnBack.setkBorderRadius(50);
+        settings_kBttnBack.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_kBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settings_kBttnBackMouseClicked(evt);
+            }
+        });
+
+        settings_kBttnImportQuizes.setBorder(null);
+        settings_kBttnImportQuizes.setText("Importálás");
+        settings_kBttnImportQuizes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_kBttnImportQuizes.setkBorderRadius(50);
+        settings_kBttnImportQuizes.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_kBttnImportQuizes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settings_kBttnImportQuizesMouseClicked(evt);
+            }
+        });
+
+        settings_jLblImportQuizes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_jLblImportQuizes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        settings_jLblImportQuizes.setText("Kvízek importálása a webhelyekről:");
+        settings_jLblImportQuizes.setPreferredSize(new java.awt.Dimension(350, 50));
+
+        settings_kBttnImportQuizesFromNapiKviz.setBorder(null);
+        settings_kBttnImportQuizesFromNapiKviz.setText("NapiKvíz");
+        settings_kBttnImportQuizesFromNapiKviz.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_kBttnImportQuizesFromNapiKviz.setkBorderRadius(50);
+        settings_kBttnImportQuizesFromNapiKviz.setPreferredSize(new java.awt.Dimension(150, 50));
+        settings_kBttnImportQuizesFromNapiKviz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settings_kBttnImportQuizesFromNapiKvizMouseClicked(evt);
+            }
+        });
+
+        settings_jLblImportQuizesFromNapiKviz.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_jLblImportQuizesFromNapiKviz.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        settings_jLblImportQuizesFromNapiKviz.setText("Kvízek importálása NapiKvízről:");
+        settings_jLblImportQuizesFromNapiKviz.setPreferredSize(new java.awt.Dimension(350, 50));
+
+        settings_kBttnClearQuestion.setBorder(null);
+        settings_kBttnClearQuestion.setText("Kvízek törlése");
+        settings_kBttnClearQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_kBttnClearQuestion.setkBorderRadius(50);
+        settings_kBttnClearQuestion.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_kBttnClearQuestion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settings_kBttnClearQuestionMouseClicked(evt);
+            }
+        });
+
+        settings_jLblClearQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_jLblClearQuestion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        settings_jLblClearQuestion.setText("Kvízek, adatok törlése");
+        settings_jLblClearQuestion.setPreferredSize(new java.awt.Dimension(350, 50));
+
+        settings_kBttnClearGames.setBorder(null);
+        settings_kBttnClearGames.setText("Játékok törlése");
+        settings_kBttnClearGames.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_kBttnClearGames.setkBorderRadius(50);
+        settings_kBttnClearGames.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_kBttnClearGames.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settings_kBttnClearGamesMouseClicked(evt);
+            }
+        });
+
+        settings_jLblClearGames.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_jLblClearGames.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        settings_jLblClearGames.setText("Eddigi játékok törlése:");
+        settings_jLblClearGames.setPreferredSize(new java.awt.Dimension(350, 50));
+
+        settings_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        settings_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
+
+        javax.swing.GroupLayout settings_kGrdntPnlLayout = new javax.swing.GroupLayout(settings_kGrdntPnl);
+        settings_kGrdntPnl.setLayout(settings_kGrdntPnlLayout);
+        settings_kGrdntPnlLayout.setHorizontalGroup(
+            settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(settings_jLblClearQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(settings_jLblClearGames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(settings_jLblImportQuizesFromNapiKviz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(settings_jLblImportQuizes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(settings_kBttnClearGames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(settings_kBttnImportQuizes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(settings_kBttnClearQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(settings_kBttnImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 206, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settings_kGrdntPnlLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(settings_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(settings_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        settings_kGrdntPnlLayout.setVerticalGroup(
+            settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settings_kGrdntPnlLayout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(settings_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(settings_kBttnImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settings_jLblImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(settings_kBttnImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settings_jLblImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(settings_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(settings_kBttnClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(settings_jLblClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(settings_kBttnClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(settings_jLblClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(90, Short.MAX_VALUE))))
+        );
+
         jLyrdPn.setLayer(menu_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLyrdPn.setLayer(settings_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLyrdPn.setLayer(newGame_jLyrdPn, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLyrdPn.setLayer(loadGame_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLyrdPn.setLayer(settings_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLyrdPnLayout = new javax.swing.GroupLayout(jLyrdPn);
         jLyrdPn.setLayout(jLyrdPnLayout);
@@ -537,6 +599,8 @@ public class JFrameTestHost extends javax.swing.JFrame {
                 .addComponent(settings_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(newGame_jLyrdPn))
+            .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(loadGame_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLyrdPnLayout.setVerticalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -545,6 +609,8 @@ public class JFrameTestHost extends javax.swing.JFrame {
                 .addComponent(settings_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(newGame_jLyrdPn))
+            .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(loadGame_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -566,7 +632,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
         // TODO add your handling code here:
         menu_kGrdntPnl.setVisible(false);
 
-        addCheckboxesToPanel(newGame_kGrdntPnlSources,gameGenerator.getSourcesInDatabase());
+        addCheckboxesToPanel(newGame_kGrdntPnlSources, gameGenerator.getSourcesInDatabase());
 
         newGame_kGrdntPnlSources.setVisible(true);
     }//GEN-LAST:event_menu_bttnNewGameMouseClicked
@@ -671,10 +737,19 @@ public class JFrameTestHost extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_newGame_GameName_jTxtFldGameNameMouseClicked
 
-    
-    
+    private void loadGame_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnBackMouseClicked
+        // TODO add your handling code here:
+        loadGame_kGrdntPnl.setVisible(false);
+        menu_kGrdntPnl.setVisible(true);
+    }//GEN-LAST:event_loadGame_kBttnBackMouseClicked
+
+    private void menu_bttnLoadGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnLoadGameMouseClicked
+        // TODO add your handling code here:
+        menu_kGrdntPnl.setVisible(false);
+        loadGame_kGrdntPnl.setVisible(true);
+    }//GEN-LAST:event_menu_bttnLoadGameMouseClicked
+
 ///SAJÁT ELJÁRÁSOK
-    
     private void addCheckboxesToPanel(JPanel panel, String[] source) {
         removeOldCheckBoxes(panel);
 
@@ -682,12 +757,13 @@ public class JFrameTestHost extends javax.swing.JFrame {
         int CheckBoxNumber = source.length;
         jCheckboxArray = new javax.swing.JCheckBox[CheckBoxNumber];
 
-        for (int x = 0; x < CheckBoxNumber; x++) {
-            jCheckboxArray[x] = new javax.swing.JCheckBox();
-            jCheckboxArray[x].setText(source[x]);
-            jCheckboxArray[x].setBounds(20, x * 50, 300, 30);
-            jCheckboxArray[x].doClick();
-            panel.add(jCheckboxArray[x]);
+        for (int i = 0; i < CheckBoxNumber; i++) {
+            jCheckboxArray[i] = new javax.swing.JCheckBox();
+            jCheckboxArray[i].setText(source[i]);
+            jCheckboxArray[i].setBounds(20, 50 + i * 50, 250, 50);
+            jCheckboxArray[i].doClick();
+            jCheckboxArray[i].setFont(new java.awt.Font("Century Gothic", 3, 18));
+            panel.add(jCheckboxArray[i]);
         }
     }
 
@@ -700,7 +776,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private String[] chosenCheckBoxesToStringArray(JPanel panel) {
         String[] choosenCheckboxesString;
         JCheckBox tryIt = new JCheckBox();
@@ -727,9 +803,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
 //        System.out.println("");
         return choosenCheckboxesString;
     }
-    ///SAJÁT ELJÁRÁSOK VÉGE    
-    
-    
+    ///SAJÁT ELJÁRÁSOK VÉGE
 
     /**
      * @param args the command line arguments
@@ -755,10 +829,13 @@ public class JFrameTestHost extends javax.swing.JFrame {
         });
     }
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane jLyrdPn;
+    private javax.swing.JLabel loadGame_jLbl;
+    private com.k33ptoo.components.KButton loadGame_kBttnBack;
+    private com.k33ptoo.components.KGradientPanel loadGame_kGrdntPnl;
     private javax.swing.JLabel menu_JLblLogo;
+    private javax.swing.JLabel menu_JLblLogo1;
     private com.k33ptoo.components.KButton menu_bttnExit;
     private com.k33ptoo.components.KButton menu_bttnLoadGame;
     public com.k33ptoo.components.KButton menu_bttnNewGame;
