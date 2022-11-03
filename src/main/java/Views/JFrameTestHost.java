@@ -238,7 +238,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
 
         settings_jLblClearQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_jLblClearQuestion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        settings_jLblClearQuestion.setText("Minden kvíz törlése az adatbázisból:");
+        settings_jLblClearQuestion.setText("Kvízek, adatok törlése");
         settings_jLblClearQuestion.setPreferredSize(new java.awt.Dimension(350, 50));
 
         settings_kBttnClearGames.setBorder(null);
@@ -270,15 +270,15 @@ public class JFrameTestHost extends javax.swing.JFrame {
                     .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
                         .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(settings_jLblClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_jLblImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(settings_jLblImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_jLblClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(settings_jLblClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(settings_jLblImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(settings_kBttnClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_kBttnImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(settings_kBttnImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_kBttnClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(settings_kBttnClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(settings_kBttnImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 206, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settings_kGrdntPnlLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -566,7 +566,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
         // TODO add your handling code here:
         menu_kGrdntPnl.setVisible(false);
 
-        addSourceCheckboxesToPanel();
+        addCheckboxesToPanel(newGame_kGrdntPnlSources,gameGenerator.getSourcesInDatabase());
 
         newGame_kGrdntPnlSources.setVisible(true);
     }//GEN-LAST:event_menu_bttnNewGameMouseClicked
@@ -590,7 +590,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
 
     private void newGame_Categories_kBttnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Categories_kBttnNextMouseClicked
         // TODO add your handling code here:
-        gameGenerator.setChosenCategories(chosenCategoriesToStringArray());
+        gameGenerator.setChosenCategories(chosenCheckBoxesToStringArray(newGame_kGrdntPnlCategories));
 
         newGame_kGrdntPnlCategories.setVisible(false);
         newGame_kGrdntPnlGameName.setVisible(true);
@@ -616,10 +616,10 @@ public class JFrameTestHost extends javax.swing.JFrame {
 
     private void newGame_Sources_kBttnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnNextMouseClicked
         // TODO add your handling code here:
-        gameGenerator.setChosenSources(chosenSourcesToStringArray());
+        gameGenerator.setChosenSources(chosenCheckBoxesToStringArray(newGame_kGrdntPnlSources));
         newGame_kGrdntPnlSources.setVisible(false);
 
-        addCategoryCheckboxesToPanel();
+        addCheckboxesToPanel(newGame_kGrdntPnlCategories, gameGenerator.getCategoriesBySourcesInDatabase());
 
         newGame_kGrdntPnlCategories.setVisible(true);
     }//GEN-LAST:event_newGame_Sources_kBttnNextMouseClicked
@@ -671,6 +671,66 @@ public class JFrameTestHost extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_newGame_GameName_jTxtFldGameNameMouseClicked
 
+    
+    
+///SAJÁT ELJÁRÁSOK
+    
+    private void addCheckboxesToPanel(JPanel panel, String[] source) {
+        removeOldCheckBoxes(panel);
+
+        javax.swing.JCheckBox[] jCheckboxArray;
+        int CheckBoxNumber = source.length;
+        jCheckboxArray = new javax.swing.JCheckBox[CheckBoxNumber];
+
+        for (int x = 0; x < CheckBoxNumber; x++) {
+            jCheckboxArray[x] = new javax.swing.JCheckBox();
+            jCheckboxArray[x].setText(source[x]);
+            jCheckboxArray[x].setBounds(20, x * 50, 300, 30);
+            jCheckboxArray[x].doClick();
+            panel.add(jCheckboxArray[x]);
+        }
+    }
+
+    private void removeOldCheckBoxes(JPanel panel) {
+        JCheckBox comparerBox = new JCheckBox();
+
+        for (Component box : panel.getComponents()) {
+            if (box.getClass() == comparerBox.getClass()) {
+                panel.remove(box);
+            }
+        }
+    }
+    
+    private String[] chosenCheckBoxesToStringArray(JPanel panel) {
+        String[] choosenCheckboxesString;
+        JCheckBox tryIt = new JCheckBox();
+
+        List<JCheckBox> jCheckboxArray = new ArrayList<>();
+
+        for (Component box : panel.getComponents()) {
+            if (box.getClass() == tryIt.getClass()) {
+                jCheckboxArray.add((JCheckBox) box);
+                if (!jCheckboxArray.get(jCheckboxArray.size() - 1).isSelected()) {
+                    jCheckboxArray.remove(jCheckboxArray.size() - 1);
+                }
+            }
+        }
+
+        choosenCheckboxesString = new String[jCheckboxArray.size()];
+        for (int i = 0; i < jCheckboxArray.size(); ++i) {
+            choosenCheckboxesString[i] = jCheckboxArray.get(i).getText();
+        }
+
+//        for (String s : choosenCheckboxesString) {
+//            System.out.println(s);
+//        }
+//        System.out.println("");
+        return choosenCheckboxesString;
+    }
+    ///SAJÁT ELJÁRÁSOK VÉGE    
+    
+    
+
     /**
      * @param args the command line arguments
      */
@@ -695,168 +755,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
         });
     }
 
-    
-    private void removeOldCheckBox(JPanel panel){
-        JCheckBox comparerBox = new JCheckBox();
-        
-        for (Component box : panel.getComponents()) {
-            if (box.getClass() == comparerBox.getClass()) {
-                panel.remove(box);
-            }
-        }
-        
-    }
-    
-//    private void removeOldCheckBoxFromCategories(){
-//        JCheckBox comparerBox = new JCheckBox();
-//        
-//        for (Component box : newGame_kGrdntPnlCategories.getComponents()) {
-//            if (box.getClass() == comparerBox.getClass()) {
-//                newGame_kGrdntPnlCategories.remove(box);
-//            }
-//        }
-//    }
-    ///SAJÁT ELJÁRÁSOK
-    private void addSourceCheckboxesToPanel() {
-        String[] sources = gameGenerator.getSourcesInDatabase();
 
-        removeOldCheckBox(newGame_kGrdntPnlSources);
-                
-        javax.swing.JCheckBox[] jCheckboxArray;
-        int CheckBoxNumber = sources.length;
-        jCheckboxArray = new javax.swing.JCheckBox[CheckBoxNumber];
-        
-        
-        
-        for (int x = 0; x < CheckBoxNumber; x++) {
-            jCheckboxArray[x] = new javax.swing.JCheckBox();
-            jCheckboxArray[x].setText(sources[x]);
-            jCheckboxArray[x].setBounds(20, x * 50, 300, 30);
-            jCheckboxArray[x].doClick();
-            newGame_kGrdntPnlSources.add(jCheckboxArray[x]);
-        }
-    }
-
-    private void addCategoryCheckboxesToPanel() {
-        String[] categories = gameGenerator.getCategoriesBySourcesInDatabase();
-
-        removeOldCheckBox(newGame_kGrdntPnlCategories);
-        
-        javax.swing.JCheckBox[] jCheckboxArray = null;
-        int CheckBoxNumber = categories.length;
-        jCheckboxArray = new javax.swing.JCheckBox[CheckBoxNumber];
-        for (int x = 0; x < CheckBoxNumber; x++) {
-            jCheckboxArray[x] = new javax.swing.JCheckBox();
-            jCheckboxArray[x].setText(categories[x]);
-            jCheckboxArray[x].setBounds(20, x * 50, 300, 30);
-            jCheckboxArray[x].doClick();
-            newGame_kGrdntPnlCategories.add(jCheckboxArray[x]);
-        }
-    }
-
-    private String[] chosenSourcesToStringArray() {
-        String[] choosenSources = null;
-        JCheckBox tryIt = new JCheckBox();
-
-        List<JCheckBox> jCheckboxArray = new ArrayList<>();
-
-        for (Component box : newGame_kGrdntPnlSources.getComponents()) {
-            if (box.getClass() == tryIt.getClass()) {
-                jCheckboxArray.add((JCheckBox) box);
-                if (!jCheckboxArray.get(jCheckboxArray.size() - 1).isSelected()) {
-                    jCheckboxArray.remove(jCheckboxArray.size() - 1);
-                }
-            }
-        }
-
-        choosenSources = new String[jCheckboxArray.size()];
-        for (int i = 0; i < jCheckboxArray.size(); ++i) {
-            choosenSources[i] = jCheckboxArray.get(i).getText();
-        }
-
-        for(String s : choosenSources)
-        {
-            System.out.println(s);
-        }
-        System.out.println("");
-        return choosenSources;
-    }
-
-    private String[] chosenCategoriesToStringArray() {
-        String[] choosenCategories;
-        JCheckBox tryIt = new JCheckBox();
-
-        List<JCheckBox> jCheckboxArray = new ArrayList<>();
-
-        for (Component box : newGame_kGrdntPnlCategories.getComponents()) {
-            if (box.getClass() == tryIt.getClass()) {
-                jCheckboxArray.add((JCheckBox) box);
-                if (!jCheckboxArray.get(jCheckboxArray.size() - 1).isSelected()) {
-                    jCheckboxArray.remove(jCheckboxArray.size() - 1);
-                }
-            }
-        }
-
-        choosenCategories = new String[jCheckboxArray.size()];
-        for (int i = 0; i < jCheckboxArray.size(); ++i) {
-            choosenCategories[i] = jCheckboxArray.get(i).getText();
-        }
-
-        for(String s : choosenCategories)
-        {
-            System.out.println(s);
-        }
-        System.out.println("");
-        return choosenCategories;
-    }
-    ///SAJÁT ELJÁRÁSOK VÉGE
-
-//    private String chosenSourcesToString() {
-//        String str = "";
-//        JCheckBox tryIt = new JCheckBox();
-//
-//        List<JCheckBox> jCheckboxArray = new ArrayList<>();
-//
-//        for (Component box : newGame_kGrdntPnlSources.getComponents()) {
-//            if (box.getClass() == tryIt.getClass()) {
-//                jCheckboxArray.add((JCheckBox) box);
-//                if (!jCheckboxArray.get(jCheckboxArray.size() - 1).isSelected()) {
-//                    jCheckboxArray.remove(jCheckboxArray.size() - 1);
-//                }
-//            }
-//        }
-//
-//        str += jCheckboxArray.get(0).getText();
-//        for (int i = 1; i < jCheckboxArray.size(); ++i) {
-//            str += ";;SEP;;";
-//            str += jCheckboxArray.get(i).getText();
-//        }
-//        System.out.println(str);
-//        return str;
-//    }
-//    private String chosenCategoriesToString() {
-//        String str = "";
-//        JCheckBox tryIt = new JCheckBox();
-//
-//        List<JCheckBox> jCheckboxArray = new ArrayList<>();
-//
-//        for (Component box : newGame_kGrdntPnlCategories.getComponents()) {
-//            if (box.getClass() == tryIt.getClass()) {
-//                jCheckboxArray.add((JCheckBox) box);
-//                if (!jCheckboxArray.get(jCheckboxArray.size() - 1).isSelected()) {
-//                    jCheckboxArray.remove(jCheckboxArray.size() - 1);
-//                }
-//            }
-//        }
-//
-//        str += jCheckboxArray.get(0).getText();
-//        for (int i = 1; i < jCheckboxArray.size(); ++i) {
-//            str += ";;SEP;;";
-//            str += jCheckboxArray.get(i).getText();
-//        }
-//        System.out.println(str);
-//        return str;
-//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane jLyrdPn;
     private javax.swing.JLabel menu_JLblLogo;
