@@ -10,7 +10,6 @@ import Helpers.GameHandler;
 import Helpers.DatabaseHandler;
 import Models.Game;
 import Models.Question;
-import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Component;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -89,10 +88,10 @@ public class JFrameTestHost extends javax.swing.JFrame {
         newGame_GameName_JLblLogo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Host View");
         setBounds(new java.awt.Rectangle(0, 0, 800, 600));
         setIconImage(icon.getImage());
         setName("frame"); // NOI18N
-        setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
@@ -450,13 +449,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
         newGame_GameName_jTxtFldGameName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_GameName_jTxtFldGameName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         newGame_GameName_jTxtFldGameName.setText("Add meg a játék nevét!");
-        newGame_GameName_jTxtFldGameName.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         newGame_GameName_jTxtFldGameName.setPreferredSize(new java.awt.Dimension(300, 50));
-        newGame_GameName_jTxtFldGameName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                newGame_GameName_jTxtFldGameNameMouseClicked(evt);
-            }
-        });
 
         newGame_GameName_JLblLogo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         newGame_GameName_JLblLogo1.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
@@ -560,7 +553,6 @@ public class JFrameTestHost extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menu_bttnNewGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnNewGameMouseClicked
@@ -604,8 +596,8 @@ public class JFrameTestHost extends javax.swing.JFrame {
         game = gameGenerator.getGame();
         gameHandler = new GameHandler(game);
 
-        newGame_kGrdntPnlGameName.setVisible(false);
-        //MODIFY LATER THE MENU SELECTION TO GAME
+        newGame_kGrdntPnlGameName.setVisible(false);   
+        //MODIFY LATER THE MENU SELECTION TO GAME 
         menu_kGrdntPnl.setVisible(true);
     }//GEN-LAST:event_newGame_GameName_kBttnStartMouseClicked
 
@@ -665,13 +657,6 @@ public class JFrameTestHost extends javax.swing.JFrame {
         databaseHandler.clearGamesInDatabase();
     }//GEN-LAST:event_settings_kBttnClearGamesMouseClicked
 
-    private void newGame_GameName_jTxtFldGameNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_jTxtFldGameNameMouseClicked
-        // TODO add your handling code here:
-        if (newGame_GameName_jTxtFldGameName.getText().equals("Add meg a játék nevét!")) {
-            newGame_GameName_jTxtFldGameName.setText("");
-        }
-    }//GEN-LAST:event_newGame_GameName_jTxtFldGameNameMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -682,7 +667,18 @@ public class JFrameTestHost extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
-            UIManager.setLookAndFeel(new FlatDarkLaf());
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(JFrameTestHost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(JFrameTestHost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(JFrameTestHost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JFrameTestHost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
@@ -828,6 +824,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
 //        System.out.println(str);
 //        return str;
 //    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane jLyrdPn;
     private javax.swing.JLabel menu_JLblLogo;

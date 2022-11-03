@@ -19,10 +19,11 @@ public class ProjectDrinQuiz {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-//                JFrameTestHost mainFrame = new JFrameTestHost();
-//                mainFrame.setVisible(true);
-                JFrameTestHost.main(new String[]{});
+                JFrameTestHost mainFrame = new JFrameTestHost();
+                mainFrame.setVisible(true);
             }
         });
+//        MainMenu hostFrame = new MainMenu();
+
     }
 }
