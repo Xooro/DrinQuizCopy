@@ -26,27 +26,37 @@ public class GameHandler {
    }
    
    
-   public Question getNewQuestion(){
-       Question question;
+   public Question getNewQuestion() throws Exception{
+       Question question = new Question();
        Random rnd = new Random();
-       List<Question> questions = getQuestionsByGameSourcesAndCategories();
-        
-       do{
-           question = questions.get(rnd.nextInt(questions.size()));
-       }while(isQuestionUsed(question));
+       List<Question> questions = getFilteredQuestions();
        
+       if(questions.isEmpty())
+               throw new Exception("Out of questions");
+       question = questions.get(rnd.nextInt(questions.size()));   
+       
+//       do{
+//           if(questions.isEmpty()){
+//               throw new Exception("Out of questions");
+//           }
+//           question = questions.get(rnd.nextInt(questions.size()));   
+//           
+//       }while(isQuestionUsed(question));
        return question;
    }
    
-    private List<Question> getQuestionsByGameSourcesAndCategories(){
+    private List<Question> getFilteredQuestions(){
        List<Question> questions = _context.Question.getAll();
        String[] sources = ConverterHelper.convertSeparatedStringToStringArray(game.getSources());
        String[] categories = ConverterHelper.convertSeparatedStringToStringArray(game.getCategories());
+       
        questions = questions.stream().filter(
-                q -> Arrays.stream(sources).anyMatch(q.getSource()::contains)
-        ).filter(
-                q -> Arrays.stream(categories).anyMatch(q.getCategory()::contains)
-        ).toList();
+                q -> (Arrays.stream(sources).anyMatch(q.getSource()::contains)) 
+                        && (Arrays.stream(categories).anyMatch(q.getCategory()::contains)) 
+                        && (
+                            !isQuestionUsed(q)
+                        )
+       ).toList();
        return questions;
     }
    
@@ -59,4 +69,10 @@ public class GameHandler {
        }       
        return false;
    } 
+   
+   private void addQuestionToQuestionHistory(Question question)
+   {
+       QuestionHistory questionHistory = new QuestionHistory(0,game.getID(),0,question.getID(),0);
+       _context.QuestionHistory.add(questionHistory);
+   }
 }

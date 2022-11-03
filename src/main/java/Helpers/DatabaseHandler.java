@@ -9,7 +9,6 @@ import Models.Enums.Categories;
 import Models.Enums.Sources;
 import Models.Question;
 import Helpers.WebHandlers.NapiKvizWebHandler;
-import Helpers.WebHandlers.NapiKvizWebHandler;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +17,19 @@ import java.util.List;
  *
  * @author kkris
  */
-public class WebHandler {
+public class DatabaseHandler {
 
     private DrinQuizContext _context;
 
-    public WebHandler() {
+    public DatabaseHandler() {
         _context = new DrinQuizContext();
     }
 
+    public void importAllKvizToDatabase() throws IOException
+    {
+        importNapikvizToDatabase();
+    }
+    
     public void importNapikvizToDatabase() throws IOException {
         NapiKvizWebHandler napiKvizHandler = new NapiKvizWebHandler(Sources.NapiKvíz, "ISO8859_1");
         List<Question> quizes = new ArrayList<>();
@@ -36,10 +40,17 @@ public class WebHandler {
         quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=elovilag", Categories.Élővilág));
         quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=zene", Categories.Zene));
         quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=sport", Categories.Sport));
-        _context.Question.addRange(quizes);
-        
-        //VALAKI KÉSŐBB ADJA HOZZÁ NAPIKVíZ-RŐL A TÖBBI LINKET
-//        quizes.addAll(napiKvizHandler.getDataFromWebpage("", Categories));
+        quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=film-szinhaz", Categories.Film_színház));
+        quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=kepzomuveszet", Categories.Képzőművészet)); 
+        quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=irodalom", Categories.Irodalom));
+        quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=etelek-italok", Categories.Ételek_italok));
+        quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=unnepek", Categories.Ünnepek));
+        quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=csillagaszat", Categories.Csillagászat));
+        quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=tv-sorozatok", Categories.Tv_sorozatok));
+        quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=kozlekedes,_jarmuvek", Categories.Közlekedés_járművek));
+        quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=szolasok-kozmondasok", Categories.Szólások_közmondások));
+        quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=egyeb", Categories.Egyéb));
+       _context.Question.addRange(quizes);
 
 //        List<Question> testlist = _context.Question.getAll();
 //        for (Question q : testlist) {
@@ -51,5 +62,18 @@ public class WebHandler {
 //            System.out.println("Source:    | " + q.getSource());
 //            System.out.println("\n");
 //        }
+    }
+    
+    public void clearQuestionsInDatabase()
+    {    
+        clearGamesInDatabase();     
+        _context.Question.clear();
+    }
+    
+    public void clearGamesInDatabase()
+    {
+        _context.QuestionHistory.clear();
+        _context.Game.clear();
+        _context.Player.clear();
     }
 }

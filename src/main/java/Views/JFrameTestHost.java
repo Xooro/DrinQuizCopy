@@ -7,9 +7,15 @@ package Views;
 import javax.swing.*;
 import Helpers.GameGenerator;
 import Helpers.GameHandler;
+import Helpers.DatabaseHandler;
+import Models.Game;
+import Models.Question;
 import java.awt.Component;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 
 /**
@@ -18,7 +24,10 @@ import javax.swing.JCheckBox;
  */
 public class JFrameTestHost extends javax.swing.JFrame {
 
+    Game game;
     GameGenerator gameGenerator;
+    GameHandler gameHandler;
+    DatabaseHandler databaseHandler;
     /**
      * Creates new form JFrameTestHost
      */
@@ -28,6 +37,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
         initComponents();
 
         gameGenerator = new GameGenerator();
+        databaseHandler = new DatabaseHandler();
 
         settings_kGrdntPnl.setVisible(false);
         newGame_kGrdntPnlSources.setVisible(false);
@@ -74,8 +84,8 @@ public class JFrameTestHost extends javax.swing.JFrame {
         newGame_kGrdntPnlGameName = new com.k33ptoo.components.KGradientPanel();
         newGame_GameName_kBttnStart = new com.k33ptoo.components.KButton();
         newGame_GameName_kBttnBack = new com.k33ptoo.components.KButton();
-        jTextField1 = new javax.swing.JTextField();
-        newGame_Categories_JLblLogo1 = new javax.swing.JLabel();
+        newGame_GameName_jTxtFldGameName = new javax.swing.JTextField();
+        newGame_GameName_JLblLogo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Host View");
@@ -187,6 +197,11 @@ public class JFrameTestHost extends javax.swing.JFrame {
         settings_kBttnImportQuizzes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_kBttnImportQuizzes.setkBorderRadius(50);
         settings_kBttnImportQuizzes.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_kBttnImportQuizzes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settings_kBttnImportQuizzesMouseClicked(evt);
+            }
+        });
 
         settings_jLblImportQuizzes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_jLblImportQuizzes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -198,6 +213,11 @@ public class JFrameTestHost extends javax.swing.JFrame {
         settings_kBttnImportQuizzesFromNapiKviz.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_kBttnImportQuizzesFromNapiKviz.setkBorderRadius(50);
         settings_kBttnImportQuizzesFromNapiKviz.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_kBttnImportQuizzesFromNapiKviz.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settings_kBttnImportQuizzesFromNapiKvizMouseClicked(evt);
+            }
+        });
 
         settings_jLblImportQuizzesFromNapiKviz.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_jLblImportQuizzesFromNapiKviz.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -209,6 +229,11 @@ public class JFrameTestHost extends javax.swing.JFrame {
         settings_kBttnClearQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_kBttnClearQuestion.setkBorderRadius(50);
         settings_kBttnClearQuestion.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_kBttnClearQuestion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settings_kBttnClearQuestionMouseClicked(evt);
+            }
+        });
 
         settings_jLblClearQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_jLblClearQuestion.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -220,6 +245,11 @@ public class JFrameTestHost extends javax.swing.JFrame {
         settings_kBttnClearGames.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_kBttnClearGames.setkBorderRadius(50);
         settings_kBttnClearGames.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_kBttnClearGames.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                settings_kBttnClearGamesMouseClicked(evt);
+            }
+        });
 
         settings_jLblClearGames.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_jLblClearGames.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -416,13 +446,13 @@ public class JFrameTestHost extends javax.swing.JFrame {
             }
         });
 
-        jTextField1.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("Add meg a játék nevét!");
-        jTextField1.setPreferredSize(new java.awt.Dimension(300, 50));
+        newGame_GameName_jTxtFldGameName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        newGame_GameName_jTxtFldGameName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        newGame_GameName_jTxtFldGameName.setText("Add meg a játék nevét!");
+        newGame_GameName_jTxtFldGameName.setPreferredSize(new java.awt.Dimension(300, 50));
 
-        newGame_Categories_JLblLogo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        newGame_Categories_JLblLogo1.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
+        newGame_GameName_JLblLogo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        newGame_GameName_JLblLogo1.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
 
         javax.swing.GroupLayout newGame_kGrdntPnlGameNameLayout = new javax.swing.GroupLayout(newGame_kGrdntPnlGameName);
         newGame_kGrdntPnlGameName.setLayout(newGame_kGrdntPnlGameNameLayout);
@@ -440,20 +470,20 @@ public class JFrameTestHost extends javax.swing.JFrame {
                             .addGroup(newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(newGame_GameName_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(newGame_Categories_JLblLogo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(newGame_GameName_JLblLogo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
             .addGroup(newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
                 .addGap(250, 250, 250)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(newGame_GameName_jTxtFldGameName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(250, Short.MAX_VALUE))
         );
         newGame_kGrdntPnlGameNameLayout.setVerticalGroup(
             newGame_kGrdntPnlGameNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
                 .addGap(50, 50, 50)
-                .addComponent(newGame_Categories_JLblLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(newGame_GameName_JLblLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(newGame_GameName_jTxtFldGameName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(newGame_GameName_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(80, 80, 80)
@@ -528,9 +558,9 @@ public class JFrameTestHost extends javax.swing.JFrame {
     private void menu_bttnNewGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnNewGameMouseClicked
         // TODO add your handling code here:
         menu_kGrdntPnl.setVisible(false);
-        
+
         addSourceCheckboxesToPanel();
-        
+
         newGame_kGrdntPnlSources.setVisible(true);
     }//GEN-LAST:event_menu_bttnNewGameMouseClicked
 
@@ -562,7 +592,13 @@ public class JFrameTestHost extends javax.swing.JFrame {
 
     private void newGame_GameName_kBttnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_kBttnStartMouseClicked
         // TODO add your handling code here:
-        gameGenerator.generateGame(jTextField1.getText());
+        gameGenerator.generateGame(newGame_GameName_jTxtFldGameName.getText());
+        game = gameGenerator.getGame();
+        gameHandler = new GameHandler(game);
+
+        newGame_kGrdntPnlGameName.setVisible(false);   
+        //MODIFY LATER THE MENU SELECTION TO GAME 
+        menu_kGrdntPnl.setVisible(true);
     }//GEN-LAST:event_newGame_GameName_kBttnStartMouseClicked
 
     private void newGame_GameName_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_kBttnBackMouseClicked
@@ -592,6 +628,34 @@ public class JFrameTestHost extends javax.swing.JFrame {
         menu_kGrdntPnl.setVisible(false);
         settings_kGrdntPnl.setVisible(true);
     }//GEN-LAST:event_menu_bttnSettingsMouseClicked
+
+    private void settings_kBttnImportQuizzesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnImportQuizzesMouseClicked
+        try {
+            // TODO add your handling code here:
+            databaseHandler.importAllKvizToDatabase();
+        } catch (IOException ex) {
+            Logger.getLogger(JFrameTestHost.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_settings_kBttnImportQuizzesMouseClicked
+
+    private void settings_kBttnImportQuizzesFromNapiKvizMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnImportQuizzesFromNapiKvizMouseClicked
+        try {
+            // TODO add your handling code here:
+            databaseHandler.importNapikvizToDatabase();
+        } catch (IOException ex) {
+            Logger.getLogger(JFrameTestHost.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_settings_kBttnImportQuizzesFromNapiKvizMouseClicked
+
+    private void settings_kBttnClearQuestionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnClearQuestionMouseClicked
+        // TODO add your handling code here:
+        databaseHandler.clearQuestionsInDatabase();
+    }//GEN-LAST:event_settings_kBttnClearQuestionMouseClicked
+
+    private void settings_kBttnClearGamesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnClearGamesMouseClicked
+        // TODO add your handling code here:
+        databaseHandler.clearGamesInDatabase();
+    }//GEN-LAST:event_settings_kBttnClearGamesMouseClicked
 
     /**
      * @param args the command line arguments
@@ -628,8 +692,6 @@ public class JFrameTestHost extends javax.swing.JFrame {
         });
     }
 
-    
-    
     ///SAJÁT ELJÁRÁSOK
     private void addSourceCheckboxesToPanel() {
         String[] sources = gameGenerator.getSourcesInDatabase();
@@ -660,7 +722,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
             newGame_kGrdntPnlCategories.add(jCheckboxArray[x]);
         }
     }
-    
+
     private String[] chosenSourcesToStringArray() {
         String[] choosenSources;
         JCheckBox tryIt = new JCheckBox();
@@ -676,19 +738,18 @@ public class JFrameTestHost extends javax.swing.JFrame {
             }
         }
 
-        choosenSources=new String[jCheckboxArray.size()];
+        choosenSources = new String[jCheckboxArray.size()];
         for (int i = 0; i < jCheckboxArray.size(); ++i) {
             choosenSources[i] = jCheckboxArray.get(i).getText();
         }
-        
+
 //        for(String s : choosenSources)
 //        {
 //            System.out.println(s);
 //        }
-        
         return choosenSources;
     }
-    
+
     private String[] chosenCategoriesToStringArray() {
         String[] choosenCategories;
         JCheckBox tryIt = new JCheckBox();
@@ -704,20 +765,19 @@ public class JFrameTestHost extends javax.swing.JFrame {
             }
         }
 
-        choosenCategories=new String[jCheckboxArray.size()];
+        choosenCategories = new String[jCheckboxArray.size()];
         for (int i = 0; i < jCheckboxArray.size(); ++i) {
             choosenCategories[i] = jCheckboxArray.get(i).getText();
         }
-        
+
 //        for(String s : choosenCategories)
 //        {
 //            System.out.println(s);
 //        }
-        
         return choosenCategories;
     }
     ///SAJÁT ELJÁRÁSOK VÉGE
-    
+
 //    private String chosenSourcesToString() {
 //        String str = "";
 //        JCheckBox tryIt = new JCheckBox();
@@ -741,7 +801,6 @@ public class JFrameTestHost extends javax.swing.JFrame {
 //        System.out.println(str);
 //        return str;
 //    }
-
 //    private String chosenCategoriesToString() {
 //        String str = "";
 //        JCheckBox tryIt = new JCheckBox();
@@ -768,7 +827,6 @@ public class JFrameTestHost extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane jLyrdPn;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel menu_JLblLogo;
     private com.k33ptoo.components.KButton menu_bttnExit;
     private com.k33ptoo.components.KButton menu_bttnLoadGame;
@@ -776,9 +834,10 @@ public class JFrameTestHost extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton menu_bttnSettings;
     private com.k33ptoo.components.KGradientPanel menu_kGrdntPnl;
     private javax.swing.JLabel newGame_Categories_JLblLogo;
-    private javax.swing.JLabel newGame_Categories_JLblLogo1;
     private com.k33ptoo.components.KButton newGame_Categories_kBttnBack;
     private com.k33ptoo.components.KButton newGame_Categories_kBttnNext;
+    private javax.swing.JLabel newGame_GameName_JLblLogo1;
+    private javax.swing.JTextField newGame_GameName_jTxtFldGameName;
     private com.k33ptoo.components.KButton newGame_GameName_kBttnBack;
     private com.k33ptoo.components.KButton newGame_GameName_kBttnStart;
     private javax.swing.JLabel newGame_Sources_JLblLogo;

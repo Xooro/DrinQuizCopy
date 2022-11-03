@@ -16,6 +16,16 @@ public class QuestionHistory {
     private int questionID;
     private int pickedAnswer;
 
+    public QuestionHistory(){};
+    public QuestionHistory(int id, int gameID, int playerID, int questionID, int pickedAnswer)
+    {
+        this.id = id;
+        this.gameID = gameID;
+        this.playerID = playerID;
+        this.questionID = questionID;
+        this.pickedAnswer = pickedAnswer;
+    }
+    
     //GETTERS
     public int getID() {
         return id;

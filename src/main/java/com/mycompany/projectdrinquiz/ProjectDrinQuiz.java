@@ -4,7 +4,6 @@
  */
 package com.mycompany.projectdrinquiz;
 
-import Helpers.WebHandler;
 import Views.JFrameTestHost;
 import java.io.IOException;
 import javax.swing.SwingUtilities;
@@ -18,9 +17,6 @@ public class ProjectDrinQuiz {
     public static void main(String[] args)
             throws IOException {
 
-        //WEBHANDLER TEST
-//        WebHandler webHandler = new WebHandler();
-//        webHandler.importNapikvizToDatabase();
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 JFrameTestHost mainFrame = new JFrameTestHost();

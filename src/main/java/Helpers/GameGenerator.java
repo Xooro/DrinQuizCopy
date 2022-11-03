@@ -28,6 +28,9 @@ public class GameGenerator {
         _context = new DrinQuizContext();
     }
 
+    public Game getGame(){
+        return game;
+    }
     
     public String[] getSourcesInDatabase(){
         String[] sources;
@@ -87,11 +90,18 @@ public class GameGenerator {
         game.setCreationDate(new java.sql.Date(todayDate.getTime()));
         
         _context.Game.add(game);
+        refreshGame();
         
         Game testgame = _context.Game.getAll().get(0);
 //        System.out.println(game.getGameName());
 //        System.out.println(game.getCreationDate());
 //        System.out.println(game.getSources());
 //        System.out.println(game.getCategories());
+    }
+    
+    private void refreshGame()
+    {
+        List<Game> games = _context.Game.getAll();
+        game = games.get(games.size()-1);
     }
 }

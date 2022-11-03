@@ -318,6 +318,9 @@
                   <Dimension value="[200, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settings_kBttnImportQuizzesMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="settings_jLblImportQuizzes">
               <Properties>
@@ -345,6 +348,9 @@
                   <Dimension value="[200, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settings_kBttnImportQuizzesFromNapiKvizMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="settings_jLblImportQuizzesFromNapiKviz">
               <Properties>
@@ -372,6 +378,9 @@
                   <Dimension value="[200, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settings_kBttnClearQuestionMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="settings_jLblClearQuestion">
               <Properties>
@@ -399,6 +408,9 @@
                   <Dimension value="[200, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settings_kBttnClearGamesMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="settings_jLblClearGames">
               <Properties>
@@ -662,7 +674,7 @@
                                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           <Component id="newGame_GameName_kBttnBack" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="newGame_Categories_JLblLogo1" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="newGame_GameName_JLblLogo1" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -670,7 +682,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="250" max="-2" attributes="0"/>
-                          <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                          <Component id="newGame_GameName_jTxtFldGameName" min="-2" max="-2" attributes="0"/>
                           <EmptySpace pref="250" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -679,9 +691,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                          <Component id="newGame_Categories_JLblLogo1" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="newGame_GameName_JLblLogo1" min="-2" pref="200" max="-2" attributes="0"/>
                           <EmptySpace pref="96" max="32767" attributes="0"/>
-                          <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
+                          <Component id="newGame_GameName_jTxtFldGameName" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="newGame_GameName_kBttnStart" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
@@ -728,7 +740,7 @@
                     <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newGame_GameName_kBttnBackMouseClicked"/>
                   </Events>
                 </Component>
-                <Component class="javax.swing.JTextField" name="jTextField1">
+                <Component class="javax.swing.JTextField" name="newGame_GameName_jTxtFldGameName">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Century Gothic" size="18" style="3"/>
@@ -740,7 +752,7 @@
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="newGame_Categories_JLblLogo1">
+                <Component class="javax.swing.JLabel" name="newGame_GameName_JLblLogo1">
                   <Properties>
                     <Property name="horizontalAlignment" type="int" value="0"/>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
