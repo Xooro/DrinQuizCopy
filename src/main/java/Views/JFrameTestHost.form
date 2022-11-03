@@ -3,7 +3,6 @@
 <Form version="1.9" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
-    <Property name="title" type="java.lang.String" value="Host View"/>
     <Property name="bounds" type="java.awt.Rectangle" editor="org.netbeans.beaninfo.editors.RectangleEditor">
       <Rectangle value="[0, 0, 800, 600]"/>
     </Property>
@@ -11,6 +10,7 @@
       <Connection code="icon.getImage()" type="code"/>
     </Property>
     <Property name="name" type="java.lang.String" value="frame" noResource="true"/>
+    <Property name="undecorated" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="false"/>
     <Property name="size" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 600]"/>
@@ -18,7 +18,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -230,15 +230,15 @@
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="settings_jLblClearQuestion" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="settings_jLblImportQuizzesFromNapiKviz" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="settings_jLblImportQuizzes" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="settings_jLblImportQuizesFromNapiKviz" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="settings_jLblImportQuizes" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="settings_jLblClearGames" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="settings_kBttnClearGames" min="-2" max="-2" attributes="0"/>
-                                  <Component id="settings_kBttnImportQuizzesFromNapiKviz" min="-2" max="-2" attributes="0"/>
-                                  <Component id="settings_kBttnImportQuizzes" min="-2" max="-2" attributes="0"/>
+                                  <Component id="settings_kBttnImportQuizesFromNapiKviz" min="-2" max="-2" attributes="0"/>
+                                  <Component id="settings_kBttnImportQuizes" min="-2" max="-2" attributes="0"/>
                                   <Component id="settings_kBttnClearQuestion" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="206" max="32767" attributes="0"/>
@@ -260,13 +260,13 @@
                       <Component id="settings_JLblLogo" min="-2" pref="200" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="settings_kBttnImportQuizzes" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="settings_jLblImportQuizzes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="settings_kBttnImportQuizes" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="settings_jLblImportQuizes" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="settings_kBttnImportQuizzesFromNapiKviz" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="settings_jLblImportQuizzesFromNapiKviz" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="settings_kBttnImportQuizesFromNapiKviz" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="settings_jLblImportQuizesFromNapiKviz" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -304,7 +304,7 @@
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settings_kBttnBackMouseClicked"/>
               </Events>
             </Component>
-            <Component class="com.k33ptoo.components.KButton" name="settings_kBttnImportQuizzes">
+            <Component class="com.k33ptoo.components.KButton" name="settings_kBttnImportQuizes">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -319,10 +319,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settings_kBttnImportQuizzesMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settings_kBttnImportQuizesMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="settings_jLblImportQuizzes">
+            <Component class="javax.swing.JLabel" name="settings_jLblImportQuizes">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="18" style="3"/>
@@ -334,7 +334,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="com.k33ptoo.components.KButton" name="settings_kBttnImportQuizzesFromNapiKviz">
+            <Component class="com.k33ptoo.components.KButton" name="settings_kBttnImportQuizesFromNapiKviz">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
@@ -349,10 +349,10 @@
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settings_kBttnImportQuizzesFromNapiKvizMouseClicked"/>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="settings_kBttnImportQuizesFromNapiKvizMouseClicked"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="settings_jLblImportQuizzesFromNapiKviz">
+            <Component class="javax.swing.JLabel" name="settings_jLblImportQuizesFromNapiKviz">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="18" style="3"/>
@@ -751,6 +751,9 @@
                       <Dimension value="[300, 50]"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newGame_GameName_jTxtFldGameNameMouseClicked"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="newGame_GameName_JLblLogo1">
                   <Properties>

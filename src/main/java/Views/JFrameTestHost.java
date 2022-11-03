@@ -10,6 +10,7 @@ import Helpers.GameHandler;
 import Helpers.DatabaseHandler;
 import Models.Game;
 import Models.Question;
+import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Component;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -63,10 +64,10 @@ public class JFrameTestHost extends javax.swing.JFrame {
         menu_JLblLogo = new javax.swing.JLabel();
         settings_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         settings_kBttnBack = new com.k33ptoo.components.KButton();
-        settings_kBttnImportQuizzes = new com.k33ptoo.components.KButton();
-        settings_jLblImportQuizzes = new javax.swing.JLabel();
-        settings_kBttnImportQuizzesFromNapiKviz = new com.k33ptoo.components.KButton();
-        settings_jLblImportQuizzesFromNapiKviz = new javax.swing.JLabel();
+        settings_kBttnImportQuizes = new com.k33ptoo.components.KButton();
+        settings_jLblImportQuizes = new javax.swing.JLabel();
+        settings_kBttnImportQuizesFromNapiKviz = new com.k33ptoo.components.KButton();
+        settings_jLblImportQuizesFromNapiKviz = new javax.swing.JLabel();
         settings_kBttnClearQuestion = new com.k33ptoo.components.KButton();
         settings_jLblClearQuestion = new javax.swing.JLabel();
         settings_kBttnClearGames = new com.k33ptoo.components.KButton();
@@ -88,10 +89,10 @@ public class JFrameTestHost extends javax.swing.JFrame {
         newGame_GameName_JLblLogo1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Host View");
         setBounds(new java.awt.Rectangle(0, 0, 800, 600));
         setIconImage(icon.getImage());
         setName("frame"); // NOI18N
+        setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
@@ -192,37 +193,37 @@ public class JFrameTestHost extends javax.swing.JFrame {
             }
         });
 
-        settings_kBttnImportQuizzes.setBorder(null);
-        settings_kBttnImportQuizzes.setText("Importálás");
-        settings_kBttnImportQuizzes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_kBttnImportQuizzes.setkBorderRadius(50);
-        settings_kBttnImportQuizzes.setPreferredSize(new java.awt.Dimension(200, 50));
-        settings_kBttnImportQuizzes.addMouseListener(new java.awt.event.MouseAdapter() {
+        settings_kBttnImportQuizes.setBorder(null);
+        settings_kBttnImportQuizes.setText("Importálás");
+        settings_kBttnImportQuizes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_kBttnImportQuizes.setkBorderRadius(50);
+        settings_kBttnImportQuizes.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_kBttnImportQuizes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                settings_kBttnImportQuizzesMouseClicked(evt);
+                settings_kBttnImportQuizesMouseClicked(evt);
             }
         });
 
-        settings_jLblImportQuizzes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_jLblImportQuizzes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        settings_jLblImportQuizzes.setText("Kvízek importálása a webhelyekről:");
-        settings_jLblImportQuizzes.setPreferredSize(new java.awt.Dimension(350, 50));
+        settings_jLblImportQuizes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_jLblImportQuizes.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        settings_jLblImportQuizes.setText("Kvízek importálása a webhelyekről:");
+        settings_jLblImportQuizes.setPreferredSize(new java.awt.Dimension(350, 50));
 
-        settings_kBttnImportQuizzesFromNapiKviz.setBorder(null);
-        settings_kBttnImportQuizzesFromNapiKviz.setText("NapiKvíz");
-        settings_kBttnImportQuizzesFromNapiKviz.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_kBttnImportQuizzesFromNapiKviz.setkBorderRadius(50);
-        settings_kBttnImportQuizzesFromNapiKviz.setPreferredSize(new java.awt.Dimension(200, 50));
-        settings_kBttnImportQuizzesFromNapiKviz.addMouseListener(new java.awt.event.MouseAdapter() {
+        settings_kBttnImportQuizesFromNapiKviz.setBorder(null);
+        settings_kBttnImportQuizesFromNapiKviz.setText("NapiKvíz");
+        settings_kBttnImportQuizesFromNapiKviz.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_kBttnImportQuizesFromNapiKviz.setkBorderRadius(50);
+        settings_kBttnImportQuizesFromNapiKviz.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_kBttnImportQuizesFromNapiKviz.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                settings_kBttnImportQuizzesFromNapiKvizMouseClicked(evt);
+                settings_kBttnImportQuizesFromNapiKvizMouseClicked(evt);
             }
         });
 
-        settings_jLblImportQuizzesFromNapiKviz.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_jLblImportQuizzesFromNapiKviz.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        settings_jLblImportQuizzesFromNapiKviz.setText("Kvízek importálása NapiKvízről:");
-        settings_jLblImportQuizzesFromNapiKviz.setPreferredSize(new java.awt.Dimension(350, 50));
+        settings_jLblImportQuizesFromNapiKviz.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_jLblImportQuizesFromNapiKviz.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        settings_jLblImportQuizesFromNapiKviz.setText("Kvízek importálása NapiKvízről:");
+        settings_jLblImportQuizesFromNapiKviz.setPreferredSize(new java.awt.Dimension(350, 50));
 
         settings_kBttnClearQuestion.setBorder(null);
         settings_kBttnClearQuestion.setText("Kvízek törlése");
@@ -269,14 +270,14 @@ public class JFrameTestHost extends javax.swing.JFrame {
                     .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
                         .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(settings_jLblClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_jLblImportQuizzesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_jLblImportQuizzes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(settings_jLblImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(settings_jLblImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(settings_jLblClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(32, 32, 32)
                         .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(settings_kBttnClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_kBttnImportQuizzesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(settings_kBttnImportQuizzes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(settings_kBttnImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(settings_kBttnImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(settings_kBttnClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 206, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settings_kGrdntPnlLayout.createSequentialGroup()
@@ -292,12 +293,12 @@ public class JFrameTestHost extends javax.swing.JFrame {
                 .addComponent(settings_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(settings_kBttnImportQuizzes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(settings_jLblImportQuizzes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(settings_kBttnImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settings_jLblImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(settings_kBttnImportQuizzesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(settings_jLblImportQuizzesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(settings_kBttnImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settings_jLblImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(settings_kBttnClearQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -450,6 +451,11 @@ public class JFrameTestHost extends javax.swing.JFrame {
         newGame_GameName_jTxtFldGameName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         newGame_GameName_jTxtFldGameName.setText("Add meg a játék nevét!");
         newGame_GameName_jTxtFldGameName.setPreferredSize(new java.awt.Dimension(300, 50));
+        newGame_GameName_jTxtFldGameName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newGame_GameName_jTxtFldGameNameMouseClicked(evt);
+            }
+        });
 
         newGame_GameName_JLblLogo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         newGame_GameName_JLblLogo1.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
@@ -553,6 +559,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void menu_bttnNewGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnNewGameMouseClicked
@@ -596,8 +603,8 @@ public class JFrameTestHost extends javax.swing.JFrame {
         game = gameGenerator.getGame();
         gameHandler = new GameHandler(game);
 
-        newGame_kGrdntPnlGameName.setVisible(false);   
-        //MODIFY LATER THE MENU SELECTION TO GAME 
+        newGame_kGrdntPnlGameName.setVisible(false);
+        //MODIFY LATER THE MENU SELECTION TO GAME
         menu_kGrdntPnl.setVisible(true);
     }//GEN-LAST:event_newGame_GameName_kBttnStartMouseClicked
 
@@ -629,23 +636,23 @@ public class JFrameTestHost extends javax.swing.JFrame {
         settings_kGrdntPnl.setVisible(true);
     }//GEN-LAST:event_menu_bttnSettingsMouseClicked
 
-    private void settings_kBttnImportQuizzesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnImportQuizzesMouseClicked
+    private void settings_kBttnImportQuizesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnImportQuizesMouseClicked
         try {
             // TODO add your handling code here:
             databaseHandler.importAllKvizToDatabase();
         } catch (IOException ex) {
             Logger.getLogger(JFrameTestHost.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_settings_kBttnImportQuizzesMouseClicked
+    }//GEN-LAST:event_settings_kBttnImportQuizesMouseClicked
 
-    private void settings_kBttnImportQuizzesFromNapiKvizMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnImportQuizzesFromNapiKvizMouseClicked
+    private void settings_kBttnImportQuizesFromNapiKvizMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnImportQuizesFromNapiKvizMouseClicked
         try {
             // TODO add your handling code here:
             databaseHandler.importNapikvizToDatabase();
         } catch (IOException ex) {
             Logger.getLogger(JFrameTestHost.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_settings_kBttnImportQuizzesFromNapiKvizMouseClicked
+    }//GEN-LAST:event_settings_kBttnImportQuizesFromNapiKvizMouseClicked
 
     private void settings_kBttnClearQuestionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnClearQuestionMouseClicked
         // TODO add your handling code here:
@@ -657,6 +664,13 @@ public class JFrameTestHost extends javax.swing.JFrame {
         databaseHandler.clearGamesInDatabase();
     }//GEN-LAST:event_settings_kBttnClearGamesMouseClicked
 
+    private void newGame_GameName_jTxtFldGameNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_jTxtFldGameNameMouseClicked
+        // TODO add your handling code here:
+        if (newGame_GameName_jTxtFldGameName.getText().equals("Add meg a játék nevét!")) {
+            newGame_GameName_jTxtFldGameName.setText("");
+        }
+    }//GEN-LAST:event_newGame_GameName_jTxtFldGameNameMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -667,18 +681,7 @@ public class JFrameTestHost extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameTestHost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameTestHost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameTestHost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            UIManager.setLookAndFeel(new FlatDarkLaf());
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JFrameTestHost.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
@@ -824,7 +827,6 @@ public class JFrameTestHost extends javax.swing.JFrame {
 //        System.out.println(str);
 //        return str;
 //    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane jLyrdPn;
     private javax.swing.JLabel menu_JLblLogo;
@@ -850,13 +852,13 @@ public class JFrameTestHost extends javax.swing.JFrame {
     private javax.swing.JLabel settings_JLblLogo;
     private javax.swing.JLabel settings_jLblClearGames;
     private javax.swing.JLabel settings_jLblClearQuestion;
-    private javax.swing.JLabel settings_jLblImportQuizzes;
-    private javax.swing.JLabel settings_jLblImportQuizzesFromNapiKviz;
+    private javax.swing.JLabel settings_jLblImportQuizes;
+    private javax.swing.JLabel settings_jLblImportQuizesFromNapiKviz;
     private com.k33ptoo.components.KButton settings_kBttnBack;
     private com.k33ptoo.components.KButton settings_kBttnClearGames;
     private com.k33ptoo.components.KButton settings_kBttnClearQuestion;
-    private com.k33ptoo.components.KButton settings_kBttnImportQuizzes;
-    private com.k33ptoo.components.KButton settings_kBttnImportQuizzesFromNapiKviz;
+    private com.k33ptoo.components.KButton settings_kBttnImportQuizes;
+    private com.k33ptoo.components.KButton settings_kBttnImportQuizesFromNapiKviz;
     private com.k33ptoo.components.KGradientPanel settings_kGrdntPnl;
     // End of variables declaration//GEN-END:variables
 }
