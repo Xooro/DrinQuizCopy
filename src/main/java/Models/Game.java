@@ -18,6 +18,8 @@ public class Game {
     private Date creationDate;
     private String sources;
     private String categories;
+    private int cups;
+    private int refills;
 
     
     //GETTERS
@@ -39,6 +41,13 @@ public class Game {
         return categories;
     }
 
+    public int getCups(){
+        return cups;
+    }
+    
+    public int getRefills(){
+        return refills;
+    }
     
     //SETTERS
     public void setID(int newId) {
@@ -57,5 +66,13 @@ public class Game {
     }
     public void setCategories(String newCategories) {
         categories = newCategories;
+    }
+    
+    public void setCups(int newCups){
+        cups = newCups;
+    }
+    
+    public void setRefills(int newRefills){
+        refills = newRefills;
     }
 }

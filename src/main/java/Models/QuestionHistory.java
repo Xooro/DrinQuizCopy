@@ -14,16 +14,16 @@ public class QuestionHistory {
     private int gameID;
     private int playerID;
     private int questionID;
-    private int pickedAnswer;
+    private String pickedAnswers;
 
     public QuestionHistory(){};
-    public QuestionHistory(int id, int gameID, int playerID, int questionID, int pickedAnswer)
+    public QuestionHistory(int id, int gameID, int playerID, int questionID, String pickedAnswers)
     {
         this.id = id;
         this.gameID = gameID;
         this.playerID = playerID;
         this.questionID = questionID;
-        this.pickedAnswer = pickedAnswer;
+        this.pickedAnswers = pickedAnswers;
     }
     
     //GETTERS
@@ -43,8 +43,8 @@ public class QuestionHistory {
         return questionID;
     }
 
-    public int getPickedAnswer() {
-        return pickedAnswer;
+    public String getPickedAnswers() {
+        return pickedAnswers;
     }
 
     //SETTERS
@@ -64,7 +64,7 @@ public class QuestionHistory {
         questionID = newQuestionID;
     }
 
-    public void setPickedAnswer(int newPickedAnswer) {
-        pickedAnswer = newPickedAnswer;
+    public void setPickedAnswers(String newPickedAnswers) {
+        pickedAnswers = newPickedAnswers;
     }
 }

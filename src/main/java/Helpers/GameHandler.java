@@ -87,7 +87,7 @@ public class GameHandler {
    
    private void addQuestionToQuestionHistory(Question question)
    {
-       QuestionHistory questionHistory = new QuestionHistory(0,game.getID(),0,question.getID(),0);
+       QuestionHistory questionHistory = new QuestionHistory(0,game.getID(),0,question.getID(),"0");
        _context.QuestionHistory.add(questionHistory);
    }
 }

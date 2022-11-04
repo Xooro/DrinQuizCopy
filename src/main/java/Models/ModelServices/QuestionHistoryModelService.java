@@ -27,7 +27,7 @@ public class QuestionHistoryModelService extends BaseModelService<QuestionHistor
 
     public void addRange(List<QuestionHistory> questionHistoriesToAdd) {
 
-        String sql = "INSERT INTO QuestionHistory(gameID,playerID,questionID,pickedAnswer) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO QuestionHistory(gameID,playerID,questionID,pickedAnswers) VALUES(?,?,?,?)";
 
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
@@ -35,7 +35,7 @@ public class QuestionHistoryModelService extends BaseModelService<QuestionHistor
                 pstmt.setInt(1, questionHistoryToAdd.getGameID());
                 pstmt.setInt(2, questionHistoryToAdd.getPlayerID());
                 pstmt.setInt(3, questionHistoryToAdd.getQuestionID());
-                pstmt.setInt(4, questionHistoryToAdd.getPickedAnswer());
+                pstmt.setString(4, questionHistoryToAdd.getPickedAnswers());
 
                 pstmt.addBatch();
                 index++;
@@ -66,7 +66,7 @@ public class QuestionHistoryModelService extends BaseModelService<QuestionHistor
                 pstmt.setInt(1, questionHistoryToUpdate.getGameID());
                 pstmt.setInt(2, questionHistoryToUpdate.getPlayerID());
                 pstmt.setInt(3, questionHistoryToUpdate.getQuestionID());
-                pstmt.setInt(4, questionHistoryToUpdate.getPickedAnswer());
+                pstmt.setString(4, questionHistoryToUpdate.getPickedAnswers());
                 pstmt.setInt(5, questionHistoryToUpdate.getID());
 
                 pstmt.addBatch();
@@ -119,7 +119,7 @@ public class QuestionHistoryModelService extends BaseModelService<QuestionHistor
                 questionHistory.setID(rs.getInt("id"));
                 questionHistory.setGameID(rs.getInt("gameID"));
                 questionHistory.setQuestionID(rs.getInt("questionID"));
-                questionHistory.setPickedAnswer(rs.getInt("pickedAnswer"));
+                questionHistory.setPickedAnswers(rs.getString("pickedAnswers"));
 
                 questionHistoryList.add(questionHistory);
 

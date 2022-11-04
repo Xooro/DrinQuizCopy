@@ -19,7 +19,7 @@ public class GameModelService extends BaseModelService<Game> {
 
     public void addRange(List<Game> gamesToAdd) {
 
-        String sql = "INSERT INTO Game(gameName,creationDate, sources, categories) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO Game(gameName,creationDate, sources, categories, cups, refills) VALUES(?,?,?,?,?,?)";
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
             for (Game gameToAdd : gamesToAdd) {
@@ -28,6 +28,8 @@ public class GameModelService extends BaseModelService<Game> {
                 pstmt.setDate(2, gameToAdd.getCreationDate());
                 pstmt.setString(3, gameToAdd.getSources());
                 pstmt.setString(4, gameToAdd.getCategories());
+                pstmt.setInt(5, gameToAdd.getCups());
+                pstmt.setInt(6, gameToAdd.getRefills());
 
                 pstmt.addBatch();
                 index++;
@@ -51,7 +53,9 @@ public class GameModelService extends BaseModelService<Game> {
         String sql = "UPDATE Game SET gameName = ? , " 
                 + "creationDate = ?, "
                 + "sources = ?, "
-                + "categories = ? "
+                + "categories = ?, "
+                + "cups = ?, "
+                + "refills = ? "
                 + "WHERE id = ?";
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
@@ -62,7 +66,9 @@ public class GameModelService extends BaseModelService<Game> {
                 pstmt.setDate(2, gameToUpdate.getCreationDate());
                 pstmt.setString(3, gameToUpdate.getSources());
                 pstmt.setString(4, gameToUpdate.getCategories());
-                pstmt.setInt(5, gameToUpdate.getID());
+                pstmt.setInt(5, gameToUpdate.getCups());
+                pstmt.setInt(6, gameToUpdate.getRefills());
+                pstmt.setInt(7, gameToUpdate.getID());
                 // update 
                 pstmt.addBatch();
                 index++;
@@ -117,6 +123,8 @@ public class GameModelService extends BaseModelService<Game> {
                 game.setCreationDate(rs.getDate("creationDate"));
                 game.setSources(rs.getString("sources"));
                 game.setCategories(rs.getString("categories"));
+                game.setCups(rs.getInt("cups"));
+                game.setRefills(rs.getInt("refills"));
 
                 gameList.add(game);
 
