@@ -56,7 +56,7 @@ public class QuestionHistoryModelService extends BaseModelService<QuestionHistor
         String sql = "UPDATE QuestionHistory SET gameID = ? , "
                 + "playerID = ?, "
                 + "questionID = ?, "
-                + "pickedAnswer = ? "
+                + "pickedAnswers = ? "
                 + "WHERE id = ?";
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;

@@ -19,15 +19,6 @@ public class Player {
 
     public Player(){}
     
-    public Player(int id, int gameID, String playerName, int score){
-        this.id = id;
-        this.gameID = gameID;
-        this.playerName = playerName;
-        this.score = score;
-        cupsLeft = 10;
-        refillsLeft = 1;
-    }
-    
     public Player(int id, int gameID, String playerName, int score, int cupsLeft, int refillsLeft){
         this.id = id;
         this.gameID = gameID;
@@ -78,9 +69,9 @@ public class Player {
         score = newScore;
     }
     public void setCupsLeft(int newCupsLeft) {
-        score = newCupsLeft;
+        cupsLeft = newCupsLeft;
     }
     public void setRefillsLeft(int newRefillsLeft) {
-        score = newRefillsLeft;
+        refillsLeft = newRefillsLeft;
     }
 }

@@ -765,6 +765,10 @@ public class JFrameMain extends javax.swing.JFrame {
             infoBox("Adj nevet a játéknak!");
             return;
         }
+        
+        ///IDE JÖN A KIVÁLASZTOTT POHARAK ÉS ÚJRATÖLTÉSEK SZÁMA
+        gameGenerator.setRules(10, 1);
+        
         gameGenerator.generateGame(gameName);
         game = gameGenerator.getGame();
         GameHandler.gameHandlerInstance.setGame(game);

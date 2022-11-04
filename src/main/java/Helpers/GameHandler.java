@@ -19,9 +19,12 @@ import java.util.Random;
  */
 public class GameHandler {
    public static GameHandler gameHandlerInstance = new GameHandler();
+   
    private DrinQuizContext _context;
    private Game game;
    private Player actualPlayer;
+   private Question actualQuestion;
+   
    public GameHandler(){
        _context = new DrinQuizContext();
    }
@@ -31,7 +34,7 @@ public class GameHandler {
    }
    
    public void createPlayer(String playerName){
-        actualPlayer = new Player(0, game.getID(), playerName,0);
+        actualPlayer = new Player(0, game.getID(), playerName,0,game.getCups(),game.getRefills());
         _context.Player.add(actualPlayer);
         setActualPlayer();
    }
@@ -41,7 +44,8 @@ public class GameHandler {
        players = players.stream().filter(p -> p.getGameID() == game.getID()).toList();
        actualPlayer = players.get(players.size()-1);
    }
-   public Question getNewQuestion() throws Exception{
+   
+   public void getNewQuestion() throws Exception{
        Question question;
        Random rnd = new Random();
        List<Question> questions = getFilteredQuestions();
@@ -50,14 +54,11 @@ public class GameHandler {
                throw new Exception("Out of questions");
        question = questions.get(rnd.nextInt(questions.size()));   
        
-//       do{
-//           if(questions.isEmpty()){
-//               throw new Exception("Out of questions");
-//           }
-//           question = questions.get(rnd.nextInt(questions.size()));   
-//           
-//       }while(isQuestionUsed(question));
-       return question;
+       actualQuestion = question;
+   }
+   
+   public Question getQuestion(){
+       return actualQuestion;
    }
    
     private List<Question> getFilteredQuestions(){
@@ -85,9 +86,26 @@ public class GameHandler {
        return false;
    } 
    
-   private void addQuestionToQuestionHistory(Question question)
+   public void answerQuestion(String[] answers)
    {
-       QuestionHistory questionHistory = new QuestionHistory(0,game.getID(),0,question.getID(),"0");
+       //Ki kell dolgozni mi történik, ha a kvízt megválaszolták
+       int score = 0;
+       String answersBlock = ConverterHelper.convertStringArrayToSeparatedString(answers);
+       //Végén hozzáadjuk a historyhoz és a playernek a pontot
+       addQuestionToQuestionHistory(answersBlock);
+       addScoreToPlayer(score);
+   }
+   
+   private void addQuestionToQuestionHistory(String answersBlock)
+   {
+       QuestionHistory questionHistory 
+               = new QuestionHistory(0,game.getID(),actualPlayer.getID(),actualQuestion.getID(),answersBlock);
        _context.QuestionHistory.add(questionHistory);
+   }
+   
+   private void addScoreToPlayer(int score)
+   {
+       actualPlayer.setScore(actualPlayer.getScore()+score);
+       _context.Player.update(actualPlayer);
    }
 }

@@ -79,24 +79,21 @@ public class GameGenerator {
         game.setCategories(ConverterHelper.convertStringArrayToSeparatedString(categories));       
     }
     
-    public void setChosenName(String name){
-        game.setGameName(name);
+    public void setRules(int cups, int refills)
+    {
+        game.setCups(cups);
+        game.setRefills(refills);
     }
     
     public void generateGame(String name)
     {
-        setChosenName(name);
         Date todayDate = new Date();
+        
         game.setCreationDate(new java.sql.Date(todayDate.getTime()));
+        game.setGameName(name);
         
         _context.Game.add(game);
         refreshGame();
-        
-        Game testgame = _context.Game.getAll().get(0);
-//        System.out.println(game.getGameName());
-//        System.out.println(game.getCreationDate());
-//        System.out.println(game.getSources());
-//        System.out.println(game.getCategories());
     }
     
     private void refreshGame()

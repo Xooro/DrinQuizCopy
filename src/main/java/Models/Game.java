@@ -21,12 +21,11 @@ public class Game {
     private int cups;
     private int refills;
 
-    
     //GETTERS
     public int getID() {
         return id;
     }
-        
+
     public String getGameName() {
         return gameName;
     }
@@ -34,21 +33,23 @@ public class Game {
     public Date getCreationDate() {
         return creationDate;
     }
+
     public String getSources() {
         return sources;
     }
+
     public String getCategories() {
         return categories;
     }
 
-    public int getCups(){
+    public int getCups() {
         return cups;
     }
-    
-    public int getRefills(){
+
+    public int getRefills() {
         return refills;
     }
-    
+
     //SETTERS
     public void setID(int newId) {
         id = newId;
@@ -61,18 +62,20 @@ public class Game {
     public void setCreationDate(Date newCreationDate) {
         creationDate = newCreationDate;
     }
+
     public void setSources(String newSources) {
         sources = newSources;
     }
+
     public void setCategories(String newCategories) {
         categories = newCategories;
     }
-    
-    public void setCups(int newCups){
+
+    public void setCups(int newCups) {
         cups = newCups;
     }
-    
-    public void setRefills(int newRefills){
+
+    public void setRefills(int newRefills) {
         refills = newRefills;
     }
 }
