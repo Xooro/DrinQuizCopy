@@ -75,6 +75,9 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_Categories_kBttnBack = new com.k33ptoo.components.KButton();
         newGame_Categories_kBttnNext = new com.k33ptoo.components.KButton();
         newGame_Categories_JLblLogo = new javax.swing.JLabel();
+        newGame_Categories_kBttnSelectAllCheckbox = new com.k33ptoo.components.KButton();
+        newGame_Categories_kBttnUnselectAllCheckbox = new com.k33ptoo.components.KButton();
+        newGame_Categories_jLblChooseSource = new javax.swing.JLabel();
         newGame_kGrdntPnlGameName = new com.k33ptoo.components.KGradientPanel();
         newGame_GameName_kBttnStart = new com.k33ptoo.components.KButton();
         newGame_GameName_kBttnBack = new com.k33ptoo.components.KButton();
@@ -178,15 +181,15 @@ public class JFrameMain extends javax.swing.JFrame {
         menu_kGrdntPnlLayout.setVerticalGroup(
             menu_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(menu_kGrdntPnlLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap()
                 .addComponent(menu_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(50, 50, 50)
                 .addComponent(menu_bttnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menu_bttnLoadGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(menu_bttnSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addComponent(menu_bttnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -243,7 +246,7 @@ public class JFrameMain extends javax.swing.JFrame {
 
         newGame_Sources_jLblChooseSource.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_Sources_jLblChooseSource.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        newGame_Sources_jLblChooseSource.setText("Válassz forrást a kvízekhez!");
+        newGame_Sources_jLblChooseSource.setText("Válassz forrást a kvízhez!");
         newGame_Sources_jLblChooseSource.setPreferredSize(new java.awt.Dimension(350, 50));
 
         javax.swing.GroupLayout newGame_kGrdntPnlSourcesLayout = new javax.swing.GroupLayout(newGame_kGrdntPnlSources);
@@ -251,10 +254,9 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_kGrdntPnlSourcesLayout.setHorizontalGroup(
             newGame_kGrdntPnlSourcesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newGame_kGrdntPnlSourcesLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(newGame_kGrdntPnlSourcesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(newGame_kGrdntPnlSourcesLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(newGame_Sources_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(newGame_Sources_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlSourcesLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(newGame_Sources_kBttnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -262,7 +264,7 @@ public class JFrameMain extends javax.swing.JFrame {
                         .addComponent(newGame_Sources_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlSourcesLayout.createSequentialGroup()
                         .addComponent(newGame_Sources_jLblChooseSource, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(26, 26, 26)
+                        .addGap(20, 20, 20)
                         .addComponent(newGame_Sources_kBttnSelectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(newGame_Sources_kBttnUnselectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -271,14 +273,14 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_kGrdntPnlSourcesLayout.setVerticalGroup(
             newGame_kGrdntPnlSourcesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlSourcesLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap()
                 .addComponent(newGame_Sources_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(newGame_kGrdntPnlSourcesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(newGame_Sources_kBttnSelectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newGame_Sources_kBttnUnselectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newGame_Sources_kBttnSelectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newGame_Sources_jLblChooseSource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 270, Short.MAX_VALUE)
                 .addGroup(newGame_kGrdntPnlSourcesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newGame_Sources_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newGame_Sources_kBttnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -313,15 +315,49 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_Categories_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         newGame_Categories_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
 
+        newGame_Categories_kBttnSelectAllCheckbox.setBorder(null);
+        newGame_Categories_kBttnSelectAllCheckbox.setText("Összes kijelölése");
+        newGame_Categories_kBttnSelectAllCheckbox.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        newGame_Categories_kBttnSelectAllCheckbox.setkBorderRadius(50);
+        newGame_Categories_kBttnSelectAllCheckbox.setPreferredSize(new java.awt.Dimension(200, 50));
+        newGame_Categories_kBttnSelectAllCheckbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newGame_Categories_kBttnSelectAllCheckboxMouseClicked(evt);
+            }
+        });
+
+        newGame_Categories_kBttnUnselectAllCheckbox.setBorder(null);
+        newGame_Categories_kBttnUnselectAllCheckbox.setText("Kijelölések törlése");
+        newGame_Categories_kBttnUnselectAllCheckbox.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        newGame_Categories_kBttnUnselectAllCheckbox.setkBorderRadius(50);
+        newGame_Categories_kBttnUnselectAllCheckbox.setPreferredSize(new java.awt.Dimension(200, 50));
+        newGame_Categories_kBttnUnselectAllCheckbox.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newGame_Categories_kBttnUnselectAllCheckboxMouseClicked(evt);
+            }
+        });
+
+        newGame_Categories_jLblChooseSource.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        newGame_Categories_jLblChooseSource.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        newGame_Categories_jLblChooseSource.setText("Válassz kategóriát a kvízhez!");
+        newGame_Categories_jLblChooseSource.setPreferredSize(new java.awt.Dimension(350, 50));
+
         javax.swing.GroupLayout newGame_kGrdntPnlCategoriesLayout = new javax.swing.GroupLayout(newGame_kGrdntPnlCategories);
         newGame_kGrdntPnlCategories.setLayout(newGame_kGrdntPnlCategoriesLayout);
         newGame_kGrdntPnlCategoriesLayout.setHorizontalGroup(
             newGame_kGrdntPnlCategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlCategoriesLayout.createSequentialGroup()
-                .addContainerGap(256, Short.MAX_VALUE)
-                .addGroup(newGame_kGrdntPnlCategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(newGame_Categories_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 538, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(newGame_kGrdntPnlCategoriesLayout.createSequentialGroup()
+            .addGroup(newGame_kGrdntPnlCategoriesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(newGame_kGrdntPnlCategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(newGame_Categories_JLblLogo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlCategoriesLayout.createSequentialGroup()
+                        .addComponent(newGame_Categories_jLblChooseSource, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(20, 20, 20)
+                        .addComponent(newGame_Categories_kBttnSelectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(newGame_Categories_kBttnUnselectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlCategoriesLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(newGame_Categories_kBttnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(newGame_Categories_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -331,8 +367,13 @@ public class JFrameMain extends javax.swing.JFrame {
             newGame_kGrdntPnlCategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlCategoriesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(newGame_Categories_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 321, Short.MAX_VALUE)
+                .addComponent(newGame_Categories_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(newGame_kGrdntPnlCategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newGame_Categories_kBttnUnselectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newGame_Categories_kBttnSelectAllCheckbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newGame_Categories_jLblChooseSource, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(270, 270, 270)
                 .addGroup(newGame_kGrdntPnlCategoriesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(newGame_Categories_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(newGame_Categories_kBttnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -384,32 +425,33 @@ public class JFrameMain extends javax.swing.JFrame {
             .addGroup(newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
                 .addGroup(newGame_kGrdntPnlGameNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
-                        .addGap(300, 300, 300)
-                        .addComponent(newGame_GameName_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(newGame_kGrdntPnlGameNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(newGame_GameName_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(newGame_GameName_JLblLogo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(newGame_GameName_JLblLogo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
+                        .addGroup(newGame_kGrdntPnlGameNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
+                                .addGap(250, 250, 250)
+                                .addComponent(newGame_GameName_jTxtFldGameName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
+                                .addGap(300, 300, 300)
+                                .addComponent(newGame_GameName_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 244, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addComponent(newGame_GameName_jTxtFldGameName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(250, Short.MAX_VALUE))
         );
         newGame_kGrdntPnlGameNameLayout.setVerticalGroup(
             newGame_kGrdntPnlGameNameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newGame_kGrdntPnlGameNameLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap()
                 .addComponent(newGame_GameName_JLblLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
                 .addComponent(newGame_GameName_jTxtFldGameName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(50, 50, 50)
                 .addComponent(newGame_GameName_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(newGame_GameName_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -479,10 +521,10 @@ public class JFrameMain extends javax.swing.JFrame {
         loadGame_kGrdntPnlLayout.setVerticalGroup(
             loadGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loadGame_kGrdntPnlLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap()
                 .addComponent(menu_JLblLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(loadGame_jLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
+                .addComponent(loadGame_jLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(loadGame_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -600,9 +642,9 @@ public class JFrameMain extends javax.swing.JFrame {
         settings_kGrdntPnlLayout.setVerticalGroup(
             settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settings_kGrdntPnlLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addContainerGap()
                 .addComponent(settings_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(50, 50, 50)
                 .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(settings_kBttnImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(settings_jLblImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -624,7 +666,7 @@ public class JFrameMain extends javax.swing.JFrame {
                         .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(settings_kBttnClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(settings_jLblClearGames, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(90, Short.MAX_VALUE))))
+                        .addContainerGap(102, Short.MAX_VALUE))))
         );
 
         jLyrdPn.setLayer(menu_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -801,6 +843,16 @@ public class JFrameMain extends javax.swing.JFrame {
         changeCheckBoxStatus(newGame_kGrdntPnlSources, false);
     }//GEN-LAST:event_newGame_Sources_kBttnUnselectAllCheckboxMouseClicked
 
+    private void newGame_Categories_kBttnUnselectAllCheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Categories_kBttnUnselectAllCheckboxMouseClicked
+        // TODO add your handling code here:
+        changeCheckBoxStatus(newGame_kGrdntPnlCategories, false);
+    }//GEN-LAST:event_newGame_Categories_kBttnUnselectAllCheckboxMouseClicked
+
+    private void newGame_Categories_kBttnSelectAllCheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Categories_kBttnSelectAllCheckboxMouseClicked
+        // TODO add your handling code here:
+        changeCheckBoxStatus(newGame_kGrdntPnlCategories, true);
+    }//GEN-LAST:event_newGame_Categories_kBttnSelectAllCheckboxMouseClicked
+
 ///SAJÁT ELJÁRÁSOK
     private void addCheckboxesToPanel(JPanel panel, String[] source) {
         removeOldCheckBoxes(panel);
@@ -817,7 +869,7 @@ public class JFrameMain extends javax.swing.JFrame {
 //            jCheckboxArray[i].setFont(new java.awt.Font("Century Gothic", 3, 18));
 //            panel.add(jCheckboxArray[i]);
 //        }
-        int defaultX = 25, defaultY = 300; 
+        int defaultX = 25, defaultY = 270;
         int incX = 250, incY = 40;
         int X = defaultX, Y = defaultY;
         for (int i = 0; i < CheckBoxNumber; i++) {
@@ -888,7 +940,7 @@ public class JFrameMain extends javax.swing.JFrame {
                 }
             }
         }
-        
+
     }
 
     ///SAJÁT ELJÁRÁSOK VÉGE
@@ -930,8 +982,11 @@ public class JFrameMain extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton menu_bttnSettings;
     private com.k33ptoo.components.KGradientPanel menu_kGrdntPnl;
     private javax.swing.JLabel newGame_Categories_JLblLogo;
+    private javax.swing.JLabel newGame_Categories_jLblChooseSource;
     private com.k33ptoo.components.KButton newGame_Categories_kBttnBack;
     private com.k33ptoo.components.KButton newGame_Categories_kBttnNext;
+    private com.k33ptoo.components.KButton newGame_Categories_kBttnSelectAllCheckbox;
+    private com.k33ptoo.components.KButton newGame_Categories_kBttnUnselectAllCheckbox;
     private javax.swing.JLabel newGame_GameName_JLblLogo1;
     private javax.swing.JTextField newGame_GameName_jTxtFldGameName;
     private com.k33ptoo.components.KButton newGame_GameName_kBttnBack;
