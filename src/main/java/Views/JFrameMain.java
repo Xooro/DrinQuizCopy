@@ -714,18 +714,16 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void menu_bttnNewGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnNewGameMouseClicked
         // TODO add your handling code here:
-        
 
         String[] sources = gameGenerator.getSourcesInDatabase();
-        if(sources.length==0)
-        {
+        if (sources.length == 0) {
             infoBox("Nincs kvíz az adatbázisban!");
             return;
         }
         menu_kGrdntPnl.setVisible(false);
-        
+
         addCheckboxesToPanel(newGame_kGrdntPnlSources, sources);
-        
+
         newGame_kGrdntPnlSources.setVisible(true);
     }//GEN-LAST:event_menu_bttnNewGameMouseClicked
 
@@ -749,8 +747,7 @@ public class JFrameMain extends javax.swing.JFrame {
     private void newGame_Categories_kBttnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Categories_kBttnNextMouseClicked
         // TODO add your handling code here:
         String[] categories = chosenCheckBoxesToStringArray(newGame_kGrdntPnlCategories);
-        if(categories.length==0)
-        {
+        if (categories.length == 0) {
             infoBox("Válassz ki legalább 1 kategóriát!");
             return;
         }
@@ -764,8 +761,7 @@ public class JFrameMain extends javax.swing.JFrame {
     private void newGame_GameName_kBttnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_kBttnStartMouseClicked
         // TODO add your handling code here:
         String gameName = newGame_GameName_jTxtFldGameName.getText();
-        if(gameName.equals("") || gameName.equals("Add meg a játék nevét!"))
-        {
+        if (gameName.equals("") || gameName.equals("Add meg a játék nevét!")) {
             infoBox("Adj nevet a játéknak!");
             return;
         }
@@ -787,14 +783,13 @@ public class JFrameMain extends javax.swing.JFrame {
     private void newGame_Sources_kBttnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnNextMouseClicked
         // TODO add your handling code here:
         String[] sources = chosenCheckBoxesToStringArray(newGame_kGrdntPnlSources);
-        if(sources.length==0)
-        {
+        if (sources.length == 0) {
             infoBox("Válassz ki legalább 1 forrást!");
             return;
         }
         gameGenerator.setChosenSources(sources);
         newGame_kGrdntPnlSources.setVisible(false);
-        
+
         addCheckboxesToPanel(newGame_kGrdntPnlCategories, gameGenerator.getCategoriesBySourcesInDatabase());
 
         newGame_kGrdntPnlCategories.setVisible(true);
@@ -972,9 +967,8 @@ public class JFrameMain extends javax.swing.JFrame {
         }
 
     }
-    
-    public void infoBox(String infoMessage)
-    {
+
+    public void infoBox(String infoMessage) {
         JOptionPane.showMessageDialog(null, infoMessage, "Értesítés", JOptionPane.INFORMATION_MESSAGE);
     }
 
@@ -993,7 +987,6 @@ public class JFrameMain extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(JFrameMain.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
