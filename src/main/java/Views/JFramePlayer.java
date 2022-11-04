@@ -17,6 +17,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.util.List;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -225,6 +227,23 @@ public class JFramePlayer extends javax.swing.JFrame {
         gameHandlerInstance.createPlayer(playerName);
         newPlayer_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(true);
+        
+        
+        ///Teszt a teljes új kérdés generálására, lekérdezésére, és megválaszolására
+//        try {
+//            gameHandlerInstance.getNewQuestion();
+//        } catch (Exception ex) {
+//            Logger.getLogger(JFramePlayer.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//        Question q = gameHandlerInstance.getQuestion();
+//        System.out.println("ID:        | " + q.getID());
+//            System.out.println("Question:  | " + q.getQuestion());
+//            System.out.println("Answers:   | " + q.getAnswers());
+//            System.out.println("RAnswerID: | " + q.getRightAnswerID());
+//            System.out.println("Category:  | " + q.getCategory());
+//            System.out.println("Source:    | " + q.getSource());
+//            System.out.println("\n");
+//        gameHandlerInstance.answerQuestion(new String[]{"1","2","3"});
     }//GEN-LAST:event_newPlayer_kBttnStartMouseClicked
 
     /**
