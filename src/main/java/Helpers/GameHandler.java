@@ -6,6 +6,7 @@ package Helpers;
 
 import Data.DrinQuizContext;
 import Models.Game;
+import Models.Player;
 import Models.Question;
 import Models.QuestionHistory;
 import java.util.Arrays;
@@ -17,17 +18,31 @@ import java.util.Random;
  * @author akile
  */
 public class GameHandler {
+   public static GameHandler gameHandlerInstance = new GameHandler();
    private DrinQuizContext _context;
    private Game game;
-   
-   public GameHandler(Game game){
-       this.game = game; 
+   private Player actualPlayer;
+   public GameHandler(){
        _context = new DrinQuizContext();
    }
    
+   public void setGame(Game game){
+       this.game = game;
+   }
    
+   public void createPlayer(String playerName){
+        actualPlayer = new Player(0, game.getID(), playerName,0);
+        _context.Player.add(actualPlayer);
+        setActualPlayer();
+   }
+   
+   public void setActualPlayer(){
+       List<Player> players = _context.Player.getAll();
+       players = players.stream().filter(p -> p.getGameID() == game.getID()).toList();
+       actualPlayer = players.get(players.size()-1);
+   }
    public Question getNewQuestion() throws Exception{
-       Question question = new Question();
+       Question question;
        Random rnd = new Random();
        List<Question> questions = getFilteredQuestions();
        

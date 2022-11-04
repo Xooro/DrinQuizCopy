@@ -4,12 +4,19 @@
  */
 package Views;
 
+import Data.DrinQuizContext;
+import static Helpers.GameHandler.gameHandlerInstance;
+import Helpers.ViewHelper;
+import static Helpers.ViewHelper.infoBox;
+import Models.Question;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import java.util.List;
+import java.util.Random;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
@@ -21,7 +28,7 @@ import javax.swing.UIManager;
 public class JFramePlayer extends javax.swing.JFrame {
 
     int frameHeight, frameWidth;
-
+    
     /**
      * Creates new form JFramePlayer
      */
@@ -76,12 +83,22 @@ public class JFramePlayer extends javax.swing.JFrame {
         newPlayer_jTxtFldPlayerName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         newPlayer_jTxtFldPlayerName.setText("Írd be a neved!");
         newPlayer_jTxtFldPlayerName.setPreferredSize(new java.awt.Dimension(300, 50));
+        newPlayer_jTxtFldPlayerName.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newPlayer_jTxtFldPlayerNameMouseClicked(evt);
+            }
+        });
 
         newPlayer_kBttnStart.setBorder(null);
         newPlayer_kBttnStart.setText("Játék indítása");
         newPlayer_kBttnStart.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newPlayer_kBttnStart.setkBorderRadius(50);
         newPlayer_kBttnStart.setPreferredSize(new java.awt.Dimension(200, 50));
+        newPlayer_kBttnStart.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                newPlayer_kBttnStartMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout newPlayer_kGrdntPnlLayout = new javax.swing.GroupLayout(newPlayer_kGrdntPnl);
         newPlayer_kGrdntPnl.setLayout(newPlayer_kGrdntPnlLayout);
@@ -190,6 +207,26 @@ public class JFramePlayer extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void newPlayer_jTxtFldPlayerNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPlayer_jTxtFldPlayerNameMouseClicked
+        // TODO add your handling code here:
+        if (newPlayer_jTxtFldPlayerName.getText().equals("Írd be a neved!")) {
+            newPlayer_jTxtFldPlayerName.setText("");
+        }
+    }//GEN-LAST:event_newPlayer_jTxtFldPlayerNameMouseClicked
+
+    private void newPlayer_kBttnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPlayer_kBttnStartMouseClicked
+        // TODO add your handling code here:
+        String playerName =newPlayer_jTxtFldPlayerName.getText();
+        if(playerName.equals("") ||  playerName.equals("Írd be a neved!")){
+            infoBox("Nem adtál meg nevet!");
+            return;
+        }
+        
+        gameHandlerInstance.createPlayer(playerName);
+        newPlayer_kGrdntPnl.setVisible(false);
+        game_kGrdntPnl.setVisible(true);
+    }//GEN-LAST:event_newPlayer_kBttnStartMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -219,7 +256,7 @@ public class JFramePlayer extends javax.swing.JFrame {
         comp.setLocation(frameWidth / 2 - comp.getWidth() / 2 + width,
                  frameHeight / 2 - comp.getHeight() / 2 + height);
     }
-
+    
     ///SAJÁT ELJÁRÁSOK VÉGE
     
     public static void showOnScreen(int screen, JFrame frame) {

@@ -8,6 +8,7 @@ import javax.swing.*;
 import Helpers.GameGenerator;
 import Helpers.GameHandler;
 import Helpers.DatabaseHandler;
+import static Helpers.ViewHelper.infoBox;
 import Models.Game;
 import Models.Question;
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -27,7 +28,6 @@ public class JFrameMain extends javax.swing.JFrame {
 
     Game game;
     GameGenerator gameGenerator;
-    GameHandler gameHandler;
     DatabaseHandler databaseHandler;
     /**
      * Creates new form JFrameMain
@@ -767,11 +767,18 @@ public class JFrameMain extends javax.swing.JFrame {
         }
         gameGenerator.generateGame(gameName);
         game = gameGenerator.getGame();
-        gameHandler = new GameHandler(game);
+        GameHandler.gameHandlerInstance.setGame(game);
 
         newGame_kGrdntPnlGameName.setVisible(false);
         //MODIFY LATER THE MENU SELECTION TO GAME
         menu_kGrdntPnl.setVisible(true);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+//                JFrameMain mainFrame = new JFrameMain();
+//                mainFrame.setVisible(true);
+                JFramePlayer.main(new String[]{});
+            }
+        });
     }//GEN-LAST:event_newGame_GameName_kBttnStartMouseClicked
 
     private void newGame_GameName_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_kBttnBackMouseClicked
@@ -968,9 +975,7 @@ public class JFrameMain extends javax.swing.JFrame {
 
     }
 
-    public void infoBox(String infoMessage) {
-        JOptionPane.showMessageDialog(null, infoMessage, "Értesítés", JOptionPane.INFORMATION_MESSAGE);
-    }
+    
 
     ///SAJÁT ELJÁRÁSOK VÉGE
     /**
