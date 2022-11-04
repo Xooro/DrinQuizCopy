@@ -5,10 +5,12 @@
 package Views;
 
 import com.formdev.flatlaf.FlatDarkLaf;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
@@ -25,22 +27,29 @@ public class JFramePlayer extends javax.swing.JFrame {
      */
     public JFramePlayer() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
-        showOnScreen(2, this);
+        showOnScreen(0, this);
 
         endGame_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(false);
         scores_kGrdntPnl.setVisible(false);
 
+        newPlayer_kGrdntPnl.setLayout(null);
+        endGame_kGrdntPnl.setLayout(null);
+        game_kGrdntPnl.setLayout(null);
+        scores_kGrdntPnl.setLayout(null);
+
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dimension = tk.getScreenSize();
+
+        setPreferredSize(dimension);
+
+        pack();
+
         frameWidth = dimension.width;
         frameHeight = dimension.height;
 
-        setPreferredSize(dimension);
-        newPlayer_kGrdntPnl.setSize(dimension);
-        newPlayer_jTxtFldPlayerName.setBounds(frameHeight / 2, frameWidth / 2, 300, 50);
-
+        changeLocation(newPlayer_jTxtFldPlayerName, 0, 0);
+        changeLocation(newPlayer_kBttnStart, 0, 80);
     }
 
     /**
@@ -65,7 +74,7 @@ public class JFramePlayer extends javax.swing.JFrame {
 
         newPlayer_jTxtFldPlayerName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newPlayer_jTxtFldPlayerName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        newPlayer_jTxtFldPlayerName.setText("Add meg a játék nevét!");
+        newPlayer_jTxtFldPlayerName.setText("Írd be a neved!");
         newPlayer_jTxtFldPlayerName.setPreferredSize(new java.awt.Dimension(300, 50));
 
         newPlayer_kBttnStart.setBorder(null);
@@ -86,12 +95,12 @@ public class JFramePlayer extends javax.swing.JFrame {
                     .addGroup(newPlayer_kGrdntPnlLayout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addComponent(newPlayer_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(511, Short.MAX_VALUE))
         );
         newPlayer_kGrdntPnlLayout.setVerticalGroup(
             newPlayer_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newPlayer_kGrdntPnlLayout.createSequentialGroup()
-                .addContainerGap(75, Short.MAX_VALUE)
+                .addContainerGap(529, Short.MAX_VALUE)
                 .addComponent(newPlayer_jTxtFldPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(newPlayer_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -140,7 +149,7 @@ public class JFramePlayer extends javax.swing.JFrame {
         jLyrdPn.setLayout(jLyrdPnLayout);
         jLyrdPnLayout.setHorizontalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 855, Short.MAX_VALUE)
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(newPlayer_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +161,7 @@ public class JFramePlayer extends javax.swing.JFrame {
         );
         jLyrdPnLayout.setVerticalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 754, Short.MAX_VALUE)
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(newPlayer_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,13 +176,13 @@ public class JFramePlayer extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 855, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLyrdPn))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 754, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLyrdPn))
         );
@@ -205,6 +214,14 @@ public class JFramePlayer extends javax.swing.JFrame {
         });
     }
 
+    ///SAJÁT ELJÁRÁSOK
+    void changeLocation(Component comp, int width, int height) {
+        comp.setLocation(frameWidth / 2 - comp.getWidth() / 2 + width,
+                 frameHeight / 2 - comp.getHeight() / 2 + height);
+    }
+
+    ///SAJÁT ELJÁRÁSOK VÉGE
+    
     public static void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice[] gd = ge.getScreenDevices();
