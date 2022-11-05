@@ -4,23 +4,25 @@
  */
 package Views;
 
-import Data.DrinQuizContext;
 import static Helpers.GameHandler.gameHandlerInstance;
-import Helpers.ViewHelper;
 import static Helpers.ViewHelper.infoBox;
-import Models.Question;
+import static Helpers.ViewHelper.scaleImage;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
-import java.util.List;
-import java.util.Random;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 /**
@@ -34,12 +36,36 @@ public class JFramePlayer extends javax.swing.JFrame {
     /**
      * Creates new form JFramePlayer
      */
-    public JFramePlayer() {
+    ImageIcon icon = new ImageIcon(".//resources/images/icon.png");
+
+    public JFramePlayer() throws IOException {
         initComponents();
         showOnScreen(0, this);
 
+        JPanel game_jPnlAnswer = new JPanel();
+        game_jPnlAnswer.setBounds(10, 10, 500, 500);
+        game_jPnlAnswer.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 0.1;
+        gbc.weighty = 0.1;
+        gbc.gridx = gbc.gridy = 0;
+        gbc.gridwidth = 3;
+        game_jPnlAnswer.add(new JLabel("*********Válasz*****************"), gbc);
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        game_jPnlAnswer.add(new JLabel("********+*******"), gbc);
+        gbc.gridx = 1;
+        game_jPnlAnswer.add(new JLabel("****számok******"), gbc);
+        gbc.gridx = 2;
+        game_jPnlAnswer.add(new JLabel("*******-********"), gbc);
+
+        game_kGrdntPnl.add(game_jPnlAnswer);
+
         endGame_kGrdntPnl.setVisible(false);
-        game_kGrdntPnl.setVisible(false);
+        //game_kGrdntPnl.setVisible(false);
+        newPlayer_kGrdntPnl.setVisible(false);
         scores_kGrdntPnl.setVisible(false);
 
         newPlayer_kGrdntPnl.setLayout(null);
@@ -59,6 +85,7 @@ public class JFramePlayer extends javax.swing.JFrame {
 
         changeLocation(newPlayer_jTxtFldPlayerName, 0, 0);
         changeLocation(newPlayer_kBttnStart, 0, 80);
+        scaleImage(".//resources/images/plus.png", jLabel);
     }
 
     /**
@@ -69,16 +96,19 @@ public class JFramePlayer extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jLyrdPn = new javax.swing.JLayeredPane();
         newPlayer_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         newPlayer_jTxtFldPlayerName = new javax.swing.JTextField();
         newPlayer_kBttnStart = new com.k33ptoo.components.KButton();
+        jLabel = new javax.swing.JLabel();
         game_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         endGame_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         scores_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(icon.getImage());
         setUndecorated(true);
 
         newPlayer_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
@@ -105,6 +135,15 @@ public class JFramePlayer extends javax.swing.JFrame {
             }
         });
 
+        jLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel.setPreferredSize(new java.awt.Dimension(50, 50));
+        jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabelMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout newPlayer_kGrdntPnlLayout = new javax.swing.GroupLayout(newPlayer_kGrdntPnl);
         newPlayer_kGrdntPnl.setLayout(newPlayer_kGrdntPnlLayout);
         newPlayer_kGrdntPnlLayout.setHorizontalGroup(
@@ -117,12 +156,18 @@ public class JFramePlayer extends javax.swing.JFrame {
                     .addGroup(newPlayer_kGrdntPnlLayout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addComponent(newPlayer_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(511, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newPlayer_kGrdntPnlLayout.createSequentialGroup()
+                .addGap(0, 478, Short.MAX_VALUE)
+                .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(194, 194, 194))
         );
         newPlayer_kGrdntPnlLayout.setVerticalGroup(
             newPlayer_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newPlayer_kGrdntPnlLayout.createSequentialGroup()
-                .addContainerGap(529, Short.MAX_VALUE)
+                .addContainerGap(230, Short.MAX_VALUE)
+                .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(123, 123, 123)
                 .addComponent(newPlayer_jTxtFldPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(newPlayer_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -180,7 +225,7 @@ public class JFramePlayer extends javax.swing.JFrame {
         jLyrdPn.setLayout(jLyrdPnLayout);
         jLyrdPnLayout.setHorizontalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 855, Short.MAX_VALUE)
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(newPlayer_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +237,7 @@ public class JFramePlayer extends javax.swing.JFrame {
         );
         jLyrdPnLayout.setVerticalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 754, Short.MAX_VALUE)
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(newPlayer_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -207,13 +252,13 @@ public class JFramePlayer extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 855, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLyrdPn))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGap(0, 754, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLyrdPn))
         );
@@ -257,6 +302,11 @@ public class JFramePlayer extends javax.swing.JFrame {
 //        gameHandlerInstance.answerQuestion(new String[]{"1","2","3"});
     }//GEN-LAST:event_newPlayer_kBttnStartMouseClicked
 
+    private void jLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMouseClicked
+        // TODO add your handling code here:
+        System.out.println("hello");
+    }//GEN-LAST:event_jLabelMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -276,7 +326,11 @@ public class JFramePlayer extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFramePlayer().setVisible(true);
+                try {
+                    new JFramePlayer().setVisible(true);
+                } catch (IOException ex) {
+                    Logger.getLogger(JFramePlayer.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -307,6 +361,7 @@ public class JFramePlayer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KGradientPanel endGame_kGrdntPnl;
     private com.k33ptoo.components.KGradientPanel game_kGrdntPnl;
+    private javax.swing.JLabel jLabel;
     private javax.swing.JLayeredPane jLyrdPn;
     private javax.swing.JTextField newPlayer_jTxtFldPlayerName;
     private com.k33ptoo.components.KButton newPlayer_kBttnStart;

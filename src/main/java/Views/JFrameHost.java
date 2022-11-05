@@ -7,6 +7,7 @@ package Views;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
@@ -19,6 +20,8 @@ public class JFrameHost extends javax.swing.JFrame {
     /**
      * Creates new form JFrameHost
      */
+    ImageIcon icon = new ImageIcon(".//resources/images/icon.png");
+
     public JFrameHost() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -37,6 +40,7 @@ public class JFrameHost extends javax.swing.JFrame {
         kGradientPanel1 = new com.k33ptoo.components.KGradientPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(icon.getImage());
 
         kGradientPanel1.setkEndColor(new java.awt.Color(100, 0, 0));
         kGradientPanel1.setkGradientFocus(1000);
