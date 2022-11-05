@@ -30,7 +30,7 @@ import javax.swing.UIManager;
 public class JFramePlayer extends javax.swing.JFrame {
 
     int frameHeight, frameWidth;
-    
+
     /**
      * Creates new form JFramePlayer
      */
@@ -81,6 +81,9 @@ public class JFramePlayer extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
+        newPlayer_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
+        newPlayer_kGrdntPnl.setkStartColor(new java.awt.Color(46, 139, 87));
+
         newPlayer_jTxtFldPlayerName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newPlayer_jTxtFldPlayerName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         newPlayer_jTxtFldPlayerName.setText("Írd be a neved!");
@@ -126,16 +129,22 @@ public class JFramePlayer extends javax.swing.JFrame {
                 .addGap(76, 76, 76))
         );
 
+        game_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
+        game_kGrdntPnl.setkStartColor(new java.awt.Color(46, 139, 87));
+
         javax.swing.GroupLayout game_kGrdntPnlLayout = new javax.swing.GroupLayout(game_kGrdntPnl);
         game_kGrdntPnl.setLayout(game_kGrdntPnlLayout);
         game_kGrdntPnlLayout.setHorizontalGroup(
             game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
         );
         game_kGrdntPnlLayout.setVerticalGroup(
             game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
         );
+
+        endGame_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
+        endGame_kGrdntPnl.setkStartColor(new java.awt.Color(46, 139, 87));
 
         javax.swing.GroupLayout endGame_kGrdntPnlLayout = new javax.swing.GroupLayout(endGame_kGrdntPnl);
         endGame_kGrdntPnl.setLayout(endGame_kGrdntPnlLayout);
@@ -147,6 +156,9 @@ public class JFramePlayer extends javax.swing.JFrame {
             endGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 300, Short.MAX_VALUE)
         );
+
+        scores_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
+        scores_kGrdntPnl.setkStartColor(new java.awt.Color(46, 139, 87));
 
         javax.swing.GroupLayout scores_kGrdntPnlLayout = new javax.swing.GroupLayout(scores_kGrdntPnl);
         scores_kGrdntPnl.setLayout(scores_kGrdntPnlLayout);
@@ -168,7 +180,7 @@ public class JFramePlayer extends javax.swing.JFrame {
         jLyrdPn.setLayout(jLyrdPnLayout);
         jLyrdPnLayout.setHorizontalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 855, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(newPlayer_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,7 +192,7 @@ public class JFramePlayer extends javax.swing.JFrame {
         );
         jLyrdPnLayout.setVerticalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 754, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(newPlayer_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,13 +207,13 @@ public class JFramePlayer extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 855, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLyrdPn))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 754, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLyrdPn))
         );
@@ -218,17 +230,16 @@ public class JFramePlayer extends javax.swing.JFrame {
 
     private void newPlayer_kBttnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPlayer_kBttnStartMouseClicked
         // TODO add your handling code here:
-        String playerName =newPlayer_jTxtFldPlayerName.getText();
-        if(playerName.equals("") ||  playerName.equals("Írd be a neved!")){
+        String playerName = newPlayer_jTxtFldPlayerName.getText();
+        if (playerName.equals("") || playerName.equals("Írd be a neved!")) {
             infoBox("Nem adtál meg nevet!");
             return;
         }
-        
+
         gameHandlerInstance.createPlayer(playerName);
         newPlayer_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(true);
-        
-        
+
         ///Teszt a teljes új kérdés generálására, lekérdezésére, és megválaszolására
 //        try {
 //            gameHandlerInstance.getNewQuestion();
@@ -273,11 +284,10 @@ public class JFramePlayer extends javax.swing.JFrame {
     ///SAJÁT ELJÁRÁSOK
     void changeLocation(Component comp, int width, int height) {
         comp.setLocation(frameWidth / 2 - comp.getWidth() / 2 + width,
-                 frameHeight / 2 - comp.getHeight() / 2 + height);
+                frameHeight / 2 - comp.getHeight() / 2 + height);
     }
-    
+
     ///SAJÁT ELJÁRÁSOK VÉGE
-    
     public static void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice[] gd = ge.getScreenDevices();

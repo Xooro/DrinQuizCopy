@@ -107,13 +107,20 @@ public class JFrameMain extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
-        menu_kGrdntPnl.setkEndColor(new java.awt.Color(44, 7, 53));
-        menu_kGrdntPnl.setkStartColor(new java.awt.Color(78, 20, 140));
+        menu_kGrdntPnl.setkEndColor(new java.awt.Color(25, 25, 112));
+        menu_kGrdntPnl.setkGradientFocus(1000);
+        menu_kGrdntPnl.setkStartColor(new java.awt.Color(128, 0, 128));
 
         menu_bttnExit.setBorder(null);
         menu_bttnExit.setText("Kilépés");
         menu_bttnExit.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         menu_bttnExit.setkBorderRadius(50);
+        menu_bttnExit.setkEndColor(new java.awt.Color(72, 61, 139));
+        menu_bttnExit.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        menu_bttnExit.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        menu_bttnExit.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        menu_bttnExit.setkIndicatorThickness(0);
+        menu_bttnExit.setkStartColor(new java.awt.Color(65, 105, 255));
         menu_bttnExit.setPreferredSize(new java.awt.Dimension(200, 50));
         menu_bttnExit.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -125,6 +132,12 @@ public class JFrameMain extends javax.swing.JFrame {
         menu_bttnSettings.setText("Beállítások");
         menu_bttnSettings.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         menu_bttnSettings.setkBorderRadius(50);
+        menu_bttnSettings.setkEndColor(new java.awt.Color(72, 61, 139));
+        menu_bttnSettings.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        menu_bttnSettings.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        menu_bttnSettings.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        menu_bttnSettings.setkIndicatorThickness(0);
+        menu_bttnSettings.setkStartColor(new java.awt.Color(65, 105, 255));
         menu_bttnSettings.setPreferredSize(new java.awt.Dimension(200, 50));
         menu_bttnSettings.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -136,6 +149,12 @@ public class JFrameMain extends javax.swing.JFrame {
         menu_bttnLoadGame.setText("Játék betöltése");
         menu_bttnLoadGame.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         menu_bttnLoadGame.setkBorderRadius(50);
+        menu_bttnLoadGame.setkEndColor(new java.awt.Color(72, 61, 139));
+        menu_bttnLoadGame.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        menu_bttnLoadGame.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        menu_bttnLoadGame.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        menu_bttnLoadGame.setkIndicatorThickness(0);
+        menu_bttnLoadGame.setkStartColor(new java.awt.Color(65, 105, 255));
         menu_bttnLoadGame.setPreferredSize(new java.awt.Dimension(200, 50));
         menu_bttnLoadGame.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -147,6 +166,12 @@ public class JFrameMain extends javax.swing.JFrame {
         menu_bttnNewGame.setText("Új játék");
         menu_bttnNewGame.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         menu_bttnNewGame.setkBorderRadius(50);
+        menu_bttnNewGame.setkEndColor(new java.awt.Color(72, 61, 139));
+        menu_bttnNewGame.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        menu_bttnNewGame.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        menu_bttnNewGame.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        menu_bttnNewGame.setkIndicatorThickness(0);
+        menu_bttnNewGame.setkStartColor(new java.awt.Color(65, 105, 255));
         menu_bttnNewGame.setPreferredSize(new java.awt.Dimension(200, 50));
         menu_bttnNewGame.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -194,13 +219,20 @@ public class JFrameMain extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        newGame_kGrdntPnlSources.setkEndColor(new java.awt.Color(44, 7, 53));
-        newGame_kGrdntPnlSources.setkStartColor(new java.awt.Color(78, 20, 140));
+        newGame_kGrdntPnlSources.setkEndColor(new java.awt.Color(25, 25, 112));
+        newGame_kGrdntPnlSources.setkGradientFocus(1000);
+        newGame_kGrdntPnlSources.setkStartColor(new java.awt.Color(128, 0, 128));
 
         newGame_Sources_kBttnBack.setBorder(null);
         newGame_Sources_kBttnBack.setText("Vissza");
         newGame_Sources_kBttnBack.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_Sources_kBttnBack.setkBorderRadius(50);
+        newGame_Sources_kBttnBack.setkEndColor(new java.awt.Color(72, 61, 139));
+        newGame_Sources_kBttnBack.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        newGame_Sources_kBttnBack.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        newGame_Sources_kBttnBack.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        newGame_Sources_kBttnBack.setkIndicatorThickness(0);
+        newGame_Sources_kBttnBack.setkStartColor(new java.awt.Color(65, 105, 255));
         newGame_Sources_kBttnBack.setPreferredSize(new java.awt.Dimension(200, 50));
         newGame_Sources_kBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -212,6 +244,12 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_Sources_kBttnNext.setText("Következő");
         newGame_Sources_kBttnNext.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_Sources_kBttnNext.setkBorderRadius(50);
+        newGame_Sources_kBttnNext.setkEndColor(new java.awt.Color(72, 61, 139));
+        newGame_Sources_kBttnNext.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        newGame_Sources_kBttnNext.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        newGame_Sources_kBttnNext.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        newGame_Sources_kBttnNext.setkIndicatorThickness(0);
+        newGame_Sources_kBttnNext.setkStartColor(new java.awt.Color(65, 105, 255));
         newGame_Sources_kBttnNext.setPreferredSize(new java.awt.Dimension(200, 50));
         newGame_Sources_kBttnNext.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -226,6 +264,12 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_Sources_kBttnSelectAllCheckbox.setText("Összes kijelölése");
         newGame_Sources_kBttnSelectAllCheckbox.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_Sources_kBttnSelectAllCheckbox.setkBorderRadius(50);
+        newGame_Sources_kBttnSelectAllCheckbox.setkEndColor(new java.awt.Color(72, 61, 139));
+        newGame_Sources_kBttnSelectAllCheckbox.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        newGame_Sources_kBttnSelectAllCheckbox.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        newGame_Sources_kBttnSelectAllCheckbox.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        newGame_Sources_kBttnSelectAllCheckbox.setkIndicatorThickness(0);
+        newGame_Sources_kBttnSelectAllCheckbox.setkStartColor(new java.awt.Color(65, 105, 255));
         newGame_Sources_kBttnSelectAllCheckbox.setPreferredSize(new java.awt.Dimension(200, 50));
         newGame_Sources_kBttnSelectAllCheckbox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -237,6 +281,12 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_Sources_kBttnUnselectAllCheckbox.setText("Kijelölések törlése");
         newGame_Sources_kBttnUnselectAllCheckbox.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_Sources_kBttnUnselectAllCheckbox.setkBorderRadius(50);
+        newGame_Sources_kBttnUnselectAllCheckbox.setkEndColor(new java.awt.Color(72, 61, 139));
+        newGame_Sources_kBttnUnselectAllCheckbox.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        newGame_Sources_kBttnUnselectAllCheckbox.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        newGame_Sources_kBttnUnselectAllCheckbox.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        newGame_Sources_kBttnUnselectAllCheckbox.setkIndicatorThickness(0);
+        newGame_Sources_kBttnUnselectAllCheckbox.setkStartColor(new java.awt.Color(65, 105, 255));
         newGame_Sources_kBttnUnselectAllCheckbox.setPreferredSize(new java.awt.Dimension(200, 50));
         newGame_Sources_kBttnUnselectAllCheckbox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -287,13 +337,20 @@ public class JFrameMain extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        newGame_kGrdntPnlCategories.setkEndColor(new java.awt.Color(44, 7, 53));
-        newGame_kGrdntPnlCategories.setkStartColor(new java.awt.Color(78, 20, 140));
+        newGame_kGrdntPnlCategories.setkEndColor(new java.awt.Color(25, 25, 112));
+        newGame_kGrdntPnlCategories.setkGradientFocus(1000);
+        newGame_kGrdntPnlCategories.setkStartColor(new java.awt.Color(128, 0, 128));
 
         newGame_Categories_kBttnBack.setBorder(null);
         newGame_Categories_kBttnBack.setText("Vissza");
         newGame_Categories_kBttnBack.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_Categories_kBttnBack.setkBorderRadius(50);
+        newGame_Categories_kBttnBack.setkEndColor(new java.awt.Color(72, 61, 139));
+        newGame_Categories_kBttnBack.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        newGame_Categories_kBttnBack.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        newGame_Categories_kBttnBack.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        newGame_Categories_kBttnBack.setkIndicatorThickness(0);
+        newGame_Categories_kBttnBack.setkStartColor(new java.awt.Color(65, 105, 255));
         newGame_Categories_kBttnBack.setPreferredSize(new java.awt.Dimension(200, 50));
         newGame_Categories_kBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -305,6 +362,12 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_Categories_kBttnNext.setText("Következő");
         newGame_Categories_kBttnNext.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_Categories_kBttnNext.setkBorderRadius(50);
+        newGame_Categories_kBttnNext.setkEndColor(new java.awt.Color(72, 61, 139));
+        newGame_Categories_kBttnNext.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        newGame_Categories_kBttnNext.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        newGame_Categories_kBttnNext.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        newGame_Categories_kBttnNext.setkIndicatorThickness(0);
+        newGame_Categories_kBttnNext.setkStartColor(new java.awt.Color(65, 105, 255));
         newGame_Categories_kBttnNext.setPreferredSize(new java.awt.Dimension(200, 50));
         newGame_Categories_kBttnNext.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -319,6 +382,12 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_Categories_kBttnSelectAllCheckbox.setText("Összes kijelölése");
         newGame_Categories_kBttnSelectAllCheckbox.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_Categories_kBttnSelectAllCheckbox.setkBorderRadius(50);
+        newGame_Categories_kBttnSelectAllCheckbox.setkEndColor(new java.awt.Color(72, 61, 139));
+        newGame_Categories_kBttnSelectAllCheckbox.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        newGame_Categories_kBttnSelectAllCheckbox.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        newGame_Categories_kBttnSelectAllCheckbox.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        newGame_Categories_kBttnSelectAllCheckbox.setkIndicatorThickness(0);
+        newGame_Categories_kBttnSelectAllCheckbox.setkStartColor(new java.awt.Color(65, 105, 255));
         newGame_Categories_kBttnSelectAllCheckbox.setPreferredSize(new java.awt.Dimension(200, 50));
         newGame_Categories_kBttnSelectAllCheckbox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -330,6 +399,12 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_Categories_kBttnUnselectAllCheckbox.setText("Kijelölések törlése");
         newGame_Categories_kBttnUnselectAllCheckbox.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_Categories_kBttnUnselectAllCheckbox.setkBorderRadius(50);
+        newGame_Categories_kBttnUnselectAllCheckbox.setkEndColor(new java.awt.Color(72, 61, 139));
+        newGame_Categories_kBttnUnselectAllCheckbox.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        newGame_Categories_kBttnUnselectAllCheckbox.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        newGame_Categories_kBttnUnselectAllCheckbox.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        newGame_Categories_kBttnUnselectAllCheckbox.setkIndicatorThickness(0);
+        newGame_Categories_kBttnUnselectAllCheckbox.setkStartColor(new java.awt.Color(65, 105, 255));
         newGame_Categories_kBttnUnselectAllCheckbox.setPreferredSize(new java.awt.Dimension(200, 50));
         newGame_Categories_kBttnUnselectAllCheckbox.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -380,13 +455,20 @@ public class JFrameMain extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        newGame_kGrdntPnlGameName.setkEndColor(new java.awt.Color(44, 7, 53));
-        newGame_kGrdntPnlGameName.setkStartColor(new java.awt.Color(78, 20, 140));
+        newGame_kGrdntPnlGameName.setkEndColor(new java.awt.Color(25, 25, 112));
+        newGame_kGrdntPnlGameName.setkGradientFocus(1000);
+        newGame_kGrdntPnlGameName.setkStartColor(new java.awt.Color(128, 0, 128));
 
         newGame_GameName_kBttnStart.setBorder(null);
         newGame_GameName_kBttnStart.setText("Játék indítása");
         newGame_GameName_kBttnStart.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_GameName_kBttnStart.setkBorderRadius(50);
+        newGame_GameName_kBttnStart.setkEndColor(new java.awt.Color(72, 61, 139));
+        newGame_GameName_kBttnStart.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        newGame_GameName_kBttnStart.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        newGame_GameName_kBttnStart.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        newGame_GameName_kBttnStart.setkIndicatorThickness(0);
+        newGame_GameName_kBttnStart.setkStartColor(new java.awt.Color(65, 105, 255));
         newGame_GameName_kBttnStart.setPreferredSize(new java.awt.Dimension(200, 50));
         newGame_GameName_kBttnStart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -398,6 +480,12 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_GameName_kBttnBack.setText("Vissza");
         newGame_GameName_kBttnBack.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newGame_GameName_kBttnBack.setkBorderRadius(50);
+        newGame_GameName_kBttnBack.setkEndColor(new java.awt.Color(72, 61, 139));
+        newGame_GameName_kBttnBack.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        newGame_GameName_kBttnBack.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        newGame_GameName_kBttnBack.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        newGame_GameName_kBttnBack.setkIndicatorThickness(0);
+        newGame_GameName_kBttnBack.setkStartColor(new java.awt.Color(65, 105, 255));
         newGame_GameName_kBttnBack.setPreferredSize(new java.awt.Dimension(200, 50));
         newGame_GameName_kBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -483,8 +571,9 @@ public class JFrameMain extends javax.swing.JFrame {
                 .addComponent(newGame_kGrdntPnlGameName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        loadGame_kGrdntPnl.setkEndColor(new java.awt.Color(44, 7, 53));
-        loadGame_kGrdntPnl.setkStartColor(new java.awt.Color(78, 20, 140));
+        loadGame_kGrdntPnl.setkEndColor(new java.awt.Color(25, 25, 112));
+        loadGame_kGrdntPnl.setkGradientFocus(1000);
+        loadGame_kGrdntPnl.setkStartColor(new java.awt.Color(128, 0, 128));
 
         loadGame_jLbl.setFont(new java.awt.Font("Century Gothic", 3, 36)); // NOI18N
         loadGame_jLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -494,6 +583,12 @@ public class JFrameMain extends javax.swing.JFrame {
         loadGame_kBttnBack.setText("Vissza");
         loadGame_kBttnBack.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         loadGame_kBttnBack.setkBorderRadius(50);
+        loadGame_kBttnBack.setkEndColor(new java.awt.Color(72, 61, 139));
+        loadGame_kBttnBack.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        loadGame_kBttnBack.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        loadGame_kBttnBack.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        loadGame_kBttnBack.setkIndicatorThickness(0);
+        loadGame_kBttnBack.setkStartColor(new java.awt.Color(65, 105, 255));
         loadGame_kBttnBack.setPreferredSize(new java.awt.Dimension(200, 50));
         loadGame_kBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -530,14 +625,21 @@ public class JFrameMain extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        settings_kGrdntPnl.setkEndColor(new java.awt.Color(44, 7, 53));
-        settings_kGrdntPnl.setkStartColor(new java.awt.Color(78, 20, 140));
+        settings_kGrdntPnl.setkEndColor(new java.awt.Color(25, 25, 112));
+        settings_kGrdntPnl.setkGradientFocus(1000);
+        settings_kGrdntPnl.setkStartColor(new java.awt.Color(128, 0, 128));
         settings_kGrdntPnl.setkTransparentControls(false);
 
         settings_kBttnBack.setBorder(null);
         settings_kBttnBack.setText("Vissza");
         settings_kBttnBack.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_kBttnBack.setkBorderRadius(50);
+        settings_kBttnBack.setkEndColor(new java.awt.Color(72, 61, 139));
+        settings_kBttnBack.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        settings_kBttnBack.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        settings_kBttnBack.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        settings_kBttnBack.setkIndicatorThickness(0);
+        settings_kBttnBack.setkStartColor(new java.awt.Color(65, 105, 255));
         settings_kBttnBack.setPreferredSize(new java.awt.Dimension(200, 50));
         settings_kBttnBack.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -549,6 +651,12 @@ public class JFrameMain extends javax.swing.JFrame {
         settings_kBttnImportQuizes.setText("Importálás");
         settings_kBttnImportQuizes.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_kBttnImportQuizes.setkBorderRadius(50);
+        settings_kBttnImportQuizes.setkEndColor(new java.awt.Color(72, 61, 139));
+        settings_kBttnImportQuizes.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        settings_kBttnImportQuizes.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        settings_kBttnImportQuizes.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        settings_kBttnImportQuizes.setkIndicatorThickness(0);
+        settings_kBttnImportQuizes.setkStartColor(new java.awt.Color(65, 105, 255));
         settings_kBttnImportQuizes.setPreferredSize(new java.awt.Dimension(200, 50));
         settings_kBttnImportQuizes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -565,6 +673,12 @@ public class JFrameMain extends javax.swing.JFrame {
         settings_kBttnImportQuizesFromNapiKviz.setText("NapiKvíz");
         settings_kBttnImportQuizesFromNapiKviz.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_kBttnImportQuizesFromNapiKviz.setkBorderRadius(50);
+        settings_kBttnImportQuizesFromNapiKviz.setkEndColor(new java.awt.Color(72, 61, 139));
+        settings_kBttnImportQuizesFromNapiKviz.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        settings_kBttnImportQuizesFromNapiKviz.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        settings_kBttnImportQuizesFromNapiKviz.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        settings_kBttnImportQuizesFromNapiKviz.setkIndicatorThickness(0);
+        settings_kBttnImportQuizesFromNapiKviz.setkStartColor(new java.awt.Color(65, 105, 255));
         settings_kBttnImportQuizesFromNapiKviz.setPreferredSize(new java.awt.Dimension(150, 50));
         settings_kBttnImportQuizesFromNapiKviz.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -581,6 +695,12 @@ public class JFrameMain extends javax.swing.JFrame {
         settings_kBttnClearQuestion.setText("Kvízek törlése");
         settings_kBttnClearQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_kBttnClearQuestion.setkBorderRadius(50);
+        settings_kBttnClearQuestion.setkEndColor(new java.awt.Color(72, 61, 139));
+        settings_kBttnClearQuestion.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        settings_kBttnClearQuestion.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        settings_kBttnClearQuestion.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        settings_kBttnClearQuestion.setkIndicatorThickness(0);
+        settings_kBttnClearQuestion.setkStartColor(new java.awt.Color(65, 105, 255));
         settings_kBttnClearQuestion.setPreferredSize(new java.awt.Dimension(200, 50));
         settings_kBttnClearQuestion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -597,6 +717,12 @@ public class JFrameMain extends javax.swing.JFrame {
         settings_kBttnClearGames.setText("Játékok törlése");
         settings_kBttnClearGames.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         settings_kBttnClearGames.setkBorderRadius(50);
+        settings_kBttnClearGames.setkEndColor(new java.awt.Color(72, 61, 139));
+        settings_kBttnClearGames.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        settings_kBttnClearGames.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        settings_kBttnClearGames.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        settings_kBttnClearGames.setkIndicatorThickness(0);
+        settings_kBttnClearGames.setkStartColor(new java.awt.Color(65, 105, 255));
         settings_kBttnClearGames.setPreferredSize(new java.awt.Dimension(200, 50));
         settings_kBttnClearGames.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -765,10 +891,10 @@ public class JFrameMain extends javax.swing.JFrame {
             infoBox("Adj nevet a játéknak!");
             return;
         }
-        
+
         ///IDE JÖN A KIVÁLASZTOTT POHARAK ÉS ÚJRATÖLTÉSEK SZÁMA
         gameGenerator.setRules(10, 1);
-        
+
         gameGenerator.generateGame(gameName);
         game = gameGenerator.getGame();
         GameHandler.gameHandlerInstance.setGame(game);
@@ -978,8 +1104,6 @@ public class JFrameMain extends javax.swing.JFrame {
         }
 
     }
-
-    
 
     ///SAJÁT ELJÁRÁSOK VÉGE
     /**
