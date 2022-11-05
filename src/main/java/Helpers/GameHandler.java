@@ -63,6 +63,10 @@ public class GameHandler {
         question = questions.get(rnd.nextInt(questions.size()));
 
         actualQuestion = question;
+        
+        answers = new String[convertSeparatedStringToStringArray(actualQuestion.getAnswers()).length];
+        for(int i = 0; i<answers.length; ++i)
+            answers[i] = "0";
     }
 
     public Question getQuestion() {
@@ -96,6 +100,8 @@ public class GameHandler {
         return false;
     }
     
+    
+    public String[] getPickedAnswers() { return answers; }
     public void setPickedAnswers(String[] answers)
     {
         this.answers=answers;

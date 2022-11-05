@@ -5,6 +5,7 @@
 package Views;
 
 import static Helpers.ConverterHelper.convertSeparatedStringToStringArray;
+import static Helpers.ConverterHelper.convertStringArrayToSeparatedString;
 import static Helpers.GameHandler.gameHandlerInstance;
 import static Helpers.ViewHelper.infoBox;
 import static Helpers.ViewHelper.scaleImage;
@@ -18,6 +19,8 @@ import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
+import java.awt.Insets;
+import java.awt.Panel;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -36,8 +39,12 @@ import jdk.swing.interop.DragSourceContextWrapper;
 public class JFramePlayer extends javax.swing.JFrame {
 
     int frameHeight, frameWidth;
-    
     int cupsForThisTurn;
+    
+    @Override
+    public Insets insets() {
+        return super.insets(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
     /**
      * Creates new form JFramePlayer
      */
@@ -255,14 +262,13 @@ public class JFramePlayer extends javax.swing.JFrame {
         } catch (Exception ex) {
             ex.getMessage();
         }
-        
         String[] answers = convertSeparatedStringToStringArray(gameHandlerInstance.getQuestion().getAnswers());
         
-        for(int i=0;i<3;i++)
+        
+        for(int i=0;i<answers.length;i++)
         {
             addAnswersJPanelToFrame(i, answers[i]);
         }
-        
         cupsForThisTurn = gameHandlerInstance.getPlayersCups();
         
         ///Teszt a teljes új kérdés generálására, lekérdezésére, és megválaszolására
@@ -313,7 +319,7 @@ public class JFramePlayer extends javax.swing.JFrame {
 
     ///SAJÁT ELJÁRÁSOK
     
-    void addAnswersJPanelToFrame(int positionIndex, String answer)
+    void addAnswersJPanelToFrame(int index, String answer)
     {
         int number = 0;
         JPanel game_jPnlAnswer = new JPanel();
@@ -330,15 +336,15 @@ public class JFramePlayer extends javax.swing.JFrame {
         lblMinus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPlus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addCups(lblCups);
+                addCups(lblCups, index);
             }
         });
         lblMinus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                subtractCups(lblCups);
+                subtractCups(lblCups, index);
             }
         });
-        game_jPnlAnswer.setBounds(10+400*positionIndex, 10, 300, 300);
+        game_jPnlAnswer.setBounds(10+400*index, 10, 300, 300);
         game_jPnlAnswer.setLayout(new GridBagLayout());
         
         scaleImage(".//resources/images/plus.png", lblPlus);
@@ -362,26 +368,27 @@ public class JFramePlayer extends javax.swing.JFrame {
         game_kGrdntPnl.add(game_jPnlAnswer);
     }
 
-    private void addCups(JLabel label){
+    private void addCups(JLabel label, int index){
         if(cupsForThisTurn>0){
             cupsForThisTurn--;
             label.setText(Integer.toString(Integer.parseInt(label.getText()) + 1));
-            sendCupsChange();
+            sendCupsChange(index, label.getText());
+            
         }
         
     }
-    private void subtractCups(JLabel label){
+    private void subtractCups(JLabel label, int index){
         if(Integer.parseInt(label.getText()) > 0){
             cupsForThisTurn++;
             label.setText(Integer.toString(Integer.parseInt(label.getText()) - 1));
-            sendCupsChange();
+            sendCupsChange(index, label.getText());
         }
     }
     
-    private void sendCupsChange()
-    {
-        String[] answers = null; //KELL VALAHOGY AZ ÖSSZES ANSWER (PL 3 válasz esetén az array: 3,5,2)
-        gameHandlerInstance.setPickedAnswers(answers);  // NÉZD MEG A SETTERT
+    private void sendCupsChange(int index,String cups){
+        String[] cupsOnAnswers = gameHandlerInstance.getPickedAnswers();
+        cupsOnAnswers[index] = cups;
+        gameHandlerInstance.setPickedAnswers(cupsOnAnswers);
     }
     
     void changeLocation(Component comp, int width, int height) {
