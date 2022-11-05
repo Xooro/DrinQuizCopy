@@ -5,6 +5,7 @@
 package Helpers;
 
 import Data.DrinQuizContext;
+import static Helpers.ConverterHelper.convertSeparatedStringToStringArray;
 import Models.Game;
 import Models.Player;
 import Models.Question;
@@ -45,6 +46,10 @@ public class GameHandler {
         players = players.stream().filter(p -> p.getGameID() == game.getID()).toList();
         actualPlayer = players.get(players.size() - 1);
     }
+    
+    public int getPlayersCups(){
+        return actualPlayer.getCupsLeft();
+    }
 
     public void getNewQuestion() throws Exception {
         Question question;
@@ -62,7 +67,11 @@ public class GameHandler {
     public Question getQuestion() {
         return actualQuestion;
     }
-
+    
+    public String[] getQuestionAnswers(){
+        String[] answers = convertSeparatedStringToStringArray(actualQuestion.getAnswers());
+        return answers;
+    }
     private List<Question> getFilteredQuestions() {
         List<Question> questions = _context.Question.getAll();
         String[] sources = ConverterHelper.convertSeparatedStringToStringArray(game.getSources());

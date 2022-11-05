@@ -1,14 +1,17 @@
-/*
+    /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Views;
 
+import static Helpers.ConverterHelper.convertSeparatedStringToStringArray;
 import static Helpers.GameHandler.gameHandlerInstance;
 import static Helpers.ViewHelper.infoBox;
 import static Helpers.ViewHelper.scaleImage;
+import Models.Question;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -24,6 +27,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
+import jdk.swing.interop.DragSourceContextWrapper;
 
 /**
  *
@@ -32,7 +36,9 @@ import javax.swing.UIManager;
 public class JFramePlayer extends javax.swing.JFrame {
 
     int frameHeight, frameWidth;
-
+    int cupsForThisTurn;
+    Question question;
+    String[] answers;
     /**
      * Creates new form JFramePlayer
      */
@@ -41,15 +47,24 @@ public class JFramePlayer extends javax.swing.JFrame {
     public JFramePlayer() throws IOException {
         initComponents();
         showOnScreen(0, this);
-
+        
+        try {
+            gameHandlerInstance.getNewQuestion();
+        } catch (Exception ex) {
+            Logger.getLogger(JFramePlayer.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        question = gameHandlerInstance.getQuestion();
+        System.out.println("Lefut");
+        answers = convertSeparatedStringToStringArray(question.getAnswers());
+        System.out.println("De tényleg");
         for(int i=0;i<3;i++)
         {
-            addAnswersJPanelToFrame(i);
+            addAnswersJPanelToFrame(i, answers[i]);
         }
 
         endGame_kGrdntPnl.setVisible(false);
-        //game_kGrdntPnl.setVisible(false);
-        newPlayer_kGrdntPnl.setVisible(false);
+        game_kGrdntPnl.setVisible(false);
+//        newPlayer_kGrdntPnl.setVisible(false);
         scores_kGrdntPnl.setVisible(false);
 
         newPlayer_kGrdntPnl.setLayout(null);
@@ -80,7 +95,6 @@ public class JFramePlayer extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jLyrdPn = new javax.swing.JLayeredPane();
         newPlayer_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
@@ -268,7 +282,15 @@ public class JFramePlayer extends javax.swing.JFrame {
         gameHandlerInstance.createPlayer(playerName);
         newPlayer_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(true);
-
+        
+        try {
+            gameHandlerInstance.getNewQuestion();
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        
+        cupsForThisTurn = gameHandlerInstance.getPlayersCups();
+        
         ///Teszt a teljes új kérdés generálására, lekérdezésére, és megválaszolására
 //        try {
 //            gameHandlerInstance.getNewQuestion();
@@ -317,22 +339,36 @@ public class JFramePlayer extends javax.swing.JFrame {
                 }
             }
         });
+        
     }
 
     ///SAJÁT ELJÁRÁSOK
     
-    void addAnswersJPanelToFrame(int positionIndex)
+    void addAnswersJPanelToFrame(int positionIndex, String answer)
     {
+        int number = 0;
         JPanel game_jPnlAnswer = new JPanel();
         GridBagConstraints gbc = new GridBagConstraints();
         JLabel lblPlus = new JLabel();
         JLabel lblMinus = new JLabel();
+        JLabel lblCups = new JLabel();
         
+        
+        lblCups.setText(Integer.toString(number));
         lblPlus.setSize(50,50);
         lblMinus.setSize(50,50);
         lblPlus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMinus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        
+        lblPlus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                add(lblCups);
+            }
+        });
+        lblMinus.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                subtract(lblCups);
+            }
+        });
         game_jPnlAnswer.setBounds(10+400*positionIndex, 10, 300, 300);
         game_jPnlAnswer.setLayout(new GridBagLayout());
         
@@ -344,13 +380,13 @@ public class JFramePlayer extends javax.swing.JFrame {
         gbc.weighty = 0.1;
         gbc.gridx = gbc.gridy = 0;
         gbc.gridwidth = 3;
-        game_jPnlAnswer.add(new JLabel("*********Válasz**************************Válasz**************************Válasz*****************"), gbc);
+        game_jPnlAnswer.add(new JLabel(answer), gbc);
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 1;
         game_jPnlAnswer.add(lblPlus, gbc);
         gbc.gridx = 1;
-        game_jPnlAnswer.add(new JLabel("****számok******"), gbc);
+        game_jPnlAnswer.add(lblCups, gbc);
         gbc.gridx = 2;
         game_jPnlAnswer.add(lblMinus, gbc);
 
@@ -363,6 +399,20 @@ public class JFramePlayer extends javax.swing.JFrame {
                 frameHeight / 2 - comp.getHeight() / 2 + height);
     }
 
+    private void add(JLabel label){
+        if(cupsForThisTurn>0){
+            cupsForThisTurn--;
+            label.setText(Integer.toString(Integer.parseInt(label.getText()) + 1));
+        }
+        
+    }
+    private void subtract(JLabel label){
+        if(Integer.parseInt(label.getText()) > 0){
+            cupsForThisTurn++;
+            label.setText(Integer.toString(Integer.parseInt(label.getText()) - 1));
+        }
+    }
+    
     ///SAJÁT ELJÁRÁSOK VÉGE
     public static void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
