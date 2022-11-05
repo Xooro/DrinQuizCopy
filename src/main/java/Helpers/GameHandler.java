@@ -26,6 +26,7 @@ public class GameHandler {
     private Game game;
     private Player actualPlayer;
     private Question actualQuestion;
+    private String[] answers;
 
     public GameHandler() {
         _context = new DrinQuizContext();
@@ -94,8 +95,14 @@ public class GameHandler {
         }
         return false;
     }
+    
+    public void setPickedAnswers(String[] answers)
+    {
+        this.answers=answers;
+        //ESEMÉNYKEZELŐ IDE, AMIRE A HOSZT FELíRATKOZIK, HOGY FRISSíTŐDJÖN A UI-JA
+    }
 
-    public void answerQuestion(String[] answers) {
+    public void answerQuestion() {
         //Ki kell dolgozni mi történik, ha a kvízt megválaszolták
         int score = countScore(answers);
         String answersBlock = ConverterHelper.convertStringArrayToSeparatedString(answers);

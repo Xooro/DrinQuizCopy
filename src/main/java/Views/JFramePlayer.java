@@ -36,9 +36,8 @@ import jdk.swing.interop.DragSourceContextWrapper;
 public class JFramePlayer extends javax.swing.JFrame {
 
     int frameHeight, frameWidth;
+    
     int cupsForThisTurn;
-    Question question;
-    String[] answers;
     /**
      * Creates new form JFramePlayer
      */
@@ -46,25 +45,10 @@ public class JFramePlayer extends javax.swing.JFrame {
 
     public JFramePlayer() throws IOException {
         initComponents();
-        showOnScreen(0, this);
-        
-        try {
-            gameHandlerInstance.getNewQuestion();
-        } catch (Exception ex) {
-            Logger.getLogger(JFramePlayer.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        question = gameHandlerInstance.getQuestion();
-        System.out.println("Lefut");
-        answers = convertSeparatedStringToStringArray(question.getAnswers());
-        System.out.println("De tényleg");
-        for(int i=0;i<3;i++)
-        {
-            addAnswersJPanelToFrame(i, answers[i]);
-        }
+        showOnScreen(0, this);    
 
         endGame_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(false);
-//        newPlayer_kGrdntPnl.setVisible(false);
         scores_kGrdntPnl.setVisible(false);
 
         newPlayer_kGrdntPnl.setLayout(null);
@@ -84,7 +68,6 @@ public class JFramePlayer extends javax.swing.JFrame {
 
         changeLocation(newPlayer_jTxtFldPlayerName, 0, 0);
         changeLocation(newPlayer_kBttnStart, 0, 80);
-        scaleImage(".//resources/images/plus.png", jLabel);
     }
 
     /**
@@ -100,7 +83,6 @@ public class JFramePlayer extends javax.swing.JFrame {
         newPlayer_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         newPlayer_jTxtFldPlayerName = new javax.swing.JTextField();
         newPlayer_kBttnStart = new com.k33ptoo.components.KButton();
-        jLabel = new javax.swing.JLabel();
         game_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         endGame_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         scores_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
@@ -133,15 +115,6 @@ public class JFramePlayer extends javax.swing.JFrame {
             }
         });
 
-        jLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel.setPreferredSize(new java.awt.Dimension(50, 50));
-        jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout newPlayer_kGrdntPnlLayout = new javax.swing.GroupLayout(newPlayer_kGrdntPnl);
         newPlayer_kGrdntPnl.setLayout(newPlayer_kGrdntPnlLayout);
         newPlayer_kGrdntPnlLayout.setHorizontalGroup(
@@ -154,18 +127,12 @@ public class JFramePlayer extends javax.swing.JFrame {
                     .addGroup(newPlayer_kGrdntPnlLayout.createSequentialGroup()
                         .addGap(86, 86, 86)
                         .addComponent(newPlayer_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newPlayer_kGrdntPnlLayout.createSequentialGroup()
-                .addGap(0, 478, Short.MAX_VALUE)
-                .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(194, 194, 194))
+                .addContainerGap(511, Short.MAX_VALUE))
         );
         newPlayer_kGrdntPnlLayout.setVerticalGroup(
             newPlayer_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newPlayer_kGrdntPnlLayout.createSequentialGroup()
-                .addContainerGap(230, Short.MAX_VALUE)
-                .addComponent(jLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123)
+                .addContainerGap(529, Short.MAX_VALUE)
                 .addComponent(newPlayer_jTxtFldPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49)
                 .addComponent(newPlayer_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -265,14 +232,14 @@ public class JFramePlayer extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void newPlayer_jTxtFldPlayerNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPlayer_jTxtFldPlayerNameMouseClicked
-        // TODO add your handling code here:
+        // TODO addCups your handling code here:
         if (newPlayer_jTxtFldPlayerName.getText().equals("Írd be a neved!")) {
             newPlayer_jTxtFldPlayerName.setText("");
         }
     }//GEN-LAST:event_newPlayer_jTxtFldPlayerNameMouseClicked
 
     private void newPlayer_kBttnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newPlayer_kBttnStartMouseClicked
-        // TODO add your handling code here:
+        // TODO addCups your handling code here:
         String playerName = newPlayer_jTxtFldPlayerName.getText();
         if (playerName.equals("") || playerName.equals("Írd be a neved!")) {
             infoBox("Nem adtál meg nevet!");
@@ -287,6 +254,13 @@ public class JFramePlayer extends javax.swing.JFrame {
             gameHandlerInstance.getNewQuestion();
         } catch (Exception ex) {
             ex.getMessage();
+        }
+        
+        String[] answers = convertSeparatedStringToStringArray(gameHandlerInstance.getQuestion().getAnswers());
+        
+        for(int i=0;i<3;i++)
+        {
+            addAnswersJPanelToFrame(i, answers[i]);
         }
         
         cupsForThisTurn = gameHandlerInstance.getPlayersCups();
@@ -307,11 +281,6 @@ public class JFramePlayer extends javax.swing.JFrame {
 //            System.out.println("\n");
 //        gameHandlerInstance.answerQuestion(new String[]{"1","2","3"});
     }//GEN-LAST:event_newPlayer_kBttnStartMouseClicked
-
-    private void jLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMouseClicked
-        // TODO add your handling code here:
-        System.out.println("hello");
-    }//GEN-LAST:event_jLabelMouseClicked
 
     /**
      * @param args the command line arguments
@@ -361,12 +330,12 @@ public class JFramePlayer extends javax.swing.JFrame {
         lblMinus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblPlus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                add(lblCups);
+                addCups(lblCups);
             }
         });
         lblMinus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                subtract(lblCups);
+                subtractCups(lblCups);
             }
         });
         game_jPnlAnswer.setBounds(10+400*positionIndex, 10, 300, 300);
@@ -392,25 +361,32 @@ public class JFramePlayer extends javax.swing.JFrame {
 
         game_kGrdntPnl.add(game_jPnlAnswer);
     }
+
+    private void addCups(JLabel label){
+        if(cupsForThisTurn>0){
+            cupsForThisTurn--;
+            label.setText(Integer.toString(Integer.parseInt(label.getText()) + 1));
+            sendCupsChange();
+        }
+        
+    }
+    private void subtractCups(JLabel label){
+        if(Integer.parseInt(label.getText()) > 0){
+            cupsForThisTurn++;
+            label.setText(Integer.toString(Integer.parseInt(label.getText()) - 1));
+            sendCupsChange();
+        }
+    }
     
+    private void sendCupsChange()
+    {
+        String[] answers = null; //KELL VALAHOGY AZ ÖSSZES ANSWER (PL 3 válasz esetén az array: 3,5,2)
+        gameHandlerInstance.setPickedAnswers(answers);  // NÉZD MEG A SETTERT
+    }
     
     void changeLocation(Component comp, int width, int height) {
         comp.setLocation(frameWidth / 2 - comp.getWidth() / 2 + width,
                 frameHeight / 2 - comp.getHeight() / 2 + height);
-    }
-
-    private void add(JLabel label){
-        if(cupsForThisTurn>0){
-            cupsForThisTurn--;
-            label.setText(Integer.toString(Integer.parseInt(label.getText()) + 1));
-        }
-        
-    }
-    private void subtract(JLabel label){
-        if(Integer.parseInt(label.getText()) > 0){
-            cupsForThisTurn++;
-            label.setText(Integer.toString(Integer.parseInt(label.getText()) - 1));
-        }
     }
     
     ///SAJÁT ELJÁRÁSOK VÉGE
@@ -433,7 +409,6 @@ public class JFramePlayer extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.components.KGradientPanel endGame_kGrdntPnl;
     private com.k33ptoo.components.KGradientPanel game_kGrdntPnl;
-    private javax.swing.JLabel jLabel;
     private javax.swing.JLayeredPane jLyrdPn;
     private javax.swing.JTextField newPlayer_jTxtFldPlayerName;
     private com.k33ptoo.components.KButton newPlayer_kBttnStart;
