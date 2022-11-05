@@ -42,26 +42,10 @@ public class JFramePlayer extends javax.swing.JFrame {
         initComponents();
         showOnScreen(0, this);
 
-        JPanel game_jPnlAnswer = new JPanel();
-        game_jPnlAnswer.setBounds(10, 10, 500, 500);
-        game_jPnlAnswer.setLayout(new GridBagLayout());
-        GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 0.1;
-        gbc.weighty = 0.1;
-        gbc.gridx = gbc.gridy = 0;
-        gbc.gridwidth = 3;
-        game_jPnlAnswer.add(new JLabel("*********Válasz*****************"), gbc);
-        gbc.gridwidth = 1;
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        game_jPnlAnswer.add(new JLabel("********+*******"), gbc);
-        gbc.gridx = 1;
-        game_jPnlAnswer.add(new JLabel("****számok******"), gbc);
-        gbc.gridx = 2;
-        game_jPnlAnswer.add(new JLabel("*******-********"), gbc);
-
-        game_kGrdntPnl.add(game_jPnlAnswer);
+        for(int i=0;i<3;i++)
+        {
+            addAnswersJPanelToFrame(i);
+        }
 
         endGame_kGrdntPnl.setVisible(false);
         //game_kGrdntPnl.setVisible(false);
@@ -336,6 +320,44 @@ public class JFramePlayer extends javax.swing.JFrame {
     }
 
     ///SAJÁT ELJÁRÁSOK
+    
+    void addAnswersJPanelToFrame(int positionIndex)
+    {
+        JPanel game_jPnlAnswer = new JPanel();
+        GridBagConstraints gbc = new GridBagConstraints();
+        JLabel lblPlus = new JLabel();
+        JLabel lblMinus = new JLabel();
+        
+        lblPlus.setSize(50,50);
+        lblMinus.setSize(50,50);
+        lblPlus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblMinus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        
+        game_jPnlAnswer.setBounds(10+400*positionIndex, 10, 300, 300);
+        game_jPnlAnswer.setLayout(new GridBagLayout());
+        
+        scaleImage(".//resources/images/plus.png", lblPlus);
+        scaleImage(".//resources/images/minus.png", lblMinus);
+        
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 0.1;
+        gbc.weighty = 0.1;
+        gbc.gridx = gbc.gridy = 0;
+        gbc.gridwidth = 3;
+        game_jPnlAnswer.add(new JLabel("*********Válasz**************************Válasz**************************Válasz*****************"), gbc);
+        gbc.gridwidth = 1;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        game_jPnlAnswer.add(lblPlus, gbc);
+        gbc.gridx = 1;
+        game_jPnlAnswer.add(new JLabel("****számok******"), gbc);
+        gbc.gridx = 2;
+        game_jPnlAnswer.add(lblMinus, gbc);
+
+        game_kGrdntPnl.add(game_jPnlAnswer);
+    }
+    
+    
     void changeLocation(Component comp, int width, int height) {
         comp.setLocation(frameWidth / 2 - comp.getWidth() / 2 + width,
                 frameHeight / 2 - comp.getHeight() / 2 + height);
