@@ -45,6 +45,9 @@ public class JFrameHost extends javax.swing.JFrame {
     private void initComponents() {
 
         jLyrdPn = new javax.swing.JLayeredPane();
+        waitingScreen_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
+        waitingScreen_jLblPleaseWait = new javax.swing.JLabel();
+        exit_JLblLogo1 = new javax.swing.JLabel();
         gameHost_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         gameHost_kBttnEndGame = new com.k33ptoo.components.KButton();
         gameHost_jLblPlayerName = new javax.swing.JLabel();
@@ -67,6 +70,38 @@ public class JFrameHost extends javax.swing.JFrame {
         setName("frame"); // NOI18N
         setUndecorated(true);
         setResizable(false);
+
+        waitingScreen_kGrdntPnl.setkEndColor(new java.awt.Color(100, 0, 0));
+        waitingScreen_kGrdntPnl.setkGradientFocus(1000);
+        waitingScreen_kGrdntPnl.setkStartColor(new java.awt.Color(139, 46, 87));
+
+        waitingScreen_jLblPleaseWait.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        waitingScreen_jLblPleaseWait.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        waitingScreen_jLblPleaseWait.setText("Kérlek várj!");
+
+        exit_JLblLogo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exit_JLblLogo1.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
+
+        javax.swing.GroupLayout waitingScreen_kGrdntPnlLayout = new javax.swing.GroupLayout(waitingScreen_kGrdntPnl);
+        waitingScreen_kGrdntPnl.setLayout(waitingScreen_kGrdntPnlLayout);
+        waitingScreen_kGrdntPnlLayout.setHorizontalGroup(
+            waitingScreen_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(waitingScreen_kGrdntPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(waitingScreen_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(exit_JLblLogo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(waitingScreen_jLblPleaseWait, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        waitingScreen_kGrdntPnlLayout.setVerticalGroup(
+            waitingScreen_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(waitingScreen_kGrdntPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(exit_JLblLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(50, 50, 50)
+                .addComponent(waitingScreen_jLblPleaseWait, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(176, Short.MAX_VALUE))
+        );
 
         gameHost_kGrdntPnl.setkEndColor(new java.awt.Color(100, 0, 0));
         gameHost_kGrdntPnl.setkGradientFocus(1000);
@@ -255,12 +290,13 @@ public class JFrameHost extends javax.swing.JFrame {
                 .addGap(300, 300, 300)
                 .addComponent(exit_kBttnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(exit_kGrdntPnlLayout.createSequentialGroup()
-                .addGroup(exit_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exit_kGrdntPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(exit_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(exit_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(exit_kGrdntPnlLayout.createSequentialGroup()
-                        .addContainerGap(594, Short.MAX_VALUE)
-                        .addComponent(exit_kBttnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(exit_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 588, Short.MAX_VALUE)
+                        .addComponent(exit_kBttnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         exit_kGrdntPnlLayout.setVerticalGroup(
@@ -275,6 +311,7 @@ public class JFrameHost extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLyrdPn.setLayer(waitingScreen_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLyrdPn.setLayer(gameHost_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLyrdPn.setLayer(exit_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
@@ -287,6 +324,8 @@ public class JFrameHost extends javax.swing.JFrame {
                 .addComponent(gameHost_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(exit_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(waitingScreen_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLyrdPnLayout.setVerticalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -295,6 +334,8 @@ public class JFrameHost extends javax.swing.JFrame {
                 .addComponent(gameHost_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(exit_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(waitingScreen_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -358,6 +399,7 @@ public class JFrameHost extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel exit_JLblLogo;
+    private javax.swing.JLabel exit_JLblLogo1;
     private com.k33ptoo.components.KButton exit_kBttnExit;
     private com.k33ptoo.components.KButton exit_kBttnNewGame;
     private com.k33ptoo.components.KGradientPanel exit_kGrdntPnl;
@@ -374,5 +416,7 @@ public class JFrameHost extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton gameHost_kBttnShowAnswer;
     private com.k33ptoo.components.KGradientPanel gameHost_kGrdntPnl;
     private javax.swing.JLayeredPane jLyrdPn;
+    private javax.swing.JLabel waitingScreen_jLblPleaseWait;
+    private com.k33ptoo.components.KGradientPanel waitingScreen_kGrdntPnl;
     // End of variables declaration//GEN-END:variables
 }
