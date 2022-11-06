@@ -25,8 +25,10 @@ public class JFrameHost extends javax.swing.JFrame {
 
     public JFrameHost() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+//        setExtendedState(JFrame.MAXIMIZED_BOTH);
         showOnScreen(2, this);
+
+        exit_kGrdntPnl.setVisible(false);
 
         scaleImageInLabel(".//resources/images/half.png", gameHost_jLblHalf);
         scaleImageInLabel(".//resources/images/call.png", gameHost_jLblCall);
@@ -74,7 +76,18 @@ public class JFrameHost extends javax.swing.JFrame {
         gameHost_kBttnEndGame.setText("Játék vége");
         gameHost_kBttnEndGame.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         gameHost_kBttnEndGame.setkBorderRadius(50);
+        gameHost_kBttnEndGame.setkEndColor(new java.awt.Color(0, 100, 0));
+        gameHost_kBttnEndGame.setkHoverEndColor(new java.awt.Color(46, 139, 87));
+        gameHost_kBttnEndGame.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        gameHost_kBttnEndGame.setkHoverStartColor(new java.awt.Color(0, 100, 0));
+        gameHost_kBttnEndGame.setkIndicatorThickness(0);
+        gameHost_kBttnEndGame.setkStartColor(new java.awt.Color(46, 139, 87));
         gameHost_kBttnEndGame.setPreferredSize(new java.awt.Dimension(200, 50));
+        gameHost_kBttnEndGame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gameHost_kBttnEndGameMouseClicked(evt);
+            }
+        });
 
         gameHost_jLblPlayerName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         gameHost_jLblPlayerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -90,12 +103,24 @@ public class JFrameHost extends javax.swing.JFrame {
         gameHost_kBttnNextQuestion.setText("Következő kérdés");
         gameHost_kBttnNextQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         gameHost_kBttnNextQuestion.setkBorderRadius(50);
+        gameHost_kBttnNextQuestion.setkEndColor(new java.awt.Color(0, 100, 0));
+        gameHost_kBttnNextQuestion.setkHoverEndColor(new java.awt.Color(46, 139, 87));
+        gameHost_kBttnNextQuestion.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        gameHost_kBttnNextQuestion.setkHoverStartColor(new java.awt.Color(0, 100, 0));
+        gameHost_kBttnNextQuestion.setkIndicatorThickness(0);
+        gameHost_kBttnNextQuestion.setkStartColor(new java.awt.Color(46, 139, 87));
         gameHost_kBttnNextQuestion.setPreferredSize(new java.awt.Dimension(200, 50));
 
         gameHost_kBttnShowAnswer.setBorder(null);
         gameHost_kBttnShowAnswer.setText("Válasz mutatása");
         gameHost_kBttnShowAnswer.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         gameHost_kBttnShowAnswer.setkBorderRadius(50);
+        gameHost_kBttnShowAnswer.setkEndColor(new java.awt.Color(0, 100, 0));
+        gameHost_kBttnShowAnswer.setkHoverEndColor(new java.awt.Color(46, 139, 87));
+        gameHost_kBttnShowAnswer.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        gameHost_kBttnShowAnswer.setkHoverStartColor(new java.awt.Color(0, 100, 0));
+        gameHost_kBttnShowAnswer.setkIndicatorThickness(0);
+        gameHost_kBttnShowAnswer.setkStartColor(new java.awt.Color(46, 139, 87));
         gameHost_kBttnShowAnswer.setPreferredSize(new java.awt.Dimension(200, 50));
 
         gameHost_jLblQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
@@ -106,6 +131,12 @@ public class JFrameHost extends javax.swing.JFrame {
         gameHost_kBttnNewPlayer.setText("Új játékos");
         gameHost_kBttnNewPlayer.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         gameHost_kBttnNewPlayer.setkBorderRadius(50);
+        gameHost_kBttnNewPlayer.setkEndColor(new java.awt.Color(0, 100, 0));
+        gameHost_kBttnNewPlayer.setkHoverEndColor(new java.awt.Color(46, 139, 87));
+        gameHost_kBttnNewPlayer.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        gameHost_kBttnNewPlayer.setkHoverStartColor(new java.awt.Color(0, 100, 0));
+        gameHost_kBttnNewPlayer.setkIndicatorThickness(0);
+        gameHost_kBttnNewPlayer.setkStartColor(new java.awt.Color(46, 139, 87));
         gameHost_kBttnNewPlayer.setPreferredSize(new java.awt.Dimension(200, 50));
 
         gameHost_jLblHalf.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -121,6 +152,12 @@ public class JFrameHost extends javax.swing.JFrame {
         gameHost_kBttnRefillCups.setText("Poharak újratöltése");
         gameHost_kBttnRefillCups.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         gameHost_kBttnRefillCups.setkBorderRadius(50);
+        gameHost_kBttnRefillCups.setkEndColor(new java.awt.Color(0, 100, 0));
+        gameHost_kBttnRefillCups.setkHoverEndColor(new java.awt.Color(46, 139, 87));
+        gameHost_kBttnRefillCups.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        gameHost_kBttnRefillCups.setkHoverStartColor(new java.awt.Color(0, 100, 0));
+        gameHost_kBttnRefillCups.setkIndicatorThickness(0);
+        gameHost_kBttnRefillCups.setkStartColor(new java.awt.Color(46, 139, 87));
         gameHost_kBttnRefillCups.setPreferredSize(new java.awt.Dimension(200, 50));
 
         javax.swing.GroupLayout gameHost_kGrdntPnlLayout = new javax.swing.GroupLayout(gameHost_kGrdntPnl);
@@ -187,12 +224,24 @@ public class JFrameHost extends javax.swing.JFrame {
         exit_kBttnExit.setText("Kilépés");
         exit_kBttnExit.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         exit_kBttnExit.setkBorderRadius(50);
+        exit_kBttnExit.setkEndColor(new java.awt.Color(0, 100, 0));
+        exit_kBttnExit.setkHoverEndColor(new java.awt.Color(46, 139, 87));
+        exit_kBttnExit.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        exit_kBttnExit.setkHoverStartColor(new java.awt.Color(0, 100, 0));
+        exit_kBttnExit.setkIndicatorThickness(0);
+        exit_kBttnExit.setkStartColor(new java.awt.Color(46, 139, 87));
         exit_kBttnExit.setPreferredSize(new java.awt.Dimension(200, 50));
 
         exit_kBttnNewGame.setBorder(null);
-        exit_kBttnNewGame.setText("Kilépés");
+        exit_kBttnNewGame.setText("Új játék");
         exit_kBttnNewGame.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         exit_kBttnNewGame.setkBorderRadius(50);
+        exit_kBttnNewGame.setkEndColor(new java.awt.Color(0, 100, 0));
+        exit_kBttnNewGame.setkHoverEndColor(new java.awt.Color(46, 139, 87));
+        exit_kBttnNewGame.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        exit_kBttnNewGame.setkHoverStartColor(new java.awt.Color(0, 100, 0));
+        exit_kBttnNewGame.setkIndicatorThickness(0);
+        exit_kBttnNewGame.setkStartColor(new java.awt.Color(46, 139, 87));
         exit_kBttnNewGame.setPreferredSize(new java.awt.Dimension(200, 50));
 
         exit_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -261,6 +310,12 @@ public class JFrameHost extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void gameHost_kBttnEndGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameHost_kBttnEndGameMouseClicked
+        // TODO add your handling code here:
+        gameHost_kGrdntPnl.setVisible(false);
+        exit_kGrdntPnl.setVisible(true);
+    }//GEN-LAST:event_gameHost_kBttnEndGameMouseClicked
 
     /**
      * @param args the command line arguments

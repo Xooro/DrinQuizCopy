@@ -50,16 +50,13 @@ public class JFramePlayer extends CustomJFrame {
         initComponents();
         setFrameToFullscreen();
 
-        if(gameHandlerInstance.getActualPlayer()==null)
-        {
+        if (gameHandlerInstance.getActualPlayer() == null) {
             switchPanelView(game_kGrdntPnl, newPlayer_kGrdntPnl);
-        }
-        else
-        {
+        } else {
             generateGameFrame();
             switchPanelView(newPlayer_kGrdntPnl, game_kGrdntPnl);
         }
-        
+
         showOnScreen(2, this);
         endGame_kGrdntPnl.setVisible(false);
         scores_kGrdntPnl.setVisible(false);
@@ -139,6 +136,12 @@ public class JFramePlayer extends CustomJFrame {
         newPlayer_kBttnStart.setText("Játék indítása");
         newPlayer_kBttnStart.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         newPlayer_kBttnStart.setkBorderRadius(50);
+        newPlayer_kBttnStart.setkEndColor(new java.awt.Color(100, 0, 0));
+        newPlayer_kBttnStart.setkHoverEndColor(new java.awt.Color(139, 46, 87));
+        newPlayer_kBttnStart.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        newPlayer_kBttnStart.setkHoverStartColor(new java.awt.Color(100, 0, 0));
+        newPlayer_kBttnStart.setkIndicatorThickness(0);
+        newPlayer_kBttnStart.setkStartColor(new java.awt.Color(139, 46, 87));
         newPlayer_kBttnStart.setPreferredSize(new java.awt.Dimension(200, 50));
         newPlayer_kBttnStart.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -211,6 +214,12 @@ public class JFramePlayer extends CustomJFrame {
         game_kBttnNextPage.setText("Kövi lap");
         game_kBttnNextPage.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         game_kBttnNextPage.setkBorderRadius(50);
+        game_kBttnNextPage.setkEndColor(new java.awt.Color(100, 0, 0));
+        game_kBttnNextPage.setkHoverEndColor(new java.awt.Color(139, 46, 87));
+        game_kBttnNextPage.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        game_kBttnNextPage.setkHoverStartColor(new java.awt.Color(100, 0, 0));
+        game_kBttnNextPage.setkIndicatorThickness(0);
+        game_kBttnNextPage.setkStartColor(new java.awt.Color(139, 46, 87));
         game_kBttnNextPage.setPreferredSize(new java.awt.Dimension(200, 50));
         game_kBttnNextPage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -280,6 +289,12 @@ public class JFramePlayer extends CustomJFrame {
         endGame_kBttnNextPage.setText("Kövi lap");
         endGame_kBttnNextPage.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         endGame_kBttnNextPage.setkBorderRadius(50);
+        endGame_kBttnNextPage.setkEndColor(new java.awt.Color(100, 0, 0));
+        endGame_kBttnNextPage.setkHoverEndColor(new java.awt.Color(139, 46, 87));
+        endGame_kBttnNextPage.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        endGame_kBttnNextPage.setkHoverStartColor(new java.awt.Color(100, 0, 0));
+        endGame_kBttnNextPage.setkIndicatorThickness(0);
+        endGame_kBttnNextPage.setkStartColor(new java.awt.Color(139, 46, 87));
         endGame_kBttnNextPage.setPreferredSize(new java.awt.Dimension(200, 50));
         endGame_kBttnNextPage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -351,6 +366,12 @@ public class JFramePlayer extends CustomJFrame {
         scores_kBttnNextPage.setText("Kövi lap");
         scores_kBttnNextPage.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         scores_kBttnNextPage.setkBorderRadius(50);
+        scores_kBttnNextPage.setkEndColor(new java.awt.Color(100, 0, 0));
+        scores_kBttnNextPage.setkHoverEndColor(new java.awt.Color(139, 46, 87));
+        scores_kBttnNextPage.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        scores_kBttnNextPage.setkHoverStartColor(new java.awt.Color(100, 0, 0));
+        scores_kBttnNextPage.setkIndicatorThickness(0);
+        scores_kBttnNextPage.setkStartColor(new java.awt.Color(139, 46, 87));
         scores_kBttnNextPage.setPreferredSize(new java.awt.Dimension(200, 50));
         scores_kBttnNextPage.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
