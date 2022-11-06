@@ -4,6 +4,10 @@
  */
 package Views;
 
+import static Helpers.ConverterHelper.convertSeparatedStringToStringArray;
+import Helpers.GameHandler;
+import static Helpers.GameHandler.gameHandlerInstance;
+import Helpers.ViewHelper;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
@@ -11,13 +15,17 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import static Helpers.ViewHelper.scaleImageInLabel;
+import static Helpers.ViewHelper.switchPanelView;
+import Views.Base.CustomJFrame;
+import javax.swing.JLabel;
 
 /**
  *
  * @author Jani
  */
-public class JFrameHost extends javax.swing.JFrame {
+public class JFrameHost extends CustomJFrame {
 
+    public static JFrameHost jFrameHostInstance;
     /**
      * Creates new form JFrameHost
      */
@@ -25,14 +33,18 @@ public class JFrameHost extends javax.swing.JFrame {
 
     public JFrameHost() {
         initComponents();
-//        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        isPlayer=false;
+        setFrameToFullscreen();
         showOnScreen(2, this);
 
+        gameHost_kGrdntPnl.setVisible(false);
         exit_kGrdntPnl.setVisible(false);
+        
+        waitingScreen_jLblPleaseWait.setLayout(null);
+        gameHost_kGrdntPnl.setLayout(null);
+        exit_kGrdntPnl.setLayout(null);
 
-        scaleImageInLabel(".//resources/images/half.png", gameHost_jLblHalf);
-        scaleImageInLabel(".//resources/images/call.png", gameHost_jLblCall);
-        scaleImageInLabel(".//resources/images/group.png", gameHost_jLblGroup);
+        imageScaler();
     }
 
     /**
@@ -354,10 +366,28 @@ public class JFrameHost extends javax.swing.JFrame {
 
     private void gameHost_kBttnEndGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameHost_kBttnEndGameMouseClicked
         // TODO add your handling code here:
-        gameHost_kGrdntPnl.setVisible(false);
-        exit_kGrdntPnl.setVisible(true);
+        
     }//GEN-LAST:event_gameHost_kBttnEndGameMouseClicked
 
+    ///SAJÁT ELJÁRÁSOK
+    public void imageScaler() {
+        scaleImageInLabel(".//resources/images/half.png", gameHost_jLblHalf);
+        scaleImageInLabel(".//resources/images/call.png", gameHost_jLblCall);
+        scaleImageInLabel(".//resources/images/group.png", gameHost_jLblGroup);
+    }
+
+    ///SAJÁT ELJÁRÁSOK VÉGE
+    ///EVENTEK
+    public void playerGameStarted() {
+        gameHost_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
+        
+        generateAnswerPanels(gameHost_kGrdntPnl,
+                convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
+        
+        switchPanelView(waitingScreen_kGrdntPnl, gameHost_kGrdntPnl);
+    }
+
+    ///EVENTEK VÉGE
     /**
      * @param args the command line arguments
      */
@@ -377,9 +407,15 @@ public class JFrameHost extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameHost().setVisible(true);
+                jFrameHostInstance = new JFrameHost();
+                jFrameHostInstance.start();
+                //new JFrameHost().setVisible(true);
             }
         });
+    }
+
+    private void start() {
+        jFrameHostInstance.setVisible(true);
     }
 
     public static void showOnScreen(int screen, JFrame frame) {
@@ -419,4 +455,12 @@ public class JFrameHost extends javax.swing.JFrame {
     private javax.swing.JLabel waitingScreen_jLblPleaseWait;
     private com.k33ptoo.components.KGradientPanel waitingScreen_kGrdntPnl;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    protected void addCups(JLabel label, int index) {
+    }
+
+    @Override
+    protected void subtractCups(JLabel label, int index) {
+    }
 }

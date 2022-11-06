@@ -1006,13 +1006,7 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_kGrdntPnlGameName.setVisible(false);
         //MODIFY LATER THE MENU SELECTION TO GAME
         menu_kGrdntPnl.setVisible(true);
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-//                JFrameMain mainFrame = new JFrameMain();
-//                mainFrame.setVisible(true);
-                JFramePlayer.main(new String[]{});
-            }
-        });
+        startGame();
         this.dispose();
     }//GEN-LAST:event_newGame_GameName_kBttnStartMouseClicked
 
@@ -1138,11 +1132,7 @@ public class JFrameMain extends javax.swing.JFrame {
             return;
         }
         gameLoader.loadGameForPlay(gameIndex);
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JFramePlayer.main(new String[]{});
-            }
-        });
+        startGame();
         this.dispose();
     }//GEN-LAST:event_loadGame_kBttnLoadGameMouseClicked
 
@@ -1245,6 +1235,23 @@ public class JFrameMain extends javax.swing.JFrame {
             }
         }
 
+    }
+    
+    private void startGame()
+    {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                JFrameHost.main(new String[]{});
+            }
+        });
+        
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+//                JFrameMain mainFrame = new JFrameMain();
+//                mainFrame.setVisible(true);
+                JFramePlayer.main(new String[]{});
+            }
+        });     
     }
 
     ///SAJÁT ELJÁRÁSOK VÉGE

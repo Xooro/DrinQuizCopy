@@ -10,6 +10,7 @@ import Models.Game;
 import Models.Player;
 import Models.Question;
 import Models.QuestionHistory;
+import Views.JFrameHost;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -32,6 +33,7 @@ public class GameHandler {
 
     public GameHandler() {
         _context = new DrinQuizContext();
+        
     }
 
     public void setGame(Game game) {
@@ -44,6 +46,11 @@ public class GameHandler {
         setActualPlayer();
     }
 
+    public void callPlayerGameStarted()
+    {
+        JFrameHost.jFrameHostInstance.playerGameStarted();
+    }
+    
     public void setActualPlayer() {
         actualPlayer = getLastPlayerInList();
     }
@@ -121,7 +128,6 @@ public class GameHandler {
         atrList.toArray(answersToRandomize);
         String answerBlock = ConverterHelper.convertStringArrayToSeparatedString(answersToRandomize);
         actualQuestion.setAnswers(answerBlock);
-        System.out.println(actualAnswer);
     }
 
     public void refillCups() {

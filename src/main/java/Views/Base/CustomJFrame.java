@@ -21,10 +21,11 @@ import javax.swing.JPanel;
  * @author kkris
  */
 public abstract class CustomJFrame extends javax.swing.JFrame {
+
     protected int frameHeight, frameWidth;
-    
-    protected void setFrameToFullscreen()
-    {
+    protected Boolean isPlayer;
+
+    protected void setFrameToFullscreen() {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dimension = tk.getScreenSize();
 
@@ -35,12 +36,17 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         frameWidth = dimension.width;
         frameHeight = dimension.height;
     }
-    
-    protected void generateAnswerPanels(KGradientPanel displayPanel, String[] answers)
-    {
+
+    protected void setFrameSize() {
+        Dimension dimension = this.getContentPane().getSize();
+        frameWidth = dimension.width;
+        frameHeight = dimension.height;
+    }
+
+    protected void generateAnswerPanels(KGradientPanel displayPanel, String[] answers) {
+        removeOldAnswerKPanel(displayPanel);
         KGradientPanel[] panels = new KGradientPanel[0];
-        switch (answers.length)
-        {
+        switch (answers.length) {
             case 3:
                 panels = get3AnswersPanel(answers);
                 break;
@@ -49,18 +55,17 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
             displayPanel.add(panels[i]);
         }
     }
-    
-    protected KGradientPanel[] get3AnswersPanel(String[] answers)
-    {
+
+    protected KGradientPanel[] get3AnswersPanel(String[] answers) {
         KGradientPanel[] panels = new KGradientPanel[3];
         for (int i = 0; i < answers.length; i++) {
             KGradientPanel kPanel = getAnswersKPanelToFrame(i, answers[i]);
-            changePanelBound(kPanel, (-frameWidth/3)+frameWidth/3*i, 0, frameWidth/4, frameHeight/3);
+            changePanelBound(kPanel, (-frameWidth / 3) + frameWidth / 3 * i, 0, frameWidth / 4, frameHeight / 3);
             panels[i] = kPanel;
         }
         return panels;
     }
-    
+
     protected KGradientPanel getAnswersKPanelToFrame(int index, String answer) {
         int number = 0;
         KGradientPanel game_kGrdntPnlAnswer = new KGradientPanel();
@@ -122,20 +127,22 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         gbc.gridwidth = 3;
         game_kGrdntPnlAnswer.add(jLblAnswer, gbc);
         gbc.gridwidth = 1;
-        gbc.gridx = 0;
         gbc.gridy = 1;
-        game_kGrdntPnlAnswer.add(jLblPlus, gbc);
         gbc.gridx = 1;
         game_kGrdntPnlAnswer.add(jLblCups, gbc);
-        gbc.gridx = 2;
-        game_kGrdntPnlAnswer.add(jLblMinus, gbc);
-
+        if (isPlayer) {
+            gbc.gridx = 0;
+            game_kGrdntPnlAnswer.add(jLblPlus, gbc);
+            gbc.gridx = 2;
+            game_kGrdntPnlAnswer.add(jLblMinus, gbc);
+        }
         return game_kGrdntPnlAnswer;
     }
-    
+
     protected abstract void addCups(JLabel label, int index);
+
     protected abstract void subtractCups(JLabel label, int index);
-    
+
     protected void removeOldAnswerKPanel(KGradientPanel kPanel) {
         KGradientPanel kgp = new KGradientPanel();
 
@@ -145,19 +152,18 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
             }
         }
     }
-    
-    protected void changePanelBound(JPanel panel, int x, int y, int width, int height)
-    {
+
+    protected void changePanelBound(JPanel panel, int x, int y, int width, int height) {
         changePanelSize(panel, width, height);
         changeLocation(panel, x, y);
     }
-    
+
     protected void changeLocation(Component comp, int x, int y) {
         comp.setLocation(frameWidth / 2 - comp.getWidth() / 2 + x,
                 frameHeight / 2 - comp.getHeight() / 2 + y);
     }
-    
-    protected void changePanelSize(JPanel panel, int width, int height){
+
+    protected void changePanelSize(JPanel panel, int width, int height) {
         panel.setSize(width, height);
     }
 }

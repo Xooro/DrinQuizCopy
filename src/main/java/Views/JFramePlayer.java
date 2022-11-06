@@ -35,6 +35,7 @@ import static Helpers.ViewHelper.*;
  */
 public class JFramePlayer extends CustomJFrame {
 
+    public static JFramePlayer jFramePlayerInstance;
     int cupsForThisTurn;
 
     @Override
@@ -48,6 +49,7 @@ public class JFramePlayer extends CustomJFrame {
 
     public JFramePlayer() throws IOException {
         initComponents();
+        isPlayer=true;
         setFrameToFullscreen();
 
         if (gameHandlerInstance.getActualPlayer() == null) {
@@ -70,12 +72,6 @@ public class JFramePlayer extends CustomJFrame {
         changeLocation(newPlayer_kBttnStart, 0, 80);
 
         imageScaler();
-
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JFrameHost.main(new String[]{});
-            }
-        });
     }
 
     /**
@@ -583,18 +579,21 @@ public class JFramePlayer extends CustomJFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new JFramePlayer().setVisible(true);
+                    jFramePlayerInstance = new JFramePlayer();
+                    jFramePlayerInstance.start();
                 } catch (IOException ex) {
                     Logger.getLogger(JFramePlayer.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
+    }
 
+    private void start() {
+        jFramePlayerInstance.setVisible(true);
     }
 
     ///SAJÁT ELJÁRÁSOK
     protected void generateGameFrame() {
-        removeOldAnswerKPanel(game_kGrdntPnl);
         try {
             gameHandlerInstance.setNewQuestion();
         } catch (Exception ex) {
@@ -608,6 +607,8 @@ public class JFramePlayer extends CustomJFrame {
         game_jLblCupNumber.setText(cupsForThisTurn + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
         generateAnswerPanels(game_kGrdntPnl,
                 convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
+
+        gameHandlerInstance.callPlayerGameStarted();
     }
 
     @Override
