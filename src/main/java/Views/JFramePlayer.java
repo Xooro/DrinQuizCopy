@@ -49,7 +49,7 @@ public class JFramePlayer extends CustomJFrame {
     public JFramePlayer() throws IOException {
         initComponents();
         setFrameToFullscreen();
-      
+
         showOnScreen(2, this);
         endGame_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(false);
@@ -62,10 +62,8 @@ public class JFramePlayer extends CustomJFrame {
 
         changeLocation(newPlayer_jTxtFldPlayerName, 0, 0);
         changeLocation(newPlayer_kBttnStart, 0, 80);
-        
-        scaleImageInLabel(".//resources/images/gold.png", scores_jLblGold);
-        scaleImageInLabel(".//resources/images/silver.png", scores_jLblSilver);
-        scaleImageInLabel(".//resources/images/bronze.png", scores_jLblBronze);
+
+        imageScaler();
     }
 
     /**
@@ -493,51 +491,35 @@ public class JFramePlayer extends CustomJFrame {
             infoBox("Nem adtál meg nevet!");
             return;
         }
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                JFrameHost.main(new String[]{});
-            }
-        });
+        
+//        SwingUtilities.invokeLater(new Runnable() {
+//            public void run() {
+//                JFrameHost.main(new String[]{});
+//            }
+//        });
 
         gameHandlerInstance.createPlayer(playerName);
-        
-        newPlayer_kGrdntPnl.setVisible(false);
-        game_kGrdntPnl.setVisible(true);
 
-        try {
-            gameHandlerInstance.getNewQuestion();
-        } catch (Exception ex) {
-            ex.getMessage();
-        }
-        String[] answers = convertSeparatedStringToStringArray(gameHandlerInstance.getQuestion().getAnswers());
-        
-        generateAnswerPanels(game_kGrdntPnl, answers);
-               
-        cupsForThisTurn = gameHandlerInstance.getPlayersCups();
-        
-        scaleImageInLabel(".//resources/images/half.png", game_jLblHalf);
-        scaleImageInLabel(".//resources/images/call.png", game_jLblCall);
-        scaleImageInLabel(".//resources/images/group.png", game_jLblGroup);
-        scaleImageInLabel(".//resources/images/shot.png", game_jLblCup);
-        
-        switchPanelView(newPlayer_kGrdntPnl,game_kGrdntPnl);
+        generateGameFrame();
+
+        switchPanelView(newPlayer_kGrdntPnl, game_kGrdntPnl);
     }//GEN-LAST:event_newPlayer_kBttnStartMouseClicked
 
     private void endGame_kBttnNextPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_endGame_kBttnNextPageMouseClicked
         // TODO add your handling code here:
-        
+
         switchPanelView(endGame_kGrdntPnl, scores_kGrdntPnl);
     }//GEN-LAST:event_endGame_kBttnNextPageMouseClicked
 
     private void scores_kBttnNextPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scores_kBttnNextPageMouseClicked
         // TODO add your handling code here:
-        
+
         switchPanelView(scores_kGrdntPnl, newPlayer_kGrdntPnl);
     }//GEN-LAST:event_scores_kBttnNextPageMouseClicked
 
     private void game_kBttnNextPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_kBttnNextPageMouseClicked
         // TODO add your handling code here:
-        
+        gameHandlerInstance.answerQuestion();
         switchPanelView(game_kGrdntPnl, endGame_kGrdntPnl);
     }//GEN-LAST:event_game_kBttnNextPageMouseClicked
 
@@ -571,6 +553,23 @@ public class JFramePlayer extends CustomJFrame {
     }
 
     ///SAJÁT ELJÁRÁSOK
+    protected void generateGameFrame()
+    {
+        removeOldAnswerKPanel(game_kGrdntPnl);
+        try {
+            gameHandlerInstance.setNewQuestion();
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+        
+        cupsForThisTurn = gameHandlerInstance.getActualPlayer().getCupsLeft();
+
+        game_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion()); 
+        game_jLblPoint.setText("Pontok: "+gameHandlerInstance.getActualPlayer().getScore());
+        game_jLblCupNumber.setText(cupsForThisTurn+"/"+gameHandlerInstance.getActualPlayer().getCupsLeft());
+        generateAnswerPanels(game_kGrdntPnl,
+                convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
+    }
     
     @Override
     protected void addCups(JLabel label, int index) {
@@ -595,8 +594,19 @@ public class JFramePlayer extends CustomJFrame {
         String[] cupsOnAnswers = gameHandlerInstance.getPickedAnswers();
         cupsOnAnswers[index] = cups;
         gameHandlerInstance.setPickedAnswers(cupsOnAnswers);
+        game_jLblCupNumber.setText(cupsForThisTurn+"/"+gameHandlerInstance.getActualPlayer().getCupsLeft());
     }
-
+    
+    private void imageScaler()
+    {
+        scaleImageInLabel(".//resources/images/half.png", game_jLblHalf);
+        scaleImageInLabel(".//resources/images/call.png", game_jLblCall);
+        scaleImageInLabel(".//resources/images/group.png", game_jLblGroup);
+        scaleImageInLabel(".//resources/images/shot.png", game_jLblCup);
+        scaleImageInLabel(".//resources/images/gold.png", scores_jLblGold);
+        scaleImageInLabel(".//resources/images/silver.png", scores_jLblSilver);
+        scaleImageInLabel(".//resources/images/bronze.png", scores_jLblBronze);
+    }
 
     ///SAJÁT ELJÁRÁSOK VÉGE
     public static void showOnScreen(int screen, JFrame frame) {

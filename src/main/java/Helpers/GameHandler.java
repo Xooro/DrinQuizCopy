@@ -48,11 +48,11 @@ public class GameHandler {
         actualPlayer = players.get(players.size() - 1);
     }
     
-    public int getPlayersCups(){
-        return actualPlayer.getCupsLeft();
+    public Player getActualPlayer(){
+        return actualPlayer;
     }
 
-    public void getNewQuestion() throws Exception {
+    public void setNewQuestion() throws Exception {
         Question question;
         Random rnd = new Random();
         List<Question> questions = getFilteredQuestions();
@@ -69,7 +69,7 @@ public class GameHandler {
             answers[i] = "0";
     }
 
-    public Question getQuestion() {
+    public Question getActualQuestion() {
         return actualQuestion;
     }
     

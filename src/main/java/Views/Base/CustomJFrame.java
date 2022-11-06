@@ -12,6 +12,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -54,7 +55,7 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         KGradientPanel[] panels = new KGradientPanel[3];
         for (int i = 0; i < answers.length; i++) {
             KGradientPanel kPanel = getAnswersKPanelToFrame(i, answers[i]);
-            changePanelBound(kPanel, (-frameWidth/2)+(frameWidth/10)+frameWidth/3*i, 0, frameWidth/4, frameHeight/3);
+            changePanelBound(kPanel, (-frameWidth/3)+frameWidth/3*i, 0, frameWidth/4, frameHeight/3);
             panels[i] = kPanel;
         }
         return panels;
@@ -134,6 +135,16 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
     
     protected abstract void addCups(JLabel label, int index);
     protected abstract void subtractCups(JLabel label, int index);
+    
+    protected void removeOldAnswerKPanel(KGradientPanel kPanel) {
+        KGradientPanel kgp = new KGradientPanel();
+
+        for (Component component : kPanel.getComponents()) {
+            if (component.getClass() == kgp.getClass()) {
+                kPanel.remove(component);
+            }
+        }
+    }
     
     protected void changePanelBound(JPanel panel, int x, int y, int width, int height)
     {
