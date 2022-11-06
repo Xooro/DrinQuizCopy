@@ -70,6 +70,12 @@ public class JFramePlayer extends CustomJFrame {
         changeLocation(newPlayer_kBttnStart, 0, 80);
 
         imageScaler();
+
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                JFrameHost.main(new String[]{});
+            }
+        });
     }
 
     /**
@@ -527,11 +533,6 @@ public class JFramePlayer extends CustomJFrame {
             return;
         }
 
-//        SwingUtilities.invokeLater(new Runnable() {
-//            public void run() {
-//                JFrameHost.main(new String[]{});
-//            }
-//        });
         gameHandlerInstance.createPlayer(playerName);
 
         generateGameFrame();

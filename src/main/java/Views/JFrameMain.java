@@ -1013,6 +1013,7 @@ public class JFrameMain extends javax.swing.JFrame {
                 JFramePlayer.main(new String[]{});
             }
         });
+        this.dispose();
     }//GEN-LAST:event_newGame_GameName_kBttnStartMouseClicked
 
     private void newGame_GameName_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_kBttnBackMouseClicked
@@ -1132,8 +1133,7 @@ public class JFrameMain extends javax.swing.JFrame {
     private void loadGame_kBttnLoadGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnLoadGameMouseClicked
         // TODO add your handling code here:
         int gameIndex = loadGame_jLstPreviousGames.getSelectedIndex();
-        if(gameIndex<0)
-        {
+        if (gameIndex < 0) {
             infoBox("Válassz egy játékot!");
             return;
         }
@@ -1143,13 +1143,13 @@ public class JFrameMain extends javax.swing.JFrame {
                 JFramePlayer.main(new String[]{});
             }
         });
+        this.dispose();
     }//GEN-LAST:event_loadGame_kBttnLoadGameMouseClicked
 
     private void loadGame_kBttnDeleteGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnDeleteGameMouseClicked
         // TODO add your handling code here:
         int gameIndex = loadGame_jLstPreviousGames.getSelectedIndex();
-        if(gameIndex<0)
-        {
+        if (gameIndex < 0) {
             infoBox("Válassz egy játékot!");
             return;
         }
@@ -1247,8 +1247,6 @@ public class JFrameMain extends javax.swing.JFrame {
 
     }
 
-    
-    
     ///SAJÁT ELJÁRÁSOK VÉGE
     /**
      * @param args the command line arguments
