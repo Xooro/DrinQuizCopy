@@ -88,9 +88,12 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_GameName_jTxtFldCupNumber = new javax.swing.JTextField();
         newGame_GameName_jTxtFldRefillNumber = new javax.swing.JTextField();
         loadGame_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
-        loadGame_jLbl = new javax.swing.JLabel();
         loadGame_kBttnBack = new com.k33ptoo.components.KButton();
         loadGame_JLblLogo = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        loadGame_jLstPreviousGames = new javax.swing.JList<>();
+        loadGame_kBttnLoadGame = new com.k33ptoo.components.KButton();
+        loadGame_kBttnDeleteGame = new com.k33ptoo.components.KButton();
         settings_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         settings_kBttnBack = new com.k33ptoo.components.KButton();
         settings_kBttnImportQuizes = new com.k33ptoo.components.KButton();
@@ -625,10 +628,6 @@ public class JFrameMain extends javax.swing.JFrame {
         loadGame_kGrdntPnl.setkGradientFocus(1000);
         loadGame_kGrdntPnl.setkStartColor(new java.awt.Color(128, 0, 128));
 
-        loadGame_jLbl.setFont(new java.awt.Font("Century Gothic", 3, 36)); // NOI18N
-        loadGame_jLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        loadGame_jLbl.setText("Fejlesztés alatt... :(");
-
         loadGame_kBttnBack.setBorder(null);
         loadGame_kBttnBack.setText("Vissza");
         loadGame_kBttnBack.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
@@ -649,6 +648,49 @@ public class JFrameMain extends javax.swing.JFrame {
         loadGame_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loadGame_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
 
+        loadGame_jLstPreviousGames.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        loadGame_jLstPreviousGames.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        loadGame_jLstPreviousGames.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(loadGame_jLstPreviousGames);
+
+        loadGame_kBttnLoadGame.setBorder(null);
+        loadGame_kBttnLoadGame.setText("Játék betöltése");
+        loadGame_kBttnLoadGame.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        loadGame_kBttnLoadGame.setkBorderRadius(50);
+        loadGame_kBttnLoadGame.setkEndColor(new java.awt.Color(72, 61, 139));
+        loadGame_kBttnLoadGame.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        loadGame_kBttnLoadGame.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        loadGame_kBttnLoadGame.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        loadGame_kBttnLoadGame.setkIndicatorThickness(0);
+        loadGame_kBttnLoadGame.setkStartColor(new java.awt.Color(65, 105, 255));
+        loadGame_kBttnLoadGame.setPreferredSize(new java.awt.Dimension(200, 50));
+        loadGame_kBttnLoadGame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loadGame_kBttnLoadGameMouseClicked(evt);
+            }
+        });
+
+        loadGame_kBttnDeleteGame.setBorder(null);
+        loadGame_kBttnDeleteGame.setText("Játék törlése");
+        loadGame_kBttnDeleteGame.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        loadGame_kBttnDeleteGame.setkBorderRadius(50);
+        loadGame_kBttnDeleteGame.setkEndColor(new java.awt.Color(72, 61, 139));
+        loadGame_kBttnDeleteGame.setkHoverEndColor(new java.awt.Color(65, 105, 255));
+        loadGame_kBttnDeleteGame.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        loadGame_kBttnDeleteGame.setkHoverStartColor(new java.awt.Color(72, 61, 139));
+        loadGame_kBttnDeleteGame.setkIndicatorThickness(0);
+        loadGame_kBttnDeleteGame.setkStartColor(new java.awt.Color(65, 105, 255));
+        loadGame_kBttnDeleteGame.setPreferredSize(new java.awt.Dimension(200, 50));
+        loadGame_kBttnDeleteGame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loadGame_kBttnDeleteGameMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout loadGame_kGrdntPnlLayout = new javax.swing.GroupLayout(loadGame_kGrdntPnl);
         loadGame_kGrdntPnl.setLayout(loadGame_kGrdntPnlLayout);
         loadGame_kGrdntPnlLayout.setHorizontalGroup(
@@ -657,10 +699,13 @@ public class JFrameMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(loadGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, loadGame_kGrdntPnlLayout.createSequentialGroup()
-                        .addGap(0, 588, Short.MAX_VALUE)
+                        .addComponent(loadGame_kBttnDeleteGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(loadGame_kBttnLoadGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                         .addComponent(loadGame_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(loadGame_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(loadGame_jLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE))
                 .addContainerGap())
         );
         loadGame_kGrdntPnlLayout.setVerticalGroup(
@@ -668,10 +713,13 @@ public class JFrameMain extends javax.swing.JFrame {
             .addGroup(loadGame_kGrdntPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(loadGame_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(loadGame_jLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(loadGame_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(loadGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(loadGame_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loadGame_kBttnLoadGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loadGame_kBttnDeleteGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -898,8 +946,8 @@ public class JFrameMain extends javax.swing.JFrame {
         }
 
         addCheckboxesToPanel(newGame_kGrdntPnlSources, sources);
-        
-        switchPanelView(menu_kGrdntPnl,newGame_kGrdntPnlSources);
+
+        switchPanelView(menu_kGrdntPnl, newGame_kGrdntPnlSources);
     }//GEN-LAST:event_menu_bttnNewGameMouseClicked
 
     private void menu_bttnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnExitMouseClicked
@@ -909,12 +957,12 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void newGame_Sources_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnBackMouseClicked
         // TODO add your handling code here:
-        switchPanelView(newGame_kGrdntPnlSources,menu_kGrdntPnl);
+        switchPanelView(newGame_kGrdntPnlSources, menu_kGrdntPnl);
     }//GEN-LAST:event_newGame_Sources_kBttnBackMouseClicked
 
     private void newGame_Categories_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Categories_kBttnBackMouseClicked
         // TODO add your handling code here:
-        switchPanelView(newGame_kGrdntPnlCategories,newGame_kGrdntPnlSources);
+        switchPanelView(newGame_kGrdntPnlCategories, newGame_kGrdntPnlSources);
     }//GEN-LAST:event_newGame_Categories_kBttnBackMouseClicked
 
     private void newGame_Categories_kBttnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Categories_kBttnNextMouseClicked
@@ -926,7 +974,7 @@ public class JFrameMain extends javax.swing.JFrame {
         }
         gameGenerator.setChosenCategories(categories);
 
-        switchPanelView(newGame_kGrdntPnlCategories,newGame_kGrdntPnlGameName);
+        switchPanelView(newGame_kGrdntPnlCategories, newGame_kGrdntPnlGameName);
 
     }//GEN-LAST:event_newGame_Categories_kBttnNextMouseClicked
 
@@ -939,9 +987,8 @@ public class JFrameMain extends javax.swing.JFrame {
             infoBox("Adj nevet a játéknak!");
             return;
         }
-        
-        if (cups<=0 || refills<=0)
-        {
+
+        if (cups <= 0 || refills <= 0) {
             infoBox("Hibás pohár mennyiség!");
             return;
         }
@@ -967,7 +1014,7 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void newGame_GameName_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_kBttnBackMouseClicked
         // TODO add your handling code here:
-        switchPanelView(newGame_kGrdntPnlGameName,newGame_kGrdntPnlCategories);
+        switchPanelView(newGame_kGrdntPnlGameName, newGame_kGrdntPnlCategories);
     }//GEN-LAST:event_newGame_GameName_kBttnBackMouseClicked
 
     private void newGame_Sources_kBttnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnNextMouseClicked
@@ -981,18 +1028,18 @@ public class JFrameMain extends javax.swing.JFrame {
 
         addCheckboxesToPanel(newGame_kGrdntPnlCategories, gameGenerator.getCategoriesBySourcesInDatabase());
 
-        switchPanelView(newGame_kGrdntPnlSources,newGame_kGrdntPnlCategories);
+        switchPanelView(newGame_kGrdntPnlSources, newGame_kGrdntPnlCategories);
     }//GEN-LAST:event_newGame_Sources_kBttnNextMouseClicked
 
     private void settings_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnBackMouseClicked
         // TODO add your handling code here:
-        switchPanelView(settings_kGrdntPnl,menu_kGrdntPnl);
+        switchPanelView(settings_kGrdntPnl, menu_kGrdntPnl);
     }//GEN-LAST:event_settings_kBttnBackMouseClicked
 
     private void menu_bttnSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnSettingsMouseClicked
         // TODO add your handling code here:
         menu_kGrdntPnl.setVisible(false);
-        switchPanelView(menu_kGrdntPnl,settings_kGrdntPnl);
+        switchPanelView(menu_kGrdntPnl, settings_kGrdntPnl);
     }//GEN-LAST:event_menu_bttnSettingsMouseClicked
 
     private void settings_kBttnImportQuizesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnImportQuizesMouseClicked
@@ -1036,14 +1083,14 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void loadGame_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnBackMouseClicked
         // TODO add your handling code here:
-        switchPanelView(loadGame_kGrdntPnl,menu_kGrdntPnl);
+        switchPanelView(loadGame_kGrdntPnl, menu_kGrdntPnl);
     }//GEN-LAST:event_loadGame_kBttnBackMouseClicked
 
     private void menu_bttnLoadGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnLoadGameMouseClicked
         // TODO add your handling code here:
         menu_kGrdntPnl.setVisible(false);
         loadGame_kGrdntPnl.setVisible(true);
-        switchPanelView(menu_kGrdntPnl,loadGame_kGrdntPnl);
+        switchPanelView(menu_kGrdntPnl, loadGame_kGrdntPnl);
     }//GEN-LAST:event_menu_bttnLoadGameMouseClicked
 
     private void newGame_Sources_kBttnSelectAllCheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnSelectAllCheckboxMouseClicked
@@ -1079,6 +1126,14 @@ public class JFrameMain extends javax.swing.JFrame {
             newGame_GameName_jTxtFldRefillNumber.setText("");
         }
     }//GEN-LAST:event_newGame_GameName_jTxtFldRefillNumberMouseClicked
+
+    private void loadGame_kBttnLoadGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnLoadGameMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loadGame_kBttnLoadGameMouseClicked
+
+    private void loadGame_kBttnDeleteGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnDeleteGameMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_loadGame_kBttnDeleteGameMouseClicked
 
 ///SAJÁT ELJÁRÁSOK
     private void addCheckboxesToPanel(JPanel panel, String[] source) {
@@ -1197,9 +1252,12 @@ public class JFrameMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane jLyrdPn;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel loadGame_JLblLogo;
-    private javax.swing.JLabel loadGame_jLbl;
+    private javax.swing.JList<String> loadGame_jLstPreviousGames;
     private com.k33ptoo.components.KButton loadGame_kBttnBack;
+    private com.k33ptoo.components.KButton loadGame_kBttnDeleteGame;
+    private com.k33ptoo.components.KButton loadGame_kBttnLoadGame;
     private com.k33ptoo.components.KGradientPanel loadGame_kGrdntPnl;
     private javax.swing.JLabel menu_JLblLogo;
     private com.k33ptoo.components.KButton menu_bttnExit;

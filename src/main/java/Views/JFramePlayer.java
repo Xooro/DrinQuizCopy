@@ -171,6 +171,11 @@ public class JFramePlayer extends CustomJFrame {
         game_jLblHalf.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         game_jLblHalf.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         game_jLblHalf.setPreferredSize(new java.awt.Dimension(50, 50));
+        game_jLblHalf.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                game_jLblHalfMouseClicked(evt);
+            }
+        });
 
         game_jLblCall.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         game_jLblCall.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -491,13 +496,12 @@ public class JFramePlayer extends CustomJFrame {
             infoBox("Nem adtál meg nevet!");
             return;
         }
-        
+
 //        SwingUtilities.invokeLater(new Runnable() {
 //            public void run() {
 //                JFrameHost.main(new String[]{});
 //            }
 //        });
-
         gameHandlerInstance.createPlayer(playerName);
 
         generateGameFrame();
@@ -522,6 +526,11 @@ public class JFramePlayer extends CustomJFrame {
         gameHandlerInstance.answerQuestion();
         switchPanelView(game_kGrdntPnl, endGame_kGrdntPnl);
     }//GEN-LAST:event_game_kBttnNextPageMouseClicked
+
+    private void game_jLblHalfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblHalfMouseClicked
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_game_jLblHalfMouseClicked
 
     /**
      * @param args the command line arguments
@@ -553,24 +562,23 @@ public class JFramePlayer extends CustomJFrame {
     }
 
     ///SAJÁT ELJÁRÁSOK
-    protected void generateGameFrame()
-    {
+    protected void generateGameFrame() {
         removeOldAnswerKPanel(game_kGrdntPnl);
         try {
             gameHandlerInstance.setNewQuestion();
         } catch (Exception ex) {
             ex.getMessage();
         }
-        
+
         cupsForThisTurn = gameHandlerInstance.getActualPlayer().getCupsLeft();
 
-        game_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion()); 
-        game_jLblPoint.setText("Pontok: "+gameHandlerInstance.getActualPlayer().getScore());
-        game_jLblCupNumber.setText(cupsForThisTurn+"/"+gameHandlerInstance.getActualPlayer().getCupsLeft());
+        game_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
+        game_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
+        game_jLblCupNumber.setText(cupsForThisTurn + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
         generateAnswerPanels(game_kGrdntPnl,
                 convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
     }
-    
+
     @Override
     protected void addCups(JLabel label, int index) {
         if (cupsForThisTurn > 0) {
@@ -594,11 +602,10 @@ public class JFramePlayer extends CustomJFrame {
         String[] cupsOnAnswers = gameHandlerInstance.getPickedAnswers();
         cupsOnAnswers[index] = cups;
         gameHandlerInstance.setPickedAnswers(cupsOnAnswers);
-        game_jLblCupNumber.setText(cupsForThisTurn+"/"+gameHandlerInstance.getActualPlayer().getCupsLeft());
+        game_jLblCupNumber.setText(cupsForThisTurn + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
     }
-    
-    private void imageScaler()
-    {
+
+    private void imageScaler() {
         scaleImageInLabel(".//resources/images/half.png", game_jLblHalf);
         scaleImageInLabel(".//resources/images/call.png", game_jLblCall);
         scaleImageInLabel(".//resources/images/group.png", game_jLblGroup);

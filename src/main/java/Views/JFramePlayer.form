@@ -243,6 +243,9 @@
                   <Dimension value="[50, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="game_jLblHalfMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="game_jLblCall">
               <Properties>
