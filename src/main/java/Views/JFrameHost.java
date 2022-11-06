@@ -4,13 +4,13 @@
  */
 package Views;
 
-import static Helpers.ViewHelper.scaleImage;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+import static Helpers.ViewHelper.scaleImageInLabel;
 
 /**
  *
@@ -28,9 +28,9 @@ public class JFrameHost extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         showOnScreen(2, this);
 
-        scaleImage(".//resources/images/half.png", gameHost_jLblHalf);
-        scaleImage(".//resources/images/call.png", gameHost_jLblCall);
-        scaleImage(".//resources/images/group.png", gameHost_jLblGroup);
+        scaleImageInLabel(".//resources/images/half.png", gameHost_jLblHalf);
+        scaleImageInLabel(".//resources/images/call.png", gameHost_jLblCall);
+        scaleImageInLabel(".//resources/images/group.png", gameHost_jLblGroup);
     }
 
     /**

@@ -9,6 +9,7 @@ import Helpers.GameGenerator;
 import Helpers.GameHandler;
 import Helpers.DatabaseHandler;
 import static Helpers.ViewHelper.infoBox;
+import static Helpers.ViewHelper.switchPanelView;
 import Models.Game;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Component;
@@ -895,11 +896,10 @@ public class JFrameMain extends javax.swing.JFrame {
             infoBox("Nincs kvíz az adatbázisban!");
             return;
         }
-        menu_kGrdntPnl.setVisible(false);
 
         addCheckboxesToPanel(newGame_kGrdntPnlSources, sources);
-
-        newGame_kGrdntPnlSources.setVisible(true);
+        
+        switchPanelView(menu_kGrdntPnl,newGame_kGrdntPnlSources);
     }//GEN-LAST:event_menu_bttnNewGameMouseClicked
 
     private void menu_bttnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnExitMouseClicked
@@ -909,14 +909,12 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void newGame_Sources_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnBackMouseClicked
         // TODO add your handling code here:
-        newGame_kGrdntPnlSources.setVisible(false);
-        menu_kGrdntPnl.setVisible(true);
+        switchPanelView(newGame_kGrdntPnlSources,menu_kGrdntPnl);
     }//GEN-LAST:event_newGame_Sources_kBttnBackMouseClicked
 
     private void newGame_Categories_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Categories_kBttnBackMouseClicked
         // TODO add your handling code here:
-        newGame_kGrdntPnlCategories.setVisible(false);
-        newGame_kGrdntPnlSources.setVisible(true);
+        switchPanelView(newGame_kGrdntPnlCategories,newGame_kGrdntPnlSources);
     }//GEN-LAST:event_newGame_Categories_kBttnBackMouseClicked
 
     private void newGame_Categories_kBttnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Categories_kBttnNextMouseClicked
@@ -928,21 +926,28 @@ public class JFrameMain extends javax.swing.JFrame {
         }
         gameGenerator.setChosenCategories(categories);
 
-        newGame_kGrdntPnlCategories.setVisible(false);
-        newGame_kGrdntPnlGameName.setVisible(true);
+        switchPanelView(newGame_kGrdntPnlCategories,newGame_kGrdntPnlGameName);
 
     }//GEN-LAST:event_newGame_Categories_kBttnNextMouseClicked
 
     private void newGame_GameName_kBttnStartMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_kBttnStartMouseClicked
         // TODO add your handling code here:
         String gameName = newGame_GameName_jTxtFldGameName.getText();
+        int cups = Integer.parseInt(newGame_GameName_jTxtFldCupNumber.getText());
+        int refills = Integer.parseInt(newGame_GameName_jTxtFldRefillNumber.getText());
         if (gameName.equals("") || gameName.equals("Add meg a játék nevét!")) {
             infoBox("Adj nevet a játéknak!");
             return;
         }
+        
+        if (cups<=0 || refills<=0)
+        {
+            infoBox("Hibás pohár mennyiség!");
+            return;
+        }
 
         ///IDE JÖN A KIVÁLASZTOTT POHARAK ÉS ÚJRATÖLTÉSEK SZÁMA
-        gameGenerator.setRules(10, 1);
+        gameGenerator.setRules(cups, refills);
 
         gameGenerator.generateGame(gameName);
         game = gameGenerator.getGame();
@@ -962,8 +967,7 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void newGame_GameName_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_GameName_kBttnBackMouseClicked
         // TODO add your handling code here:
-        newGame_kGrdntPnlGameName.setVisible(false);
-        newGame_kGrdntPnlCategories.setVisible(true);
+        switchPanelView(newGame_kGrdntPnlGameName,newGame_kGrdntPnlCategories);
     }//GEN-LAST:event_newGame_GameName_kBttnBackMouseClicked
 
     private void newGame_Sources_kBttnNextMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnNextMouseClicked
@@ -974,23 +978,21 @@ public class JFrameMain extends javax.swing.JFrame {
             return;
         }
         gameGenerator.setChosenSources(sources);
-        newGame_kGrdntPnlSources.setVisible(false);
 
         addCheckboxesToPanel(newGame_kGrdntPnlCategories, gameGenerator.getCategoriesBySourcesInDatabase());
 
-        newGame_kGrdntPnlCategories.setVisible(true);
+        switchPanelView(newGame_kGrdntPnlSources,newGame_kGrdntPnlCategories);
     }//GEN-LAST:event_newGame_Sources_kBttnNextMouseClicked
 
     private void settings_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnBackMouseClicked
         // TODO add your handling code here:
-        settings_kGrdntPnl.setVisible(false);
-        menu_kGrdntPnl.setVisible(true);
+        switchPanelView(settings_kGrdntPnl,menu_kGrdntPnl);
     }//GEN-LAST:event_settings_kBttnBackMouseClicked
 
     private void menu_bttnSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnSettingsMouseClicked
         // TODO add your handling code here:
         menu_kGrdntPnl.setVisible(false);
-        settings_kGrdntPnl.setVisible(true);
+        switchPanelView(menu_kGrdntPnl,settings_kGrdntPnl);
     }//GEN-LAST:event_menu_bttnSettingsMouseClicked
 
     private void settings_kBttnImportQuizesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_settings_kBttnImportQuizesMouseClicked
@@ -1034,14 +1036,14 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void loadGame_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnBackMouseClicked
         // TODO add your handling code here:
-        loadGame_kGrdntPnl.setVisible(false);
-        menu_kGrdntPnl.setVisible(true);
+        switchPanelView(loadGame_kGrdntPnl,menu_kGrdntPnl);
     }//GEN-LAST:event_loadGame_kBttnBackMouseClicked
 
     private void menu_bttnLoadGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnLoadGameMouseClicked
         // TODO add your handling code here:
         menu_kGrdntPnl.setVisible(false);
         loadGame_kGrdntPnl.setVisible(true);
+        switchPanelView(menu_kGrdntPnl,loadGame_kGrdntPnl);
     }//GEN-LAST:event_menu_bttnLoadGameMouseClicked
 
     private void newGame_Sources_kBttnSelectAllCheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnSelectAllCheckboxMouseClicked

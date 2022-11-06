@@ -4,10 +4,10 @@
  */
 package Views;
 
+import Views.Base.CustomJFrame;
 import static Helpers.ConverterHelper.convertSeparatedStringToStringArray;
 import static Helpers.GameHandler.gameHandlerInstance;
 import static Helpers.ViewHelper.infoBox;
-import static Helpers.ViewHelper.scaleImage;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.k33ptoo.components.KGradientPanel;
 import java.awt.Color;
@@ -27,14 +27,14 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
+import static Helpers.ViewHelper.*;
 
 /**
  *
  * @author Jani
  */
-public class JFramePlayer extends javax.swing.JFrame {
+public class JFramePlayer extends CustomJFrame {
 
-    int frameHeight, frameWidth;
     int cupsForThisTurn;
 
     @Override
@@ -48,8 +48,9 @@ public class JFramePlayer extends javax.swing.JFrame {
 
     public JFramePlayer() throws IOException {
         initComponents();
-        showOnScreen(1, this);
-
+        setFrameToFullscreen();
+      
+        showOnScreen(2, this);
         endGame_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(false);
         scores_kGrdntPnl.setVisible(false);
@@ -59,26 +60,12 @@ public class JFramePlayer extends javax.swing.JFrame {
         game_kGrdntPnl.setLayout(null);
         scores_kGrdntPnl.setLayout(null);
 
-        Toolkit tk = Toolkit.getDefaultToolkit();
-        Dimension dimension = tk.getScreenSize();
-
-        setPreferredSize(dimension);
-
-        pack();
-
-        frameWidth = dimension.width;
-        frameHeight = dimension.height;
-
         changeLocation(newPlayer_jTxtFldPlayerName, 0, 0);
         changeLocation(newPlayer_kBttnStart, 0, 80);
-
-        scaleImage(".//resources/images/half.png", game_jLblHalf);
-        scaleImage(".//resources/images/call.png", game_jLblCall);
-        scaleImage(".//resources/images/group.png", game_jLblGroup);
-        scaleImage(".//resources/images/shot.png", game_jLblCup);
-        scaleImage(".//resources/images/gold.png", scores_jLblGold);
-        scaleImage(".//resources/images/silver.png", scores_jLblSilver);
-        scaleImage(".//resources/images/bronze.png", scores_jLblBronze);
+        
+        scaleImageInLabel(".//resources/images/gold.png", scores_jLblGold);
+        scaleImageInLabel(".//resources/images/silver.png", scores_jLblSilver);
+        scaleImageInLabel(".//resources/images/bronze.png", scores_jLblBronze);
     }
 
     /**
@@ -249,9 +236,8 @@ public class JFramePlayer extends javax.swing.JFrame {
             .addGroup(game_kGrdntPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(game_jLblPoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(game_jLblCupNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(game_jLblPoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(game_jLblCupNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(game_jLblHalf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(game_jLblCall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(game_jLblGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -514,6 +500,7 @@ public class JFramePlayer extends javax.swing.JFrame {
         });
 
         gameHandlerInstance.createPlayer(playerName);
+        
         newPlayer_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(true);
 
@@ -523,51 +510,35 @@ public class JFramePlayer extends javax.swing.JFrame {
             ex.getMessage();
         }
         String[] answers = convertSeparatedStringToStringArray(gameHandlerInstance.getQuestion().getAnswers());
-
-        for (int i = 0; i < answers.length; i++) {
-            addAnswersJPanelToFrame(i, answers[i]);
-        }
+        
+        generateAnswerPanels(game_kGrdntPnl, answers);
+               
         cupsForThisTurn = gameHandlerInstance.getPlayersCups();
-
-        ///Teszt a teljes új kérdés generálására, lekérdezésére, és megválaszolására
-//        try {
-//            gameHandlerInstance.getNewQuestion();
-//        } catch (Exception ex) {
-//            Logger.getLogger(JFramePlayer.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        Question q = gameHandlerInstance.getQuestion();
-//        System.out.println("ID:        | " + q.getID());
-//            System.out.println("Question:  | " + q.getQuestion());
-//            System.out.println("Answers:   | " + q.getAnswers());
-//            System.out.println("RAnswerID: | " + q.getRightAnswerID());
-//            System.out.println("Category:  | " + q.getCategory());
-//            System.out.println("Source:    | " + q.getSource());
-//            System.out.println("\n");
-//        gameHandlerInstance.answerQuestion(new String[]{"1","2","3"});
+        
+        scaleImageInLabel(".//resources/images/half.png", game_jLblHalf);
+        scaleImageInLabel(".//resources/images/call.png", game_jLblCall);
+        scaleImageInLabel(".//resources/images/group.png", game_jLblGroup);
+        scaleImageInLabel(".//resources/images/shot.png", game_jLblCup);
+        
+        switchPanelView(newPlayer_kGrdntPnl,game_kGrdntPnl);
     }//GEN-LAST:event_newPlayer_kBttnStartMouseClicked
 
     private void endGame_kBttnNextPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_endGame_kBttnNextPageMouseClicked
         // TODO add your handling code here:
-        scores_kGrdntPnl.setVisible(true);
-        newPlayer_kGrdntPnl.setVisible(false);
-        endGame_kGrdntPnl.setVisible(false);
-        game_kGrdntPnl.setVisible(false);
+        
+        switchPanelView(endGame_kGrdntPnl, scores_kGrdntPnl);
     }//GEN-LAST:event_endGame_kBttnNextPageMouseClicked
 
     private void scores_kBttnNextPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scores_kBttnNextPageMouseClicked
         // TODO add your handling code here:
-        newPlayer_kGrdntPnl.setVisible(true);
-        endGame_kGrdntPnl.setVisible(false);
-        game_kGrdntPnl.setVisible(false);
-        scores_kGrdntPnl.setVisible(false);
+        
+        switchPanelView(scores_kGrdntPnl, newPlayer_kGrdntPnl);
     }//GEN-LAST:event_scores_kBttnNextPageMouseClicked
 
     private void game_kBttnNextPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_kBttnNextPageMouseClicked
         // TODO add your handling code here:
-        endGame_kGrdntPnl.setVisible(true);
-        game_kGrdntPnl.setVisible(false);
-        scores_kGrdntPnl.setVisible(false);
-        newPlayer_kGrdntPnl.setVisible(false);
+        
+        switchPanelView(game_kGrdntPnl, endGame_kGrdntPnl);
     }//GEN-LAST:event_game_kBttnNextPageMouseClicked
 
     /**
@@ -600,79 +571,9 @@ public class JFramePlayer extends javax.swing.JFrame {
     }
 
     ///SAJÁT ELJÁRÁSOK
-    void addAnswersJPanelToFrame(int index, String answer) {
-        int number = 0;
-        KGradientPanel game_kGrdntPnlAnswer = new KGradientPanel();
-        GridBagConstraints gbc = new GridBagConstraints();
-
-        JLabel jLblPlus = new JLabel();
-        JLabel jLblMinus = new JLabel();
-        JLabel jLblCups = new JLabel();
-        JLabel jLblAnswer = new JLabel();
-
-        jLblAnswer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLblAnswer.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
-        jLblAnswer.setFont(new java.awt.Font("Century Gothic", 3, 18));
-        jLblAnswer.setForeground(Color.BLACK);
-        jLblAnswer.setText(answer);
-
-        jLblCups.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLblCups.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
-        jLblCups.setFont(new java.awt.Font("Century Gothic", 3, 18));
-        jLblCups.setForeground(Color.BLACK);
-        jLblCups.setText(Integer.toString(number));
-
-        jLblPlus.setSize(50, 50);
-        jLblPlus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLblPlus.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
-        jLblPlus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLblMinus.setSize(50, 50);
-        jLblMinus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLblMinus.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
-        jLblMinus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        jLblPlus.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addCups(jLblCups, index);
-            }
-        });
-        jLblMinus.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                subtractCups(jLblCups, index);
-            }
-        });
-
-        game_kGrdntPnlAnswer.setkBorderRadius(100);
-        game_kGrdntPnlAnswer.setkStartColor(new java.awt.Color(128, 128, 128));
-        game_kGrdntPnlAnswer.setkEndColor(new java.awt.Color(128, 128, 128));
-        game_kGrdntPnlAnswer.setOpaque(false);
-
-        game_kGrdntPnlAnswer.setBounds(400 * index, frameHeight / 2, 300, 300);
-        game_kGrdntPnlAnswer.setLayout(new GridBagLayout());
-
-        scaleImage(".//resources/images/plus.png", jLblPlus);
-        scaleImage(".//resources/images/minus.png", jLblMinus);
-
-        gbc.fill = GridBagConstraints.BOTH;
-        gbc.weightx = 0.1;
-        gbc.weighty = 0.1;
-        gbc.gridx = gbc.gridy = 0;
-        gbc.gridwidth = 3;
-        game_kGrdntPnlAnswer.add(jLblAnswer, gbc);
-        gbc.gridwidth = 1;
-        gbc.gridx = 0;
-        gbc.gridy = 1;
-        game_kGrdntPnlAnswer.add(jLblPlus, gbc);
-        gbc.gridx = 1;
-        game_kGrdntPnlAnswer.add(jLblCups, gbc);
-        gbc.gridx = 2;
-        game_kGrdntPnlAnswer.add(jLblMinus, gbc);
-
-        game_kGrdntPnl.add(game_kGrdntPnlAnswer);
-    }
-
-    private void addCups(JLabel label, int index) {
+    
+    @Override
+    protected void addCups(JLabel label, int index) {
         if (cupsForThisTurn > 0) {
             cupsForThisTurn--;
             label.setText(Integer.toString(Integer.parseInt(label.getText()) + 1));
@@ -681,7 +582,8 @@ public class JFramePlayer extends javax.swing.JFrame {
 
     }
 
-    private void subtractCups(JLabel label, int index) {
+    @Override
+    protected void subtractCups(JLabel label, int index) {
         if (Integer.parseInt(label.getText()) > 0) {
             cupsForThisTurn++;
             label.setText(Integer.toString(Integer.parseInt(label.getText()) - 1));
@@ -695,10 +597,6 @@ public class JFramePlayer extends javax.swing.JFrame {
         gameHandlerInstance.setPickedAnswers(cupsOnAnswers);
     }
 
-    void changeLocation(Component comp, int width, int height) {
-        comp.setLocation(frameWidth / 2 - comp.getWidth() / 2 + width,
-                frameHeight / 2 - comp.getHeight() / 2 + height);
-    }
 
     ///SAJÁT ELJÁRÁSOK VÉGE
     public static void showOnScreen(int screen, JFrame frame) {
