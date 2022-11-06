@@ -62,8 +62,8 @@ public class JFrameHost extends CustomJFrame {
         exit_JLblLogo1 = new javax.swing.JLabel();
         gameHost_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         gameHost_kBttnEndGame = new com.k33ptoo.components.KButton();
-        gameHost_jLblPlayerName = new javax.swing.JLabel();
         gameHost_jLblGameName = new javax.swing.JLabel();
+        gameHost_jLblPlayerName = new javax.swing.JLabel();
         gameHost_kBttnNextQuestion = new com.k33ptoo.components.KButton();
         gameHost_kBttnShowAnswer = new com.k33ptoo.components.KButton();
         gameHost_jLblQuestion = new javax.swing.JLabel();
@@ -136,15 +136,15 @@ public class JFrameHost extends CustomJFrame {
             }
         });
 
-        gameHost_jLblPlayerName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        gameHost_jLblPlayerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gameHost_jLblPlayerName.setText("Játék neve: *J.N.*");
-        gameHost_jLblPlayerName.setPreferredSize(new java.awt.Dimension(366, 50));
-
         gameHost_jLblGameName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         gameHost_jLblGameName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gameHost_jLblGameName.setText("Játékos neve: *J.N.*");
+        gameHost_jLblGameName.setText("Játék neve: *J.N.*");
         gameHost_jLblGameName.setPreferredSize(new java.awt.Dimension(366, 50));
+
+        gameHost_jLblPlayerName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        gameHost_jLblPlayerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gameHost_jLblPlayerName.setText("Játékos neve: *J.N.*");
+        gameHost_jLblPlayerName.setPreferredSize(new java.awt.Dimension(366, 50));
 
         gameHost_kBttnNextQuestion.setBorder(null);
         gameHost_kBttnNextQuestion.setText("Következő kérdés");
@@ -169,6 +169,11 @@ public class JFrameHost extends CustomJFrame {
         gameHost_kBttnShowAnswer.setkIndicatorThickness(0);
         gameHost_kBttnShowAnswer.setkStartColor(new java.awt.Color(46, 139, 87));
         gameHost_kBttnShowAnswer.setPreferredSize(new java.awt.Dimension(200, 50));
+        gameHost_kBttnShowAnswer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                gameHost_kBttnShowAnswerMouseClicked(evt);
+            }
+        });
 
         gameHost_jLblQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         gameHost_jLblQuestion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -223,8 +228,8 @@ public class JFrameHost extends CustomJFrame {
                     .addComponent(gameHost_jLblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameHost_kGrdntPnlLayout.createSequentialGroup()
                         .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(gameHost_jLblGameName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(gameHost_jLblPlayerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(gameHost_jLblPlayerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(gameHost_jLblGameName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameHost_kGrdntPnlLayout.createSequentialGroup()
@@ -244,14 +249,14 @@ public class JFrameHost extends CustomJFrame {
                 .addContainerGap()
                 .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(gameHost_jLblPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(gameHost_jLblGameName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(gameHost_kBttnEndGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(gameHost_jLblHalf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(gameHost_jLblCall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(gameHost_jLblGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gameHost_jLblGameName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gameHost_jLblPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(gameHost_kBttnNewPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(gameHost_jLblQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -369,7 +374,23 @@ public class JFrameHost extends CustomJFrame {
         
     }//GEN-LAST:event_gameHost_kBttnEndGameMouseClicked
 
+    private void gameHost_kBttnShowAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameHost_kBttnShowAnswerMouseClicked
+        // TODO add your handling code here:
+        gameHandlerInstance.callFromHostToPlayer_RevealAnswer();
+    }//GEN-LAST:event_gameHost_kBttnShowAnswerMouseClicked
+
     ///SAJÁT ELJÁRÁSOK
+    public void newQuestion() {
+        gameHost_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
+        gameHost_jLblGameName.setText("Játék neve: "+gameHandlerInstance.getGame().getGameName());
+        gameHost_jLblPlayerName.setText("Játékos neve: "+gameHandlerInstance.getActualPlayer().getPlayerName());
+        
+        generateAnswerPanels(gameHost_kGrdntPnl,
+                convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
+        
+        switchPanelView(waitingScreen_kGrdntPnl, gameHost_kGrdntPnl);
+    }
+    
     public void imageScaler() {
         scaleImageInLabel(".//resources/images/half.png", gameHost_jLblHalf);
         scaleImageInLabel(".//resources/images/call.png", gameHost_jLblCall);
@@ -378,13 +399,8 @@ public class JFrameHost extends CustomJFrame {
 
     ///SAJÁT ELJÁRÁSOK VÉGE
     ///EVENTEK
-    public void playerGameStarted() {
-        gameHost_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
-        
-        generateAnswerPanels(gameHost_kGrdntPnl,
-                convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
-        
-        switchPanelView(waitingScreen_kGrdntPnl, gameHost_kGrdntPnl);
+    public void receive_PlayerGameStarted() {
+        newQuestion();
     }
 
     ///EVENTEK VÉGE

@@ -11,6 +11,9 @@ import Models.Player;
 import Models.Question;
 import Models.QuestionHistory;
 import Views.JFrameHost;
+import static Views.JFrameHost.jFrameHostInstance;
+import Views.JFramePlayer;
+import static Views.JFramePlayer.jFramePlayerInstance;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -46,11 +49,6 @@ public class GameHandler {
         setActualPlayer();
     }
 
-    public void callPlayerGameStarted()
-    {
-        JFrameHost.jFrameHostInstance.playerGameStarted();
-    }
-    
     public void setActualPlayer() {
         actualPlayer = getLastPlayerInList();
     }
@@ -66,6 +64,10 @@ public class GameHandler {
 
     public Player getActualPlayer() {
         return actualPlayer;
+    }
+    
+    public Game getGame() {
+        return game;
     }
 
     public void setNewQuestion() throws Exception {
@@ -95,6 +97,10 @@ public class GameHandler {
     public String[] getQuestionAnswers() {
         String[] answers = convertSeparatedStringToStringArray(actualQuestion.getAnswers());
         return answers;
+    }
+    
+    public String getActualAnswer() {
+        return actualAnswer;
     }
 
     private List<Question> getFilteredQuestions() {
@@ -188,5 +194,18 @@ public class GameHandler {
         actualPlayer.setCupsLeft(0);
         actualPlayer.setRefillsLeft(0);
         _context.Player.update(actualPlayer);
+    }
+    
+    
+    
+    
+    public void callFromPlayerToHost_PlayerGameStarted()
+    {
+        jFrameHostInstance.receive_PlayerGameStarted();
+    }
+    
+    public void callFromHostToPlayer_RevealAnswer()
+    {
+        jFramePlayerInstance.receive_RevealAnswer();
     }
 }

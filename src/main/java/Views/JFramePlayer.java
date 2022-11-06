@@ -10,7 +10,6 @@ import static Helpers.GameHandler.gameHandlerInstance;
 import static Helpers.ViewHelper.infoBox;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.k33ptoo.components.KGradientPanel;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
@@ -28,6 +27,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import static Helpers.ViewHelper.*;
+import java.awt.Color;
 
 /**
  *
@@ -49,7 +49,7 @@ public class JFramePlayer extends CustomJFrame {
 
     public JFramePlayer() throws IOException {
         initComponents();
-        isPlayer=true;
+        isPlayer = true;
         setFrameToFullscreen();
 
         if (gameHandlerInstance.getActualPlayer() == null) {
@@ -608,7 +608,7 @@ public class JFramePlayer extends CustomJFrame {
         generateAnswerPanels(game_kGrdntPnl,
                 convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
 
-        gameHandlerInstance.callPlayerGameStarted();
+        gameHandlerInstance.callFromPlayerToHost_PlayerGameStarted();
     }
 
     @Override
@@ -648,6 +648,33 @@ public class JFramePlayer extends CustomJFrame {
     }
 
     ///SAJÁT ELJÁRÁSOK VÉGE
+    ///EVENTEK
+    public void receive_RevealAnswer() {
+        int index = 0;
+        KGradientPanel comparePanel = new KGradientPanel();
+        for (Component cmp : game_kGrdntPnl.getComponents()) {
+            if(cmp.getClass() == comparePanel.getClass())
+            {
+                KGradientPanel panel = (KGradientPanel)cmp;
+                JLabel label = (JLabel)panel.getComponent(0);
+                if(label.getText().equals(gameHandlerInstance.getActualAnswer()))
+                {
+                    game_kGrdntPnl.getComponent(index).setBackground(Color.red);
+                    game_kGrdntPnl.getComponent(index).repaint();
+                }
+                else
+                {
+                    
+                }
+                ((KGradientPanel)cmp).getComponent(2).setEnabled(false);
+                ((KGradientPanel)cmp).getComponent(3).setEnabled(false);
+                
+            }
+            index++;
+        }
+    }
+
+    ///EVENTEK VÉGE
     public static void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
         GraphicsDevice[] gd = ge.getScreenDevices();
