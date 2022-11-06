@@ -11,6 +11,7 @@ import Models.Player;
 import Models.Question;
 import Models.QuestionHistory;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -26,7 +27,8 @@ public class GameHandler {
     private Game game;
     private Player actualPlayer;
     private Question actualQuestion;
-    private String[] answers;
+    private String[] answersAsCups;
+    private String actualAnswer;
 
     public GameHandler() {
         _context = new DrinQuizContext();
@@ -45,17 +47,17 @@ public class GameHandler {
     public void setActualPlayer() {
         actualPlayer = getLastPlayerInList();
     }
-    
+
     public Player getLastPlayerInList() {
         Player lastPlayer;
         List<Player> players = _context.Player.getAll();
         players = players.stream().filter(p -> p.getGameID() == game.getID()).toList();
         lastPlayer = players.get(players.size() - 1);
-        
+
         return lastPlayer;
     }
-    
-    public Player getActualPlayer(){
+
+    public Player getActualPlayer() {
         return actualPlayer;
     }
 
@@ -70,20 +72,24 @@ public class GameHandler {
         question = questions.get(rnd.nextInt(questions.size()));
 
         actualQuestion = question;
+
+        answersAsCups = new String[convertSeparatedStringToStringArray(actualQuestion.getAnswers()).length];
+        for (int i = 0; i < answersAsCups.length; ++i) {
+            answersAsCups[i] = "0";
+        }
         
-        answers = new String[convertSeparatedStringToStringArray(actualQuestion.getAnswers()).length];
-        for(int i = 0; i<answers.length; ++i)
-            answers[i] = "0";
+        randomizeNewQuestion();
     }
 
     public Question getActualQuestion() {
         return actualQuestion;
     }
-    
-    public String[] getQuestionAnswers(){
+
+    public String[] getQuestionAnswers() {
         String[] answers = convertSeparatedStringToStringArray(actualQuestion.getAnswers());
         return answers;
     }
+
     private List<Question> getFilteredQuestions() {
         List<Question> questions = _context.Question.getAll();
         String[] sources = ConverterHelper.convertSeparatedStringToStringArray(game.getSources());
@@ -107,37 +113,74 @@ public class GameHandler {
         return false;
     }
     
-    
-    public String[] getPickedAnswers() { return answers; }
-    public void setPickedAnswers(String[] answers)
-    {
-        this.answers=answers;
+    private void randomizeNewQuestion(){
+        actualAnswer = getQuestionAnswers()[actualQuestion.getRightAnswerID()];
+        String[] answersToRandomize = getQuestionAnswers();
+        List<String> atrList = Arrays.asList(answersToRandomize);
+        Collections.shuffle(atrList);
+        atrList.toArray(answersToRandomize);
+        String answerBlock = ConverterHelper.convertStringArrayToSeparatedString(answersToRandomize);
+        actualQuestion.setAnswers(answerBlock);
+        System.out.println(actualAnswer);
+    }
+
+    public void refillCups() {
+        actualPlayer.setCupsLeft(game.getCups());
+        actualPlayer.setRefillsLeft(actualPlayer.getRefillsLeft()-1);
+    }
+
+    public String[] getPickedAnswers() {
+        return answersAsCups;
+    }
+
+    public void setPickedAnswers(String[] answers) {
+        this.answersAsCups = answers;
         //ESEMÉNYKEZELŐ IDE, AMIRE A HOSZT FELíRATKOZIK, HOGY FRISSíTŐDJÖN A UI-JA
     }
 
     public void answerQuestion() {
-        //Ki kell dolgozni mi történik, ha a kvízt megválaszolták
-        int score = countScore(answers);
-        String answersBlock = ConverterHelper.convertStringArrayToSeparatedString(answers);
+        String answersBlock = ConverterHelper.convertStringArrayToSeparatedString(answersAsCups);
 
-        addQuestionToQuestionHistory(answersBlock);
-        addScoreToPlayer(score);
+        setNewCupsLeftAfterAnswer(); 
+        addQuestionToQuestionHistory(answersBlock);     
     }
-
+    
     //answers alapján pontozási rendszert kell kidolgozni
-    private int countScore(String[] answers) {
-        int score = 10;
-        return score;
+    private void setNewCupsLeftAfterAnswer()
+    {
+        String[] answersArray = getQuestionAnswers();
+        int newCupsLeft = actualPlayer.getCupsLeft();
+        
+        for(int i=0;i<answersAsCups.length;i++)
+        {
+            int cups = Integer.parseInt(answersAsCups[i]);
+            if(answersArray[i].equals(actualAnswer))
+            {
+                addScoreToPlayer(cups);
+            }
+            else
+            {
+                newCupsLeft-=cups;
+            }
+        }
+        actualPlayer.setCupsLeft(newCupsLeft);
+        _context.Player.update(actualPlayer);
     }
 
+    private void addScoreToPlayer(int correctCups) {
+        int score = correctCups*10;
+        actualPlayer.setScore(actualPlayer.getScore() + score);
+    }
+ 
     private void addQuestionToQuestionHistory(String answersBlock) {
         QuestionHistory questionHistory
                 = new QuestionHistory(0, game.getID(), actualPlayer.getID(), actualQuestion.getID(), answersBlock);
         _context.QuestionHistory.add(questionHistory);
     }
 
-    private void addScoreToPlayer(int score) {
-        actualPlayer.setScore(actualPlayer.getScore() + score);
+    public void endPlayerGame() {
+        actualPlayer.setCupsLeft(0);
+        actualPlayer.setRefillsLeft(0);
         _context.Player.update(actualPlayer);
     }
 }
