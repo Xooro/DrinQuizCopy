@@ -1131,12 +1131,30 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void loadGame_kBttnLoadGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnLoadGameMouseClicked
         // TODO add your handling code here:
-        
-        loadGame_jLstPreviousGames.getSelectedIndex();
+        int gameIndex = loadGame_jLstPreviousGames.getSelectedIndex();
+        if(gameIndex<0)
+        {
+            infoBox("Válassz egy játékot!");
+            return;
+        }
+        gameLoader.loadGameForPlay(gameIndex);
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                JFramePlayer.main(new String[]{});
+            }
+        });
     }//GEN-LAST:event_loadGame_kBttnLoadGameMouseClicked
 
     private void loadGame_kBttnDeleteGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnDeleteGameMouseClicked
         // TODO add your handling code here:
+        int gameIndex = loadGame_jLstPreviousGames.getSelectedIndex();
+        if(gameIndex<0)
+        {
+            infoBox("Válassz egy játékot!");
+            return;
+        }
+        gameLoader.deleteGame(gameIndex);
+        loadGame_jLstPreviousGames.setModel(gameLoader.loadGamesToList());
     }//GEN-LAST:event_loadGame_kBttnDeleteGameMouseClicked
 
 ///SAJÁT ELJÁRÁSOK

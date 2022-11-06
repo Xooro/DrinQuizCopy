@@ -43,9 +43,16 @@ public class GameHandler {
     }
 
     public void setActualPlayer() {
+        actualPlayer = getLastPlayerInList();
+    }
+    
+    public Player getLastPlayerInList() {
+        Player lastPlayer;
         List<Player> players = _context.Player.getAll();
         players = players.stream().filter(p -> p.getGameID() == game.getID()).toList();
-        actualPlayer = players.get(players.size() - 1);
+        lastPlayer = players.get(players.size() - 1);
+        
+        return lastPlayer;
     }
     
     public Player getActualPlayer(){

@@ -9,6 +9,9 @@ import Models.Enums.Categories;
 import Models.Enums.Sources;
 import Models.Question;
 import Helpers.WebHandlers.NapiKvizWebHandler;
+import Models.Game;
+import Models.Player;
+import Models.QuestionHistory;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -62,6 +65,18 @@ public class DatabaseHandler {
 //            System.out.println("Source:    | " + q.getSource());
 //            System.out.println("\n");
 //        }
+    }
+    
+    public void deleteGameInDatabase(Game game)
+    {
+        List<Player> players = _context.Player.getAll();
+        List<QuestionHistory> questionHistories = _context.QuestionHistory.getAll();
+        players = players.stream().filter(p -> p.getGameID() == game.getID()).toList();
+        questionHistories = questionHistories.stream().filter(q -> q.getGameID() == game.getID()).toList();
+        
+        _context.QuestionHistory.removeRange(questionHistories);
+        _context.Player.removeRange(players);
+        _context.Game.remove(game);
     }
     
     public void clearQuestionsInDatabase()

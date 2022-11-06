@@ -50,14 +50,23 @@ public class JFramePlayer extends CustomJFrame {
         initComponents();
         setFrameToFullscreen();
 
+        if(gameHandlerInstance.getActualPlayer()==null)
+        {
+            switchPanelView(game_kGrdntPnl, newPlayer_kGrdntPnl);
+        }
+        else
+        {
+            generateGameFrame();
+            switchPanelView(newPlayer_kGrdntPnl, game_kGrdntPnl);
+        }
+        
         showOnScreen(2, this);
         endGame_kGrdntPnl.setVisible(false);
-        game_kGrdntPnl.setVisible(false);
         scores_kGrdntPnl.setVisible(false);
 
         newPlayer_kGrdntPnl.setLayout(null);
-        endGame_kGrdntPnl.setLayout(null);
         game_kGrdntPnl.setLayout(null);
+        endGame_kGrdntPnl.setLayout(null);
         scores_kGrdntPnl.setLayout(null);
 
         changeLocation(newPlayer_jTxtFldPlayerName, 0, 0);

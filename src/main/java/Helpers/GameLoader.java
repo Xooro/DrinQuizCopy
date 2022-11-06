@@ -5,7 +5,9 @@
 package Helpers;
 
 import Data.DrinQuizContext;
+import static Helpers.GameHandler.gameHandlerInstance;
 import Models.Game;
+import Models.Player;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.DefaultListModel;
@@ -20,23 +22,42 @@ import javax.swing.ListModel;
 public class GameLoader {
  
     private DrinQuizContext _context;
+    DatabaseHandler databaseHandler;
+    private List<Game> games;
     
     public GameLoader(){
         _context = new DrinQuizContext();
+        databaseHandler = new DatabaseHandler();
     }
     public DefaultListModel loadGamesToList(){
-        List<Game> games = _context.Game.getAll();
+        games = _context.Game.getAll();
         DefaultListModel demoList = new DefaultListModel();
         Collections.reverse(games);
-        for(Game game : games){
-            
+        for(Game game : games){           
              demoList.addElement(game.getGameName() + " (" + game.getCreationDate() +")");
-
         }
         return demoList;
     }
     
-    public void loadGameForPlay(){
+    public void loadGameForPlay(int gameIndex){
+        Player player = null;
+        Game gameToLoad = games.get(gameIndex);
+        gameHandlerInstance.setGame(gameToLoad);
+        try {
+            player = gameHandlerInstance.getLastPlayerInList();
+        } catch (Exception e) {
+        }
         
+        if(!(player==null || (player.getCupsLeft()==0 && player.getRefillsLeft()==0)))
+        {
+            gameHandlerInstance.setActualPlayer();
+        }   
     }
+    
+    public void deleteGame(int gameIndex){
+        Game gameToDelete = games.get(gameIndex);
+        databaseHandler.deleteGameInDatabase(gameToDelete);   
+    }
+    
+    
 }
