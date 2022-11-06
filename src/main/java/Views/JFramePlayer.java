@@ -1,26 +1,23 @@
-    /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Views;
 
 import static Helpers.ConverterHelper.convertSeparatedStringToStringArray;
-import static Helpers.ConverterHelper.convertStringArrayToSeparatedString;
 import static Helpers.GameHandler.gameHandlerInstance;
 import static Helpers.ViewHelper.infoBox;
 import static Helpers.ViewHelper.scaleImage;
-import Models.Question;
 import com.formdev.flatlaf.FlatDarkLaf;
+import com.k33ptoo.components.KGradientPanel;
+import java.awt.Color;
 import java.awt.Component;
-import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Panel;
 import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -28,9 +25,8 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
-import jdk.swing.interop.DragSourceContextWrapper;
 
 /**
  *
@@ -40,7 +36,7 @@ public class JFramePlayer extends javax.swing.JFrame {
 
     int frameHeight, frameWidth;
     int cupsForThisTurn;
-    
+
     @Override
     public Insets insets() {
         return super.insets(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
@@ -52,7 +48,7 @@ public class JFramePlayer extends javax.swing.JFrame {
 
     public JFramePlayer() throws IOException {
         initComponents();
-        showOnScreen(0, this);    
+        showOnScreen(1, this);
 
         endGame_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(false);
@@ -75,6 +71,14 @@ public class JFramePlayer extends javax.swing.JFrame {
 
         changeLocation(newPlayer_jTxtFldPlayerName, 0, 0);
         changeLocation(newPlayer_kBttnStart, 0, 80);
+
+        scaleImage(".//resources/images/half.png", game_jLblHalf);
+        scaleImage(".//resources/images/call.png", game_jLblCall);
+        scaleImage(".//resources/images/group.png", game_jLblGroup);
+        scaleImage(".//resources/images/shot.png", game_jLblCup);
+        scaleImage(".//resources/images/gold.png", scores_jLblGold);
+        scaleImage(".//resources/images/silver.png", scores_jLblSilver);
+        scaleImage(".//resources/images/bronze.png", scores_jLblBronze);
     }
 
     /**
@@ -86,16 +90,42 @@ public class JFramePlayer extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        componentMoverUtil1 = new com.k33ptoo.utils.ComponentMoverUtil();
         jLyrdPn = new javax.swing.JLayeredPane();
         newPlayer_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         newPlayer_jTxtFldPlayerName = new javax.swing.JTextField();
         newPlayer_kBttnStart = new com.k33ptoo.components.KButton();
         game_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
+        game_jLblQuestion = new javax.swing.JLabel();
+        game_jLblHalf = new javax.swing.JLabel();
+        game_jLblCall = new javax.swing.JLabel();
+        game_jLblCupNumber = new javax.swing.JLabel();
+        game_jLblCup = new javax.swing.JLabel();
+        game_jLblGroup = new javax.swing.JLabel();
+        game_jLblPoint = new javax.swing.JLabel();
+        game_kBttnNextPage = new com.k33ptoo.components.KButton();
         endGame_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
+        endGame_jLblEarnedPoints = new javax.swing.JLabel();
+        endGame_jLblPlayerName = new javax.swing.JLabel();
+        endGame_jLblPlayerName1 = new javax.swing.JLabel();
+        endGame_kBttnNextPage = new com.k33ptoo.components.KButton();
         scores_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
+        scores_jLblPlayerName2 = new javax.swing.JLabel();
+        scores_jLblGold = new javax.swing.JLabel();
+        scores_jLblSilver = new javax.swing.JLabel();
+        scores_jLblBronze = new javax.swing.JLabel();
+        scores_jLblFirstPlace = new javax.swing.JLabel();
+        scores_jLblThirdPlace = new javax.swing.JLabel();
+        scores_jLblSecondPlace = new javax.swing.JLabel();
+        scores_kBttnNextPage = new com.k33ptoo.components.KButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        exit_JLblLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(icon.getImage());
+        setName("frame"); // NOI18N
         setUndecorated(true);
 
         newPlayer_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
@@ -129,63 +159,288 @@ public class JFramePlayer extends javax.swing.JFrame {
             .addGroup(newPlayer_kGrdntPnlLayout.createSequentialGroup()
                 .addGroup(newPlayer_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(newPlayer_kGrdntPnlLayout.createSequentialGroup()
-                        .addGap(44, 44, 44)
+                        .addGap(250, 250, 250)
                         .addComponent(newPlayer_jTxtFldPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(newPlayer_kGrdntPnlLayout.createSequentialGroup()
-                        .addGap(86, 86, 86)
+                        .addGap(300, 300, 300)
                         .addComponent(newPlayer_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(511, Short.MAX_VALUE))
+                .addGap(250, 250, 250))
         );
         newPlayer_kGrdntPnlLayout.setVerticalGroup(
             newPlayer_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newPlayer_kGrdntPnlLayout.createSequentialGroup()
-                .addContainerGap(529, Short.MAX_VALUE)
+                .addGap(200, 200, 200)
                 .addComponent(newPlayer_jTxtFldPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49)
+                .addGap(18, 18, 18)
                 .addComponent(newPlayer_kBttnStart, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(76, 76, 76))
+                .addContainerGap(267, Short.MAX_VALUE))
         );
 
         game_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
         game_kGrdntPnl.setkStartColor(new java.awt.Color(46, 139, 87));
 
+        game_jLblQuestion.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        game_jLblQuestion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game_jLblQuestion.setText("*insert question here*");
+
+        game_jLblHalf.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game_jLblHalf.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        game_jLblHalf.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        game_jLblCall.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game_jLblCall.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        game_jLblCall.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        game_jLblCupNumber.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        game_jLblCupNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game_jLblCupNumber.setText("*P.Sz.*");
+        game_jLblCupNumber.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        game_jLblCup.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game_jLblCup.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        game_jLblGroup.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game_jLblGroup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        game_jLblGroup.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        game_jLblPoint.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        game_jLblPoint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game_jLblPoint.setText("Pontok: *P.*");
+        game_jLblPoint.setPreferredSize(new java.awt.Dimension(150, 50));
+
+        game_kBttnNextPage.setBorder(null);
+        game_kBttnNextPage.setText("Kövi lap");
+        game_kBttnNextPage.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        game_kBttnNextPage.setkBorderRadius(50);
+        game_kBttnNextPage.setPreferredSize(new java.awt.Dimension(200, 50));
+        game_kBttnNextPage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                game_kBttnNextPageMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout game_kGrdntPnlLayout = new javax.swing.GroupLayout(game_kGrdntPnl);
         game_kGrdntPnl.setLayout(game_kGrdntPnlLayout);
         game_kGrdntPnlLayout.setHorizontalGroup(
             game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGroup(game_kGrdntPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(game_jLblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(game_kGrdntPnlLayout.createSequentialGroup()
+                        .addComponent(game_jLblHalf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(game_jLblCall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(game_jLblGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(140, 140, 140)
+                        .addComponent(game_jLblPoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
+                        .addComponent(game_jLblCup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(game_jLblCupNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, game_kGrdntPnlLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(game_kBttnNextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         game_kGrdntPnlLayout.setVerticalGroup(
             game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(game_kGrdntPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(game_jLblPoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(game_jLblCupNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(game_jLblHalf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(game_jLblCall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(game_jLblGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(game_jLblCup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(game_jLblQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 320, Short.MAX_VALUE)
+                .addComponent(game_kBttnNextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         endGame_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
         endGame_kGrdntPnl.setkStartColor(new java.awt.Color(46, 139, 87));
 
+        endGame_jLblEarnedPoints.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        endGame_jLblEarnedPoints.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        endGame_jLblEarnedPoints.setText("Elért pontjaid: *insert earned points*");
+
+        endGame_jLblPlayerName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        endGame_jLblPlayerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        endGame_jLblPlayerName.setText("A játék véget ért számodra!");
+
+        endGame_jLblPlayerName1.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        endGame_jLblPlayerName1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        endGame_jLblPlayerName1.setText("Gratulálunk, *insert player name*!");
+
+        endGame_kBttnNextPage.setBorder(null);
+        endGame_kBttnNextPage.setText("Kövi lap");
+        endGame_kBttnNextPage.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        endGame_kBttnNextPage.setkBorderRadius(50);
+        endGame_kBttnNextPage.setPreferredSize(new java.awt.Dimension(200, 50));
+        endGame_kBttnNextPage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                endGame_kBttnNextPageMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout endGame_kGrdntPnlLayout = new javax.swing.GroupLayout(endGame_kGrdntPnl);
         endGame_kGrdntPnl.setLayout(endGame_kGrdntPnlLayout);
         endGame_kGrdntPnlLayout.setHorizontalGroup(
             endGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(endGame_jLblPlayerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(endGame_kGrdntPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(endGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(endGame_jLblEarnedPoints, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                    .addComponent(endGame_jLblPlayerName1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, endGame_kGrdntPnlLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(endGame_kBttnNextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         endGame_kGrdntPnlLayout.setVerticalGroup(
             endGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, endGame_kGrdntPnlLayout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(endGame_jLblPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(endGame_jLblPlayerName1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(endGame_jLblEarnedPoints, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 124, Short.MAX_VALUE)
+                .addComponent(endGame_kBttnNextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         scores_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
         scores_kGrdntPnl.setkStartColor(new java.awt.Color(46, 139, 87));
 
+        scores_jLblPlayerName2.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        scores_jLblPlayerName2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scores_jLblPlayerName2.setText("*insert game name* véget ért!");
+
+        scores_jLblGold.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scores_jLblGold.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        scores_jLblSilver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scores_jLblSilver.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        scores_jLblBronze.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scores_jLblBronze.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        scores_jLblFirstPlace.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        scores_jLblFirstPlace.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scores_jLblFirstPlace.setText("*insert 1. player name*");
+        scores_jLblFirstPlace.setPreferredSize(new java.awt.Dimension(250, 50));
+
+        scores_jLblThirdPlace.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        scores_jLblThirdPlace.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scores_jLblThirdPlace.setText("*insert 3. player name*");
+        scores_jLblThirdPlace.setPreferredSize(new java.awt.Dimension(250, 50));
+
+        scores_jLblSecondPlace.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        scores_jLblSecondPlace.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scores_jLblSecondPlace.setText("*insert 2. player name*");
+        scores_jLblSecondPlace.setPreferredSize(new java.awt.Dimension(250, 50));
+
+        scores_kBttnNextPage.setBorder(null);
+        scores_kBttnNextPage.setText("Kövi lap");
+        scores_kBttnNextPage.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        scores_kBttnNextPage.setkBorderRadius(50);
+        scores_kBttnNextPage.setPreferredSize(new java.awt.Dimension(200, 50));
+        scores_kBttnNextPage.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                scores_kBttnNextPageMouseClicked(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("*P.Sz.* pont");
+        jLabel1.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("*P.Sz.* pont");
+        jLabel2.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        jLabel3.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("*P.Sz.* pont");
+        jLabel3.setPreferredSize(new java.awt.Dimension(100, 50));
+
+        exit_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        exit_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
+
         javax.swing.GroupLayout scores_kGrdntPnlLayout = new javax.swing.GroupLayout(scores_kGrdntPnl);
         scores_kGrdntPnl.setLayout(scores_kGrdntPnlLayout);
         scores_kGrdntPnlLayout.setHorizontalGroup(
             scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(exit_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+                        .addGap(0, 588, Short.MAX_VALUE)
+                        .addComponent(scores_kBttnNextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(scores_jLblPlayerName2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+                .addGap(182, 182, 182)
+                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+                        .addComponent(scores_jLblSilver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(scores_jLblSecondPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+                        .addComponent(scores_jLblGold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(scores_jLblFirstPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+                        .addComponent(scores_jLblBronze, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(scores_jLblThirdPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         scores_kGrdntPnlLayout.setVerticalGroup(
             scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(exit_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(scores_jLblPlayerName2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scores_jLblGold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(scores_jLblFirstPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scores_jLblSilver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(scores_jLblSecondPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(scores_jLblBronze, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(scores_jLblThirdPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+                .addComponent(scores_kBttnNextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jLyrdPn.setLayer(newPlayer_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -197,7 +452,7 @@ public class JFramePlayer extends javax.swing.JFrame {
         jLyrdPn.setLayout(jLyrdPnLayout);
         jLyrdPnLayout.setHorizontalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 855, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(newPlayer_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +464,7 @@ public class JFramePlayer extends javax.swing.JFrame {
         );
         jLyrdPnLayout.setVerticalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 754, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(newPlayer_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,13 +479,13 @@ public class JFramePlayer extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 855, Short.MAX_VALUE)
+            .addGap(0, 800, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLyrdPn))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 754, Short.MAX_VALUE)
+            .addGap(0, 600, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jLyrdPn))
         );
@@ -252,25 +507,28 @@ public class JFramePlayer extends javax.swing.JFrame {
             infoBox("Nem adtál meg nevet!");
             return;
         }
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                JFrameHost.main(new String[]{});
+            }
+        });
 
         gameHandlerInstance.createPlayer(playerName);
         newPlayer_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(true);
-        
+
         try {
             gameHandlerInstance.getNewQuestion();
         } catch (Exception ex) {
             ex.getMessage();
         }
         String[] answers = convertSeparatedStringToStringArray(gameHandlerInstance.getQuestion().getAnswers());
-        
-        
-        for(int i=0;i<answers.length;i++)
-        {
+
+        for (int i = 0; i < answers.length; i++) {
             addAnswersJPanelToFrame(i, answers[i]);
         }
         cupsForThisTurn = gameHandlerInstance.getPlayersCups();
-        
+
         ///Teszt a teljes új kérdés generálására, lekérdezésére, és megválaszolására
 //        try {
 //            gameHandlerInstance.getNewQuestion();
@@ -287,6 +545,30 @@ public class JFramePlayer extends javax.swing.JFrame {
 //            System.out.println("\n");
 //        gameHandlerInstance.answerQuestion(new String[]{"1","2","3"});
     }//GEN-LAST:event_newPlayer_kBttnStartMouseClicked
+
+    private void endGame_kBttnNextPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_endGame_kBttnNextPageMouseClicked
+        // TODO add your handling code here:
+        scores_kGrdntPnl.setVisible(true);
+        newPlayer_kGrdntPnl.setVisible(false);
+        endGame_kGrdntPnl.setVisible(false);
+        game_kGrdntPnl.setVisible(false);
+    }//GEN-LAST:event_endGame_kBttnNextPageMouseClicked
+
+    private void scores_kBttnNextPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scores_kBttnNextPageMouseClicked
+        // TODO add your handling code here:
+        newPlayer_kGrdntPnl.setVisible(true);
+        endGame_kGrdntPnl.setVisible(false);
+        game_kGrdntPnl.setVisible(false);
+        scores_kGrdntPnl.setVisible(false);
+    }//GEN-LAST:event_scores_kBttnNextPageMouseClicked
+
+    private void game_kBttnNextPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_kBttnNextPageMouseClicked
+        // TODO add your handling code here:
+        endGame_kGrdntPnl.setVisible(true);
+        game_kGrdntPnl.setVisible(false);
+        scores_kGrdntPnl.setVisible(false);
+        newPlayer_kGrdntPnl.setVisible(false);
+    }//GEN-LAST:event_game_kBttnNextPageMouseClicked
 
     /**
      * @param args the command line arguments
@@ -314,88 +596,110 @@ public class JFramePlayer extends javax.swing.JFrame {
                 }
             }
         });
-        
+
     }
 
     ///SAJÁT ELJÁRÁSOK
-    
-    void addAnswersJPanelToFrame(int index, String answer)
-    {
+    void addAnswersJPanelToFrame(int index, String answer) {
         int number = 0;
-        JPanel game_jPnlAnswer = new JPanel();
+        KGradientPanel game_kGrdntPnlAnswer = new KGradientPanel();
         GridBagConstraints gbc = new GridBagConstraints();
-        JLabel lblPlus = new JLabel();
-        JLabel lblMinus = new JLabel();
-        JLabel lblCups = new JLabel();
-        
-        
-        lblCups.setText(Integer.toString(number));
-        lblPlus.setSize(50,50);
-        lblMinus.setSize(50,50);
-        lblPlus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMinus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblPlus.addMouseListener(new java.awt.event.MouseAdapter() {
+
+        JLabel jLblPlus = new JLabel();
+        JLabel jLblMinus = new JLabel();
+        JLabel jLblCups = new JLabel();
+        JLabel jLblAnswer = new JLabel();
+
+        jLblAnswer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblAnswer.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblAnswer.setFont(new java.awt.Font("Century Gothic", 3, 18));
+        jLblAnswer.setForeground(Color.BLACK);
+        jLblAnswer.setText(answer);
+
+        jLblCups.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblCups.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblCups.setFont(new java.awt.Font("Century Gothic", 3, 18));
+        jLblCups.setForeground(Color.BLACK);
+        jLblCups.setText(Integer.toString(number));
+
+        jLblPlus.setSize(50, 50);
+        jLblPlus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblPlus.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblPlus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLblMinus.setSize(50, 50);
+        jLblMinus.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblMinus.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+        jLblMinus.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jLblPlus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                addCups(lblCups, index);
+                addCups(jLblCups, index);
             }
         });
-        lblMinus.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLblMinus.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                subtractCups(lblCups, index);
+                subtractCups(jLblCups, index);
             }
         });
-        game_jPnlAnswer.setBounds(10+400*index, 10, 300, 300);
-        game_jPnlAnswer.setLayout(new GridBagLayout());
-        
-        scaleImage(".//resources/images/plus.png", lblPlus);
-        scaleImage(".//resources/images/minus.png", lblMinus);
-        
+
+        game_kGrdntPnlAnswer.setkBorderRadius(100);
+        game_kGrdntPnlAnswer.setkStartColor(new java.awt.Color(128, 128, 128));
+        game_kGrdntPnlAnswer.setkEndColor(new java.awt.Color(128, 128, 128));
+        game_kGrdntPnlAnswer.setOpaque(false);
+
+        game_kGrdntPnlAnswer.setBounds(400 * index, frameHeight / 2, 300, 300);
+        game_kGrdntPnlAnswer.setLayout(new GridBagLayout());
+
+        scaleImage(".//resources/images/plus.png", jLblPlus);
+        scaleImage(".//resources/images/minus.png", jLblMinus);
+
         gbc.fill = GridBagConstraints.BOTH;
         gbc.weightx = 0.1;
         gbc.weighty = 0.1;
         gbc.gridx = gbc.gridy = 0;
         gbc.gridwidth = 3;
-        game_jPnlAnswer.add(new JLabel(answer), gbc);
+        game_kGrdntPnlAnswer.add(jLblAnswer, gbc);
         gbc.gridwidth = 1;
         gbc.gridx = 0;
         gbc.gridy = 1;
-        game_jPnlAnswer.add(lblPlus, gbc);
+        game_kGrdntPnlAnswer.add(jLblPlus, gbc);
         gbc.gridx = 1;
-        game_jPnlAnswer.add(lblCups, gbc);
+        game_kGrdntPnlAnswer.add(jLblCups, gbc);
         gbc.gridx = 2;
-        game_jPnlAnswer.add(lblMinus, gbc);
+        game_kGrdntPnlAnswer.add(jLblMinus, gbc);
 
-        game_kGrdntPnl.add(game_jPnlAnswer);
+        game_kGrdntPnl.add(game_kGrdntPnlAnswer);
     }
 
-    private void addCups(JLabel label, int index){
-        if(cupsForThisTurn>0){
+    private void addCups(JLabel label, int index) {
+        if (cupsForThisTurn > 0) {
             cupsForThisTurn--;
             label.setText(Integer.toString(Integer.parseInt(label.getText()) + 1));
             sendCupsChange(index, label.getText());
-            
         }
-        
+
     }
-    private void subtractCups(JLabel label, int index){
-        if(Integer.parseInt(label.getText()) > 0){
+
+    private void subtractCups(JLabel label, int index) {
+        if (Integer.parseInt(label.getText()) > 0) {
             cupsForThisTurn++;
             label.setText(Integer.toString(Integer.parseInt(label.getText()) - 1));
             sendCupsChange(index, label.getText());
         }
     }
-    
-    private void sendCupsChange(int index,String cups){
+
+    private void sendCupsChange(int index, String cups) {
         String[] cupsOnAnswers = gameHandlerInstance.getPickedAnswers();
         cupsOnAnswers[index] = cups;
         gameHandlerInstance.setPickedAnswers(cupsOnAnswers);
     }
-    
+
     void changeLocation(Component comp, int width, int height) {
         comp.setLocation(frameWidth / 2 - comp.getWidth() / 2 + width,
                 frameHeight / 2 - comp.getHeight() / 2 + height);
     }
-    
+
     ///SAJÁT ELJÁRÁSOK VÉGE
     public static void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -414,12 +718,37 @@ public class JFramePlayer extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.k33ptoo.utils.ComponentMoverUtil componentMoverUtil1;
+    private javax.swing.JLabel endGame_jLblEarnedPoints;
+    private javax.swing.JLabel endGame_jLblPlayerName;
+    private javax.swing.JLabel endGame_jLblPlayerName1;
+    private com.k33ptoo.components.KButton endGame_kBttnNextPage;
     private com.k33ptoo.components.KGradientPanel endGame_kGrdntPnl;
+    private javax.swing.JLabel exit_JLblLogo;
+    private javax.swing.JLabel game_jLblCall;
+    private javax.swing.JLabel game_jLblCup;
+    private javax.swing.JLabel game_jLblCupNumber;
+    private javax.swing.JLabel game_jLblGroup;
+    private javax.swing.JLabel game_jLblHalf;
+    private javax.swing.JLabel game_jLblPoint;
+    private javax.swing.JLabel game_jLblQuestion;
+    private com.k33ptoo.components.KButton game_kBttnNextPage;
     private com.k33ptoo.components.KGradientPanel game_kGrdntPnl;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLayeredPane jLyrdPn;
     private javax.swing.JTextField newPlayer_jTxtFldPlayerName;
     private com.k33ptoo.components.KButton newPlayer_kBttnStart;
     private com.k33ptoo.components.KGradientPanel newPlayer_kGrdntPnl;
+    private javax.swing.JLabel scores_jLblBronze;
+    private javax.swing.JLabel scores_jLblFirstPlace;
+    private javax.swing.JLabel scores_jLblGold;
+    private javax.swing.JLabel scores_jLblPlayerName2;
+    private javax.swing.JLabel scores_jLblSecondPlace;
+    private javax.swing.JLabel scores_jLblSilver;
+    private javax.swing.JLabel scores_jLblThirdPlace;
+    private com.k33ptoo.components.KButton scores_kBttnNextPage;
     private com.k33ptoo.components.KGradientPanel scores_kGrdntPnl;
     // End of variables declaration//GEN-END:variables
 }
