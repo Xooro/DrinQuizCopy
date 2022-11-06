@@ -8,6 +8,7 @@ import javax.swing.*;
 import Helpers.GameGenerator;
 import Helpers.GameHandler;
 import Helpers.DatabaseHandler;
+import Helpers.GameLoader;
 import static Helpers.ViewHelper.infoBox;
 import static Helpers.ViewHelper.switchPanelView;
 import Models.Game;
@@ -28,6 +29,7 @@ public class JFrameMain extends javax.swing.JFrame {
 
     Game game;
     GameGenerator gameGenerator;
+    GameLoader gameLoader;
     DatabaseHandler databaseHandler;
     /**
      * Creates new form JFrameMain
@@ -38,6 +40,7 @@ public class JFrameMain extends javax.swing.JFrame {
         initComponents();
 
         gameGenerator = new GameGenerator();
+        gameLoader = new GameLoader();
         databaseHandler = new DatabaseHandler();
 
         loadGame_kGrdntPnl.setVisible(false);
@@ -1088,9 +1091,8 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void menu_bttnLoadGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnLoadGameMouseClicked
         // TODO add your handling code here:
-        menu_kGrdntPnl.setVisible(false);
-        loadGame_kGrdntPnl.setVisible(true);
         switchPanelView(menu_kGrdntPnl, loadGame_kGrdntPnl);
+        loadGame_jLstPreviousGames.setModel(gameLoader.loadGamesToList());
     }//GEN-LAST:event_menu_bttnLoadGameMouseClicked
 
     private void newGame_Sources_kBttnSelectAllCheckboxMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newGame_Sources_kBttnSelectAllCheckboxMouseClicked
@@ -1129,6 +1131,8 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void loadGame_kBttnLoadGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnLoadGameMouseClicked
         // TODO add your handling code here:
+        
+        loadGame_jLstPreviousGames.getSelectedIndex();
     }//GEN-LAST:event_loadGame_kBttnLoadGameMouseClicked
 
     private void loadGame_kBttnDeleteGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnDeleteGameMouseClicked
@@ -1225,6 +1229,8 @@ public class JFrameMain extends javax.swing.JFrame {
 
     }
 
+    
+    
     ///SAJÁT ELJÁRÁSOK VÉGE
     /**
      * @param args the command line arguments
