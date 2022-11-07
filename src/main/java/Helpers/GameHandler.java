@@ -141,13 +141,13 @@ public class GameHandler {
         actualPlayer.setRefillsLeft(actualPlayer.getRefillsLeft()-1);
     }
 
-    public String[] getPickedAnswers() {
+    public String[] getPickedAnswersAsCups() {
         return answersAsCups;
     }
 
     public void setPickedAnswers(String[] answers) {
         this.answersAsCups = answers;
-        //ESEMÉNYKEZELŐ IDE, AMIRE A HOSZT FELíRATKOZIK, HOGY FRISSíTŐDJÖN A UI-JA
+        callFromPlayerToHost_AnswerCupsChanged();
     }
 
     public void answerQuestion() {
@@ -198,7 +198,7 @@ public class GameHandler {
     
     
     
-    
+    ///ESEMÉNYEK
     public void callFromPlayerToHost_PlayerGameStarted()
     {
         jFrameHostInstance.receive_PlayerGameStarted();
@@ -207,5 +207,10 @@ public class GameHandler {
     public void callFromHostToPlayer_RevealAnswer()
     {
         jFramePlayerInstance.receive_RevealAnswer();
+    }
+    
+    public void callFromPlayerToHost_AnswerCupsChanged()
+    {
+        jFrameHostInstance.receive_AnswerCupsChanged();
     }
 }

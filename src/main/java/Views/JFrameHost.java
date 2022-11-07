@@ -17,6 +17,8 @@ import javax.swing.UIManager;
 import static Helpers.ViewHelper.scaleImageInLabel;
 import static Helpers.ViewHelper.switchPanelView;
 import Views.Base.CustomJFrame;
+import com.k33ptoo.components.KGradientPanel;
+import java.awt.Component;
 import javax.swing.JLabel;
 
 /**
@@ -381,7 +383,7 @@ public class JFrameHost extends CustomJFrame {
     }//GEN-LAST:event_gameHost_kBttnShowAnswerMouseClicked
 
     ///SAJÁT ELJÁRÁSOK
-    public void newQuestion() {
+    public void displayNewQuestion() {
         gameHost_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
         gameHost_jLblGameName.setText("Játék neve: "+gameHandlerInstance.getGame().getGameName());
         gameHost_jLblPlayerName.setText("Játékos neve: "+gameHandlerInstance.getActualPlayer().getPlayerName());
@@ -401,7 +403,18 @@ public class JFrameHost extends CustomJFrame {
     ///SAJÁT ELJÁRÁSOK VÉGE
     ///EVENTEK
     public void receive_PlayerGameStarted() {
-        newQuestion();
+        displayNewQuestion();
+    }
+    
+    public void receive_AnswerCupsChanged() {
+        int index = 0;
+        for (Component cmp : gameHost_kGrdntPnl.getComponents()) {
+            if (cmp.getClass() == new KGradientPanel().getClass()) {
+                KGradientPanel panel = (KGradientPanel) cmp;
+                ((JLabel)panel.getComponent(1)).setText(gameHandlerInstance.getPickedAnswersAsCups()[index]);
+                index++;
+            }
+        }
     }
 
     ///EVENTEK VÉGE

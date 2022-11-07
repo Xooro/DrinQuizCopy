@@ -632,7 +632,7 @@ public class JFramePlayer extends CustomJFrame {
     }
 
     private void sendCupsChange(int index, String cups) {
-        String[] cupsOnAnswers = gameHandlerInstance.getPickedAnswers();
+        String[] cupsOnAnswers = gameHandlerInstance.getPickedAnswersAsCups();
         cupsOnAnswers[index] = cups;
         gameHandlerInstance.setPickedAnswers(cupsOnAnswers);
         game_jLblCupNumber.setText(cupsForThisTurn + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
