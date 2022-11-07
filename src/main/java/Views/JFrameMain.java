@@ -8,6 +8,7 @@ import javax.swing.*;
 import Helpers.GameGenerator;
 import Helpers.GameHandler;
 import Helpers.DatabaseHandler;
+import static Helpers.GameHandler.gameHandlerInstance;
 import Helpers.GameLoader;
 import static Helpers.ViewHelper.infoBox;
 import static Helpers.ViewHelper.switchPanelView;
@@ -722,8 +723,8 @@ public class JFrameMain extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(loadGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loadGame_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loadGame_kBttnLoadGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(loadGame_kBttnDeleteGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(loadGame_kBttnDeleteGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loadGame_kBttnLoadGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -1081,7 +1082,7 @@ public class JFrameMain extends javax.swing.JFrame {
     }//GEN-LAST:event_newGame_GameName_jTxtFldGameNameMouseClicked
 
     private void loadGame_kBttnBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadGame_kBttnBackMouseClicked
-        // TODO add your handling code here:
+        // TODO add your handling code heres
         switchPanelView(loadGame_kGrdntPnl, menu_kGrdntPnl);
     }//GEN-LAST:event_loadGame_kBttnBackMouseClicked
 
@@ -1132,8 +1133,9 @@ public class JFrameMain extends javax.swing.JFrame {
             infoBox("Válassz egy játékot!");
             return;
         }
+        
         gameLoader.loadGameForPlay(gameIndex);
-        startGame();
+        startGame();        
         this.dispose();
     }//GEN-LAST:event_loadGame_kBttnLoadGameMouseClicked
 
@@ -1145,6 +1147,8 @@ public class JFrameMain extends javax.swing.JFrame {
             return;
         }
         gameLoader.deleteGame(gameIndex);
+        
+        gameLoader.loadGameForPlay(gameIndex);
         loadGame_jLstPreviousGames.setModel(gameLoader.loadGamesToList());
     }//GEN-LAST:event_loadGame_kBttnDeleteGameMouseClicked
 

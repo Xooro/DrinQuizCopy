@@ -1020,8 +1020,8 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="loadGame_kBttnBack" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="loadGame_kBttnLoadGame" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="loadGame_kBttnDeleteGame" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="loadGame_kBttnLoadGame" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>

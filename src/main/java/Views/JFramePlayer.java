@@ -63,7 +63,6 @@ public class JFramePlayer extends CustomJFrame {
         initComponents();
         isPlayer = true;
         setFrameToFullscreen();
-
         if (gameHandlerInstance.getActualPlayer() == null) {
             switchPanelView(game_kGrdntPnl, newPlayer_kGrdntPnl);
         } else {

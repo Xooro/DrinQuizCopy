@@ -33,8 +33,10 @@ public class GameLoader {
         games = _context.Game.getAll();
         DefaultListModel demoList = new DefaultListModel();
         Collections.reverse(games);
-        for(Game game : games){           
+        for(Game game : games){          
+            if(!game.getIsGameFinished())
              demoList.addElement(game.getGameName() + " (" + game.getCreationDate() +")");
+            else demoList.addElement(game.getGameName() + " (" + game.getCreationDate() +") (Befejezve)" );
         }
         return demoList;
     }
@@ -47,7 +49,6 @@ public class GameLoader {
             player = gameHandlerInstance.getLastPlayerInList();
         } catch (Exception e) {
         }
-        
         if(!(player==null || (player.getCupsLeft()==0 && player.getRefillsLeft()==0)))
         {
             gameHandlerInstance.setActualPlayer();
