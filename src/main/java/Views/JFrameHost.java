@@ -26,8 +26,10 @@ import javax.swing.JLabel;
  * @author Jani
  */
 public class JFrameHost extends CustomJFrame {
-
+    
+    
     public static JFrameHost jFrameHostInstance;
+    int cupsLeft;
     /**
      * Creates new form JFrameHost
      */
@@ -82,6 +84,7 @@ public class JFrameHost extends CustomJFrame {
         exit_kBttnExit = new com.k33ptoo.components.KButton();
         exit_kBttnNewGame = new com.k33ptoo.components.KButton();
         exit_JLblLogo = new javax.swing.JLabel();
+        exit_kBttnEndGame = new com.k33ptoo.components.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(icon.getImage());
@@ -327,7 +330,7 @@ public class JFrameHost extends CustomJFrame {
         exit_kBttnExit.setPreferredSize(new java.awt.Dimension(200, 50));
 
         exit_kBttnNewGame.setBorder(null);
-        exit_kBttnNewGame.setText("Új játék");
+        exit_kBttnNewGame.setText("Új kihivó");
         exit_kBttnNewGame.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         exit_kBttnNewGame.setkBorderRadius(50);
         exit_kBttnNewGame.setkEndColor(new java.awt.Color(0, 100, 0));
@@ -337,18 +340,36 @@ public class JFrameHost extends CustomJFrame {
         exit_kBttnNewGame.setkIndicatorThickness(0);
         exit_kBttnNewGame.setkStartColor(new java.awt.Color(46, 139, 87));
         exit_kBttnNewGame.setPreferredSize(new java.awt.Dimension(200, 50));
+        exit_kBttnNewGame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exit_kBttnNewGameMouseClicked(evt);
+            }
+        });
 
         exit_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         exit_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
+
+        exit_kBttnEndGame.setBorder(null);
+        exit_kBttnEndGame.setText("Mind részegek vagyunk");
+        exit_kBttnEndGame.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        exit_kBttnEndGame.setkBorderRadius(50);
+        exit_kBttnEndGame.setkEndColor(new java.awt.Color(0, 100, 0));
+        exit_kBttnEndGame.setkHoverEndColor(new java.awt.Color(46, 139, 87));
+        exit_kBttnEndGame.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        exit_kBttnEndGame.setkHoverStartColor(new java.awt.Color(0, 100, 0));
+        exit_kBttnEndGame.setkIndicatorThickness(0);
+        exit_kBttnEndGame.setkStartColor(new java.awt.Color(46, 139, 87));
+        exit_kBttnEndGame.setPreferredSize(new java.awt.Dimension(200, 50));
+        exit_kBttnEndGame.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exit_kBttnEndGameMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout exit_kGrdntPnlLayout = new javax.swing.GroupLayout(exit_kGrdntPnl);
         exit_kGrdntPnl.setLayout(exit_kGrdntPnlLayout);
         exit_kGrdntPnlLayout.setHorizontalGroup(
             exit_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(exit_kGrdntPnlLayout.createSequentialGroup()
-                .addGap(300, 300, 300)
-                .addComponent(exit_kBttnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, exit_kGrdntPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(exit_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -357,6 +378,12 @@ public class JFrameHost extends CustomJFrame {
                         .addGap(0, 588, Short.MAX_VALUE)
                         .addComponent(exit_kBttnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
+            .addGroup(exit_kGrdntPnlLayout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addGroup(exit_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(exit_kBttnEndGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exit_kBttnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         exit_kGrdntPnlLayout.setVerticalGroup(
             exit_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -365,7 +392,9 @@ public class JFrameHost extends CustomJFrame {
                 .addComponent(exit_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69)
                 .addComponent(exit_kBttnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
+                .addComponent(exit_kBttnEndGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                 .addComponent(exit_kBttnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -413,11 +442,17 @@ public class JFrameHost extends CustomJFrame {
 
     private void gameHost_kBttnEndPlayerGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameHost_kBttnEndPlayerGameMouseClicked
         // TODO add your handling code here:
-
+        switchPanelView(gameHost_kGrdntPnl, exit_kGrdntPnl);
+        gameHandlerInstance.endPlayerGame();
     }//GEN-LAST:event_gameHost_kBttnEndPlayerGameMouseClicked
 
     private void gameHost_kBttnShowAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameHost_kBttnShowAnswerMouseClicked
         // TODO add your handling code here:
+        if(cupsLeft != 0){
+            ViewHelper.infoBox("Oszd ki az összes poharad!");
+            return;
+        }
+        
         gameHandlerInstance.answerQuestion();
         gameHost_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
         
@@ -444,14 +479,30 @@ public class JFrameHost extends CustomJFrame {
         gameHandlerInstance.callFromHostToPlayer_NextPlayerRound();
     }//GEN-LAST:event_gameHost_kBttnNextQuestionMouseClicked
 
+    private void exit_kBttnNewGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exit_kBttnNewGameMouseClicked
+        // TODO add your handling code here:
+        switchPanelView(exit_kGrdntPnl, waitingScreen_kGrdntPnl);
+        gameHandlerInstance.callFromHostToPlayer_CreateNewPlayer();
+        
+    }//GEN-LAST:event_exit_kBttnNewGameMouseClicked
+
+    private void exit_kBttnEndGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exit_kBttnEndGameMouseClicked
+        // TODO add your handling code here:
+        gameHandlerInstance.callFromHostToPlayer_GameEnded();
+        this.dispose();
+        
+    }//GEN-LAST:event_exit_kBttnEndGameMouseClicked
+
     ///SAJÁT ELJÁRÁSOK
     public void displayNewQuestion() {
+        cupsLeft = gameHandlerInstance.getActualPlayer().getCupsLeft();
+        
         gameHost_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
         gameHost_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
         gameHost_jLblPlayerName.setText("Játékos neve: " + gameHandlerInstance.getActualPlayer().getPlayerName());
         gameHost_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
         gameHost_jLblRefillNumber.setText("" + gameHandlerInstance.getActualPlayer().getRefillsLeft());
-        gameHost_jLblCupNumber.setText(gameHandlerInstance.getActualPlayer().getCupsLeft() + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
+        gameHost_jLblCupNumber.setText(cupsLeft + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
 
         gameHost_kBttnShowAnswer.setVisible(true);
         gameHost_kBttnEndPlayerGame.setVisible(false);
@@ -481,7 +532,7 @@ public class JFrameHost extends CustomJFrame {
 
     public void receive_AnswerCupsChanged() {
         int index = 0;
-        int cupsLeft = gameHandlerInstance.getActualPlayer().getCupsLeft();
+        cupsLeft = gameHandlerInstance.getActualPlayer().getCupsLeft();
         for (Component cmp : gameHost_kGrdntPnl.getComponents()) {
             if (cmp.getClass() == new KGradientPanel().getClass()) {
                 KGradientPanel panel = (KGradientPanel) cmp;
@@ -542,6 +593,7 @@ public class JFrameHost extends CustomJFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel exit_JLblLogo;
     private javax.swing.JLabel exit_JLblLogo1;
+    private com.k33ptoo.components.KButton exit_kBttnEndGame;
     private com.k33ptoo.components.KButton exit_kBttnExit;
     private com.k33ptoo.components.KButton exit_kBttnNewGame;
     private com.k33ptoo.components.KGradientPanel exit_kGrdntPnl;

@@ -55,13 +55,18 @@ public class GameHandler {
 
     public Player getLastPlayerInList() {
         Player lastPlayer;
-        List<Player> players = _context.Player.getAll();
-        players = players.stream().filter(p -> p.getGameID() == game.getID()).toList();
+        List<Player> players = getGamePlayers();
         lastPlayer = players.get(players.size() - 1);
 
         return lastPlayer;
     }
 
+    public List<Player> getGamePlayers(){
+        List<Player> players = _context.Player.getAll();
+        players = players.stream().filter(p -> p.getGameID() == game.getID()).toList();
+        return players;
+    }
+    
     public Player getActualPlayer() {
         return actualPlayer;
     }
@@ -205,8 +210,9 @@ public class GameHandler {
         actualPlayer.setCupsLeft(0);
         actualPlayer.setRefillsLeft(0);
         _context.Player.update(actualPlayer);
+        callFromHostToPlayer_PlayerGameEnded();
+        
     }
-    
     
     
     ///ESEMÉNYEK
@@ -230,4 +236,15 @@ public class GameHandler {
         jFramePlayerInstance.receive_NextPlayerRound();
     }
     
+    public void callFromHostToPlayer_PlayerGameEnded(){
+        jFramePlayerInstance.receive_PlayerGameEnded();
+    }
+    
+    public void callFromHostToPlayer_CreateNewPlayer(){
+        jFramePlayerInstance.receive_CreateNewPlayer();
+    }
+    
+    public void callFromHostToPlayer_GameEnded(){
+        jFramePlayerInstance.receive_GameEnded();
+    }
 }

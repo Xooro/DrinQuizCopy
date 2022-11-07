@@ -5,7 +5,6 @@
 package com.mycompany.projectdrinquiz;
 
 import Views.JFrameMain;
-import java.io.IOException;
 import javax.swing.SwingUtilities;
 
 /**
@@ -14,8 +13,7 @@ import javax.swing.SwingUtilities;
  */
 public class ProjectDrinQuiz {
 
-    public static void main(String[] args)
-            throws IOException {
+    public static void main(String[] args) {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
