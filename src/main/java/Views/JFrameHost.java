@@ -328,6 +328,11 @@ public class JFrameHost extends CustomJFrame {
         exit_kBttnExit.setkIndicatorThickness(0);
         exit_kBttnExit.setkStartColor(new java.awt.Color(46, 139, 87));
         exit_kBttnExit.setPreferredSize(new java.awt.Dimension(200, 50));
+        exit_kBttnExit.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                exit_kBttnExitMouseClicked(evt);
+            }
+        });
 
         exit_kBttnNewGame.setBorder(null);
         exit_kBttnNewGame.setText("Új kihivó");
@@ -492,6 +497,11 @@ public class JFrameHost extends CustomJFrame {
         this.dispose();
         
     }//GEN-LAST:event_exit_kBttnEndGameMouseClicked
+
+    private void exit_kBttnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exit_kBttnExitMouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_exit_kBttnExitMouseClicked
 
     ///SAJÁT ELJÁRÁSOK
     public void displayNewQuestion() {

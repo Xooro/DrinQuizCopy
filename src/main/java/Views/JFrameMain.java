@@ -38,6 +38,7 @@ public class JFrameMain extends javax.swing.JFrame {
 
     public JFrameMain() {
         initComponents();
+        GameHandler.gameHandlerInstance = new GameHandler();
 
         gameGenerator = new GameGenerator();
         gameLoader = new GameLoader();

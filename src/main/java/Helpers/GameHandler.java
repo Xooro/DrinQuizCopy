@@ -25,7 +25,7 @@ import java.util.Random;
  */
 public class GameHandler {
 
-    public static GameHandler gameHandlerInstance = new GameHandler();
+    public static GameHandler gameHandlerInstance;
 
     private DrinQuizContext _context;
     private Game game;

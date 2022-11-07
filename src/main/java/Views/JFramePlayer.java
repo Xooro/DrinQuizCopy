@@ -401,7 +401,7 @@ public class JFramePlayer extends CustomJFrame {
         scores_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
 
         scores_kBttnViewScores.setBorder(null);
-        scores_kBttnViewScores.setText("Menu");
+        scores_kBttnViewScores.setText("Összes pontszám");
         scores_kBttnViewScores.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         scores_kBttnViewScores.setkBorderRadius(50);
         scores_kBttnViewScores.setkEndColor(new java.awt.Color(100, 0, 0));

@@ -557,6 +557,9 @@
                   <Dimension value="[200, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="exit_kBttnExitMouseClicked"/>
+              </Events>
             </Component>
             <Component class="com.k33ptoo.components.KButton" name="exit_kBttnNewGame">
               <Properties>
