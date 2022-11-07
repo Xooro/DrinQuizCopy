@@ -669,6 +669,10 @@ public class JFramePlayer extends CustomJFrame {
         revealAnswerPanelColor(game_kGrdntPnl);
         game_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
     }
+    
+    public void receive_NextPlayerRound(){
+        generateGameFrame();
+    }
     ///EVENTEK VÉGE
     public static void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();

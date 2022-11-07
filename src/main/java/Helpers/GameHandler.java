@@ -225,4 +225,9 @@ public class GameHandler {
         jFramePlayerInstance.receive_RevealAnswer();
     }
     
+    public void callFromHostToPlayer_NextPlayerRound()
+    {
+        jFramePlayerInstance.receive_NextPlayerRound();
+    }
+    
 }
