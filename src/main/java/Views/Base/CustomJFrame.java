@@ -4,6 +4,7 @@
  */
 package Views.Base;
 
+import static Helpers.GameHandler.gameHandlerInstance;
 import static Helpers.ViewHelper.scaleImageInLabel;
 import com.k33ptoo.components.KGradientPanel;
 import java.awt.Color;
@@ -79,13 +80,13 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         jLblAnswer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLblAnswer.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
         jLblAnswer.setFont(new java.awt.Font("Century Gothic", 3, 18));
-        jLblAnswer.setForeground(Color.BLACK);
+        jLblAnswer.setForeground(new java.awt.Color(0, 0, 0));
         jLblAnswer.setText(answer);
 
         jLblCups.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLblCups.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
         jLblCups.setFont(new java.awt.Font("Century Gothic", 3, 18));
-        jLblCups.setForeground(Color.BLACK);
+        jLblCups.setForeground(new java.awt.Color(0, 0, 0));
         jLblCups.setText(Integer.toString(number));
 
         jLblPlus.setSize(50, 50);
@@ -165,5 +166,33 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
 
     protected void changePanelSize(JPanel panel, int width, int height) {
         panel.setSize(width, height);
+    }
+
+    protected void revealAnswerPanelColor(KGradientPanel displayPanel) {
+
+        KGradientPanel comparePanel = new KGradientPanel();
+        for (Component cmp : displayPanel.getComponents()) {
+            if (cmp.getClass() == comparePanel.getClass()) {
+                KGradientPanel panel = (KGradientPanel) cmp;
+                JLabel label = (JLabel) panel.getComponent(0);
+                if (label.getText().equals(gameHandlerInstance.getActualAnswer())) {
+                    panel.setkStartColor(new java.awt.Color(0, 100, 0));
+                    panel.setkEndColor(new java.awt.Color(0, 100, 0));
+                } else {
+                    panel.setkStartColor(new java.awt.Color(100, 0, 0));
+                    panel.setkEndColor(new java.awt.Color(100, 0, 0));
+                }
+                panel.getComponent(0).setForeground(new java.awt.Color(187, 187, 187));
+                panel.getComponent(1).setForeground(new java.awt.Color(187, 187, 187));
+                if(isPlayer)
+                {
+                    panel.getComponent(2).setVisible(false);
+                    panel.getComponent(3).setVisible(false);
+                }
+                
+            }
+        }
+
+        displayPanel.updateUI();
     }
 }

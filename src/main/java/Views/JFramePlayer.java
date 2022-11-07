@@ -651,27 +651,7 @@ public class JFramePlayer extends CustomJFrame {
     ///SAJÁT ELJÁRÁSOK VÉGE
     ///EVENTEK
     public void receive_RevealAnswer() {
-        int index = 0;
-        KGradientPanel comparePanel = new KGradientPanel();
-        for (Component cmp : game_kGrdntPnl.getComponents()) {
-            if (cmp.getClass() == comparePanel.getClass()) {
-                KGradientPanel panel = (KGradientPanel) cmp;
-                JLabel label = (JLabel) panel.getComponent(0);
-                if (label.getText().equals(gameHandlerInstance.getActualAnswer())) {
-                    panel.setkStartColor(new java.awt.Color(0, 100, 0));
-                    panel.setkEndColor(new java.awt.Color(0, 100, 0));
-                } else {
-                    panel.setkStartColor(new java.awt.Color(100, 0, 0));
-                    panel.setkEndColor(new java.awt.Color(100, 0, 0));
-                }
-                ((KGradientPanel) cmp).getComponent(2).setEnabled(false); // fontos! a segítségekhöz
-                ((KGradientPanel) cmp).getComponent(3).setEnabled(false);
-
-//                panel.updateUI();
-            }
-            index++;
-        }
-        game_kGrdntPnl.updateUI();
+        revealAnswerPanelColor(game_kGrdntPnl);
     }
 
     ///EVENTEK VÉGE

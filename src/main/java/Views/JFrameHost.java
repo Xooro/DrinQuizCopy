@@ -377,6 +377,7 @@ public class JFrameHost extends CustomJFrame {
     private void gameHost_kBttnShowAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameHost_kBttnShowAnswerMouseClicked
         // TODO add your handling code here:
         gameHandlerInstance.callFromHostToPlayer_RevealAnswer();
+        revealAnswerPanelColor(gameHost_kGrdntPnl);
     }//GEN-LAST:event_gameHost_kBttnShowAnswerMouseClicked
 
     ///SAJÁT ELJÁRÁSOK
