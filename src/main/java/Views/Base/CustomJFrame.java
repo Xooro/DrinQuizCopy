@@ -51,6 +51,9 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
             case 3:
                 panels = get3AnswersPanel(answers);
                 break;
+            case 4:
+                panels = get4AnswersPanel(answers);
+                break;
         }
         for (int i = 0; i < answers.length; i++) {
             displayPanel.add(panels[i]);
@@ -61,7 +64,19 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         KGradientPanel[] panels = new KGradientPanel[3];
         for (int i = 0; i < answers.length; i++) {
             KGradientPanel kPanel = getAnswersKPanelToFrame(i, answers[i]);
-            changePanelBound(kPanel, (-frameWidth / 3) + frameWidth / 3 * i, 0, frameWidth / 4, frameHeight / 3);
+            int x = (-frameWidth / 3) + frameWidth / 3 * i;
+            changePanelBound(kPanel, x, 0, frameWidth / 4, frameHeight / 3);
+            panels[i] = kPanel;
+        }
+        return panels;
+    }
+
+    protected KGradientPanel[] get4AnswersPanel(String[] answers) {
+        KGradientPanel[] panels = new KGradientPanel[4];
+        for (int i = 0; i < answers.length; i++) {
+            KGradientPanel kPanel = getAnswersKPanelToFrame(i, answers[i]);
+            int x = (int) (-frameWidth / 4 * 1.5) + frameWidth / 4 * i;
+            changePanelBound(kPanel, x, 0, frameWidth / 5, frameHeight / 3);
             panels[i] = kPanel;
         }
         return panels;
@@ -176,20 +191,18 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
                 KGradientPanel panel = (KGradientPanel) cmp;
                 JLabel label = (JLabel) panel.getComponent(0);
                 if (label.getText().equals(gameHandlerInstance.getActualAnswer())) {
-                    panel.setkStartColor(new java.awt.Color(0, 100, 0));
-                    panel.setkEndColor(new java.awt.Color(0, 100, 0));
+                    panel.setkStartColor(new java.awt.Color(0, 255, 0));
+                    panel.setkEndColor(new java.awt.Color(0, 255, 0));
                 } else {
-                    panel.setkStartColor(new java.awt.Color(100, 0, 0));
-                    panel.setkEndColor(new java.awt.Color(100, 0, 0));
+                    panel.setkStartColor(new java.awt.Color(255, 0, 0));
+                    panel.setkEndColor(new java.awt.Color(255, 0, 0));
                 }
-                panel.getComponent(0).setForeground(new java.awt.Color(187, 187, 187));
-                panel.getComponent(1).setForeground(new java.awt.Color(187, 187, 187));
-                if(isPlayer)
-                {
+
+                if (isPlayer) {
                     panel.getComponent(2).setVisible(false);
                     panel.getComponent(3).setVisible(false);
                 }
-                
+
             }
         }
 
