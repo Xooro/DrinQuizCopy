@@ -28,6 +28,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import static Helpers.ViewHelper.*;
 import java.awt.Color;
+import java.awt.Panel;
 
 /**
  *
@@ -653,25 +654,24 @@ public class JFramePlayer extends CustomJFrame {
         int index = 0;
         KGradientPanel comparePanel = new KGradientPanel();
         for (Component cmp : game_kGrdntPnl.getComponents()) {
-            if(cmp.getClass() == comparePanel.getClass())
-            {
-                KGradientPanel panel = (KGradientPanel)cmp;
-                JLabel label = (JLabel)panel.getComponent(0);
-                if(label.getText().equals(gameHandlerInstance.getActualAnswer()))
-                {
-                    game_kGrdntPnl.getComponent(index).setBackground(Color.red);
-                    game_kGrdntPnl.getComponent(index).repaint();
+            if (cmp.getClass() == comparePanel.getClass()) {
+                KGradientPanel panel = (KGradientPanel) cmp;
+                JLabel label = (JLabel) panel.getComponent(0);
+                if (label.getText().equals(gameHandlerInstance.getActualAnswer())) {
+                    panel.setkStartColor(new java.awt.Color(0, 100, 0));
+                    panel.setkEndColor(new java.awt.Color(0, 100, 0));
+                } else {
+                    panel.setkStartColor(new java.awt.Color(100, 0, 0));
+                    panel.setkEndColor(new java.awt.Color(100, 0, 0));
                 }
-                else
-                {
-                    
-                }
-                ((KGradientPanel)cmp).getComponent(2).setEnabled(false);
-                ((KGradientPanel)cmp).getComponent(3).setEnabled(false);
-                
+                ((KGradientPanel) cmp).getComponent(2).setEnabled(false); // fontos! a segítségekhöz
+                ((KGradientPanel) cmp).getComponent(3).setEnabled(false);
+
+//                panel.updateUI();
             }
             index++;
         }
+        game_kGrdntPnl.updateUI();
     }
 
     ///EVENTEK VÉGE
