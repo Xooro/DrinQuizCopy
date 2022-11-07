@@ -44,7 +44,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="800" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="820" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Component id="gameHost_kGrdntPnl" alignment="0" max="32767" attributes="0"/>
               </Group>
@@ -149,27 +149,37 @@
                               <Component id="gameHost_kBttnShowAnswer" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                               <Component id="gameHost_kBttnRefillCups" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace pref="94" max="32767" attributes="0"/>
                               <Component id="gameHost_kBttnNextQuestion" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="gameHost_jLblQuestion" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="gameHost_jLblPlayerName" max="32767" attributes="0"/>
-                                  <Component id="gameHost_jLblGameName" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="gameHost_jLblGameName" pref="0" max="32767" attributes="0"/>
+                                  <Component id="gameHost_jLblPlayerName" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="1" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="gameHost_jLblHalf" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
                                       <Component id="gameHost_jLblCall" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                                       <Component id="gameHost_jLblGroup" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="gameHost_kBttnNewPlayer" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="gameHost_jLblRefill" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="gameHost_jLblRefillNumber" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="gameHost_jLblCup" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                                      <Component id="gameHost_jLblCupNumber" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="gameHost_kBttnEndGame" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="gameHost_kBttnNewPlayer" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -185,23 +195,36 @@
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="gameHost_jLblGameName" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="gameHost_kBttnEndGame" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="gameHost_jLblCupNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="gameHost_jLblHalf" min="-2" max="-2" attributes="0"/>
-                          <Component id="gameHost_jLblCall" min="-2" max="-2" attributes="0"/>
-                          <Component id="gameHost_jLblGroup" min="-2" max="-2" attributes="0"/>
+                          <Component id="gameHost_jLblRefill" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="gameHost_jLblCup" min="-2" max="-2" attributes="0"/>
+                          <Component id="gameHost_jLblRefillNumber" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="gameHost_jLblPlayerName" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="gameHost_kBttnNewPlayer" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="gameHost_jLblQuestion" min="-2" pref="150" max="-2" attributes="0"/>
-                      <EmptySpace pref="252" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="gameHost_kBttnNextQuestion" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="gameHost_kBttnShowAnswer" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="gameHost_kBttnRefillCups" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="gameHost_jLblPlayerName" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="gameHost_kBttnNewPlayer" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="gameHost_jLblHalf" min="-2" max="-2" attributes="0"/>
+                                  <Component id="gameHost_jLblCall" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="gameHost_jLblQuestion" min="-2" pref="150" max="-2" attributes="0"/>
+                              <EmptySpace pref="252" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="gameHost_kBttnNextQuestion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="gameHost_kBttnShowAnswer" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="gameHost_kBttnRefillCups" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Component id="gameHost_jLblGroup" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -249,7 +272,7 @@
                   <Font name="Century Gothic" size="18" style="3"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="J&#xe1;t&#xe9;k neve: *J.N.*"/>
+                <Property name="text" type="java.lang.String" value="J&#xe1;t&#xe9;k neve:"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[366, 50]"/>
                 </Property>
@@ -261,7 +284,7 @@
                   <Font name="Century Gothic" size="18" style="3"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="J&#xe1;t&#xe9;kos neve: *J.N.*"/>
+                <Property name="text" type="java.lang.String" value="J&#xe1;t&#xe9;kos neve:"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[366, 50]"/>
                 </Property>
@@ -424,6 +447,46 @@
                 </Property>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 50]"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="gameHost_jLblRefill">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[50, 50]"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="gameHost_jLblRefillNumber">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Century Gothic" size="18" style="3"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="*R.Sz.*"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[50, 50]"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="gameHost_jLblCup">
+              <Properties>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[50, 50]"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JLabel" name="gameHost_jLblCupNumber">
+              <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Century Gothic" size="18" style="3"/>
+                </Property>
+                <Property name="horizontalAlignment" type="int" value="0"/>
+                <Property name="text" type="java.lang.String" value="*P.Sz.*"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[50, 50]"/>
                 </Property>
               </Properties>
             </Component>

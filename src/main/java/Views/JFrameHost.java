@@ -35,13 +35,13 @@ public class JFrameHost extends CustomJFrame {
 
     public JFrameHost() {
         initComponents();
-        isPlayer=false;
+        isPlayer = false;
         setFrameToFullscreen();
         showOnScreen(2, this);
 
         gameHost_kGrdntPnl.setVisible(false);
         exit_kGrdntPnl.setVisible(false);
-        
+
         waitingScreen_jLblPleaseWait.setLayout(null);
         gameHost_kGrdntPnl.setLayout(null);
         exit_kGrdntPnl.setLayout(null);
@@ -74,6 +74,10 @@ public class JFrameHost extends CustomJFrame {
         gameHost_jLblGroup = new javax.swing.JLabel();
         gameHost_jLblCall = new javax.swing.JLabel();
         gameHost_kBttnRefillCups = new com.k33ptoo.components.KButton();
+        gameHost_jLblRefill = new javax.swing.JLabel();
+        gameHost_jLblRefillNumber = new javax.swing.JLabel();
+        gameHost_jLblCup = new javax.swing.JLabel();
+        gameHost_jLblCupNumber = new javax.swing.JLabel();
         exit_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         exit_kBttnExit = new com.k33ptoo.components.KButton();
         exit_kBttnNewGame = new com.k33ptoo.components.KButton();
@@ -140,12 +144,12 @@ public class JFrameHost extends CustomJFrame {
 
         gameHost_jLblGameName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         gameHost_jLblGameName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gameHost_jLblGameName.setText("Játék neve: *J.N.*");
+        gameHost_jLblGameName.setText("Játék neve:");
         gameHost_jLblGameName.setPreferredSize(new java.awt.Dimension(366, 50));
 
         gameHost_jLblPlayerName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         gameHost_jLblPlayerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        gameHost_jLblPlayerName.setText("Játékos neve: *J.N.*");
+        gameHost_jLblPlayerName.setText("Játékos neve:");
         gameHost_jLblPlayerName.setPreferredSize(new java.awt.Dimension(366, 50));
 
         gameHost_kBttnNextQuestion.setBorder(null);
@@ -214,6 +218,22 @@ public class JFrameHost extends CustomJFrame {
         gameHost_kBttnRefillCups.setkStartColor(new java.awt.Color(46, 139, 87));
         gameHost_kBttnRefillCups.setPreferredSize(new java.awt.Dimension(200, 50));
 
+        gameHost_jLblRefill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gameHost_jLblRefill.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        gameHost_jLblRefillNumber.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        gameHost_jLblRefillNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gameHost_jLblRefillNumber.setText("*R.Sz.*");
+        gameHost_jLblRefillNumber.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        gameHost_jLblCup.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gameHost_jLblCup.setPreferredSize(new java.awt.Dimension(50, 50));
+
+        gameHost_jLblCupNumber.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        gameHost_jLblCupNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gameHost_jLblCupNumber.setText("*P.Sz.*");
+        gameHost_jLblCupNumber.setPreferredSize(new java.awt.Dimension(50, 50));
+
         javax.swing.GroupLayout gameHost_kGrdntPnlLayout = new javax.swing.GroupLayout(gameHost_kGrdntPnl);
         gameHost_kGrdntPnl.setLayout(gameHost_kGrdntPnlLayout);
         gameHost_kGrdntPnlLayout.setHorizontalGroup(
@@ -225,24 +245,33 @@ public class JFrameHost extends CustomJFrame {
                         .addComponent(gameHost_kBttnShowAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(94, 94, 94)
                         .addComponent(gameHost_kBttnRefillCups, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                         .addComponent(gameHost_kBttnNextQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(gameHost_jLblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameHost_kGrdntPnlLayout.createSequentialGroup()
-                        .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(gameHost_jLblPlayerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(gameHost_jLblGameName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
                         .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameHost_kGrdntPnlLayout.createSequentialGroup()
+                            .addComponent(gameHost_jLblGameName, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                            .addComponent(gameHost_jLblPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(gameHost_kGrdntPnlLayout.createSequentialGroup()
                                 .addComponent(gameHost_jLblHalf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(gameHost_jLblCall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(52, 52, 52)
                                 .addComponent(gameHost_jLblGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(gameHost_kBttnEndGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(gameHost_kBttnNewPlayer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(gameHost_kBttnNewPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(gameHost_kGrdntPnlLayout.createSequentialGroup()
+                                .addComponent(gameHost_jLblRefill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(gameHost_jLblRefillNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(gameHost_jLblCup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(gameHost_jLblCupNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(gameHost_kBttnEndGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         gameHost_kGrdntPnlLayout.setVerticalGroup(
@@ -252,21 +281,30 @@ public class JFrameHost extends CustomJFrame {
                 .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(gameHost_jLblGameName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(gameHost_kBttnEndGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(gameHost_jLblHalf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gameHost_jLblCall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gameHost_jLblGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(gameHost_kBttnEndGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(gameHost_jLblCupNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(gameHost_jLblRefill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gameHost_jLblCup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(gameHost_jLblRefillNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gameHost_jLblPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gameHost_kBttnNewPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(gameHost_jLblQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
-                .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gameHost_kBttnNextQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gameHost_kBttnShowAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gameHost_kBttnRefillCups, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(gameHost_kGrdntPnlLayout.createSequentialGroup()
+                        .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(gameHost_jLblPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(gameHost_kBttnNewPlayer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(gameHost_jLblHalf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gameHost_jLblCall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(gameHost_jLblQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                        .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(gameHost_kBttnNextQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gameHost_kBttnShowAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(gameHost_kBttnRefillCups, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(gameHost_kGrdntPnlLayout.createSequentialGroup()
+                        .addComponent(gameHost_jLblGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -338,7 +376,7 @@ public class JFrameHost extends CustomJFrame {
         jLyrdPn.setLayout(jLyrdPnLayout);
         jLyrdPnLayout.setHorizontalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 800, Short.MAX_VALUE)
+            .addGap(0, 820, Short.MAX_VALUE)
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(gameHost_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -373,7 +411,7 @@ public class JFrameHost extends CustomJFrame {
 
     private void gameHost_kBttnEndGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameHost_kBttnEndGameMouseClicked
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_gameHost_kBttnEndGameMouseClicked
 
     private void gameHost_kBttnShowAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameHost_kBttnShowAnswerMouseClicked
@@ -385,19 +423,21 @@ public class JFrameHost extends CustomJFrame {
     ///SAJÁT ELJÁRÁSOK
     public void displayNewQuestion() {
         gameHost_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
-        gameHost_jLblGameName.setText("Játék neve: "+gameHandlerInstance.getGame().getGameName());
-        gameHost_jLblPlayerName.setText("Játékos neve: "+gameHandlerInstance.getActualPlayer().getPlayerName());
-        
+        gameHost_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
+        gameHost_jLblPlayerName.setText("Játékos neve: " + gameHandlerInstance.getActualPlayer().getPlayerName());
+
         generateAnswerPanels(gameHost_kGrdntPnl,
                 convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
-        
+
         switchPanelView(waitingScreen_kGrdntPnl, gameHost_kGrdntPnl);
     }
-    
+
     public void imageScaler() {
         scaleImageInLabel(".//resources/images/half.png", gameHost_jLblHalf);
         scaleImageInLabel(".//resources/images/call.png", gameHost_jLblCall);
         scaleImageInLabel(".//resources/images/group.png", gameHost_jLblGroup);
+        scaleImageInLabel(".//resources/images/shot.png", gameHost_jLblCup);
+        scaleImageInLabel(".//resources/images/refill.png", gameHost_jLblRefill);
     }
 
     ///SAJÁT ELJÁRÁSOK VÉGE
@@ -405,13 +445,13 @@ public class JFrameHost extends CustomJFrame {
     public void receive_PlayerGameStarted() {
         displayNewQuestion();
     }
-    
+
     public void receive_AnswerCupsChanged() {
         int index = 0;
         for (Component cmp : gameHost_kGrdntPnl.getComponents()) {
             if (cmp.getClass() == new KGradientPanel().getClass()) {
                 KGradientPanel panel = (KGradientPanel) cmp;
-                ((JLabel)panel.getComponent(1)).setText(gameHandlerInstance.getPickedAnswersAsCups()[index]);
+                ((JLabel) panel.getComponent(1)).setText(gameHandlerInstance.getPickedAnswersAsCups()[index]);
                 index++;
             }
         }
@@ -470,11 +510,15 @@ public class JFrameHost extends CustomJFrame {
     private com.k33ptoo.components.KButton exit_kBttnNewGame;
     private com.k33ptoo.components.KGradientPanel exit_kGrdntPnl;
     private javax.swing.JLabel gameHost_jLblCall;
+    private javax.swing.JLabel gameHost_jLblCup;
+    private javax.swing.JLabel gameHost_jLblCupNumber;
     private javax.swing.JLabel gameHost_jLblGameName;
     private javax.swing.JLabel gameHost_jLblGroup;
     private javax.swing.JLabel gameHost_jLblHalf;
     private javax.swing.JLabel gameHost_jLblPlayerName;
     private javax.swing.JLabel gameHost_jLblQuestion;
+    private javax.swing.JLabel gameHost_jLblRefill;
+    private javax.swing.JLabel gameHost_jLblRefillNumber;
     private com.k33ptoo.components.KButton gameHost_kBttnEndGame;
     private com.k33ptoo.components.KButton gameHost_kBttnNewPlayer;
     private com.k33ptoo.components.KButton gameHost_kBttnNextQuestion;
