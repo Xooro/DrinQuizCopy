@@ -90,6 +90,7 @@ public class GameGenerator {
         Date todayDate = new Date();
         
         game.setCreationDate(new java.sql.Date(todayDate.getTime()));
+        game.setIsGameFinished(false);
         game.setGameName(name);
         
         _context.Game.add(game);

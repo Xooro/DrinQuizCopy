@@ -14,6 +14,7 @@ import Views.JFrameHost;
 import static Views.JFrameHost.jFrameHostInstance;
 import Views.JFramePlayer;
 import static Views.JFramePlayer.jFramePlayerInstance;
+import com.k33ptoo.components.KGradientPanel;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -211,7 +212,12 @@ public class GameHandler {
         actualPlayer.setRefillsLeft(0);
         _context.Player.update(actualPlayer);
         callFromHostToPlayer_PlayerGameEnded();
-        
+    }
+    
+    public void endGame() {
+        game.setIsGameFinished(true);
+        _context.Game.update(game);
+        callFromHostToPlayer_GameEnded();
     }
     
     
@@ -224,6 +230,10 @@ public class GameHandler {
     public void callFromPlayerToHost_AnswerCupsChanged()
     {
         jFrameHostInstance.receive_AnswerCupsChanged();
+    }
+    
+     public void callFromPlayerToHost_HalfHelpUsed(List<Integer> indexesToRemove){
+        jFrameHostInstance.receive_HalfHelpUsed(indexesToRemove);
     }
     
     public void callFromHostToPlayer_RevealAnswer()
@@ -247,4 +257,6 @@ public class GameHandler {
     public void callFromHostToPlayer_GameEnded(){
         jFramePlayerInstance.receive_GameEnded();
     }
+    
+   
 }

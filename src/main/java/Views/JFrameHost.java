@@ -19,6 +19,7 @@ import static Helpers.ViewHelper.switchPanelView;
 import Views.Base.CustomJFrame;
 import com.k33ptoo.components.KGradientPanel;
 import java.awt.Component;
+import java.util.List;
 import javax.swing.JLabel;
 
 /**
@@ -493,7 +494,7 @@ public class JFrameHost extends CustomJFrame {
 
     private void exit_kBttnEndGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exit_kBttnEndGameMouseClicked
         // TODO add your handling code here:
-        gameHandlerInstance.callFromHostToPlayer_GameEnded();
+        gameHandlerInstance.endGame();
         this.dispose();
         
     }//GEN-LAST:event_exit_kBttnEndGameMouseClicked
@@ -552,6 +553,10 @@ public class JFrameHost extends CustomJFrame {
             }
         }
         gameHost_jLblCupNumber.setText(cupsLeft + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
+    }
+    
+    public void receive_HalfHelpUsed(List<Integer> indexesToRemove) {
+        turnOffSpecifiecAnswerPanels(gameHost_kGrdntPnl, indexesToRemove);
     }
 
     ///EVENTEK VÉGE

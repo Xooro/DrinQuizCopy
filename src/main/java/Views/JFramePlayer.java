@@ -563,15 +563,15 @@ public class JFramePlayer extends CustomJFrame {
         // TODO add your handling code here:
         jFramePlayerInstance = null;
         JFrameHost.jFrameHostInstance = null;
-        
+
         ProjectDrinQuiz.main(new String[]{});
-        
+
         this.dispose();
     }//GEN-LAST:event_scores_kBttnMenuMouseClicked
 
     private void game_jLblHalfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblHalfMouseClicked
         // TODO add your handling code here:
-
+        useAnswerToHalfHelp();
     }//GEN-LAST:event_game_jLblHalfMouseClicked
 
     private void scores_kBttnViewScoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scores_kBttnViewScoresMouseClicked
@@ -618,7 +618,7 @@ public class JFramePlayer extends CustomJFrame {
         } catch (Exception ex) {
             ex.getMessage();
         }
-          
+
         cupsForThisTurn = gameHandlerInstance.getActualPlayer().getCupsLeft();
 
         game_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
@@ -626,14 +626,12 @@ public class JFramePlayer extends CustomJFrame {
         game_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
         game_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
         game_jLblCupNumber.setText(cupsForThisTurn + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
-        game_jLblRefillNumber.setText(""+gameHandlerInstance.getActualPlayer().getRefillsLeft());
-        
+        game_jLblRefillNumber.setText("" + gameHandlerInstance.getActualPlayer().getRefillsLeft());
+
         generateAnswerPanels(game_kGrdntPnl,
                 convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
 
         gameHandlerInstance.callFromPlayerToHost_PlayerGameStarted();
-        
-        useAnswerToHalfHelp();
     }
 
     @Override
@@ -673,87 +671,92 @@ public class JFramePlayer extends CustomJFrame {
         scaleImageInLabel(".//resources/images/bronze.png", scores_jLblBronze);
     }
 
-    public void getTopThree(){
+    public void getTopThree() {
         List<Player> players = new ArrayList<Player>(gameHandlerInstance.getGamePlayers());
         players.sort(Comparator.comparing(Player::getScore).reversed());
-        
+
         int[] scores = new int[players.size()];
-        for(int i = 0; i< players.size(); ++i){
+        for (int i = 0; i < players.size(); ++i) {
             scores[i] = players.get(i).getScore();
         }
         int[] noDuplicatesScores = IntStream.of(scores).distinct().toArray();
-        String[] playersOnPodium = new String[] {"", "", ""};
-        for(Player p : players){
-            for(int i = 0; i <3; ++i){
-                if(noDuplicatesScores.length > i && p.getScore() == noDuplicatesScores[i]){
+        String[] playersOnPodium = new String[]{"", "", ""};
+        for (Player p : players) {
+            for (int i = 0; i < 3; ++i) {
+                if (noDuplicatesScores.length > i && p.getScore() == noDuplicatesScores[i]) {
                     playersOnPodium[i] += p.getPlayerName();
                     playersOnPodium[i] += "; ";
                 }
             }
         }
-        
+
         scores_jLblFirstPlaceScore.setText("" + noDuplicatesScores[0]);
-        if(noDuplicatesScores.length > 1) scores_jLblSecondPlaceScore.setText("" + noDuplicatesScores[1]);
-        if(noDuplicatesScores.length > 2) scores_jLblThirdPlaceScore.setText("" + noDuplicatesScores[2]);
-        
+        if (noDuplicatesScores.length > 1) {
+            scores_jLblSecondPlaceScore.setText("" + noDuplicatesScores[1]);
+        }
+        if (noDuplicatesScores.length > 2) {
+            scores_jLblThirdPlaceScore.setText("" + noDuplicatesScores[2]);
+        }
+
         scores_jLblFirstPlace.setText(playersOnPodium[0]);
         scores_jLblSecondPlace.setText(playersOnPodium[1]);
         scores_jLblThirdPlace.setText(playersOnPodium[2]);
-        
+
     }
+
     ///SAJÁT ELJÁRÁSOK VÉGE
     ///EVENTEK
     public void receive_RevealAnswer() {
         revealAnswerPanelColor(game_kGrdntPnl);
         game_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
     }
-    
-    public void receive_NextPlayerRound(){
+
+    public void receive_NextPlayerRound() {
         generateGameFrame();
     }
-    
-    public void receive_PlayerGameEnded(){ 
+
+    public void receive_PlayerGameEnded() {
         playerFinished_jLblPlayerName.setText("Gratulálunk, " + gameHandlerInstance.getActualPlayer().getPlayerName());
         playerFinished_jLblEarnedPoints.setText("Elért pontjaid: " + gameHandlerInstance.getActualPlayer().getScore());
         switchPanelView(game_kGrdntPnl, playerFinished_kGrdntPnl);
     }
-    
-    public void receive_CreateNewPlayer(){
+
+    public void receive_CreateNewPlayer() {
         switchPanelView(playerFinished_kGrdntPnl, newPlayer_kGrdntPnl);
     }
-    
-    public void receive_GameEnded(){
+
+    public void receive_GameEnded() {
         getTopThree();
         switchPanelView(playerFinished_kGrdntPnl, scores_kGrdntPnl);
     }
-    
-    protected void useAnswerToHalfHelp()
-    {
+
+    protected void useAnswerToHalfHelp() {
         List<KGradientPanel> answerPanels = getAnswerPanels(game_kGrdntPnl);
         int howManyAnswer = answerPanels.size();
+        int howManyDelete = howManyAnswer % 2 == 0 ? howManyAnswer / 2 : (howManyAnswer - 1) / 2;
         int index = -1;
-        for(int i =0; i<howManyAnswer;++i)
-        {
+        List<Integer> indexes = new ArrayList<Integer>();
+        for (int i = 0; i < howManyAnswer; ++i) {
+            indexes.add(i);
             JLabel label = (JLabel) answerPanels.get(i).getComponent(0);
-            if (label.getText().equals(gameHandlerInstance.getActualAnswer()))
-            {
+            if (label.getText().equals(gameHandlerInstance.getActualAnswer())) {
                 index = i;
             }
         }
-        answerPanels.remove(answerPanels.get(index));
-        
-        Collections.shuffle(answerPanels);
-        int howManyDelete = howManyAnswer % 2 == 0 ? howManyAnswer / 2 : (howManyAnswer - 1) / 2 ;
-        
-        List<KGradientPanel> panelsToDelete = new ArrayList<KGradientPanel>();
-        for(int i = 0; i<howManyDelete;++i)
-        {
-            panelsToDelete.add(answerPanels.get(i));
+        indexes.remove(index);
+        Collections.shuffle(indexes);
+
+        List<Integer> indexesToRemove = new ArrayList<Integer>();
+        for (int i = 0; i < howManyDelete; ++i) {
+            indexesToRemove.add(indexes.get(i));
         }
-        
-        deleteSpecificAnswerPanels(game_kGrdntPnl,panelsToDelete);
+
+        turnOffSpecifiecAnswerPanels(game_kGrdntPnl, indexesToRemove);
+        gameHandlerInstance.callFromPlayerToHost_HalfHelpUsed(indexesToRemove);
     }
-    
+
+
+
     ///EVENTEK VÉGE
     public static void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -769,7 +772,7 @@ public class JFramePlayer extends CustomJFrame {
             throw new RuntimeException("No screen found!");
         }
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.utils.ComponentMoverUtil componentMoverUtil1;

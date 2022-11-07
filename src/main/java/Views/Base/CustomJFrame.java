@@ -218,15 +218,14 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         return panels;
     }
     
-    protected void deleteSpecificAnswerPanels(KGradientPanel displayPanel, List<KGradientPanel> answerPanelsToDelete)
-    {
-        for(int i = 0; i<answerPanelsToDelete.size();++i)
-        {
-            for(Component component : answerPanelsToDelete.get(i).getComponents())
-            {
-                component.setVisible(false);
-            }      
+    protected void turnOffSpecifiecAnswerPanels(KGradientPanel displayPanel, List<Integer> indexesToRemove) {
+        List<KGradientPanel> answerPanels = getAnswerPanels(displayPanel);
+        for (int i = 0; i < answerPanels.size(); ++i) {
+            if (indexesToRemove.contains(i)) {
+                for (Component component : answerPanels.get(i).getComponents()) {
+                    component.setVisible(false);
+                }
+            }
         }
-        displayPanel.updateUI();
     }
 }
