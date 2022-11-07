@@ -13,6 +13,8 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Toolkit;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -164,14 +166,12 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
 
     protected abstract void subtractCups(JLabel label, int index);
 
-    protected void removeOldAnswerKPanel(KGradientPanel kPanel) {
-        KGradientPanel kgp = new KGradientPanel();
-
-        for (Component component : kPanel.getComponents()) {
-            if (component.getClass() == kgp.getClass()) {
-                kPanel.remove(component);
-            }
-        }
+    protected void removeOldAnswerKPanel(KGradientPanel displayPanel) {
+          List<KGradientPanel> answerPanels = getAnswerPanels(displayPanel);
+          for(KGradientPanel panel : answerPanels)
+          {
+              displayPanel.remove(panel);
+          }
     }
 
     protected void changePanelBound(JPanel panel, int x, int y, int width, int height) {
@@ -189,28 +189,44 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
     }
 
     protected void revealAnswerPanelColor(KGradientPanel displayPanel) {
+        List<KGradientPanel> answerPanels = getAnswerPanels(displayPanel);
+        for (KGradientPanel panel : answerPanels) {
+            JLabel label = (JLabel) panel.getComponent(0);
+            if (label.getText().equals(gameHandlerInstance.getActualAnswer())) {
+                panel.setkStartColor(new java.awt.Color(0, 255, 0));
+                panel.setkEndColor(new java.awt.Color(0, 255, 0));
+            } else {
+                panel.setkStartColor(new java.awt.Color(255, 0, 0));
+                panel.setkEndColor(new java.awt.Color(255, 0, 0));
+            }
 
-        KGradientPanel comparePanel = new KGradientPanel();
-        for (Component cmp : displayPanel.getComponents()) {
-            if (cmp.getClass() == comparePanel.getClass()) {
-                KGradientPanel panel = (KGradientPanel) cmp;
-                JLabel label = (JLabel) panel.getComponent(0);
-                if (label.getText().equals(gameHandlerInstance.getActualAnswer())) {
-                    panel.setkStartColor(new java.awt.Color(0, 255, 0));
-                    panel.setkEndColor(new java.awt.Color(0, 255, 0));
-                } else {
-                    panel.setkStartColor(new java.awt.Color(255, 0, 0));
-                    panel.setkEndColor(new java.awt.Color(255, 0, 0));
-                }
-
-                if (isPlayer) {
-                    panel.getComponent(2).setVisible(false);
-                    panel.getComponent(3).setVisible(false);
-                }
-
+            if (isPlayer) {
+                panel.getComponent(2).setVisible(false);
+                panel.getComponent(3).setVisible(false);
             }
         }
-
+        displayPanel.updateUI();
+    }
+    
+    protected List<KGradientPanel> getAnswerPanels(KGradientPanel displayPanel) {
+        List<KGradientPanel> panels = new ArrayList<KGradientPanel>();
+        for (Component cmp : displayPanel.getComponents()) {
+            if (cmp.getClass() == new KGradientPanel().getClass()) {
+                panels.add((KGradientPanel) cmp);
+            }
+        }
+        return panels;
+    }
+    
+    protected void deleteSpecificAnswerPanels(KGradientPanel displayPanel, List<KGradientPanel> answerPanelsToDelete)
+    {
+        for(int i = 0; i<answerPanelsToDelete.size();++i)
+        {
+            for(Component component : answerPanelsToDelete.get(i).getComponents())
+            {
+                component.setVisible(false);
+            }      
+        }
         displayPanel.updateUI();
     }
 }

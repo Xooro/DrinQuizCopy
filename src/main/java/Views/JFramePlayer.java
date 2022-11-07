@@ -36,6 +36,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -631,6 +632,8 @@ public class JFramePlayer extends CustomJFrame {
                 convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
 
         gameHandlerInstance.callFromPlayerToHost_PlayerGameStarted();
+        
+        useAnswerToHalfHelp();
     }
 
     @Override
@@ -722,6 +725,33 @@ public class JFramePlayer extends CustomJFrame {
     public void receive_GameEnded(){
         getTopThree();
         switchPanelView(playerFinished_kGrdntPnl, scores_kGrdntPnl);
+    }
+    
+    protected void useAnswerToHalfHelp()
+    {
+        List<KGradientPanel> answerPanels = getAnswerPanels(game_kGrdntPnl);
+        int howManyAnswer = answerPanels.size();
+        int index = -1;
+        for(int i =0; i<howManyAnswer;++i)
+        {
+            JLabel label = (JLabel) answerPanels.get(i).getComponent(0);
+            if (label.getText().equals(gameHandlerInstance.getActualAnswer()))
+            {
+                index = i;
+            }
+        }
+        answerPanels.remove(answerPanels.get(index));
+        
+        Collections.shuffle(answerPanels);
+        int howManyDelete = howManyAnswer % 2 == 0 ? howManyAnswer / 2 : (howManyAnswer - 1) / 2 ;
+        
+        List<KGradientPanel> panelsToDelete = new ArrayList<KGradientPanel>();
+        for(int i = 0; i<howManyDelete;++i)
+        {
+            panelsToDelete.add(answerPanels.get(i));
+        }
+        
+        deleteSpecificAnswerPanels(game_kGrdntPnl,panelsToDelete);
     }
     
     ///EVENTEK VÉGE
