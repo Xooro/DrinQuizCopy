@@ -19,7 +19,7 @@ public class GameModelService extends BaseModelService<Game> {
 
     public void addRange(List<Game> gamesToAdd) {
 
-        String sql = "INSERT INTO Game(gameName,creationDate, sources, categories, cups, refills) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO Game(gameName,creationDate, sources, categories, cups, refills, isGameFinished) VALUES(?,?,?,?,?,?,?)";
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
             for (Game gameToAdd : gamesToAdd) {
@@ -30,6 +30,7 @@ public class GameModelService extends BaseModelService<Game> {
                 pstmt.setString(4, gameToAdd.getCategories());
                 pstmt.setInt(5, gameToAdd.getCups());
                 pstmt.setInt(6, gameToAdd.getRefills());
+                pstmt.setBoolean(7, gameToAdd.getIsGameFinished());
 
                 pstmt.addBatch();
                 index++;
@@ -55,7 +56,8 @@ public class GameModelService extends BaseModelService<Game> {
                 + "sources = ?, "
                 + "categories = ?, "
                 + "cups = ?, "
-                + "refills = ? "
+                + "refills = ?, "
+                + "isGameFinished = ? "
                 + "WHERE id = ?";
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
@@ -68,7 +70,8 @@ public class GameModelService extends BaseModelService<Game> {
                 pstmt.setString(4, gameToUpdate.getCategories());
                 pstmt.setInt(5, gameToUpdate.getCups());
                 pstmt.setInt(6, gameToUpdate.getRefills());
-                pstmt.setInt(7, gameToUpdate.getID());
+                pstmt.setBoolean(7, gameToUpdate.getIsGameFinished());
+                pstmt.setInt(8, gameToUpdate.getID());
                 // update 
                 pstmt.addBatch();
                 index++;
@@ -125,6 +128,7 @@ public class GameModelService extends BaseModelService<Game> {
                 game.setCategories(rs.getString("categories"));
                 game.setCups(rs.getInt("cups"));
                 game.setRefills(rs.getInt("refills"));
+                game.setIsGameFinished(rs.getBoolean("isGameFinished"));
 
                 gameList.add(game);
 

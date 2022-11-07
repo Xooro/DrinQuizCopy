@@ -15,17 +15,19 @@ public class Player {
     private int score;
     private int cupsLeft;
     private int refillsLeft;
+    private boolean isHalfingUsed;
     
 
     public Player(){}
     
-    public Player(int id, int gameID, String playerName, int score, int cupsLeft, int refillsLeft){
+    public Player(int id, int gameID, String playerName, int score, int cupsLeft, int refillsLeft, boolean isHalfingUsed){
         this.id = id;
         this.gameID = gameID;
         this.playerName = playerName;
         this.score = score;
         this.cupsLeft = cupsLeft;
         this.refillsLeft = refillsLeft;
+        this.isHalfingUsed = isHalfingUsed;
     }
     
     //GETTERS
@@ -50,7 +52,9 @@ public class Player {
     public int getRefillsLeft() {
         return refillsLeft;
     }
-    
+    public boolean getIsHalfingUsed(){
+        return isHalfingUsed;
+    }
     
     //SETTERS
     public void setID(int newId) {
@@ -73,5 +77,8 @@ public class Player {
     }
     public void setRefillsLeft(int newRefillsLeft) {
         refillsLeft = newRefillsLeft;
+    }
+    public void setIsHalfingUsed(boolean  newIsHalfingUsed){
+        isHalfingUsed = newIsHalfingUsed;
     }
 }

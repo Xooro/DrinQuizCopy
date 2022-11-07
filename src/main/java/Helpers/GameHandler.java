@@ -44,7 +44,7 @@ public class GameHandler {
     }
 
     public void createPlayer(String playerName) {
-        actualPlayer = new Player(0, game.getID(), playerName, 0, game.getCups(), game.getRefills());
+        actualPlayer = new Player(0, game.getID(), playerName, 0, game.getCups(), game.getRefills(), false);
         _context.Player.add(actualPlayer);
         setActualPlayer();
     }

@@ -22,7 +22,7 @@ public class PlayerModelService extends BaseModelService<Player> {
 
     public void addRange(List<Player> playersToAdd) {
 
-        String sql = "INSERT INTO Player(gameID,playerName, score, cupsLeft, refillsLeft) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO Player(gameID,playerName, score, cupsLeft, refillsLeft, isHalfingUsed) VALUES(?,?,?,?,?,?)";
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
             for (Player playerToAdd : playersToAdd) {
@@ -32,6 +32,7 @@ public class PlayerModelService extends BaseModelService<Player> {
                 pstmt.setInt(3, playerToAdd.getScore());
                 pstmt.setInt(4, playerToAdd.getCupsLeft());
                 pstmt.setInt(5, playerToAdd.getRefillsLeft());
+                pstmt.setBoolean(6, playerToAdd.getIsHalfingUsed());
 
                 pstmt.addBatch();
                 index++;
@@ -54,7 +55,8 @@ public class PlayerModelService extends BaseModelService<Player> {
                 + "playerName = ? , "
                 + "score = ?, "
                 + "cupsLeft = ? , "
-                + "refillsLeft = ?  "
+                + "refillsLeft = ?,  "
+                + "isHalfingUsed = ?  "
                 
                 + "WHERE id = ?";
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -67,7 +69,8 @@ public class PlayerModelService extends BaseModelService<Player> {
                 pstmt.setInt(3, playerToUpdate.getScore());
                 pstmt.setInt(4, playerToUpdate.getCupsLeft());
                 pstmt.setInt(5, playerToUpdate.getRefillsLeft());
-                pstmt.setInt(6, playerToUpdate.getID());
+                pstmt.setBoolean(6, playerToUpdate.getIsHalfingUsed());
+                pstmt.setInt(7, playerToUpdate.getID());
                 // update 
                 pstmt.addBatch();
                 index++;
@@ -122,6 +125,7 @@ public class PlayerModelService extends BaseModelService<Player> {
                 player.setScore(rs.getInt("score"));
                 player.setCupsLeft(rs.getInt("cupsLeft"));
                 player.setRefillsLeft(rs.getInt("refillsLeft"));
+                player.setIsHalfingUsed(rs.getBoolean("isHalfingUsed"));
 
                 playerList.add(player);
 

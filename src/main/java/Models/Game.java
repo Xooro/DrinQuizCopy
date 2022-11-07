@@ -20,6 +20,7 @@ public class Game {
     private String categories;
     private int cups;
     private int refills;
+    private boolean isGameFinished;
 
     //GETTERS
     public int getID() {
@@ -50,6 +51,9 @@ public class Game {
         return refills;
     }
 
+    public boolean getIsGameFinished(){
+        return isGameFinished;
+    }
     //SETTERS
     public void setID(int newId) {
         id = newId;
@@ -77,5 +81,8 @@ public class Game {
 
     public void setRefills(int newRefills) {
         refills = newRefills;
+    }
+    public void setIsGameFinished(boolean newIsGameFinished){
+        isGameFinished = newIsGameFinished;
     }
 }
