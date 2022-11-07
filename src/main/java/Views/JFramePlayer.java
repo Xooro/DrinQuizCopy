@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import javax.swing.DefaultListSelectionModel;
 
 /**
  *
@@ -72,12 +73,12 @@ public class JFramePlayer extends CustomJFrame {
 
         showOnScreen(2, this);
         playerFinished_kGrdntPnl.setVisible(false);
-        scores_kGrdntPnl.setVisible(false);
+        scores_kGrdntPnlDeleteScores.setVisible(false);
 
         newPlayer_kGrdntPnl.setLayout(null);
         game_kGrdntPnl.setLayout(null);
         playerFinished_kGrdntPnl.setLayout(null);
-        scores_kGrdntPnl.setLayout(null);
+        scores_kGrdntPnlDeleteScores.setLayout(null);
 
         changeLocation(newPlayer_jTxtFldPlayerName, 0, 0);
         changeLocation(newPlayer_kBttnStart, 0, 80);
@@ -115,7 +116,7 @@ public class JFramePlayer extends CustomJFrame {
         playerFinished_jLblEarnedPoints = new javax.swing.JLabel();
         playerFinished_jLblGameOver = new javax.swing.JLabel();
         playerFinished_jLblPlayerName = new javax.swing.JLabel();
-        scores_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
+        scores_kGrdntPnlDeleteScores = new com.k33ptoo.components.KGradientPanel();
         scores_jLblPlayerName2 = new javax.swing.JLabel();
         scores_jLblGold = new javax.swing.JLabel();
         scores_jLblSilver = new javax.swing.JLabel();
@@ -128,7 +129,8 @@ public class JFramePlayer extends CustomJFrame {
         scores_jLblFirstPlaceScore = new javax.swing.JLabel();
         scores_jLblThirdPlaceScore = new javax.swing.JLabel();
         scores_JLblLogo = new javax.swing.JLabel();
-        scores_kBttnViewScores = new com.k33ptoo.components.KButton();
+        scores_jScrllPn = new javax.swing.JScrollPane();
+        scores_jLstScoreBoard = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(icon.getImage());
@@ -338,8 +340,8 @@ public class JFramePlayer extends CustomJFrame {
                 .addContainerGap(180, Short.MAX_VALUE))
         );
 
-        scores_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
-        scores_kGrdntPnl.setkStartColor(new java.awt.Color(46, 139, 87));
+        scores_kGrdntPnlDeleteScores.setkEndColor(new java.awt.Color(0, 100, 0));
+        scores_kGrdntPnlDeleteScores.setkStartColor(new java.awt.Color(46, 139, 87));
 
         scores_jLblPlayerName2.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         scores_jLblPlayerName2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -401,96 +403,89 @@ public class JFramePlayer extends CustomJFrame {
         scores_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scores_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
 
-        scores_kBttnViewScores.setBorder(null);
-        scores_kBttnViewScores.setText("Összes pontszám");
-        scores_kBttnViewScores.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        scores_kBttnViewScores.setkBorderRadius(50);
-        scores_kBttnViewScores.setkEndColor(new java.awt.Color(100, 0, 0));
-        scores_kBttnViewScores.setkHoverEndColor(new java.awt.Color(139, 46, 87));
-        scores_kBttnViewScores.setkHoverForeGround(new java.awt.Color(0, 0, 0));
-        scores_kBttnViewScores.setkHoverStartColor(new java.awt.Color(100, 0, 0));
-        scores_kBttnViewScores.setkIndicatorThickness(0);
-        scores_kBttnViewScores.setkStartColor(new java.awt.Color(139, 46, 87));
-        scores_kBttnViewScores.setPreferredSize(new java.awt.Dimension(200, 50));
-        scores_kBttnViewScores.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                scores_kBttnViewScoresMouseClicked(evt);
-            }
+        scores_jLstScoreBoard.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        scores_jLstScoreBoard.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
         });
+        scores_jLstScoreBoard.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        scores_jLstScoreBoard.setToolTipText("");
+        scores_jLstScoreBoard.setSelectionModel(new NoSelectionModel());
+        scores_jScrllPn.setViewportView(scores_jLstScoreBoard);
 
-        javax.swing.GroupLayout scores_kGrdntPnlLayout = new javax.swing.GroupLayout(scores_kGrdntPnl);
-        scores_kGrdntPnl.setLayout(scores_kGrdntPnlLayout);
-        scores_kGrdntPnlLayout.setHorizontalGroup(
-            scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+        javax.swing.GroupLayout scores_kGrdntPnlDeleteScoresLayout = new javax.swing.GroupLayout(scores_kGrdntPnlDeleteScores);
+        scores_kGrdntPnlDeleteScores.setLayout(scores_kGrdntPnlDeleteScoresLayout);
+        scores_kGrdntPnlDeleteScoresLayout.setHorizontalGroup(
+            scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scores_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+                    .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(scores_kBttnViewScores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(scores_kBttnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(scores_jLblPlayerName2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(scores_jLblPlayerName2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
+                        .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
+                                .addComponent(scores_jLblSilver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(scores_jLblSecondPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
+                                .addComponent(scores_jLblGold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(scores_jLblFirstPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
+                                .addComponent(scores_jLblBronze, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(scores_jLblThirdPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scores_jLblThirdPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scores_jLblSecondPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(scores_jLblFirstPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(scores_jScrllPn, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
-                .addGap(182, 182, 182)
-                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
-                        .addComponent(scores_jLblSilver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(scores_jLblSecondPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
-                        .addComponent(scores_jLblGold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(scores_jLblFirstPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
-                        .addComponent(scores_jLblBronze, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(scores_jLblThirdPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scores_jLblThirdPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(scores_jLblSecondPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(scores_jLblFirstPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(182, Short.MAX_VALUE))
         );
-        scores_kGrdntPnlLayout.setVerticalGroup(
-            scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+        scores_kGrdntPnlDeleteScoresLayout.setVerticalGroup(
+            scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(scores_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(scores_jLblPlayerName2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scores_jLblGold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(scores_jLblFirstPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(scores_jLblFirstPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scores_jLblSilver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(scores_jLblSecondPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(scores_jLblSecondPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scores_jLblBronze, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(scores_jLblThirdPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(scores_jLblThirdPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
+                        .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scores_jLblGold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(scores_jLblFirstPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(scores_jLblFirstPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scores_jLblSilver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(scores_jLblSecondPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(scores_jLblSecondPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scores_jLblBronze, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(scores_jLblThirdPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(scores_jLblThirdPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(scores_jScrllPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(scores_kBttnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(scores_kBttnViewScores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(scores_kBttnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         jLyrdPn.setLayer(newPlayer_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLyrdPn.setLayer(game_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLyrdPn.setLayer(playerFinished_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLyrdPn.setLayer(scores_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLyrdPn.setLayer(scores_kGrdntPnlDeleteScores, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLyrdPnLayout = new javax.swing.GroupLayout(jLyrdPn);
         jLyrdPn.setLayout(jLyrdPnLayout);
@@ -504,7 +499,7 @@ public class JFramePlayer extends CustomJFrame {
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(playerFinished_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(scores_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scores_kGrdntPnlDeleteScores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLyrdPnLayout.setVerticalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -516,7 +511,7 @@ public class JFramePlayer extends CustomJFrame {
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(playerFinished_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(scores_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scores_kGrdntPnlDeleteScores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -573,10 +568,6 @@ public class JFramePlayer extends CustomJFrame {
         // TODO add your handling code here:
         useAnswerToHalfHelp();
     }//GEN-LAST:event_game_jLblHalfMouseClicked
-
-    private void scores_kBttnViewScoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_scores_kBttnViewScoresMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_scores_kBttnViewScoresMouseClicked
 
     /**
      * @param args the command line arguments
@@ -727,7 +718,7 @@ public class JFramePlayer extends CustomJFrame {
 
     public void receive_GameEnded() {
         getTopThree();
-        switchPanelView(playerFinished_kGrdntPnl, scores_kGrdntPnl);
+        switchPanelView(playerFinished_kGrdntPnl, scores_kGrdntPnlDeleteScores);
     }
 
     protected void useAnswerToHalfHelp() {
@@ -755,8 +746,6 @@ public class JFramePlayer extends CustomJFrame {
         gameHandlerInstance.callFromPlayerToHost_HalfHelpUsed(indexesToRemove);
     }
 
-
-
     ///EVENTEK VÉGE
     public static void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -773,6 +762,27 @@ public class JFramePlayer extends CustomJFrame {
         }
     }
 
+    private static class NoSelectionModel extends DefaultListSelectionModel {
+
+        private NoSelectionModel() {
+        }
+
+        @Override
+        public void setAnchorSelectionIndex(final int anchorIndex) {
+        }
+
+        @Override
+        public void setLeadAnchorNotificationEnabled(final boolean flag) {
+        }
+
+        @Override
+        public void setLeadSelectionIndex(final int leadIndex) {
+        }
+
+        @Override
+        public void setSelectionInterval(final int index0, final int index1) {
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.utils.ComponentMoverUtil componentMoverUtil1;
@@ -807,8 +817,9 @@ public class JFramePlayer extends CustomJFrame {
     private javax.swing.JLabel scores_jLblSilver;
     private javax.swing.JLabel scores_jLblThirdPlace;
     private javax.swing.JLabel scores_jLblThirdPlaceScore;
+    private javax.swing.JList<String> scores_jLstScoreBoard;
+    private javax.swing.JScrollPane scores_jScrllPn;
     private com.k33ptoo.components.KButton scores_kBttnMenu;
-    private com.k33ptoo.components.KButton scores_kBttnViewScores;
-    private com.k33ptoo.components.KGradientPanel scores_kGrdntPnl;
+    private com.k33ptoo.components.KGradientPanel scores_kGrdntPnlDeleteScores;
     // End of variables declaration//GEN-END:variables
 }

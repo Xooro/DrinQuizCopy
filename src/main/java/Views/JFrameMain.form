@@ -1004,7 +1004,7 @@
                               <Component id="loadGame_kBttnBack" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <Component id="loadGame_JLblLogo" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jScrollPane1" alignment="1" pref="788" max="32767" attributes="0"/>
+                          <Component id="loadGame_jScrllPn" alignment="1" pref="788" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -1016,7 +1016,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="loadGame_JLblLogo" min="-2" pref="200" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="302" max="32767" attributes="0"/>
+                      <Component id="loadGame_jScrllPn" pref="302" max="32767" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="loadGame_kBttnBack" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -1071,7 +1071,7 @@
                 </Property>
               </Properties>
             </Component>
-            <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+            <Container class="javax.swing.JScrollPane" name="loadGame_jScrllPn">
               <AuxValues>
                 <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
               </AuxValues>

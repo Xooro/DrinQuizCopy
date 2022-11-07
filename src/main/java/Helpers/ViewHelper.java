@@ -6,6 +6,7 @@ package Helpers;
 
 import com.k33ptoo.components.KGradientPanel;
 import java.awt.Image;
+import javax.swing.DefaultListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -29,9 +30,8 @@ public class ViewHelper {
         ImageIcon scaledIcon = new ImageIcon(imgScale);
         label.setIcon(scaledIcon);
     }
-    
-    public static void switchPanelView(JPanel oldPanel, JPanel newPanel)
-    {
+
+    public static void switchPanelView(JPanel oldPanel, JPanel newPanel) {
         oldPanel.setVisible(false);
         newPanel.setVisible(true);
     }

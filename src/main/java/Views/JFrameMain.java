@@ -94,7 +94,7 @@ public class JFrameMain extends javax.swing.JFrame {
         loadGame_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         loadGame_kBttnBack = new com.k33ptoo.components.KButton();
         loadGame_JLblLogo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        loadGame_jScrllPn = new javax.swing.JScrollPane();
         loadGame_jLstPreviousGames = new javax.swing.JList<>();
         loadGame_kBttnLoadGame = new com.k33ptoo.components.KButton();
         loadGame_kBttnDeleteGame = new com.k33ptoo.components.KButton();
@@ -659,7 +659,7 @@ public class JFrameMain extends javax.swing.JFrame {
             public String getElementAt(int i) { return strings[i]; }
         });
         loadGame_jLstPreviousGames.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(loadGame_jLstPreviousGames);
+        loadGame_jScrllPn.setViewportView(loadGame_jLstPreviousGames);
 
         loadGame_kBttnLoadGame.setBorder(null);
         loadGame_kBttnLoadGame.setText("Játék betöltése");
@@ -709,7 +709,7 @@ public class JFrameMain extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 170, Short.MAX_VALUE)
                         .addComponent(loadGame_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(loadGame_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE))
+                    .addComponent(loadGame_jScrllPn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE))
                 .addContainerGap())
         );
         loadGame_kGrdntPnlLayout.setVerticalGroup(
@@ -718,7 +718,7 @@ public class JFrameMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(loadGame_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
+                .addComponent(loadGame_jScrllPn, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(loadGame_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(loadGame_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1237,22 +1237,21 @@ public class JFrameMain extends javax.swing.JFrame {
         }
 
     }
-    
-    private void startGame()
-    {
+
+    private void startGame() {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 JFrameHost.main(new String[]{});
             }
         });
-        
+
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
 //                JFrameMain mainFrame = new JFrameMain();
 //                mainFrame.setVisible(true);
                 JFramePlayer.main(new String[]{});
             }
-        });     
+        });
     }
 
     ///SAJÁT ELJÁRÁSOK VÉGE
@@ -1282,9 +1281,9 @@ public class JFrameMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLayeredPane jLyrdPn;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel loadGame_JLblLogo;
     private javax.swing.JList<String> loadGame_jLstPreviousGames;
+    private javax.swing.JScrollPane loadGame_jScrllPn;
     private com.k33ptoo.components.KButton loadGame_kBttnBack;
     private com.k33ptoo.components.KButton loadGame_kBttnDeleteGame;
     private com.k33ptoo.components.KButton loadGame_kBttnLoadGame;
