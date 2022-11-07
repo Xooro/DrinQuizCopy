@@ -64,7 +64,7 @@
                   <Component id="playerFinished_kGrdntPnl" alignment="0" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="4" groupAlignment="0" attributes="0">
-                  <Component id="scores_kGrdntPnlDeleteScores" alignment="0" max="32767" attributes="0"/>
+                  <Component id="scores_kGrdntPnl" alignment="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -81,7 +81,7 @@
                   <Component id="playerFinished_kGrdntPnl" alignment="0" max="32767" attributes="0"/>
               </Group>
               <Group type="103" rootIndex="4" groupAlignment="0" attributes="0">
-                  <Component id="scores_kGrdntPnlDeleteScores" alignment="0" max="32767" attributes="0"/>
+                  <Component id="scores_kGrdntPnl" alignment="0" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -449,7 +449,7 @@
             </Component>
           </SubComponents>
         </Container>
-        <Container class="com.k33ptoo.components.KGradientPanel" name="scores_kGrdntPnlDeleteScores">
+        <Container class="com.k33ptoo.components.KGradientPanel" name="scores_kGrdntPnl">
           <Properties>
             <Property name="kEndColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="0" green="64" red="0" type="rgb"/>
@@ -470,7 +470,7 @@
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="scores_kBttnMenu" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="scores_jLblPlayerName2" alignment="0" max="32767" attributes="0"/>
+                          <Component id="scores_jLblGameNameHasEnded" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
@@ -509,7 +509,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="scores_JLblLogo" min="-2" pref="200" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="scores_jLblPlayerName2" min="-2" pref="50" max="-2" attributes="0"/>
+                      <Component id="scores_jLblGameNameHasEnded" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Group type="102" attributes="0">
@@ -547,13 +547,14 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="scores_jLblPlayerName2">
+            <Component class="javax.swing.JLabel" name="scores_jLblGameNameHasEnded">
               <Properties>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="18" style="3"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="*insert game name* v&#xe9;get &#xe9;rt!"/>
+                <Property name="text" type="java.lang.String" value=" v&#xe9;get &#xe9;rt!"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="scores_jLblGold">

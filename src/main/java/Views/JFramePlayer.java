@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
 
 /**
@@ -63,26 +64,40 @@ public class JFramePlayer extends CustomJFrame {
         initComponents();
         isPlayer = true;
         setFrameToFullscreen();
-        if (gameHandlerInstance.getActualPlayer() == null) {
-            switchPanelView(game_kGrdntPnl, newPlayer_kGrdntPnl);
-        } else {
-            generateGameFrame();
-            switchPanelView(newPlayer_kGrdntPnl, game_kGrdntPnl);
-        }
-
         showOnScreen(2, this);
+        
+        newPlayer_kGrdntPnl.setVisible(false);
+        game_kGrdntPnl.setVisible(false);
         playerFinished_kGrdntPnl.setVisible(false);
-        scores_kGrdntPnlDeleteScores.setVisible(false);
+        scores_kGrdntPnl.setVisible(false);
 
         newPlayer_kGrdntPnl.setLayout(null);
         game_kGrdntPnl.setLayout(null);
         playerFinished_kGrdntPnl.setLayout(null);
-        scores_kGrdntPnlDeleteScores.setLayout(null);
+        scores_kGrdntPnl.setLayout(null);
+
+        imageScaler();
+        
+        if (gameHandlerInstance.getGame().getIsGameFinished()) {
+            JFrameHost.jFrameHostInstance.dispose();
+            JFrameHost.jFrameHostInstance = null;
+            
+            generateScoreFrame();
+            scores_kGrdntPnl.setVisible(true);
+            return;
+        }
+        
+        JFrameHost.jFrameHostInstance.setVisible(true);
+        
+        if (gameHandlerInstance.getActualPlayer() == null) {
+            newPlayer_kGrdntPnl.setVisible(true);
+        } else {
+            generateGameFrame();
+            game_kGrdntPnl.setVisible(true);
+        }
 
         changeLocation(newPlayer_jTxtFldPlayerName, 0, 0);
         changeLocation(newPlayer_kBttnStart, 0, 80);
-
-        imageScaler();
     }
 
     /**
@@ -115,8 +130,8 @@ public class JFramePlayer extends CustomJFrame {
         playerFinished_jLblEarnedPoints = new javax.swing.JLabel();
         playerFinished_jLblGameOver = new javax.swing.JLabel();
         playerFinished_jLblPlayerName = new javax.swing.JLabel();
-        scores_kGrdntPnlDeleteScores = new com.k33ptoo.components.KGradientPanel();
-        scores_jLblPlayerName2 = new javax.swing.JLabel();
+        scores_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
+        scores_jLblGameNameHasEnded = new javax.swing.JLabel();
         scores_jLblGold = new javax.swing.JLabel();
         scores_jLblSilver = new javax.swing.JLabel();
         scores_jLblBronze = new javax.swing.JLabel();
@@ -339,12 +354,13 @@ public class JFramePlayer extends CustomJFrame {
                 .addContainerGap(180, Short.MAX_VALUE))
         );
 
-        scores_kGrdntPnlDeleteScores.setkEndColor(new java.awt.Color(0, 100, 0));
-        scores_kGrdntPnlDeleteScores.setkStartColor(new java.awt.Color(46, 139, 87));
+        scores_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
+        scores_kGrdntPnl.setkStartColor(new java.awt.Color(46, 139, 87));
 
-        scores_jLblPlayerName2.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        scores_jLblPlayerName2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        scores_jLblPlayerName2.setText("*insert game name* véget ért!");
+        scores_jLblGameNameHasEnded.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        scores_jLblGameNameHasEnded.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        scores_jLblGameNameHasEnded.setText(" véget ért!");
+        scores_jLblGameNameHasEnded.setToolTipText("");
 
         scores_jLblGold.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         scores_jLblGold.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -413,34 +429,34 @@ public class JFramePlayer extends CustomJFrame {
         scores_jLstScoreBoard.setSelectionModel(new NoSelectionModel());
         scores_jScrllPn.setViewportView(scores_jLstScoreBoard);
 
-        javax.swing.GroupLayout scores_kGrdntPnlDeleteScoresLayout = new javax.swing.GroupLayout(scores_kGrdntPnlDeleteScores);
-        scores_kGrdntPnlDeleteScores.setLayout(scores_kGrdntPnlDeleteScoresLayout);
-        scores_kGrdntPnlDeleteScoresLayout.setHorizontalGroup(
-            scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
+        javax.swing.GroupLayout scores_kGrdntPnlLayout = new javax.swing.GroupLayout(scores_kGrdntPnl);
+        scores_kGrdntPnl.setLayout(scores_kGrdntPnlLayout);
+        scores_kGrdntPnlLayout.setHorizontalGroup(
+            scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scores_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
+                    .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(scores_kBttnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(scores_jLblPlayerName2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
-                        .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
+                    .addComponent(scores_jLblGameNameHasEnded, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+                        .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
                                 .addComponent(scores_jLblSilver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(scores_jLblSecondPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
+                            .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
                                 .addComponent(scores_jLblGold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(scores_jLblFirstPlace, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
+                            .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
                                 .addComponent(scores_jLblBronze, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(scores_jLblThirdPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(scores_jLblThirdPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(scores_jLblSecondPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(scores_jLblFirstPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -448,31 +464,31 @@ public class JFramePlayer extends CustomJFrame {
                         .addComponent(scores_jScrllPn, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        scores_kGrdntPnlDeleteScoresLayout.setVerticalGroup(
-            scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
+        scores_kGrdntPnlLayout.setVerticalGroup(
+            scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(scores_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(scores_jLblPlayerName2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(scores_jLblGameNameHasEnded, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(scores_kGrdntPnlDeleteScoresLayout.createSequentialGroup()
-                        .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(scores_kGrdntPnlLayout.createSequentialGroup()
+                        .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(scores_jLblGold, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(scores_jLblFirstPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(scores_jLblFirstPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(scores_jLblSilver, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(scores_jLblSecondPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(scores_jLblSecondPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
-                        .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(scores_jLblBronze, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(scores_kGrdntPnlDeleteScoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addGroup(scores_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(scores_jLblThirdPlace, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(scores_jLblThirdPlaceScore, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(scores_jScrllPn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -484,7 +500,7 @@ public class JFramePlayer extends CustomJFrame {
         jLyrdPn.setLayer(newPlayer_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLyrdPn.setLayer(game_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jLyrdPn.setLayer(playerFinished_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jLyrdPn.setLayer(scores_kGrdntPnlDeleteScores, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLyrdPn.setLayer(scores_kGrdntPnl, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jLyrdPnLayout = new javax.swing.GroupLayout(jLyrdPn);
         jLyrdPn.setLayout(jLyrdPnLayout);
@@ -498,7 +514,7 @@ public class JFramePlayer extends CustomJFrame {
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(playerFinished_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(scores_kGrdntPnlDeleteScores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scores_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jLyrdPnLayout.setVerticalGroup(
             jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,7 +526,7 @@ public class JFramePlayer extends CustomJFrame {
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(playerFinished_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jLyrdPnLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(scores_kGrdntPnlDeleteScores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(scores_kGrdntPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -549,7 +565,6 @@ public class JFramePlayer extends CustomJFrame {
         gameHandlerInstance.createPlayer(playerName);
 
         generateGameFrame();
-
         switchPanelView(newPlayer_kGrdntPnl, game_kGrdntPnl);
     }//GEN-LAST:event_newPlayer_kBttnStartMouseClicked
 
@@ -565,7 +580,12 @@ public class JFramePlayer extends CustomJFrame {
 
     private void game_jLblHalfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblHalfMouseClicked
         // TODO add your handling code here:
+        if(cupsForThisTurn!=gameHandlerInstance.getActualPlayer().getCupsLeft()){
+            infoBox("Vedd vissza a poharaid!");
+            return;
+        }    
         useAnswerToHalfHelp();
+        game_jLblHalf.setVisible(false);
     }//GEN-LAST:event_game_jLblHalfMouseClicked
 
     /**
@@ -611,6 +631,15 @@ public class JFramePlayer extends CustomJFrame {
 
         cupsForThisTurn = gameHandlerInstance.getActualPlayer().getCupsLeft();
 
+        if(gameHandlerInstance.getActualPlayer().getIsHalfingUsed())
+        {
+            game_jLblHalf.setVisible(false);
+        }
+        else
+        {
+            game_jLblHalf.setVisible(true);
+        }
+        
         game_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
         game_jLblPlayerName.setText("Játékos neve: " + gameHandlerInstance.getActualPlayer().getPlayerName());
         game_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
@@ -661,9 +690,15 @@ public class JFramePlayer extends CustomJFrame {
         scaleImageInLabel(".//resources/images/bronze.png", scores_jLblBronze);
     }
 
-    public void getTopThree() {
-        List<Player> players = new ArrayList<Player>(gameHandlerInstance.getGamePlayers());
-        players.sort(Comparator.comparing(Player::getScore).reversed());
+    public void generateScoreFrame()
+    {
+        setTopThree();
+        fillScoreList();
+        scores_jLblGameNameHasEnded.setText(gameHandlerInstance.getGame().getGameName() + " véget ért!");
+    }
+    
+    private void setTopThree() {
+        List<Player> players = sortScores();
 
         int[] scores = new int[players.size()];
         for (int i = 0; i < players.size(); ++i) {
@@ -691,33 +726,22 @@ public class JFramePlayer extends CustomJFrame {
         scores_jLblFirstPlace.setText(playersOnPodium[0]);
         scores_jLblSecondPlace.setText(playersOnPodium[1]);
         scores_jLblThirdPlace.setText(playersOnPodium[2]);
-
     }
-
-    ///SAJÁT ELJÁRÁSOK VÉGE
-    ///EVENTEK
-    public void receive_RevealAnswer() {
-        revealAnswerPanelColor(game_kGrdntPnl);
-        game_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
+    
+    private List<Player> sortScores(){
+        List<Player> players = new ArrayList<Player>(gameHandlerInstance.getGamePlayers());
+        players.sort(Comparator.comparing(Player::getScore).reversed());
+        return players;
     }
-
-    public void receive_NextPlayerRound() {
-        generateGameFrame();
-    }
-
-    public void receive_PlayerGameEnded() {
-        playerFinished_jLblPlayerName.setText("Gratulálunk, " + gameHandlerInstance.getActualPlayer().getPlayerName());
-        playerFinished_jLblEarnedPoints.setText("Elért pontjaid: " + gameHandlerInstance.getActualPlayer().getScore());
-        switchPanelView(game_kGrdntPnl, playerFinished_kGrdntPnl);
-    }
-
-    public void receive_CreateNewPlayer() {
-        switchPanelView(playerFinished_kGrdntPnl, newPlayer_kGrdntPnl);
-    }
-
-    public void receive_GameEnded() {
-        getTopThree();
-        switchPanelView(playerFinished_kGrdntPnl, scores_kGrdntPnlDeleteScores);
+    
+    public void fillScoreList(){
+        List<Player> players = sortScores();
+        DefaultListModel dlsm = new DefaultListModel();
+        
+        for(Player p : players){         
+             dlsm.addElement(p.getPlayerName()+ ": " + p.getScore());
+        }
+        scores_jLstScoreBoard.setModel(dlsm);
     }
 
     protected void useAnswerToHalfHelp() {
@@ -744,7 +768,33 @@ public class JFramePlayer extends CustomJFrame {
         turnOffSpecifiecAnswerPanels(game_kGrdntPnl, indexesToRemove);
         gameHandlerInstance.callFromPlayerToHost_HalfHelpUsed(indexesToRemove);
     }
+    
+    ///SAJÁT ELJÁRÁSOK VÉGE
+    ///EVENTEK
+    public void receive_RevealAnswer() {
+        revealAnswerPanelColor(game_kGrdntPnl);
+        game_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
+    }
 
+    public void receive_NextPlayerRound() {
+        generateGameFrame();
+    }
+
+    public void receive_PlayerGameEnded() {
+        playerFinished_jLblPlayerName.setText("Gratulálunk, " + gameHandlerInstance.getActualPlayer().getPlayerName());
+        playerFinished_jLblEarnedPoints.setText("Elért pontjaid: " + gameHandlerInstance.getActualPlayer().getScore());
+        switchPanelView(game_kGrdntPnl, playerFinished_kGrdntPnl);
+    }
+
+    public void receive_CreateNewPlayer() {
+        switchPanelView(playerFinished_kGrdntPnl, newPlayer_kGrdntPnl);
+        newPlayer_jTxtFldPlayerName.setText("Írd be a neved!");
+    }
+
+    public void receive_GameEnded() {
+        generateScoreFrame();
+        switchPanelView(playerFinished_kGrdntPnl, scores_kGrdntPnl);
+    }
     ///EVENTEK VÉGE
     public static void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -809,8 +859,8 @@ public class JFramePlayer extends CustomJFrame {
     private javax.swing.JLabel scores_jLblBronze;
     private javax.swing.JLabel scores_jLblFirstPlace;
     private javax.swing.JLabel scores_jLblFirstPlaceScore;
+    private javax.swing.JLabel scores_jLblGameNameHasEnded;
     private javax.swing.JLabel scores_jLblGold;
-    private javax.swing.JLabel scores_jLblPlayerName2;
     private javax.swing.JLabel scores_jLblSecondPlace;
     private javax.swing.JLabel scores_jLblSecondPlaceScore;
     private javax.swing.JLabel scores_jLblSilver;
@@ -819,6 +869,6 @@ public class JFramePlayer extends CustomJFrame {
     private javax.swing.JList<String> scores_jLstScoreBoard;
     private javax.swing.JScrollPane scores_jScrllPn;
     private com.k33ptoo.components.KButton scores_kBttnMenu;
-    private com.k33ptoo.components.KGradientPanel scores_kGrdntPnlDeleteScores;
+    private com.k33ptoo.components.KGradientPanel scores_kGrdntPnl;
     // End of variables declaration//GEN-END:variables
 }

@@ -508,6 +508,7 @@ public class JFrameHost extends CustomJFrame {
     public void displayNewQuestion() {
         cupsLeft = gameHandlerInstance.getActualPlayer().getCupsLeft();
         
+        
         gameHost_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
         gameHost_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
         gameHost_jLblPlayerName.setText("Játékos neve: " + gameHandlerInstance.getActualPlayer().getPlayerName());
@@ -519,6 +520,15 @@ public class JFrameHost extends CustomJFrame {
         gameHost_kBttnEndPlayerGame.setVisible(false);
         gameHost_kBttnNextQuestion.setVisible(false);
         gameHost_kBttnRefill.setVisible(false);
+        
+        if(gameHandlerInstance.getActualPlayer().getIsHalfingUsed())
+        {
+            gameHost_jLblHalf.setVisible(false);
+        }
+        else
+        {
+            gameHost_jLblHalf.setVisible(true);
+        }
         
         generateAnswerPanels(gameHost_kGrdntPnl,
                 convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
@@ -557,6 +567,7 @@ public class JFrameHost extends CustomJFrame {
     
     public void receive_HalfHelpUsed(List<Integer> indexesToRemove) {
         turnOffSpecifiecAnswerPanels(gameHost_kGrdntPnl, indexesToRemove);
+        gameHost_jLblHalf.setVisible(false);
     }
 
     ///EVENTEK VÉGE
@@ -580,14 +591,8 @@ public class JFrameHost extends CustomJFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 jFrameHostInstance = new JFrameHost();
-                jFrameHostInstance.start();
-                //new JFrameHost().setVisible(true);
             }
         });
-    }
-
-    private void start() {
-        jFrameHostInstance.setVisible(true);
     }
 
     public static void showOnScreen(int screen, JFrame frame) {

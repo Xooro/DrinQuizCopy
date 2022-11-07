@@ -19,6 +19,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -75,7 +76,7 @@ public class GameHandler {
     public Game getGame() {
         return game;
     }
-
+    
     public void setNewQuestion() throws Exception {
         Question question;
         Random rnd = new Random();
@@ -95,6 +96,34 @@ public class GameHandler {
         
         randomizeNewQuestion();
     }
+    
+    private List<Question> getFilteredQuestions() {
+        List<Question> questions = _context.Question.getAll();
+        String[] sources = ConverterHelper.convertSeparatedStringToStringArray(game.getSources());
+        String[] categories = ConverterHelper.convertSeparatedStringToStringArray(game.getCategories());
+
+//        questions = questions.stream().filter(
+//                q -> (Arrays.stream(sources).anyMatch(q.getSource()::contains))
+//                && (Arrays.stream(categories).anyMatch(q.getCategory()::contains))
+//                && (!isQuestionUsed(q))
+//        ).toList();
+          questions = questions.parallelStream()
+                  .filter(q -> (Arrays.stream(sources).anyMatch(q.getSource()::contains)))
+                  .filter(q -> Arrays.stream(categories).anyMatch(q.getCategory()::contains))
+                  .filter(q -> !isQuestionUsed(q))
+                  .collect(Collectors.toList());
+        return questions;
+    }
+    
+    private Boolean isQuestionUsed(Question question) {
+        List<QuestionHistory> usedQuestions = _context.QuestionHistory.getAll();
+        for (QuestionHistory usedQuestion : usedQuestions) {
+            if (usedQuestion.getQuestionID() == question.getID() && usedQuestion.getGameID() == game.getID()) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Question getActualQuestion() {
         return actualQuestion;
@@ -107,29 +136,6 @@ public class GameHandler {
     
     public String getActualAnswer() {
         return actualAnswer;
-    }
-
-    private List<Question> getFilteredQuestions() {
-        List<Question> questions = _context.Question.getAll();
-        String[] sources = ConverterHelper.convertSeparatedStringToStringArray(game.getSources());
-        String[] categories = ConverterHelper.convertSeparatedStringToStringArray(game.getCategories());
-
-        questions = questions.stream().filter(
-                q -> (Arrays.stream(sources).anyMatch(q.getSource()::contains))
-                && (Arrays.stream(categories).anyMatch(q.getCategory()::contains))
-                && (!isQuestionUsed(q))
-        ).toList();
-        return questions;
-    }
-
-    private Boolean isQuestionUsed(Question question) {
-        List<QuestionHistory> usedQuestions = _context.QuestionHistory.getAll();
-        for (QuestionHistory usedQuestion : usedQuestions) {
-            if (usedQuestion.getQuestionID() == question.getID() && usedQuestion.getGameID() == game.getID()) {
-                return true;
-            }
-        }
-        return false;
     }
     
     private void randomizeNewQuestion(){
@@ -232,8 +238,9 @@ public class GameHandler {
         jFrameHostInstance.receive_AnswerCupsChanged();
     }
     
-     public void callFromPlayerToHost_HalfHelpUsed(List<Integer> indexesToRemove){
+    public void callFromPlayerToHost_HalfHelpUsed(List<Integer> indexesToRemove){
         jFrameHostInstance.receive_HalfHelpUsed(indexesToRemove);
+        getActualPlayer().setIsHalfingUsed(true);
     }
     
     public void callFromHostToPlayer_RevealAnswer()

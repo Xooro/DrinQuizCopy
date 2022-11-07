@@ -1148,7 +1148,6 @@ public class JFrameMain extends javax.swing.JFrame {
         }
         gameLoader.deleteGame(gameIndex);
         
-        gameLoader.loadGameForPlay(gameIndex);
         loadGame_jLstPreviousGames.setModel(gameLoader.loadGamesToList());
     }//GEN-LAST:event_loadGame_kBttnDeleteGameMouseClicked
 
@@ -1251,8 +1250,6 @@ public class JFrameMain extends javax.swing.JFrame {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-//                JFrameMain mainFrame = new JFrameMain();
-//                mainFrame.setVisible(true);
                 JFramePlayer.main(new String[]{});
             }
         });
