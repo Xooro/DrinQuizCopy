@@ -72,7 +72,7 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         for (int i = 0; i < answers.length; i++) {
             KGradientPanel kPanel = getAnswersKPanelToFrame(i, answers[i]);
             int x = (-frameWidth / 3) + frameWidth / 3 * i;
-            changePanelBound(kPanel, x, 0, frameWidth / 4, frameHeight / 3);
+            changeBound(kPanel, x, 0, frameWidth / 4, frameHeight / 3);
             panels[i] = kPanel;
         }
         return panels;
@@ -83,7 +83,7 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         for (int i = 0; i < answers.length; i++) {
             KGradientPanel kPanel = getAnswersKPanelToFrame(i, answers[i]);
             int x = (int) (-frameWidth / 4 * 1.5) + frameWidth / 4 * i;
-            changePanelBound(kPanel, x, 0, frameWidth / 5, frameHeight / 3);
+            changeBound(kPanel, x, 0, frameWidth / 5, frameHeight / 3);
             panels[i] = kPanel;
         }
         return panels;
@@ -172,21 +172,7 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
           {
               displayPanel.remove(panel);
           }
-    }
-
-    protected void changePanelBound(JPanel panel, int x, int y, int width, int height) {
-        changePanelSize(panel, width, height);
-        changeLocation(panel, x, y);
-    }
-
-    protected void changeLocation(Component comp, int x, int y) {
-        comp.setLocation(frameWidth / 2 - comp.getWidth() / 2 + x,
-                frameHeight / 2 - comp.getHeight() / 2 + y);
-    }
-
-    protected void changePanelSize(JPanel panel, int width, int height) {
-        panel.setSize(width, height);
-    }
+    } 
 
     protected void revealAnswerPanelColor(KGradientPanel displayPanel) {
         List<KGradientPanel> answerPanels = getAnswerPanels(displayPanel);
@@ -227,5 +213,19 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
                 }
             }
         }
+    }
+    
+    protected void changeBound(Component comp, int x, int y, int width, int height) {
+        changeSize(comp, width, height);
+        changeLocation(comp, x, y);
+    }
+
+    protected void changeLocation(Component comp, int x, int y) {
+        comp.setLocation(frameWidth / 2 - comp.getWidth() / 2 + x,
+                frameHeight / 2 - comp.getHeight() / 2 + y);
+    }
+
+    protected void changeSize(Component comp, int width, int height) {
+        comp.setSize(width, height);
     }
 }
