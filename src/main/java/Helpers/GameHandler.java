@@ -137,8 +137,12 @@ public class GameHandler {
     }
 
     public void refillCups() {
-        actualPlayer.setCupsLeft(game.getCups());
-        actualPlayer.setRefillsLeft(actualPlayer.getRefillsLeft()-1);
+        if (actualPlayer.getRefillsLeft()>0)
+        {
+            actualPlayer.setCupsLeft(game.getCups());
+            actualPlayer.setRefillsLeft(actualPlayer.getRefillsLeft()-1);
+            _context.Player.update(actualPlayer);
+        }  
     }
 
     public String[] getPickedAnswersAsCups() {
@@ -155,6 +159,13 @@ public class GameHandler {
 
         setNewCupsLeftAfterAnswer(); 
         addQuestionToQuestionHistory(answersBlock);     
+        
+        if (actualPlayer.getCupsLeft()==0)
+        {        
+            refillCups();
+        }
+        
+        callFromHostToPlayer_RevealAnswer();
     }
     
     //answers alapján pontozási rendszert kell kidolgozni
@@ -204,13 +215,14 @@ public class GameHandler {
         jFrameHostInstance.receive_PlayerGameStarted();
     }
     
+    public void callFromPlayerToHost_AnswerCupsChanged()
+    {
+        jFrameHostInstance.receive_AnswerCupsChanged();
+    }
+    
     public void callFromHostToPlayer_RevealAnswer()
     {
         jFramePlayerInstance.receive_RevealAnswer();
     }
     
-    public void callFromPlayerToHost_AnswerCupsChanged()
-    {
-        jFrameHostInstance.receive_AnswerCupsChanged();
-    }
 }

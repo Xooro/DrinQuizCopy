@@ -97,7 +97,6 @@ public class JFramePlayer extends CustomJFrame {
         game_jLblCup = new javax.swing.JLabel();
         game_jLblGroup = new javax.swing.JLabel();
         game_jLblPoint = new javax.swing.JLabel();
-        game_kBttnNextPage = new com.k33ptoo.components.KButton();
         game_jLblGameName = new javax.swing.JLabel();
         game_jLblPlayerName = new javax.swing.JLabel();
         game_jLblRefill = new javax.swing.JLabel();
@@ -217,23 +216,6 @@ public class JFramePlayer extends CustomJFrame {
         game_jLblPoint.setText("Pontok:");
         game_jLblPoint.setPreferredSize(new java.awt.Dimension(150, 50));
 
-        game_kBttnNextPage.setBorder(null);
-        game_kBttnNextPage.setText("Kövi lap");
-        game_kBttnNextPage.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        game_kBttnNextPage.setkBorderRadius(50);
-        game_kBttnNextPage.setkEndColor(new java.awt.Color(100, 0, 0));
-        game_kBttnNextPage.setkHoverEndColor(new java.awt.Color(139, 46, 87));
-        game_kBttnNextPage.setkHoverForeGround(new java.awt.Color(0, 0, 0));
-        game_kBttnNextPage.setkHoverStartColor(new java.awt.Color(100, 0, 0));
-        game_kBttnNextPage.setkIndicatorThickness(0);
-        game_kBttnNextPage.setkStartColor(new java.awt.Color(139, 46, 87));
-        game_kBttnNextPage.setPreferredSize(new java.awt.Dimension(200, 50));
-        game_kBttnNextPage.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                game_kBttnNextPageMouseClicked(evt);
-            }
-        });
-
         game_jLblGameName.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         game_jLblGameName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         game_jLblGameName.setText("Játék neve:");
@@ -260,9 +242,6 @@ public class JFramePlayer extends CustomJFrame {
                 .addContainerGap()
                 .addGroup(game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(game_jLblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, game_kGrdntPnlLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(game_kBttnNextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, game_kGrdntPnlLayout.createSequentialGroup()
                         .addGroup(game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(game_jLblGameName, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
@@ -292,10 +271,10 @@ public class JFramePlayer extends CustomJFrame {
             .addGroup(game_kGrdntPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(game_jLblRefill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(game_jLblPoint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(game_jLblGameName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(game_jLblRefill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(game_jLblGameName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(game_jLblRefillNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -307,9 +286,7 @@ public class JFramePlayer extends CustomJFrame {
                     .addComponent(game_jLblCall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(game_jLblQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
-                .addComponent(game_kBttnNextPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(308, Short.MAX_VALUE))
         );
 
         endGame_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
@@ -588,12 +565,6 @@ public class JFramePlayer extends CustomJFrame {
         switchPanelView(scores_kGrdntPnl, newPlayer_kGrdntPnl);
     }//GEN-LAST:event_scores_kBttnNextPageMouseClicked
 
-    private void game_kBttnNextPageMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_kBttnNextPageMouseClicked
-        // TODO add your handling code here:
-        gameHandlerInstance.answerQuestion();
-        switchPanelView(game_kGrdntPnl, endGame_kGrdntPnl);
-    }//GEN-LAST:event_game_kBttnNextPageMouseClicked
-
     private void game_jLblHalfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblHalfMouseClicked
         // TODO add your handling code here:
 
@@ -639,12 +610,16 @@ public class JFramePlayer extends CustomJFrame {
         } catch (Exception ex) {
             ex.getMessage();
         }
-
+          
         cupsForThisTurn = gameHandlerInstance.getActualPlayer().getCupsLeft();
 
+        game_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
+        game_jLblPlayerName.setText("Játékos neve: " + gameHandlerInstance.getActualPlayer().getPlayerName());
         game_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
         game_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
         game_jLblCupNumber.setText(cupsForThisTurn + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
+        game_jLblRefillNumber.setText(""+gameHandlerInstance.getActualPlayer().getRefillsLeft());
+        
         generateAnswerPanels(game_kGrdntPnl,
                 convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
 
@@ -692,8 +667,8 @@ public class JFramePlayer extends CustomJFrame {
     ///EVENTEK
     public void receive_RevealAnswer() {
         revealAnswerPanelColor(game_kGrdntPnl);
+        game_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
     }
-
     ///EVENTEK VÉGE
     public static void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
@@ -707,9 +682,9 @@ public class JFramePlayer extends CustomJFrame {
             frame.setLocation(gd[0].getDefaultConfiguration().getBounds().x, frame.getY());
         } else {
             throw new RuntimeException("No screen found!");
-
         }
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.utils.ComponentMoverUtil componentMoverUtil1;
@@ -730,7 +705,6 @@ public class JFramePlayer extends CustomJFrame {
     private javax.swing.JLabel game_jLblQuestion;
     private javax.swing.JLabel game_jLblRefill;
     private javax.swing.JLabel game_jLblRefillNumber;
-    private com.k33ptoo.components.KButton game_kBttnNextPage;
     private com.k33ptoo.components.KGradientPanel game_kGrdntPnl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

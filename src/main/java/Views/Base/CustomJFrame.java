@@ -16,6 +16,8 @@ import java.awt.Toolkit;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import jdk.jshell.spi.ExecutionControl;
+import jdk.jshell.spi.ExecutionControl.NotImplementedException;
 
 /**
  *
@@ -54,6 +56,9 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
             case 4:
                 panels = get4AnswersPanel(answers);
                 break;
+            default:
+                System.out.println("Not implemented");
+                return;
         }
         for (int i = 0; i < answers.length; i++) {
             displayPanel.add(panels[i]);

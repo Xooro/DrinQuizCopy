@@ -73,7 +73,6 @@ public class JFrameHost extends CustomJFrame {
         gameHost_jLblHalf = new javax.swing.JLabel();
         gameHost_jLblGroup = new javax.swing.JLabel();
         gameHost_jLblCall = new javax.swing.JLabel();
-        gameHost_kBttnRefillCups = new com.k33ptoo.components.KButton();
         gameHost_jLblRefill = new javax.swing.JLabel();
         gameHost_jLblRefillNumber = new javax.swing.JLabel();
         gameHost_jLblCup = new javax.swing.JLabel();
@@ -206,18 +205,6 @@ public class JFrameHost extends CustomJFrame {
         gameHost_jLblCall.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gameHost_jLblCall.setPreferredSize(new java.awt.Dimension(50, 50));
 
-        gameHost_kBttnRefillCups.setBorder(null);
-        gameHost_kBttnRefillCups.setText("Poharak újratöltése");
-        gameHost_kBttnRefillCups.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        gameHost_kBttnRefillCups.setkBorderRadius(50);
-        gameHost_kBttnRefillCups.setkEndColor(new java.awt.Color(0, 100, 0));
-        gameHost_kBttnRefillCups.setkHoverEndColor(new java.awt.Color(46, 139, 87));
-        gameHost_kBttnRefillCups.setkHoverForeGround(new java.awt.Color(0, 0, 0));
-        gameHost_kBttnRefillCups.setkHoverStartColor(new java.awt.Color(0, 100, 0));
-        gameHost_kBttnRefillCups.setkIndicatorThickness(0);
-        gameHost_kBttnRefillCups.setkStartColor(new java.awt.Color(46, 139, 87));
-        gameHost_kBttnRefillCups.setPreferredSize(new java.awt.Dimension(200, 50));
-
         gameHost_jLblRefill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         gameHost_jLblRefill.setPreferredSize(new java.awt.Dimension(50, 50));
 
@@ -243,14 +230,12 @@ public class JFrameHost extends CustomJFrame {
                 .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(gameHost_kGrdntPnlLayout.createSequentialGroup()
                         .addComponent(gameHost_kBttnShowAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94)
-                        .addComponent(gameHost_kBttnRefillCups, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(gameHost_kBttnNextQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(gameHost_jLblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameHost_kGrdntPnlLayout.createSequentialGroup()
                         .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(gameHost_jLblGameName, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
+                            .addComponent(gameHost_jLblGameName, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                             .addComponent(gameHost_jLblPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -300,8 +285,7 @@ public class JFrameHost extends CustomJFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
                         .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(gameHost_kBttnNextQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gameHost_kBttnShowAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(gameHost_kBttnRefillCups, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(gameHost_kBttnShowAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(gameHost_kGrdntPnlLayout.createSequentialGroup()
                         .addComponent(gameHost_jLblGroup, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -416,8 +400,7 @@ public class JFrameHost extends CustomJFrame {
 
     private void gameHost_kBttnShowAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameHost_kBttnShowAnswerMouseClicked
         // TODO add your handling code here:
-        gameHandlerInstance.callFromHostToPlayer_RevealAnswer();
-        revealAnswerPanelColor(gameHost_kGrdntPnl);
+        gameHandlerInstance.answerQuestion();
     }//GEN-LAST:event_gameHost_kBttnShowAnswerMouseClicked
 
     ///SAJÁT ELJÁRÁSOK
@@ -425,6 +408,9 @@ public class JFrameHost extends CustomJFrame {
         gameHost_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
         gameHost_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
         gameHost_jLblPlayerName.setText("Játékos neve: " + gameHandlerInstance.getActualPlayer().getPlayerName());
+        
+        gameHost_jLblRefillNumber.setText(""+gameHandlerInstance.getActualPlayer().getRefillsLeft());
+        gameHost_jLblCupNumber.setText(gameHandlerInstance.getActualPlayer().getCupsLeft() + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
 
         generateAnswerPanels(gameHost_kGrdntPnl,
                 convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
@@ -444,17 +430,21 @@ public class JFrameHost extends CustomJFrame {
     ///EVENTEK
     public void receive_PlayerGameStarted() {
         displayNewQuestion();
+        revealAnswerPanelColor(gameHost_kGrdntPnl);
     }
 
     public void receive_AnswerCupsChanged() {
         int index = 0;
+        int cupsLeft = gameHandlerInstance.getActualPlayer().getCupsLeft();
         for (Component cmp : gameHost_kGrdntPnl.getComponents()) {
             if (cmp.getClass() == new KGradientPanel().getClass()) {
                 KGradientPanel panel = (KGradientPanel) cmp;
                 ((JLabel) panel.getComponent(1)).setText(gameHandlerInstance.getPickedAnswersAsCups()[index]);
+                cupsLeft-=Integer.parseInt(((JLabel) panel.getComponent(1)).getText());
                 index++;
             }
         }
+        gameHost_jLblCupNumber.setText(cupsLeft + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
     }
 
     ///EVENTEK VÉGE
@@ -522,7 +512,6 @@ public class JFrameHost extends CustomJFrame {
     private com.k33ptoo.components.KButton gameHost_kBttnEndGame;
     private com.k33ptoo.components.KButton gameHost_kBttnNewPlayer;
     private com.k33ptoo.components.KButton gameHost_kBttnNextQuestion;
-    private com.k33ptoo.components.KButton gameHost_kBttnRefillCups;
     private com.k33ptoo.components.KButton gameHost_kBttnShowAnswer;
     private com.k33ptoo.components.KGradientPanel gameHost_kGrdntPnl;
     private javax.swing.JLayeredPane jLyrdPn;
