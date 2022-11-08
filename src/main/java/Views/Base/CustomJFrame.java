@@ -30,19 +30,19 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
     protected int frameHeight, frameWidth;
     protected Boolean isPlayer;
 
-    protected void setFrameToFullscreen() {
+    protected void setFrameToBorderlessFullscreen() {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dimension = tk.getScreenSize();
 
         setPreferredSize(dimension);
 
         pack();
-
-        frameWidth = dimension.width;
-        frameHeight = dimension.height;
+//
+//        frameWidth = dimension.width;
+//        frameHeight = dimension.height;
     }
 
-    protected void setFrameSize() {
+    protected void setFrameSizeVarsToFrameSize() {
         Dimension dimension = this.getContentPane().getSize();
         frameWidth = dimension.width;
         frameHeight = dimension.height;
@@ -208,8 +208,15 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         List<KGradientPanel> answerPanels = getAnswerPanels(displayPanel);
         for (int i = 0; i < answerPanels.size(); ++i) {
             if (indexesToRemove.contains(i)) {
+                answerPanels.get(i).setkStartColor(Color.darkGray);
+                answerPanels.get(i).setkEndColor(Color.darkGray);
+                int index = 0;
                 for (Component component : answerPanels.get(i).getComponents()) {
-                    component.setVisible(false);
+                    if(index==0 || index==1)
+                        component.setEnabled(false);
+                    else
+                        component.setVisible(false);
+                    index++;
                 }
             }
         }
@@ -227,5 +234,11 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
 
     protected void changeSize(Component comp, int width, int height) {
         comp.setSize(width, height);
+    }
+    
+    protected void oneTimeUseGetterSetter(Component comp){
+        if(!comp.isEnabled())
+            return;
+        comp.setEnabled(false);
     }
 }

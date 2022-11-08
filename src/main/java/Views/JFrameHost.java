@@ -39,8 +39,10 @@ public class JFrameHost extends CustomJFrame {
     public JFrameHost() {
         initComponents();
         isPlayer = false;
-        setFrameToFullscreen();
         showOnScreen(2, this);
+        setFrameToBorderlessFullscreen();
+        setFrameSizeVarsToFrameSize();
+        
 
         gameHost_kGrdntPnl.setVisible(false);
         exit_kGrdntPnl.setVisible(false);
@@ -521,13 +523,14 @@ public class JFrameHost extends CustomJFrame {
         gameHost_kBttnNextQuestion.setVisible(false);
         gameHost_kBttnRefill.setVisible(false);
         
+        ///ÁKOS IDE íRD BE A SEGíTSÉG CHECKEKET
         if(gameHandlerInstance.getActualPlayer().getIsHalfingUsed())
         {
-            gameHost_jLblHalf.setVisible(false);
+            gameHost_jLblHalf.setEnabled(false);
         }
         else
         {
-            gameHost_jLblHalf.setVisible(true);
+            gameHost_jLblHalf.setEnabled(true);
         }
         
         generateAnswerPanels(gameHost_kGrdntPnl,
@@ -567,7 +570,17 @@ public class JFrameHost extends CustomJFrame {
     
     public void receive_HalfHelpUsed(List<Integer> indexesToRemove) {
         turnOffSpecifiecAnswerPanels(gameHost_kGrdntPnl, indexesToRemove);
-        gameHost_jLblHalf.setVisible(false);
+        gameHost_jLblHalf.setEnabled(false);
+    }
+    
+    public void receive_CallHelpUsed()
+    {
+        gameHost_jLblCall.setEnabled(false);
+    }
+    
+    public void receive_GroupHelpUsed()
+    {
+        gameHost_jLblGroup.setEnabled(false);
     }
 
     ///EVENTEK VÉGE

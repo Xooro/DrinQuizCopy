@@ -243,6 +243,15 @@ public class GameHandler {
         getActualPlayer().setIsHalfingUsed(true);
     }
     
+    public void callFromPlayerToHost_CallHelpUsed()
+    {
+        jFrameHostInstance.receive_CallHelpUsed();
+    }
+    public void callFromPlayerToHost_GroupHelpUsed()
+    {
+        jFrameHostInstance.receive_GroupHelpUsed();
+    }
+    
     public void callFromHostToPlayer_RevealAnswer()
     {
         jFramePlayerInstance.receive_RevealAnswer();

@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 public class ViewHelper {
 
     public static void infoBox(String infoMessage) {
-        JOptionPane.showMessageDialog(null, infoMessage, "Értesítés", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, infoMessage, "A nap értesítése", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void scaleImageInLabel(String path, JLabel label) {

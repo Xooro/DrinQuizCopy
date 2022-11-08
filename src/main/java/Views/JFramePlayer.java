@@ -63,8 +63,10 @@ public class JFramePlayer extends CustomJFrame {
     public JFramePlayer() throws IOException {
         initComponents();
         isPlayer = true;
-        setFrameToFullscreen();
         showOnScreen(2, this);
+        setFrameToBorderlessFullscreen();
+        setFrameSizeVarsToFrameSize();
+        
         
         newPlayer_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(false);
@@ -224,6 +226,11 @@ public class JFramePlayer extends CustomJFrame {
         game_jLblCall.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         game_jLblCall.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         game_jLblCall.setPreferredSize(new java.awt.Dimension(50, 50));
+        game_jLblCall.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                game_jLblCallMouseClicked(evt);
+            }
+        });
 
         game_jLblCupNumber.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         game_jLblCupNumber.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -236,6 +243,11 @@ public class JFramePlayer extends CustomJFrame {
         game_jLblGroup.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         game_jLblGroup.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         game_jLblGroup.setPreferredSize(new java.awt.Dimension(50, 50));
+        game_jLblGroup.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                game_jLblGroupMouseClicked(evt);
+            }
+        });
 
         game_jLblPoint.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         game_jLblPoint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -580,13 +592,28 @@ public class JFramePlayer extends CustomJFrame {
 
     private void game_jLblHalfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblHalfMouseClicked
         // TODO add your handling code here:
+        oneTimeUseGetterSetter(game_jLblHalf);
+        
         if(cupsForThisTurn!=gameHandlerInstance.getActualPlayer().getCupsLeft()){
             infoBox("Vedd vissza a poharaid!");
             return;
         }    
         useAnswerToHalfHelp();
-        game_jLblHalf.setVisible(false);
     }//GEN-LAST:event_game_jLblHalfMouseClicked
+
+    private void game_jLblCallMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblCallMouseClicked
+        // TODO add your handling code here:
+        oneTimeUseGetterSetter(game_jLblCall);
+        infoBox("Hívj valakit aki nem részeg");
+        gameHandlerInstance.callFromPlayerToHost_CallHelpUsed();
+    }//GEN-LAST:event_game_jLblCallMouseClicked
+
+    private void game_jLblGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblGroupMouseClicked
+        // TODO add your handling code here:
+        oneTimeUseGetterSetter(game_jLblGroup);
+        infoBox("Kérdezz körbe, a részegek is okosak");
+        gameHandlerInstance.callFromPlayerToHost_GroupHelpUsed();
+    }//GEN-LAST:event_game_jLblGroupMouseClicked
 
     /**
      * @param args the command line arguments
@@ -631,13 +658,15 @@ public class JFramePlayer extends CustomJFrame {
 
         cupsForThisTurn = gameHandlerInstance.getActualPlayer().getCupsLeft();
 
+        
+        ///ÁKOS IDE íRD BE A SEGíTSÉG CHECKEKET
         if(gameHandlerInstance.getActualPlayer().getIsHalfingUsed())
         {
-            game_jLblHalf.setVisible(false);
+            game_jLblHalf.setEnabled(false);
         }
         else
         {
-            game_jLblHalf.setVisible(true);
+            game_jLblHalf.setEnabled(true);
         }
         
         game_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());

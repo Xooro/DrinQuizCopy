@@ -291,6 +291,9 @@
                   <Dimension value="[50, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="game_jLblCallMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="game_jLblCupNumber">
               <Properties>
@@ -322,6 +325,9 @@
                   <Dimension value="[50, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="game_jLblGroupMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="game_jLblPoint">
               <Properties>
