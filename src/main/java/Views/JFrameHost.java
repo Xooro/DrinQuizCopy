@@ -5,7 +5,6 @@
 package Views;
 
 import static Helpers.ConverterHelper.convertSeparatedStringToStringArray;
-import Helpers.GameHandler;
 import static Helpers.GameHandler.gameHandlerInstance;
 import Helpers.ViewHelper;
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -44,10 +43,14 @@ public class JFrameHost extends CustomJFrame {
         setFrameTo16to9WindowedFullScreen();
         setFrameSizeVarsToFrameSize();
 
+        componentLocationAndSize();
+        componentFontSize();
+        waitingScreen_kGrdntPnl.updateUI();
+
         gameHost_kGrdntPnl.setVisible(false);
         exit_kGrdntPnl.setVisible(false);
 
-        waitingScreen_jLblPleaseWait.setLayout(null);
+        waitingScreen_kGrdntPnl.setLayout(null);
         gameHost_kGrdntPnl.setLayout(null);
         exit_kGrdntPnl.setLayout(null);
 
@@ -66,7 +69,7 @@ public class JFrameHost extends CustomJFrame {
         jLyrdPn = new javax.swing.JLayeredPane();
         waitingScreen_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         waitingScreen_jLblPleaseWait = new javax.swing.JLabel();
-        exit_JLblLogo1 = new javax.swing.JLabel();
+        waitingScreen_JLblLogo = new javax.swing.JLabel();
         gameHost_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         gameHost_kBttnEndPlayerGame = new com.k33ptoo.components.KButton();
         gameHost_jLblGameName = new javax.swing.JLabel();
@@ -102,8 +105,8 @@ public class JFrameHost extends CustomJFrame {
         waitingScreen_jLblPleaseWait.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         waitingScreen_jLblPleaseWait.setText("Kérlek várj!");
 
-        exit_JLblLogo1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        exit_JLblLogo1.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
+        waitingScreen_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        waitingScreen_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
 
         javax.swing.GroupLayout waitingScreen_kGrdntPnlLayout = new javax.swing.GroupLayout(waitingScreen_kGrdntPnl);
         waitingScreen_kGrdntPnl.setLayout(waitingScreen_kGrdntPnlLayout);
@@ -112,7 +115,7 @@ public class JFrameHost extends CustomJFrame {
             .addGroup(waitingScreen_kGrdntPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(waitingScreen_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(exit_JLblLogo1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(waitingScreen_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(waitingScreen_jLblPleaseWait, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -120,7 +123,7 @@ public class JFrameHost extends CustomJFrame {
             waitingScreen_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(waitingScreen_kGrdntPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(exit_JLblLogo1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(waitingScreen_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50)
                 .addComponent(waitingScreen_jLblPleaseWait, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(176, Short.MAX_VALUE))
@@ -357,7 +360,7 @@ public class JFrameHost extends CustomJFrame {
         exit_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
 
         exit_kBttnEndGame.setBorder(null);
-        exit_kBttnEndGame.setText("Mind részegek vagyunk");
+        exit_kBttnEndGame.setText("Mindenki ittas");
         exit_kBttnEndGame.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         exit_kBttnEndGame.setkBorderRadius(50);
         exit_kBttnEndGame.setkEndColor(new java.awt.Color(0, 100, 0));
@@ -540,6 +543,81 @@ public class JFrameHost extends CustomJFrame {
         scaleImageInLabel(".//resources/images/refill.png", gameHost_jLblRefill);
     }
 
+    private void componentLocationAndSize() {
+        //waitingScreen
+        changeBound(waitingScreen_JLblLogo, 0,
+                frameHeight / 2 - frameHeight / 3 / 2 - frameHeight / 36,
+                frameWidth - frameWidth / 32, frameHeight / 3);
+        changeBound(waitingScreen_jLblPleaseWait, 0,
+                frameHeight / 12 - frameHeight / 72,
+                frameWidth - frameWidth / 32, frameHeight / 12);
+
+        //gameHost
+        changeBound(gameHost_jLblCall, 0,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(gameHost_jLblRefill, frameHeight / 12 / 2 + frameHeight / 12 * 4 - frameHeight / 36,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(gameHost_jLblRefillNumber, frameHeight / 12 / 2 + frameHeight / 12 * 5,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(gameHost_jLblGameName, (frameWidth / 2 - frameHeight / 12 * 6 / 2 - frameWidth / 64) * -1,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
+                frameHeight / 12 * 6, frameHeight / 12);
+        changeBound(gameHost_jLblGroup, frameHeight / 12 + frameHeight / 36,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(gameHost_jLblHalf, (frameHeight / 12 + frameHeight / 36) * -1,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(gameHost_jLblPlayerName, (frameWidth / 2 - frameHeight / 12 * 6 / 2 - frameWidth / 64) * -1,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12 * 6, frameHeight / 12);
+        changeBound(gameHost_jLblPoint, 0,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
+                frameHeight / 12 * 3 + frameHeight / 36 * 2, frameHeight / 12);
+        changeBound(gameHost_jLblQuestion, 0,
+                frameHeight / 2 - frameHeight / 4 / 2 - frameHeight / 36 * 2 - frameHeight / 12 * 2 - frameHeight / 36,
+                frameWidth - frameWidth / 32, frameHeight / 4);
+        changeBound(gameHost_jLblCup, frameHeight / 12 / 2 + frameHeight / 12 * 4 - frameHeight / 36,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(gameHost_jLblCupNumber, frameHeight / 12 / 2 + frameHeight / 12 * 5,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(gameHost_kBttnNextQuestion, frameWidth / 2 - frameHeight / 12 * 4 / 2 - frameWidth / 64,
+                (frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36) * -1,
+                frameHeight / 12 * 4, frameHeight / 12);
+        changeBound(gameHost_kBttnRefill, frameWidth / 2 - frameHeight / 12 * 4 / 2 - frameWidth / 64,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
+                frameHeight / 12 * 4, frameHeight / 12);
+        changeBound(gameHost_kBttnShowAnswer, 0,
+                (frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36) * -1,
+                frameHeight / 12 * 4, frameHeight / 12);
+        changeBound(gameHost_kBttnEndPlayerGame, frameWidth / 2 - frameHeight / 12 * 4 / 2 - frameWidth / 64,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12 * 4, frameHeight / 12);
+
+        //exit
+        changeBound(exit_JLblLogo, 0,
+                frameHeight / 2 - frameHeight / 3 / 2 - frameHeight / 36,
+                frameWidth - frameWidth / 32, frameHeight / 3);
+        changeBound(exit_kBttnEndGame, 0,
+                (frameHeight / 24) * -1,
+                frameHeight / 12 * 4, frameHeight / 12);
+        changeBound(exit_kBttnExit, frameWidth / 2 - frameHeight / 12 * 4 / 2 - frameWidth / 64,
+                (frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36) * -1,
+                frameHeight / 12 * 4, frameHeight / 12);
+        changeBound(exit_kBttnNewGame, 0,
+                frameHeight / 12 - frameHeight / 72,
+                frameHeight / 12 * 4, frameHeight / 12);
+    }
+
+    private void componentFontSize() {
+
+    }
+
     ///SAJÁT ELJÁRÁSOK VÉGE
     ///EVENTEK
     public void receive_PlayerGameStarted() {
@@ -616,7 +694,6 @@ public class JFrameHost extends CustomJFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel exit_JLblLogo;
-    private javax.swing.JLabel exit_JLblLogo1;
     private com.k33ptoo.components.KButton exit_kBttnEndGame;
     private com.k33ptoo.components.KButton exit_kBttnExit;
     private com.k33ptoo.components.KButton exit_kBttnNewGame;
@@ -638,6 +715,7 @@ public class JFrameHost extends CustomJFrame {
     private com.k33ptoo.components.KButton gameHost_kBttnShowAnswer;
     private com.k33ptoo.components.KGradientPanel gameHost_kGrdntPnl;
     private javax.swing.JLayeredPane jLyrdPn;
+    private javax.swing.JLabel waitingScreen_JLblLogo;
     private javax.swing.JLabel waitingScreen_jLblPleaseWait;
     private com.k33ptoo.components.KGradientPanel waitingScreen_kGrdntPnl;
     // End of variables declaration//GEN-END:variables

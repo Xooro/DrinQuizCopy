@@ -7,42 +7,29 @@ package Views;
 import Views.Base.CustomJFrame;
 import static Helpers.ConverterHelper.convertSeparatedStringToStringArray;
 import static Helpers.GameHandler.gameHandlerInstance;
+import Helpers.ViewHelper;
 import static Helpers.ViewHelper.infoBox;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.k33ptoo.components.KGradientPanel;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.Toolkit;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import static Helpers.ViewHelper.*;
 import Models.Player;
 import com.mycompany.projectdrinquiz.ProjectDrinQuiz;
-import java.awt.Color;
-import java.awt.Panel;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import javax.swing.DefaultListModel;
-import javax.swing.DefaultListSelectionModel;
 
 /**
  *
@@ -65,6 +52,9 @@ public class JFramePlayer extends CustomJFrame {
 //        showOnScreen(1, this);
         setFrameTo16to9WindowedFullScreen();
         setFrameSizeVarsToFrameSize();
+
+        componentLocationAndSize();
+        newPlayer_kGrdntPnl.updateUI();
 
         newPlayer_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(false);
@@ -95,9 +85,6 @@ public class JFramePlayer extends CustomJFrame {
             generateGameFrame();
             game_kGrdntPnl.setVisible(true);
         }
-
-        changeLocation(newPlayer_jTxtFldPlayerName, 0, 0);
-        changeLocation(newPlayer_kBttnStart, 0, 80);
     }
 
     /**
@@ -130,6 +117,7 @@ public class JFramePlayer extends CustomJFrame {
         playerFinished_jLblEarnedPoints = new javax.swing.JLabel();
         playerFinished_jLblGameOver = new javax.swing.JLabel();
         playerFinished_jLblPlayerName = new javax.swing.JLabel();
+        playerFinished_JLblLogo = new javax.swing.JLabel();
         scores_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         scores_jLblGameNameHasEnded = new javax.swing.JLabel();
         scores_jLblGold = new javax.swing.JLabel();
@@ -340,28 +328,34 @@ public class JFramePlayer extends CustomJFrame {
         playerFinished_jLblPlayerName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         playerFinished_jLblPlayerName.setText("Gratulálunk, !");
 
+        playerFinished_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        playerFinished_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
+
         javax.swing.GroupLayout playerFinished_kGrdntPnlLayout = new javax.swing.GroupLayout(playerFinished_kGrdntPnl);
         playerFinished_kGrdntPnl.setLayout(playerFinished_kGrdntPnlLayout);
         playerFinished_kGrdntPnlLayout.setHorizontalGroup(
             playerFinished_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(playerFinished_jLblGameOver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(playerFinished_kGrdntPnlLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, playerFinished_kGrdntPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(playerFinished_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(playerFinished_jLblEarnedPoints, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
-                    .addComponent(playerFinished_jLblPlayerName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(playerFinished_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(playerFinished_jLblGameOver, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(playerFinished_JLblLogo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(playerFinished_jLblEarnedPoints, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)
+                    .addComponent(playerFinished_jLblPlayerName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         playerFinished_kGrdntPnlLayout.setVerticalGroup(
             playerFinished_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, playerFinished_kGrdntPnlLayout.createSequentialGroup()
-                .addGap(250, 250, 250)
+                .addContainerGap()
+                .addComponent(playerFinished_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(playerFinished_jLblGameOver, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(playerFinished_jLblPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(playerFinished_jLblEarnedPoints, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(180, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         scores_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
@@ -397,7 +391,7 @@ public class JFramePlayer extends CustomJFrame {
         scores_jLblSecondPlace.setPreferredSize(new java.awt.Dimension(250, 50));
 
         scores_kBttnMenu.setBorder(null);
-        scores_kBttnMenu.setText("Menu");
+        scores_kBttnMenu.setText("Menü");
         scores_kBttnMenu.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         scores_kBttnMenu.setkBorderRadius(50);
         scores_kBttnMenu.setkEndColor(new java.awt.Color(100, 0, 0));
@@ -436,7 +430,7 @@ public class JFramePlayer extends CustomJFrame {
         });
         scores_jLstScoreBoard.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         scores_jLstScoreBoard.setToolTipText("");
-        scores_jLstScoreBoard.setSelectionModel(new NoSelectionModel());
+        scores_jLstScoreBoard.setEnabled(false);
         scores_jScrllPn.setViewportView(scores_jLstScoreBoard);
 
         javax.swing.GroupLayout scores_kGrdntPnlLayout = new javax.swing.GroupLayout(scores_kGrdntPnl);
@@ -724,6 +718,105 @@ public class JFramePlayer extends CustomJFrame {
         scaleImageInLabel(".//resources/images/bronze.png", scores_jLblBronze);
     }
 
+    private void componentLocationAndSize() {
+        //newPlayer
+        changeBound(newPlayer_jTxtFldPlayerName, 0,
+                frameHeight / 12 / 2 + frameHeight / 72,
+                frameHeight / 12 * 4, frameHeight / 12);
+        changeBound(newPlayer_kBttnStart, 0,
+                (frameHeight / 12 / 2 + frameHeight / 72) * -1,
+                frameHeight / 12 * 4, frameHeight / 12);
+
+        //game
+        changeBound(game_jLblCall, 0,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(game_jLblCup, frameWidth / 2 - frameHeight / 12 / 2 - frameWidth / 64 * 2 - frameHeight / 12,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(game_jLblCupNumber, frameWidth / 2 - frameHeight / 12 / 2 - frameWidth / 64,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(game_jLblGameName, (frameWidth / 2 - frameHeight / 12 * 6 / 2 - frameWidth / 64) * -1,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
+                frameHeight / 12 * 6, frameHeight / 12);
+        changeBound(game_jLblGroup, frameHeight / 12 + frameHeight / 36,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(game_jLblHalf, (frameHeight / 12 + frameHeight / 36) * -1,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(game_jLblPlayerName, (frameWidth / 2 - frameHeight / 12 * 6 / 2 - frameWidth / 64) * -1,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
+                frameHeight / 12 * 6, frameHeight / 12);
+        changeBound(game_jLblPoint, 0,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
+                frameHeight / 12 * 3 + frameHeight / 36 * 2, frameHeight / 12);
+        changeBound(game_jLblQuestion, 0,
+                frameHeight / 2 - frameHeight / 4 / 2 - frameHeight / 36 * 2 - frameHeight / 12 * 2 - frameHeight / 36,
+                frameWidth - frameWidth / 32, frameHeight / 4);
+        changeBound(game_jLblRefill, frameWidth / 2 - frameHeight / 12 / 2 - frameWidth / 64 * 2 - frameHeight / 12,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(game_jLblRefillNumber, frameWidth / 2 - frameHeight / 12 / 2 - frameWidth / 64,
+                frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
+                frameHeight / 12, frameHeight / 12);
+
+        //playerFinished
+        changeBound(playerFinished_jLblEarnedPoints, 0,
+                (frameHeight / 12 + frameHeight / 24 + frameHeight / 36) * -1,
+                frameWidth - frameWidth / 32, frameHeight / 12);
+        changeBound(playerFinished_jLblGameOver, 0,
+                frameHeight / 12 - frameHeight / 72,
+                frameWidth - frameWidth / 32, frameHeight / 12);
+        changeBound(playerFinished_jLblPlayerName, 0, (frameHeight / 24) * -1,
+                frameWidth - frameWidth / 32, frameHeight / 12);
+        changeBound(playerFinished_JLblLogo, 0,
+                frameHeight / 2 - frameHeight / 3 / 2 - frameHeight / 36,
+                frameWidth - frameWidth / 32, frameHeight / 3);
+
+        //scores
+        changeBound(scores_JLblLogo, 0,
+                frameHeight / 2 - frameHeight / 3 / 2 - frameHeight / 36,
+                frameWidth - frameWidth / 32, frameHeight / 3);
+        changeBound(scores_jLblBronze, (frameHeight / 12 * 6) * -1,
+                (frameHeight / 12 * 2 + frameHeight / 24 + frameHeight / 36 * 2) * -1,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(scores_jLblFirstPlace, (frameHeight / 12 * 6 / 2 - frameHeight / 36 * 2 - frameHeight / 72) * -1,
+                (frameHeight / 24) * -1,
+                frameHeight / 12 * 6, frameHeight / 12);
+        changeBound(scores_jLblFirstPlaceScore, frameHeight / 12 / 2 + frameHeight / 36 * 3 + frameHeight / 72,
+                (frameHeight / 24) * -1,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(scores_jLblGameNameHasEnded, 0,
+                frameHeight / 12 - frameHeight / 72,
+                frameWidth - frameWidth / 32, frameHeight / 12);
+        changeBound(scores_jLblGold, (frameHeight / 12 * 6) * -1,
+                (frameHeight / 24) * -1,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(scores_jLblSecondPlace, (frameHeight / 12 * 6 / 2 - frameHeight / 36 * 2 - frameHeight / 72) * -1,
+                (frameHeight / 12 + frameHeight / 24 + frameHeight / 36) * -1,
+                frameHeight / 12 * 6, frameHeight / 12);
+        changeBound(scores_jLblSecondPlaceScore, frameHeight / 12 / 2 + frameHeight / 36 * 3 + frameHeight / 72,
+                (frameHeight / 12 + frameHeight / 24 + frameHeight / 36) * -1,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(scores_jLblSilver, (frameHeight / 12 * 6) * -1,
+                (frameHeight / 12 + frameHeight / 24 + frameHeight / 36) * -1,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(scores_jLblThirdPlace, (frameHeight / 12 * 6 / 2 - frameHeight / 36 * 2 - frameHeight / 72) * -1,
+                (frameHeight / 12 * 2 + frameHeight / 24 + frameHeight / 36 * 2) * -1,
+                frameHeight / 12 * 6, frameHeight / 12);
+        changeBound(scores_jLblThirdPlaceScore, frameHeight / 12 / 2 + frameHeight / 36 * 3 + frameHeight / 72,
+                (frameHeight / 12 * 2 + frameHeight / 24 + frameHeight / 36 * 2) * -1,
+                frameHeight / 12, frameHeight / 12);
+        changeBound(scores_jScrllPn, frameHeight / 12 * 4 / 2 + frameHeight / 12 * 2 + frameHeight / 36 + frameHeight / 72,
+                (frameHeight / 12 + frameHeight / 24 + frameHeight / 36) * -1,
+                frameHeight / 12 * 4, frameHeight / 3 - frameHeight / 36);
+        changeBound(scores_kBttnMenu, frameWidth / 2 - frameHeight / 12 * 4 / 2 - frameWidth / 64,
+                (frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36) * -1,
+                frameHeight / 12 * 4, frameHeight / 12);
+    }
+
     public void generateScoreFrame() {
         setTopThree();
         fillScoreList();
@@ -845,28 +938,6 @@ public class JFramePlayer extends CustomJFrame {
         }
     }
 
-    private static class NoSelectionModel extends DefaultListSelectionModel {
-
-        private NoSelectionModel() {
-        }
-
-        @Override
-        public void setAnchorSelectionIndex(final int anchorIndex) {
-        }
-
-        @Override
-        public void setLeadAnchorNotificationEnabled(final boolean flag) {
-        }
-
-        @Override
-        public void setLeadSelectionIndex(final int leadIndex) {
-        }
-
-        @Override
-        public void setSelectionInterval(final int index0, final int index1) {
-        }
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.utils.ComponentMoverUtil componentMoverUtil1;
     private javax.swing.JLabel game_jLblCall;
@@ -885,6 +956,7 @@ public class JFramePlayer extends CustomJFrame {
     private javax.swing.JTextField newPlayer_jTxtFldPlayerName;
     private com.k33ptoo.components.KButton newPlayer_kBttnStart;
     private com.k33ptoo.components.KGradientPanel newPlayer_kGrdntPnl;
+    private javax.swing.JLabel playerFinished_JLblLogo;
     private javax.swing.JLabel playerFinished_jLblEarnedPoints;
     private javax.swing.JLabel playerFinished_jLblGameOver;
     private javax.swing.JLabel playerFinished_jLblPlayerName;

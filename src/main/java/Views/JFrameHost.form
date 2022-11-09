@@ -88,7 +88,7 @@
                   <Group type="102" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="exit_JLblLogo1" max="32767" attributes="0"/>
+                          <Component id="waitingScreen_JLblLogo" max="32767" attributes="0"/>
                           <Component id="waitingScreen_jLblPleaseWait" pref="788" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -99,7 +99,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="exit_JLblLogo1" min="-2" pref="200" max="-2" attributes="0"/>
+                      <Component id="waitingScreen_JLblLogo" min="-2" pref="200" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="waitingScreen_jLblPleaseWait" min="-2" pref="168" max="-2" attributes="0"/>
                       <EmptySpace pref="176" max="32767" attributes="0"/>
@@ -117,7 +117,7 @@
                 <Property name="text" type="java.lang.String" value="K&#xe9;rlek v&#xe1;rj!"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="exit_JLblLogo1">
+            <Component class="javax.swing.JLabel" name="waitingScreen_JLblLogo">
               <Properties>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
@@ -607,7 +607,7 @@
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="null"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Mind r&#xe9;szegek vagyunk"/>
+                <Property name="text" type="java.lang.String" value="Mindenki ittas"/>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Century Gothic" size="18" style="3"/>
                 </Property>

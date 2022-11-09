@@ -4,9 +4,8 @@
  */
 package Helpers;
 
-import com.k33ptoo.components.KGradientPanel;
+import java.awt.Font;
 import java.awt.Image;
-import javax.swing.DefaultListSelectionModel;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -34,5 +33,22 @@ public class ViewHelper {
     public static void switchPanelView(JPanel oldPanel, JPanel newPanel) {
         oldPanel.setVisible(false);
         newPanel.setVisible(true);
+    }
+
+    public static void fontResizer(JLabel label) {
+        Font labelFont = label.getFont();
+        String labelText = label.getText();
+
+        int stringWidth = label.getFontMetrics(labelFont).stringWidth(labelText);
+        int componentWidth = label.getWidth();
+
+        double widthRatio = (double) componentWidth / (double) stringWidth;
+
+        int newFontSize = (int) (labelFont.getSize() * widthRatio);
+        int componentHeight = label.getHeight();
+
+        int fontSizeToUse = Math.min(newFontSize, componentHeight);
+
+        label.setFont(new Font(labelFont.getName(), Font.PLAIN, fontSizeToUse));
     }
 }
