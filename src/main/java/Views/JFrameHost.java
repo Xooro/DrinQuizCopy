@@ -19,6 +19,7 @@ import static Helpers.ViewHelper.switchPanelView;
 import Views.Base.CustomJFrame;
 import com.k33ptoo.components.KGradientPanel;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.util.List;
 import javax.swing.JLabel;
 
@@ -27,8 +28,7 @@ import javax.swing.JLabel;
  * @author Jani
  */
 public class JFrameHost extends CustomJFrame {
-    
-    
+
     public static JFrameHost jFrameHostInstance;
     int cupsLeft;
     /**
@@ -39,10 +39,10 @@ public class JFrameHost extends CustomJFrame {
     public JFrameHost() {
         initComponents();
         isPlayer = false;
-        showOnScreen(2, this);
-        setFrameToBorderlessFullscreen();
+        this.setMinimumSize(new Dimension(1280, 720));
+//        showOnScreen(2, this);
+        setFrameTo16to9WindowedFullScreen();
         setFrameSizeVarsToFrameSize();
-        
 
         gameHost_kGrdntPnl.setVisible(false);
         exit_kGrdntPnl.setVisible(false);
@@ -92,7 +92,6 @@ public class JFrameHost extends CustomJFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(icon.getImage());
         setName("frame"); // NOI18N
-        setUndecorated(true);
         setResizable(false);
 
         waitingScreen_kGrdntPnl.setkEndColor(new java.awt.Color(100, 0, 0));
@@ -456,22 +455,20 @@ public class JFrameHost extends CustomJFrame {
 
     private void gameHost_kBttnShowAnswerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_gameHost_kBttnShowAnswerMouseClicked
         // TODO add your handling code here:
-        if(cupsLeft != 0){
+        if (cupsLeft != 0) {
             ViewHelper.infoBox("Oszd ki az összes poharad!");
             return;
         }
-        
+
         gameHandlerInstance.answerQuestion();
         gameHost_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
-        
+
         gameHost_kBttnShowAnswer.setVisible(false);
         gameHost_kBttnEndPlayerGame.setVisible(true);
-        if(gameHandlerInstance.getActualPlayer().getRefillsLeft()>0 && gameHandlerInstance.getActualPlayer().getCupsLeft()!=gameHandlerInstance.getGame().getCups())
-        {
+        if (gameHandlerInstance.getActualPlayer().getRefillsLeft() > 0 && gameHandlerInstance.getActualPlayer().getCupsLeft() != gameHandlerInstance.getGame().getCups()) {
             gameHost_kBttnRefill.setVisible(true);
         }
-        if(gameHandlerInstance.getActualPlayer().getCupsLeft()>0)
-        {
+        if (gameHandlerInstance.getActualPlayer().getCupsLeft() > 0) {
             gameHost_kBttnNextQuestion.setVisible(true);
         }
     }//GEN-LAST:event_gameHost_kBttnShowAnswerMouseClicked
@@ -491,14 +488,14 @@ public class JFrameHost extends CustomJFrame {
         // TODO add your handling code here:
         switchPanelView(exit_kGrdntPnl, waitingScreen_kGrdntPnl);
         gameHandlerInstance.callFromHostToPlayer_CreateNewPlayer();
-        
+
     }//GEN-LAST:event_exit_kBttnNewGameMouseClicked
 
     private void exit_kBttnEndGameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exit_kBttnEndGameMouseClicked
         // TODO add your handling code here:
         gameHandlerInstance.endGame();
         this.dispose();
-        
+
     }//GEN-LAST:event_exit_kBttnEndGameMouseClicked
 
     private void exit_kBttnExitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exit_kBttnExitMouseClicked
@@ -509,8 +506,7 @@ public class JFrameHost extends CustomJFrame {
     ///SAJÁT ELJÁRÁSOK
     public void displayNewQuestion() {
         cupsLeft = gameHandlerInstance.getActualPlayer().getCupsLeft();
-        
-        
+
         gameHost_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
         gameHost_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
         gameHost_jLblPlayerName.setText("Játékos neve: " + gameHandlerInstance.getActualPlayer().getPlayerName());
@@ -522,17 +518,14 @@ public class JFrameHost extends CustomJFrame {
         gameHost_kBttnEndPlayerGame.setVisible(false);
         gameHost_kBttnNextQuestion.setVisible(false);
         gameHost_kBttnRefill.setVisible(false);
-        
+
         ///ÁKOS IDE íRD BE A SEGíTSÉG CHECKEKET
-        if(gameHandlerInstance.getActualPlayer().getIsHalfingUsed())
-        {
+        if (gameHandlerInstance.getActualPlayer().getIsHalfingUsed()) {
             gameHost_jLblHalf.setEnabled(false);
-        }
-        else
-        {
+        } else {
             gameHost_jLblHalf.setEnabled(true);
         }
-        
+
         generateAnswerPanels(gameHost_kGrdntPnl,
                 convertSeparatedStringToStringArray(gameHandlerInstance.getActualQuestion().getAnswers()));
 
@@ -567,19 +560,17 @@ public class JFrameHost extends CustomJFrame {
         }
         gameHost_jLblCupNumber.setText(cupsLeft + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
     }
-    
+
     public void receive_HalfHelpUsed(List<Integer> indexesToRemove) {
         turnOffSpecifiecAnswerPanels(gameHost_kGrdntPnl, indexesToRemove);
         gameHost_jLblHalf.setEnabled(false);
     }
-    
-    public void receive_CallHelpUsed()
-    {
+
+    public void receive_CallHelpUsed() {
         gameHost_jLblCall.setEnabled(false);
     }
-    
-    public void receive_GroupHelpUsed()
-    {
+
+    public void receive_GroupHelpUsed() {
         gameHost_jLblGroup.setEnabled(false);
     }
 

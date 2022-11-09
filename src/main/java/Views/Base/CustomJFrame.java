@@ -30,11 +30,17 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
     protected int frameHeight, frameWidth;
     protected Boolean isPlayer;
 
-    protected void setFrameToBorderlessFullscreen() {
+    protected void setFrameTo16to9WindowedFullScreen() {
         Toolkit tk = Toolkit.getDefaultToolkit();
         Dimension dimension = tk.getScreenSize();
+        Dimension ratioDimension = dimension;
+        if (dimension.getWidth() > dimension.getHeight()) {
+            ratioDimension.setSize(dimension.getHeight() / 9 * 16, dimension.getHeight());
+        } else {
+            ratioDimension.setSize(dimension.getWidth(), dimension.getWidth() / 16 * 9);
+        }
 
-        setPreferredSize(dimension);
+        setPreferredSize(ratioDimension);
 
         pack();
 //
@@ -167,13 +173,12 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
     protected abstract void subtractCups(JLabel label, int index);
 
     protected void removeOldAnswerKPanel(KGradientPanel displayPanel) {
-          List<KGradientPanel> answerPanels = getAnswerPanels(displayPanel);
-          for(KGradientPanel panel : answerPanels)
-          {
-              displayPanel.remove(panel);
-          }
-          displayPanel.updateUI();
-    } 
+        List<KGradientPanel> answerPanels = getAnswerPanels(displayPanel);
+        for (KGradientPanel panel : answerPanels) {
+            displayPanel.remove(panel);
+        }
+        displayPanel.updateUI();
+    }
 
     protected void revealAnswerPanelColor(KGradientPanel displayPanel) {
         List<KGradientPanel> answerPanels = getAnswerPanels(displayPanel);
@@ -194,7 +199,7 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         }
         displayPanel.updateUI();
     }
-    
+
     protected List<KGradientPanel> getAnswerPanels(KGradientPanel displayPanel) {
         List<KGradientPanel> panels = new ArrayList<KGradientPanel>();
         for (Component cmp : displayPanel.getComponents()) {
@@ -204,7 +209,7 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         }
         return panels;
     }
-    
+
     protected void turnOffSpecifiecAnswerPanels(KGradientPanel displayPanel, List<Integer> indexesToRemove) {
         List<KGradientPanel> answerPanels = getAnswerPanels(displayPanel);
         for (int i = 0; i < answerPanels.size(); ++i) {
@@ -213,16 +218,17 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
                 answerPanels.get(i).setkEndColor(Color.darkGray);
                 int index = 0;
                 for (Component component : answerPanels.get(i).getComponents()) {
-                    if(index==0 || index==1)
+                    if (index == 0 || index == 1) {
                         component.setEnabled(false);
-                    else
+                    } else {
                         component.setVisible(false);
+                    }
                     index++;
                 }
             }
         }
     }
-    
+
     protected void changeBound(Component comp, int x, int y, int width, int height) {
         changeSize(comp, width, height);
         changeLocation(comp, x, y);

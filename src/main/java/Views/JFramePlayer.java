@@ -31,6 +31,8 @@ import Models.Player;
 import com.mycompany.projectdrinquiz.ProjectDrinQuiz;
 import java.awt.Color;
 import java.awt.Panel;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -51,10 +53,6 @@ public class JFramePlayer extends CustomJFrame {
     public static JFramePlayer jFramePlayerInstance;
     int cupsForThisTurn;
 
-    @Override
-    public Insets insets() {
-        return super.insets(); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
-    }
     /**
      * Creates new form JFramePlayer
      */
@@ -63,11 +61,11 @@ public class JFramePlayer extends CustomJFrame {
     public JFramePlayer() throws IOException {
         initComponents();
         isPlayer = true;
-        showOnScreen(2, this);
-        setFrameToBorderlessFullscreen();
+        this.setMinimumSize(new Dimension(1280, 720));
+//        showOnScreen(1, this);
+        setFrameTo16to9WindowedFullScreen();
         setFrameSizeVarsToFrameSize();
-        
-        
+
         newPlayer_kGrdntPnl.setVisible(false);
         game_kGrdntPnl.setVisible(false);
         playerFinished_kGrdntPnl.setVisible(false);
@@ -79,18 +77,18 @@ public class JFramePlayer extends CustomJFrame {
         scores_kGrdntPnl.setLayout(null);
 
         imageScaler();
-        
+
         if (gameHandlerInstance.getGame().getIsGameFinished()) {
             JFrameHost.jFrameHostInstance.dispose();
             JFrameHost.jFrameHostInstance = null;
-            
+
             generateScoreFrame();
             scores_kGrdntPnl.setVisible(true);
             return;
         }
-        
+
         JFrameHost.jFrameHostInstance.setVisible(true);
-        
+
         if (gameHandlerInstance.getActualPlayer() == null) {
             newPlayer_kGrdntPnl.setVisible(true);
         } else {
@@ -151,7 +149,7 @@ public class JFramePlayer extends CustomJFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setIconImage(icon.getImage());
         setName("frame"); // NOI18N
-        setUndecorated(true);
+        setResizable(false);
 
         newPlayer_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
         newPlayer_kGrdntPnl.setkStartColor(new java.awt.Color(46, 139, 87));
@@ -592,33 +590,36 @@ public class JFramePlayer extends CustomJFrame {
 
     private void game_jLblHalfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblHalfMouseClicked
         // TODO add your handling code here:
-        if(!game_jLblHalf.isEnabled())
+        if (!game_jLblHalf.isEnabled()) {
             return;
+        }
         game_jLblHalf.setEnabled(false);
-            
-        if(cupsForThisTurn!=gameHandlerInstance.getActualPlayer().getCupsLeft()){
+
+        if (cupsForThisTurn != gameHandlerInstance.getActualPlayer().getCupsLeft()) {
             infoBox("Vedd vissza a poharaid!");
             return;
-        }    
+        }
         useAnswerToHalfHelp();
     }//GEN-LAST:event_game_jLblHalfMouseClicked
 
     private void game_jLblCallMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblCallMouseClicked
         // TODO add your handling code here:
-        if(!game_jLblCall.isEnabled())
+        if (!game_jLblCall.isEnabled()) {
             return;
+        }
         game_jLblCall.setEnabled(false);
-        
+
         infoBox("Hívj valakit aki nem részeg");
         gameHandlerInstance.callFromPlayerToHost_CallHelpUsed();
     }//GEN-LAST:event_game_jLblCallMouseClicked
 
     private void game_jLblGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblGroupMouseClicked
         // TODO add your handling code here:
-        if(!game_jLblGroup.isEnabled())
+        if (!game_jLblGroup.isEnabled()) {
             return;
+        }
         game_jLblGroup.setEnabled(false);
-        
+
         infoBox("Kérdezz körbe, a részegek is okosak");
         gameHandlerInstance.callFromPlayerToHost_GroupHelpUsed();
     }//GEN-LAST:event_game_jLblGroupMouseClicked
@@ -666,17 +667,13 @@ public class JFramePlayer extends CustomJFrame {
 
         cupsForThisTurn = gameHandlerInstance.getActualPlayer().getCupsLeft();
 
-        
         ///ÁKOS IDE íRD BE A SEGíTSÉG CHECKEKET
-        if(gameHandlerInstance.getActualPlayer().getIsHalfingUsed())
-        {
+        if (gameHandlerInstance.getActualPlayer().getIsHalfingUsed()) {
             game_jLblHalf.setEnabled(false);
-        }
-        else
-        {
+        } else {
             game_jLblHalf.setEnabled(true);
         }
-        
+
         game_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
         game_jLblPlayerName.setText("Játékos neve: " + gameHandlerInstance.getActualPlayer().getPlayerName());
         game_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
@@ -727,13 +724,12 @@ public class JFramePlayer extends CustomJFrame {
         scaleImageInLabel(".//resources/images/bronze.png", scores_jLblBronze);
     }
 
-    public void generateScoreFrame()
-    {
+    public void generateScoreFrame() {
         setTopThree();
         fillScoreList();
         scores_jLblGameNameHasEnded.setText(gameHandlerInstance.getGame().getGameName() + " véget ért!");
     }
-    
+
     private void setTopThree() {
         List<Player> players = sortScores();
 
@@ -764,19 +760,19 @@ public class JFramePlayer extends CustomJFrame {
         scores_jLblSecondPlace.setText(playersOnPodium[1]);
         scores_jLblThirdPlace.setText(playersOnPodium[2]);
     }
-    
-    private List<Player> sortScores(){
+
+    private List<Player> sortScores() {
         List<Player> players = new ArrayList<Player>(gameHandlerInstance.getGamePlayers());
         players.sort(Comparator.comparing(Player::getScore).reversed());
         return players;
     }
-    
-    public void fillScoreList(){
+
+    public void fillScoreList() {
         List<Player> players = sortScores();
         DefaultListModel dlsm = new DefaultListModel();
-        
-        for(Player p : players){         
-             dlsm.addElement(p.getPlayerName()+ ": " + p.getScore());
+
+        for (Player p : players) {
+            dlsm.addElement(p.getPlayerName() + ": " + p.getScore());
         }
         scores_jLstScoreBoard.setModel(dlsm);
     }
@@ -805,7 +801,7 @@ public class JFramePlayer extends CustomJFrame {
         turnOffSpecifiecAnswerPanels(game_kGrdntPnl, indexesToRemove);
         gameHandlerInstance.callFromPlayerToHost_HalfHelpUsed(indexesToRemove);
     }
-    
+
     ///SAJÁT ELJÁRÁSOK VÉGE
     ///EVENTEK
     public void receive_RevealAnswer() {
@@ -832,6 +828,7 @@ public class JFramePlayer extends CustomJFrame {
         generateScoreFrame();
         switchPanelView(playerFinished_kGrdntPnl, scores_kGrdntPnl);
     }
+
     ///EVENTEK VÉGE
     public static void showOnScreen(int screen, JFrame frame) {
         GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
