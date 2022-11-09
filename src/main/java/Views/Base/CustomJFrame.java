@@ -172,6 +172,7 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
           {
               displayPanel.remove(panel);
           }
+          displayPanel.updateUI();
     } 
 
     protected void revealAnswerPanelColor(KGradientPanel displayPanel) {
@@ -234,11 +235,5 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
 
     protected void changeSize(Component comp, int width, int height) {
         comp.setSize(width, height);
-    }
-    
-    protected void oneTimeUseGetterSetter(Component comp){
-        if(!comp.isEnabled())
-            return;
-        comp.setEnabled(false);
     }
 }

@@ -592,8 +592,10 @@ public class JFramePlayer extends CustomJFrame {
 
     private void game_jLblHalfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblHalfMouseClicked
         // TODO add your handling code here:
-        oneTimeUseGetterSetter(game_jLblHalf);
-        
+        if(!game_jLblHalf.isEnabled())
+            return;
+        game_jLblHalf.setEnabled(false);
+            
         if(cupsForThisTurn!=gameHandlerInstance.getActualPlayer().getCupsLeft()){
             infoBox("Vedd vissza a poharaid!");
             return;
@@ -603,14 +605,20 @@ public class JFramePlayer extends CustomJFrame {
 
     private void game_jLblCallMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblCallMouseClicked
         // TODO add your handling code here:
-        oneTimeUseGetterSetter(game_jLblCall);
+        if(!game_jLblCall.isEnabled())
+            return;
+        game_jLblCall.setEnabled(false);
+        
         infoBox("Hívj valakit aki nem részeg");
         gameHandlerInstance.callFromPlayerToHost_CallHelpUsed();
     }//GEN-LAST:event_game_jLblCallMouseClicked
 
     private void game_jLblGroupMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_game_jLblGroupMouseClicked
         // TODO add your handling code here:
-        oneTimeUseGetterSetter(game_jLblGroup);
+        if(!game_jLblGroup.isEnabled())
+            return;
+        game_jLblGroup.setEnabled(false);
+        
         infoBox("Kérdezz körbe, a részegek is okosak");
         gameHandlerInstance.callFromPlayerToHost_GroupHelpUsed();
     }//GEN-LAST:event_game_jLblGroupMouseClicked
