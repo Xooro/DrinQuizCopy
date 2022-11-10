@@ -435,7 +435,7 @@
                   <Font name="Century Gothic" size="18" style="3"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="El&#xe9;rt pontjaid: *insert earned points*"/>
+                <Property name="text" type="java.lang.String" value="El&#xe9;rt pontjaid:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="playerFinished_jLblGameOver">

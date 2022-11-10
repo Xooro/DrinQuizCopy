@@ -13,18 +13,18 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.Scanner;
 
 /**
  *
  * @author kkris
  */
 
+
+//Absztrakt osztály weboldalak kvízeinek betöltésére
 public abstract class BaseWebHandler {
 
     protected Sources source;
     protected String encoding;
-    protected String separator = ";;SEP;;";
 
     public BaseWebHandler(Sources source, String encoding) {
         this.source = source;
@@ -48,16 +48,7 @@ public abstract class BaseWebHandler {
 
         String[] htmlDataSeparated = result.split("<br>");
         
-        return htmlDataSeparated;
-        
-        //Into file for encode checking
-//        PrintWriter out = new PrintWriter("EncodeCheck.txt");
-//        out.println(result);
-        //Tells the page encoding (buggy btw)
-//      InputStreamReader isr = new InputStreamReader(url.openStream());
-//        String encoding = isr.getEncoding();
-//        System.out.println(encoding);
-        
+        return htmlDataSeparated;      
     }
 
     protected abstract List<Question> convertWebPageStringArrayToQuestionList(String[] htmlDataString, Categories category);

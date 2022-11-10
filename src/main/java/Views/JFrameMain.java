@@ -8,7 +8,6 @@ import javax.swing.*;
 import Helpers.GameGenerator;
 import Helpers.GameHandler;
 import Helpers.DatabaseHandler;
-import static Helpers.GameHandler.gameHandlerInstance;
 import Helpers.GameLoader;
 import static Helpers.ViewHelper.infoBox;
 import static Helpers.ViewHelper.switchPanelView;
@@ -26,15 +25,15 @@ import javax.swing.JCheckBox;
  *
  * @author Jani
  */
+
+//Játék főmenüje
 public class JFrameMain extends javax.swing.JFrame {
 
     Game game;
     GameGenerator gameGenerator;
     GameLoader gameLoader;
     DatabaseHandler databaseHandler;
-    /**
-     * Creates new form JFrameMain
-     */
+    
     ImageIcon icon = new ImageIcon(".//resources/images/icon.png");
 
     public JFrameMain() {
@@ -998,7 +997,6 @@ public class JFrameMain extends javax.swing.JFrame {
             return;
         }
 
-        ///IDE JÖN A KIVÁLASZTOTT POHARAK ÉS ÚJRATÖLTÉSEK SZÁMA
         gameGenerator.setRules(cups, refills);
 
         gameGenerator.generateGame(gameName);
@@ -1006,7 +1004,6 @@ public class JFrameMain extends javax.swing.JFrame {
         GameHandler.gameHandlerInstance.setGame(game);
 
         newGame_kGrdntPnlGameName.setVisible(false);
-        //MODIFY LATER THE MENU SELECTION TO GAME
         menu_kGrdntPnl.setVisible(true);
         startGame();
         this.dispose();
@@ -1159,14 +1156,6 @@ public class JFrameMain extends javax.swing.JFrame {
         int CheckBoxNumber = source.length;
         jCheckboxArray = new javax.swing.JCheckBox[CheckBoxNumber];
 
-//        for (int i = 0; i < CheckBoxNumber; i++) {
-//            jCheckboxArray[i] = new javax.swing.JCheckBox();
-//            jCheckboxArray[i].setText(source[i]);
-//            jCheckboxArray[i].setBounds(20, 50 + i * 50, 250, 50);
-//            jCheckboxArray[i].doClick();
-//            jCheckboxArray[i].setFont(new java.awt.Font("Century Gothic", 3, 18));
-//            panel.add(jCheckboxArray[i]);
-//        }
         int defaultX = 25, defaultY = 270;
         int incX = 250, incY = 40;
         int X = defaultX, Y = defaultY;
@@ -1216,11 +1205,6 @@ public class JFrameMain extends javax.swing.JFrame {
         for (int i = 0; i < jCheckboxArray.size(); ++i) {
             choosenCheckboxesString[i] = jCheckboxArray.get(i).getText();
         }
-
-//        for (String s : choosenCheckboxesString) {
-//            System.out.println(s);
-//        }
-//        System.out.println("");
         return choosenCheckboxesString;
     }
 

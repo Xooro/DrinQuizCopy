@@ -8,6 +8,8 @@ package Models.Enums;
  *
  * @author kkris
  */
+
+//Játék által használható források
 public enum Sources {
         NapiKvíz
     }

@@ -8,6 +8,8 @@ package Models;
  *
  * @author kkris
  */
+
+//Question tábla modelje
 public class Question {
 
     private int id;

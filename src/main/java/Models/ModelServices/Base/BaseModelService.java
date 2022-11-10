@@ -14,6 +14,8 @@ import java.util.List;
  *
  * @author kkris
  */
+
+//Absztrakt osztály CRUD alapjait valósítja meg
 public abstract class BaseModelService<T> {
     public abstract void addRange(List<T> modelsToAdd);
     public abstract void updateRange(List<T> modelsToUpdate);

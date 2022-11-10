@@ -8,6 +8,8 @@ package Models;
  *
  * @author kkris
  */
+
+//Player tábla modelje
 public class Player {
     private int id;
     private int gameID;
@@ -16,11 +18,13 @@ public class Player {
     private int cupsLeft;
     private int refillsLeft;
     private boolean isHalfingUsed;
+    private boolean isCallUsed;
+    private boolean isGroupUsed;
     
 
     public Player(){}
     
-    public Player(int id, int gameID, String playerName, int score, int cupsLeft, int refillsLeft, boolean isHalfingUsed){
+    public Player(int id, int gameID, String playerName, int score, int cupsLeft, int refillsLeft, boolean isHalfingUsed, boolean isCallUsed, boolean isGroupUsed){
         this.id = id;
         this.gameID = gameID;
         this.playerName = playerName;
@@ -28,6 +32,8 @@ public class Player {
         this.cupsLeft = cupsLeft;
         this.refillsLeft = refillsLeft;
         this.isHalfingUsed = isHalfingUsed;
+        this.isCallUsed = isCallUsed;
+        this.isGroupUsed = isGroupUsed;
     }
     
     //GETTERS
@@ -55,6 +61,12 @@ public class Player {
     public boolean getIsHalfingUsed(){
         return isHalfingUsed;
     }
+    public boolean getIsCallUsed(){
+        return isCallUsed;
+    }
+    public boolean getIsGroupUsed(){
+        return isGroupUsed;
+    }
     
     //SETTERS
     public void setID(int newId) {
@@ -80,5 +92,11 @@ public class Player {
     }
     public void setIsHalfingUsed(boolean  newIsHalfingUsed){
         isHalfingUsed = newIsHalfingUsed;
+    }
+    public void setIsCallUsed(boolean  newIsCallUsed){
+        isCallUsed = newIsCallUsed;
+    }
+    public void setIsGroupUsed(boolean  newIsGroupUsed){
+        isGroupUsed = newIsGroupUsed;
     }
 }

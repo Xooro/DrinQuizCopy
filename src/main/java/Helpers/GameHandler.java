@@ -10,11 +10,8 @@ import Models.Game;
 import Models.Player;
 import Models.Question;
 import Models.QuestionHistory;
-import Views.JFrameHost;
 import static Views.JFrameHost.jFrameHostInstance;
-import Views.JFramePlayer;
 import static Views.JFramePlayer.jFramePlayerInstance;
-import com.k33ptoo.components.KGradientPanel;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -25,6 +22,8 @@ import java.util.stream.Collectors;
  *
  * @author akile
  */
+
+//Kezeli a játék futását és framek közti kommunikációt biztosít
 public class GameHandler {
 
     public static GameHandler gameHandlerInstance;
@@ -46,7 +45,7 @@ public class GameHandler {
     }
 
     public void createPlayer(String playerName) {
-        actualPlayer = new Player(0, game.getID(), playerName, 0, game.getCups(), game.getRefills(), false);
+        actualPlayer = new Player(0, game.getID(), playerName, 0, game.getCups(), game.getRefills(), false, false, false);
         _context.Player.add(actualPlayer);
         setActualPlayer();
     }
@@ -102,11 +101,6 @@ public class GameHandler {
         String[] sources = ConverterHelper.convertSeparatedStringToStringArray(game.getSources());
         String[] categories = ConverterHelper.convertSeparatedStringToStringArray(game.getCategories());
 
-//        questions = questions.stream().filter(
-//                q -> (Arrays.stream(sources).anyMatch(q.getSource()::contains))
-//                && (Arrays.stream(categories).anyMatch(q.getCategory()::contains))
-//                && (!isQuestionUsed(q))
-//        ).toList();
           questions = questions.parallelStream()
                   .filter(q -> (Arrays.stream(sources).anyMatch(q.getSource()::contains)))
                   .filter(q -> Arrays.stream(categories).anyMatch(q.getCategory()::contains))
@@ -180,7 +174,6 @@ public class GameHandler {
         callFromHostToPlayer_RevealAnswer();
     }
     
-    //answers alapján pontozási rendszert kell kidolgozni
     private void setNewCupsLeftAfterAnswer()
     {
         String[] answersArray = getQuestionAnswers();
@@ -227,7 +220,7 @@ public class GameHandler {
     }
     
     
-    ///ESEMÉNYEK
+    ///Frame communications
     public void callFromPlayerToHost_PlayerGameStarted()
     {
         jFrameHostInstance.receive_PlayerGameStarted();
@@ -246,10 +239,12 @@ public class GameHandler {
     public void callFromPlayerToHost_CallHelpUsed()
     {
         jFrameHostInstance.receive_CallHelpUsed();
+        getActualPlayer().setIsCallUsed(true);
     }
     public void callFromPlayerToHost_GroupHelpUsed()
     {
         jFrameHostInstance.receive_GroupHelpUsed();
+        getActualPlayer().setIsGroupUsed(true);
     }
     
     public void callFromHostToPlayer_RevealAnswer()

@@ -8,14 +8,11 @@ import static Helpers.ConverterHelper.convertSeparatedStringToStringArray;
 import static Helpers.GameHandler.gameHandlerInstance;
 import Helpers.ViewHelper;
 import com.formdev.flatlaf.FlatDarkLaf;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.UIManager;
 import static Helpers.ViewHelper.scaleImageInLabel;
 import static Helpers.ViewHelper.switchPanelView;
-import Views.Base.CustomJFrame;
+import Views.Base.BaseGameJFrame;
 import com.k33ptoo.components.KGradientPanel;
 import java.awt.Component;
 import java.awt.Dimension;
@@ -26,25 +23,23 @@ import javax.swing.JLabel;
  *
  * @author Jani
  */
-public class JFrameHost extends CustomJFrame {
+
+//Játékot írányító UI és függvényei
+public class JFrameHost extends BaseGameJFrame {
 
     public static JFrameHost jFrameHostInstance;
     int cupsLeft;
-    /**
-     * Creates new form JFrameHost
-     */
+
     ImageIcon icon = new ImageIcon(".//resources/images/icon.png");
 
     public JFrameHost() {
         initComponents();
         isPlayer = false;
         this.setMinimumSize(new Dimension(1280, 720));
-//        showOnScreen(2, this);
         setFrameTo16to9WindowedFullScreen();
         setFrameSizeVarsToFrameSize();
 
         componentLocationAndSize();
-        componentFontSize();
         waitingScreen_kGrdntPnl.updateUI();
 
         gameHost_kGrdntPnl.setVisible(false);
@@ -522,11 +517,20 @@ public class JFrameHost extends CustomJFrame {
         gameHost_kBttnNextQuestion.setVisible(false);
         gameHost_kBttnRefill.setVisible(false);
 
-        ///ÁKOS IDE íRD BE A SEGíTSÉG CHECKEKET
         if (gameHandlerInstance.getActualPlayer().getIsHalfingUsed()) {
             gameHost_jLblHalf.setEnabled(false);
         } else {
             gameHost_jLblHalf.setEnabled(true);
+        }
+        if (gameHandlerInstance.getActualPlayer().getIsCallUsed()) {
+            gameHost_jLblCall.setEnabled(false);
+        } else {
+            gameHost_jLblCall.setEnabled(true);
+        }
+        if (gameHandlerInstance.getActualPlayer().getIsGroupUsed()) {
+            gameHost_jLblGroup.setEnabled(false);
+        } else {
+            gameHost_jLblGroup.setEnabled(true);
         }
 
         generateAnswerPanels(gameHost_kGrdntPnl,
@@ -614,10 +618,6 @@ public class JFrameHost extends CustomJFrame {
                 frameHeight / 12 * 4, frameHeight / 12);
     }
 
-    private void componentFontSize() {
-
-    }
-
     ///SAJÁT ELJÁRÁSOK VÉGE
     ///EVENTEK
     public void receive_PlayerGameStarted() {
@@ -675,21 +675,6 @@ public class JFrameHost extends CustomJFrame {
                 jFrameHostInstance = new JFrameHost();
             }
         });
-    }
-
-    public static void showOnScreen(int screen, JFrame frame) {
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice[] gd = ge.getScreenDevices();
-        if (screen > -1 && screen < gd.length) {
-            //gd[screen].setFullScreenWindow(frame);
-            frame.setLocation(gd[screen].getDefaultConfiguration().getBounds().x, frame.getY());
-        } else if (gd.length > 0) {
-            //gd[0].setFullScreenWindow(frame);
-            frame.setLocation(gd[0].getDefaultConfiguration().getBounds().x, frame.getY());
-        } else {
-            throw new RuntimeException("No screen found!");
-
-        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

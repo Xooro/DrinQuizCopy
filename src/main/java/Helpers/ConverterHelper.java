@@ -8,13 +8,15 @@ package Helpers;
  *
  * @author akile
  */
-public class ConverterHelper {
 
+//;;SEP;; elválasztást biztosítja
+public class ConverterHelper {
+    public static String SEPARATOR = ";;SEP;;";
     public static String[] convertSeparatedStringToStringArray(String separatedBlock) {
-        if (!separatedBlock.contains(";;SEP;;")) {
+        if (!separatedBlock.contains(SEPARATOR)) {
             return new String[]{separatedBlock};
         }
-        String[] separatedArray = separatedBlock.split(";;SEP;;");
+        String[] separatedArray = separatedBlock.split(SEPARATOR);
 
         return separatedArray;
     }
@@ -23,7 +25,7 @@ public class ConverterHelper {
         String separatedBlock = separatedArray[0];
 
         for (int i = 1; i < separatedArray.length; ++i) {
-            separatedBlock += ";;SEP;;";
+            separatedBlock += SEPARATOR;
             separatedBlock += separatedArray[i];
         }
 

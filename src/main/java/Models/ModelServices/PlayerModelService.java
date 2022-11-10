@@ -18,11 +18,13 @@ import java.util.List;
  *
  * @author akile
  */
+
+//CRUD Player tábla
 public class PlayerModelService extends BaseModelService<Player> {
 
     public void addRange(List<Player> playersToAdd) {
 
-        String sql = "INSERT INTO Player(gameID,playerName, score, cupsLeft, refillsLeft, isHalfingUsed) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO Player(gameID,playerName, score, cupsLeft, refillsLeft, isHalfingUsed, isCallUsed, isGroupUsed) VALUES(?,?,?,?,?,?,?,?)";
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
             int index = 0;
             for (Player playerToAdd : playersToAdd) {
@@ -33,6 +35,8 @@ public class PlayerModelService extends BaseModelService<Player> {
                 pstmt.setInt(4, playerToAdd.getCupsLeft());
                 pstmt.setInt(5, playerToAdd.getRefillsLeft());
                 pstmt.setBoolean(6, playerToAdd.getIsHalfingUsed());
+                pstmt.setBoolean(7, playerToAdd.getIsCallUsed());
+                pstmt.setBoolean(8, playerToAdd.getIsGroupUsed());
 
                 pstmt.addBatch();
                 index++;
@@ -56,7 +60,9 @@ public class PlayerModelService extends BaseModelService<Player> {
                 + "score = ?, "
                 + "cupsLeft = ? , "
                 + "refillsLeft = ?,  "
-                + "isHalfingUsed = ?  "
+                + "isHalfingUsed = ?,  "
+                + "isCallUsed = ?,  "
+                + "isGroupUsed = ?  "
                 
                 + "WHERE id = ?";
         try ( Connection conn = connect();  PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -70,7 +76,9 @@ public class PlayerModelService extends BaseModelService<Player> {
                 pstmt.setInt(4, playerToUpdate.getCupsLeft());
                 pstmt.setInt(5, playerToUpdate.getRefillsLeft());
                 pstmt.setBoolean(6, playerToUpdate.getIsHalfingUsed());
-                pstmt.setInt(7, playerToUpdate.getID());
+                pstmt.setBoolean(7, playerToUpdate.getIsCallUsed());
+                pstmt.setBoolean(8, playerToUpdate.getIsGroupUsed());
+                pstmt.setInt(9, playerToUpdate.getID());
                 // update 
                 pstmt.addBatch();
                 index++;
@@ -126,6 +134,8 @@ public class PlayerModelService extends BaseModelService<Player> {
                 player.setCupsLeft(rs.getInt("cupsLeft"));
                 player.setRefillsLeft(rs.getInt("refillsLeft"));
                 player.setIsHalfingUsed(rs.getBoolean("isHalfingUsed"));
+                player.setIsCallUsed(rs.getBoolean("isCallUsed"));
+                player.setIsGroupUsed(rs.getBoolean("isGroupUsed"));
 
                 playerList.add(player);
 

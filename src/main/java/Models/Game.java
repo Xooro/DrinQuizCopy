@@ -5,12 +5,13 @@
 package Models;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
 
 /**
  *
  * @author kkris
  */
+
+//Game tábla modelje
 public class Game {
 
     private int id;

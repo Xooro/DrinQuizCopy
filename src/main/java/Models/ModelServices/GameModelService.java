@@ -6,7 +6,6 @@ package Models.ModelServices;
 
 import Models.ModelServices.Base.BaseModelService;
 import Models.Game;
-import Models.Question;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +14,8 @@ import java.util.List;
  *
  * @author akile
  */
+
+//CRUD Game tábla
 public class GameModelService extends BaseModelService<Game> {
 
     public void addRange(List<Game> gamesToAdd) {

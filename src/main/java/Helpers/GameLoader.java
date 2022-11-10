@@ -11,14 +11,13 @@ import Models.Player;
 import java.util.Collections;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.ListModel;
 
 /**
  *
  * @author akile
  */
+
+//Játék betöltését biztosító osztály
 public class GameLoader {
  
     private DrinQuizContext _context;

@@ -12,6 +12,8 @@ import Models.ModelServices.GameModelService;
  *
  * @author akile
  */
+
+//DI megvalósítását biztosító osztály
 public class DrinQuizContext {    
     public QuestionModelService Question = new QuestionModelService();
     public QuestionHistoryModelService QuestionHistory = new QuestionHistoryModelService();

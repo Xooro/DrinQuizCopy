@@ -8,8 +8,6 @@ import Data.DrinQuizContext;
 import Models.Game;
 import java.util.List;
 import Models.Question;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Map;
@@ -19,6 +17,8 @@ import java.util.stream.Collectors;
  *
  * @author akile
  */
+
+//Játék létrehozását megvalósító osztály
 public class GameGenerator {
     private DrinQuizContext _context;
     private Game game;

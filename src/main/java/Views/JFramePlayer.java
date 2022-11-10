@@ -4,21 +4,17 @@
  */
 package Views;
 
-import Views.Base.CustomJFrame;
+import Views.Base.BaseGameJFrame;
 import static Helpers.ConverterHelper.convertSeparatedStringToStringArray;
 import static Helpers.GameHandler.gameHandlerInstance;
-import Helpers.ViewHelper;
 import static Helpers.ViewHelper.infoBox;
 import com.formdev.flatlaf.FlatDarkLaf;
 import com.k33ptoo.components.KGradientPanel;
 import java.awt.Dimension;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.UIManager;
 import static Helpers.ViewHelper.*;
@@ -35,21 +31,19 @@ import javax.swing.DefaultListModel;
  *
  * @author Jani
  */
-public class JFramePlayer extends CustomJFrame {
+
+//Játékos UI és függvényei
+public class JFramePlayer extends BaseGameJFrame {
 
     public static JFramePlayer jFramePlayerInstance;
     int cupsForThisTurn;
 
-    /**
-     * Creates new form JFramePlayer
-     */
     ImageIcon icon = new ImageIcon(".//resources/images/icon.png");
 
     public JFramePlayer() throws IOException {
         initComponents();
         isPlayer = true;
         this.setMinimumSize(new Dimension(1280, 720));
-//        showOnScreen(1, this);
         setFrameTo16to9WindowedFullScreen();
         setFrameSizeVarsToFrameSize();
 
@@ -318,7 +312,7 @@ public class JFramePlayer extends CustomJFrame {
 
         playerFinished_jLblEarnedPoints.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         playerFinished_jLblEarnedPoints.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        playerFinished_jLblEarnedPoints.setText("Elért pontjaid: *insert earned points*");
+        playerFinished_jLblEarnedPoints.setText("Elért pontjaid:");
 
         playerFinished_jLblGameOver.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
         playerFinished_jLblGameOver.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -661,11 +655,20 @@ public class JFramePlayer extends CustomJFrame {
 
         cupsForThisTurn = gameHandlerInstance.getActualPlayer().getCupsLeft();
 
-        ///ÁKOS IDE íRD BE A SEGíTSÉG CHECKEKET
         if (gameHandlerInstance.getActualPlayer().getIsHalfingUsed()) {
             game_jLblHalf.setEnabled(false);
         } else {
             game_jLblHalf.setEnabled(true);
+        }
+        if (gameHandlerInstance.getActualPlayer().getIsCallUsed()) {
+            game_jLblCall.setEnabled(false);
+        } else {
+            game_jLblCall.setEnabled(true);
+        }
+        if (gameHandlerInstance.getActualPlayer().getIsGroupUsed()) {
+            game_jLblGroup.setEnabled(false);
+        } else {
+            game_jLblGroup.setEnabled(true);
         }
 
         game_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
@@ -836,7 +839,7 @@ public class JFramePlayer extends CustomJFrame {
             for (int i = 0; i < 3; ++i) {
                 if (noDuplicatesScores.length > i && p.getScore() == noDuplicatesScores[i]) {
                     playersOnPodium[i] += p.getPlayerName();
-                    playersOnPodium[i] += "; ";
+                    playersOnPodium[i] += "\t";
                 }
             }
         }
@@ -900,10 +903,16 @@ public class JFramePlayer extends CustomJFrame {
     public void receive_RevealAnswer() {
         revealAnswerPanelColor(game_kGrdntPnl);
         game_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
+        game_jLblHalf.setVisible(false);
+        game_jLblCall.setVisible(false);
+        game_jLblGroup.setVisible(false);
     }
 
     public void receive_NextPlayerRound() {
         generateGameFrame();
+        game_jLblHalf.setVisible(true);
+        game_jLblCall.setVisible(true);
+        game_jLblGroup.setVisible(true);
     }
 
     public void receive_PlayerGameEnded() {
@@ -923,20 +932,7 @@ public class JFramePlayer extends CustomJFrame {
     }
 
     ///EVENTEK VÉGE
-    public static void showOnScreen(int screen, JFrame frame) {
-        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-        GraphicsDevice[] gd = ge.getScreenDevices();
 
-        if (screen > -1 && screen < gd.length) {
-            //gd[screen].setFullScreenWindow(frame);
-            frame.setLocation(gd[screen].getDefaultConfiguration().getBounds().x, frame.getY());
-        } else if (gd.length > 0) {
-            //gd[0].setFullScreenWindow(frame);
-            frame.setLocation(gd[0].getDefaultConfiguration().getBounds().x, frame.getY());
-        } else {
-            throw new RuntimeException("No screen found!");
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.utils.ComponentMoverUtil componentMoverUtil1;

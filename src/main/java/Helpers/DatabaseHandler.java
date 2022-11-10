@@ -20,6 +20,8 @@ import java.util.List;
  *
  * @author kkris
  */
+
+//DB kezelő a játék számára
 public class DatabaseHandler {
 
     private DrinQuizContext _context;
@@ -36,7 +38,7 @@ public class DatabaseHandler {
     public void importNapikvizToDatabase() throws IOException {
         NapiKvizWebHandler napiKvizHandler = new NapiKvizWebHandler(Sources.NapiKvíz, "ISO8859_1");
         List<Question> quizes = new ArrayList<>();
-//
+        
         quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=tortenelem", Categories.Történelem));
         quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=foldrajz", Categories.Földrajz));
         quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=bulvar", Categories.Bulvár));
@@ -54,17 +56,6 @@ public class DatabaseHandler {
         quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=szolasok-kozmondasok", Categories.Szólások_közmondások));
         quizes.addAll(napiKvizHandler.getDataFromWebpage("http://napikviz.tutioldal.hu/index.php?kvizkerdesek=egyeb", Categories.Egyéb));
        _context.Question.addRange(quizes);
-
-//        List<Question> testlist = _context.Question.getAll();
-//        for (Question q : testlist) {
-//            System.out.println("ID:        | " + q.getID());
-//            System.out.println("Question:  | " + q.getQuestion());
-//            System.out.println("Answers:   | " + q.getAnswers());
-//            System.out.println("RAnswerID: | " + q.getRightAnswerID());
-//            System.out.println("Category:  | " + q.getCategory());
-//            System.out.println("Source:    | " + q.getSource());
-//            System.out.println("\n");
-//        }
     }
     
     public void deleteGameInDatabase(Game game)

@@ -11,14 +11,14 @@ import javax.swing.SwingUtilities;
  *
  * @author kkris
  */
+
+//Program inditó függvénye
 public class ProjectDrinQuiz {
 
     public static void main(String[] args) {
 
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-//                JFrameMain mainFrame = new JFrameMain();
-//                mainFrame.setVisible(true);
                 JFrameMain.main(new String[]{});
             }
         });

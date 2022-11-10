@@ -4,6 +4,7 @@
  */
 package Helpers.WebHandlers;
 
+import static Helpers.ConverterHelper.SEPARATOR;
 import Models.Enums.Categories;
 import Models.Enums.Sources;
 import Models.Question;
@@ -11,12 +12,13 @@ import Helpers.WebHandlers.Base.BaseWebHandler;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Locale;
 
 /**
  *
  * @author kkris
  */
+
+//Napikviz weboldal kvízeinek letöltését és átalakítását valósítja meg
 public class NapiKvizWebHandler extends BaseWebHandler {
 
     public NapiKvizWebHandler(Sources source, String encoding) {
@@ -34,8 +36,8 @@ public class NapiKvizWebHandler extends BaseWebHandler {
 
                 String htmlQuestion = htmlDataSeparated[i - 1];
                 String[] htmlAnswersRow = htmlDataSeparated[i].split(". Megoldás:");
-                String htmlAnswers = htmlAnswersRow[0].replace(",", separator).replace("Válaszok:", "");
-                int htmlRightAnswerID = Arrays.asList(htmlAnswers.split(separator)).indexOf(htmlAnswersRow[1]);
+                String htmlAnswers = htmlAnswersRow[0].replace(",", SEPARATOR).replace("Válaszok:", "");
+                int htmlRightAnswerID = Arrays.asList(htmlAnswers.split(SEPARATOR)).indexOf(htmlAnswersRow[1]);
                 
                 questions.add(new Question(0,htmlQuestion,htmlAnswers,htmlRightAnswerID,category.toString(),source.toString()));
             }

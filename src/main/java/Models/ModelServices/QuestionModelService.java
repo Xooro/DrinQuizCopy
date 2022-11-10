@@ -14,6 +14,8 @@ import java.sql.*;
  *
  * @author kkris
  */
+
+//CRUD QuestionHistory tábla
 public class QuestionModelService extends BaseModelService<Question> {
 
     @Override

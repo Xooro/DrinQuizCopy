@@ -18,12 +18,9 @@ import java.util.List;
  *
  * @author akile
  */
+
+//CRUD Question tábla
 public class QuestionHistoryModelService extends BaseModelService<QuestionHistory> {
-//    private int id;
-//    private int gameID;
-//    private int playerID;
-//    private int questionID;
-//    private int pickedAnswer;
 
     public void addRange(List<QuestionHistory> questionHistoriesToAdd) {
 

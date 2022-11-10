@@ -21,7 +21,9 @@ import javax.swing.JLabel;
  *
  * @author kkris
  */
-public abstract class CustomJFrame extends javax.swing.JFrame {
+
+//Absztrakt osztály a Host- és Playerframe számára
+public abstract class BaseGameJFrame extends javax.swing.JFrame {
 
     protected int frameHeight, frameWidth;
     protected Boolean isPlayer;
@@ -39,9 +41,6 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         setPreferredSize(ratioDimension);
 
         pack();
-//
-//        frameWidth = dimension.width;
-//        frameHeight = dimension.height;
     }
 
     protected void setFrameSizeVarsToFrameSize() {
@@ -139,7 +138,6 @@ public abstract class CustomJFrame extends javax.swing.JFrame {
         game_kGrdntPnlAnswer.setkEndColor(new java.awt.Color(128, 128, 128));
         game_kGrdntPnlAnswer.setOpaque(false);
 
-        //game_kGrdntPnlAnswer.setBounds(400 * index, frameHeight / 2, 300, 300);
         game_kGrdntPnlAnswer.setLayout(new GridBagLayout());
 
         scaleImageInLabel(".//resources/images/plus.png", jLblPlus);

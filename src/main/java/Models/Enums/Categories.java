@@ -8,6 +8,8 @@ package Models.Enums;
  *
  * @author kkris
  */
+
+//Játékban használt kategóriák
 public enum Categories {
         Történelem,
         Földrajz,

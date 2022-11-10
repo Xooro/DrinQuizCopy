@@ -15,6 +15,8 @@ import javax.swing.JPanel;
  *
  * @author akile
  */
+
+//UI segédlet
 public class ViewHelper {
 
     public static void infoBox(String infoMessage) {
@@ -33,22 +35,5 @@ public class ViewHelper {
     public static void switchPanelView(JPanel oldPanel, JPanel newPanel) {
         oldPanel.setVisible(false);
         newPanel.setVisible(true);
-    }
-
-    public static void fontResizer(JLabel label) {
-        Font labelFont = label.getFont();
-        String labelText = label.getText();
-
-        int stringWidth = label.getFontMetrics(labelFont).stringWidth(labelText);
-        int componentWidth = label.getWidth();
-
-        double widthRatio = (double) componentWidth / (double) stringWidth;
-
-        int newFontSize = (int) (labelFont.getSize() * widthRatio);
-        int componentHeight = label.getHeight();
-
-        int fontSizeToUse = Math.min(newFontSize, componentHeight);
-
-        label.setFont(new Font(labelFont.getName(), Font.PLAIN, fontSizeToUse));
     }
 }
