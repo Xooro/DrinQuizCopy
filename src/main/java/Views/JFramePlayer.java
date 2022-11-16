@@ -581,12 +581,14 @@ public class JFramePlayer extends BaseGameJFrame {
         if (!game_jLblHalf.isEnabled()) {
             return;
         }
-        game_jLblHalf.setEnabled(false);
-
+        
         if (cupsForThisTurn != gameHandlerInstance.getActualPlayer().getCupsLeft()) {
             infoBox("Vedd vissza a poharaid!");
             return;
         }
+          
+        game_jLblHalf.setEnabled(false);
+        
         useAnswerToHalfHelp();
     }//GEN-LAST:event_game_jLblHalfMouseClicked
 
@@ -903,16 +905,13 @@ public class JFramePlayer extends BaseGameJFrame {
     public void receive_RevealAnswer() {
         revealAnswerPanelColor(game_kGrdntPnl);
         game_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
-        game_jLblHalf.setVisible(false);
-        game_jLblCall.setVisible(false);
-        game_jLblGroup.setVisible(false);
+        game_jLblHalf.setEnabled(false);
+        game_jLblCall.setEnabled(false);
+        game_jLblGroup.setEnabled(false);
     }
 
     public void receive_NextPlayerRound() {
         generateGameFrame();
-        game_jLblHalf.setVisible(true);
-        game_jLblCall.setVisible(true);
-        game_jLblGroup.setVisible(true);
     }
 
     public void receive_PlayerGameEnded() {
