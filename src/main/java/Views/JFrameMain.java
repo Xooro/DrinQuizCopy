@@ -4,17 +4,20 @@
  */
 package Views;
 
+import Enums.Resolutions;
 import javax.swing.*;
 import Helpers.GameGenerator;
 import Helpers.GameHandler;
 import Helpers.DatabaseHandler;
 import Helpers.GameLoader;
+import Helpers.UserProperties;
 import static Helpers.ViewHelper.infoBox;
 import static Helpers.ViewHelper.scaleImageInLabel;
 import static Helpers.ViewHelper.switchPanelView;
 import Models.Game;
 import com.formdev.flatlaf.FlatDarkLaf;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -865,14 +868,20 @@ public class JFrameMain extends javax.swing.JFrame {
         settings_jLblHostFrameSize.setPreferredSize(new java.awt.Dimension(350, 50));
 
         settings_jCmbBxPlayerFrameSize.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_jCmbBxPlayerFrameSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3840x2160", "2560x1440", "1920x1080", "1280x720" }));
-        settings_jCmbBxPlayerFrameSize.setSelectedIndex(3);
         settings_jCmbBxPlayerFrameSize.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_jCmbBxPlayerFrameSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settings_jCmbBxPlayerFrameSizeActionPerformed(evt);
+            }
+        });
 
         settings_jCmbBxHostFrameSize.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
-        settings_jCmbBxHostFrameSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3840x2160", "2560x1440", "1920x1080", "1280x720" }));
-        settings_jCmbBxHostFrameSize.setSelectedIndex(3);
         settings_jCmbBxHostFrameSize.setPreferredSize(new java.awt.Dimension(200, 50));
+        settings_jCmbBxHostFrameSize.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                settings_jCmbBxHostFrameSizeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout settings_kGrdntPnlLayout = new javax.swing.GroupLayout(settings_kGrdntPnl);
         settings_kGrdntPnl.setLayout(settings_kGrdntPnlLayout);
@@ -1083,7 +1092,12 @@ public class JFrameMain extends javax.swing.JFrame {
 
     private void menu_bttnSettingsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_bttnSettingsMouseClicked
         // TODO add your handling code here:
-        menu_kGrdntPnl.setVisible(false);
+        String[] resolutions = UserProperties.userPropertiesInstance.getResolutions();
+        settings_jCmbBxHostFrameSize.setModel(new DefaultComboBoxModel<>(resolutions));
+        settings_jCmbBxHostFrameSize.setSelectedIndex(resolutions.length - 1);
+        settings_jCmbBxPlayerFrameSize.setModel(new DefaultComboBoxModel<>(resolutions));
+        settings_jCmbBxPlayerFrameSize.setSelectedIndex(resolutions.length - 1);
+
         switchPanelView(menu_kGrdntPnl, settings_kGrdntPnl);
     }//GEN-LAST:event_menu_bttnSettingsMouseClicked
 
@@ -1195,6 +1209,18 @@ public class JFrameMain extends javax.swing.JFrame {
 
         loadGame_jLstPreviousGames.setModel(gameLoader.loadGamesToList());
     }//GEN-LAST:event_loadGame_kBttnDeleteGameMouseClicked
+
+    private void settings_jCmbBxHostFrameSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settings_jCmbBxHostFrameSizeActionPerformed
+        // TODO add your handling code here:
+        String hostResolution = String.valueOf(settings_jCmbBxHostFrameSize.getSelectedItem());
+        UserProperties.userPropertiesInstance.setHostResolution(hostResolution);
+    }//GEN-LAST:event_settings_jCmbBxHostFrameSizeActionPerformed
+
+    private void settings_jCmbBxPlayerFrameSizeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settings_jCmbBxPlayerFrameSizeActionPerformed
+        // TODO add your handling code here:
+        String playerResolution = String.valueOf(settings_jCmbBxPlayerFrameSize.getSelectedItem());
+        UserProperties.userPropertiesInstance.setPlayerResolution(playerResolution);
+    }//GEN-LAST:event_settings_jCmbBxPlayerFrameSizeActionPerformed
 
 ///SAJÁT ELJÁRÁSOK
     private void addCheckboxesToPanel(JPanel panel, String[] source) {

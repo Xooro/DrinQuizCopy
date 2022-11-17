@@ -5,8 +5,8 @@
 package Helpers;
 
 import Data.DrinQuizContext;
-import Models.Enums.Categories;
-import Models.Enums.Sources;
+import Enums.Categories;
+import Enums.Sources;
 import Models.Question;
 import Helpers.WebHandlers.NapiKvizWebHandler;
 import Models.Game;

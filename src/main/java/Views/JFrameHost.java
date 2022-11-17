@@ -34,9 +34,7 @@ public class JFrameHost extends BaseGameJFrame {
     public JFrameHost() {
         initComponents();
         isPlayer = false;
-        this.setMinimumSize(new Dimension(1280, 720));
-        setFrameTo16to9WindowedFullScreen();
-        setFrameSizeVarsToFrameSize();
+        setFrameSizeToUserSize();
 
         componentLocationAndSize();
         waitingScreen_kGrdntPnl.updateUI();

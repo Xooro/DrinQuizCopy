@@ -1545,18 +1545,15 @@
                   <Font name="Century Gothic" size="18" style="3"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="3840x2160"/>
-                    <StringItem index="1" value="2560x1440"/>
-                    <StringItem index="2" value="1920x1080"/>
-                    <StringItem index="3" value="1280x720"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
-                <Property name="selectedIndex" type="int" value="3"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="settings_jCmbBxPlayerFrameSizeActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>
@@ -1567,18 +1564,15 @@
                   <Font name="Century Gothic" size="18" style="3"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="3840x2160"/>
-                    <StringItem index="1" value="2560x1440"/>
-                    <StringItem index="2" value="1920x1080"/>
-                    <StringItem index="3" value="1280x720"/>
-                  </StringArray>
+                  <StringArray count="0"/>
                 </Property>
-                <Property name="selectedIndex" type="int" value="3"/>
                 <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[200, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="settings_jCmbBxHostFrameSizeActionPerformed"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
               </AuxValues>

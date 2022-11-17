@@ -5,8 +5,8 @@
 package Helpers.WebHandlers;
 
 import static Helpers.ConverterHelper.SEPARATOR;
-import Models.Enums.Categories;
-import Models.Enums.Sources;
+import Enums.Categories;
+import Enums.Sources;
 import Models.Question;
 import Helpers.WebHandlers.Base.BaseWebHandler;
 import java.util.ArrayList;

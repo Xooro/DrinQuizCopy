@@ -5,6 +5,8 @@
 package Views.Base;
 
 import static Helpers.GameHandler.gameHandlerInstance;
+import Helpers.UserProperties;
+import static Helpers.UserProperties.userPropertiesInstance;
 import static Helpers.ViewHelper.scaleImageInLabel;
 import com.k33ptoo.components.KGradientPanel;
 import java.awt.Color;
@@ -38,8 +40,22 @@ public abstract class BaseGameJFrame extends javax.swing.JFrame {
         }
 
         setPreferredSize(ratioDimension);
-
         pack();
+
+        setFrameSizeVarsToFrameSize();
+    }
+
+    protected void setFrameSizeToUserSize() {
+        Dimension userDimension;
+        if (isPlayer) {
+            userDimension = userPropertiesInstance.getPlayerResolution();
+        } else {
+            userDimension = userPropertiesInstance.getHostResolution();
+        }
+        setPreferredSize(userDimension);
+        pack();
+
+        setFrameSizeVarsToFrameSize();
     }
 
     protected void setFrameSizeVarsToFrameSize() {

@@ -4,8 +4,8 @@
  */
 package Helpers.WebHandlers.Base;
 
-import Models.Enums.Categories;
-import Models.Enums.Sources;
+import Enums.Categories;
+import Enums.Sources;
 import Models.Question;
 import java.io.BufferedReader;
 import java.io.IOException;

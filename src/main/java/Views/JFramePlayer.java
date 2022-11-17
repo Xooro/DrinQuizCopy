@@ -42,9 +42,7 @@ public class JFramePlayer extends BaseGameJFrame {
     public JFramePlayer() throws IOException {
         initComponents();
         isPlayer = true;
-        this.setMinimumSize(new Dimension(1280, 720));
-        setFrameTo16to9WindowedFullScreen();
-        setFrameSizeVarsToFrameSize();
+        setFrameSizeToUserSize();
 
         componentLocationAndSize();
         newPlayer_kGrdntPnl.updateUI();
