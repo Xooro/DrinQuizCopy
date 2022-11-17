@@ -302,6 +302,9 @@
                   <Dimension value="[50, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="menu_jLblHintMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

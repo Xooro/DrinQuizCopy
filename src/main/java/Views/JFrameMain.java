@@ -205,6 +205,11 @@ public class JFrameMain extends javax.swing.JFrame {
         menu_jLblHint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         menu_jLblHint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         menu_jLblHint.setPreferredSize(new java.awt.Dimension(50, 50));
+        menu_jLblHint.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                menu_jLblHintMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout menu_kGrdntPnlLayout = new javax.swing.GroupLayout(menu_kGrdntPnl);
         menu_kGrdntPnl.setLayout(menu_kGrdntPnlLayout);
@@ -1221,6 +1226,24 @@ public class JFrameMain extends javax.swing.JFrame {
         String playerResolution = String.valueOf(settings_jCmbBxPlayerFrameSize.getSelectedItem());
         UserProperties.userPropertiesInstance.setPlayerResolution(playerResolution);
     }//GEN-LAST:event_settings_jCmbBxPlayerFrameSizeActionPerformed
+
+    private void menu_jLblHintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_jLblHintMouseClicked
+        // TODO add your handling code here:
+        infoBox("<HTML>Üdvözöllek a DrinQuiz játékunkban!<br><br>"
+                + "A játék menetéhez szükség van egy játékvezetőre, aki irányítja a játékot,<br>"
+                + "illetve önként jelenkezőkre az ittasodáshoz, mint játékosok.<br><br>"
+                + "A játék folyamán kérdéseket kaptok, amelyek között szétt kell osztanotok<br>"
+                + "a poharaitokat, majd viselni a következményeket:<br>"
+                + "amely poharak rossz helyre mennek, azokat meg kell inni!<br><br>"
+                + "Egy játékos játéka addig tart, amíg még vannak poharai és újratöltései<br>"
+                + "(amennyiben kidölne, bármikor belehet fejezni a játékát a kör végén)<br>"
+                + "Bármikor újra lehet tölteni a poharakat, ha hiszel magadban!<br><br>"
+                + "Amennyiben először játszátok a játékot, a beállításokban importáljátok az összes, <br>"
+                + "vagy a tetszőleges forrásból származó kvízeket. <br>"
+                + "Fontos beállítani a felbontásokat is! <br>"
+                + "Mivel ugyanazon a számítógépen, de 2 képernyőn fut a játék, ezért érdemes előre<br>"
+                + "beállítani a játékos és a játékvezető monitorja alapján a felbontást. </HTML>");
+    }//GEN-LAST:event_menu_jLblHintMouseClicked
 
 ///SAJÁT ELJÁRÁSOK
     private void addCheckboxesToPanel(JPanel panel, String[] source) {
