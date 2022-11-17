@@ -25,7 +25,6 @@ import javax.swing.JCheckBox;
  *
  * @author Jani
  */
-
 //Játék főmenüje
 public class JFrameMain extends javax.swing.JFrame {
 
@@ -33,7 +32,7 @@ public class JFrameMain extends javax.swing.JFrame {
     GameGenerator gameGenerator;
     GameLoader gameLoader;
     DatabaseHandler databaseHandler;
-    
+
     ImageIcon icon = new ImageIcon(".//resources/images/icon.png");
 
     public JFrameMain() {
@@ -108,13 +107,16 @@ public class JFrameMain extends javax.swing.JFrame {
         settings_jLblClearQuestion = new javax.swing.JLabel();
         settings_kBttnClearGames = new com.k33ptoo.components.KButton();
         settings_jLblClearGames = new javax.swing.JLabel();
-        settings_JLblLogo = new javax.swing.JLabel();
+        settings_jLblPlayerFrameSize = new javax.swing.JLabel();
+        settings_jLblHostFrameSize = new javax.swing.JLabel();
+        settings_jCmbBxPlayerFrameSize = new javax.swing.JComboBox<>();
+        settings_jCmbBxHostFrameSize = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Főmenü");
         setBounds(new java.awt.Rectangle(0, 0, 800, 600));
         setIconImage(icon.getImage());
         setName("frame"); // NOI18N
-        setUndecorated(true);
         setResizable(false);
         setSize(new java.awt.Dimension(800, 600));
 
@@ -837,42 +839,73 @@ public class JFrameMain extends javax.swing.JFrame {
         settings_jLblClearGames.setText("Eddigi játékok törlése:");
         settings_jLblClearGames.setPreferredSize(new java.awt.Dimension(350, 50));
 
-        settings_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        settings_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
+        settings_jLblPlayerFrameSize.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_jLblPlayerFrameSize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        settings_jLblPlayerFrameSize.setText("Állítsd be a játékos felbontását:");
+        settings_jLblPlayerFrameSize.setPreferredSize(new java.awt.Dimension(350, 50));
+
+        settings_jLblHostFrameSize.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_jLblHostFrameSize.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        settings_jLblHostFrameSize.setText("Állítsd be a játékvezető felbontását:");
+        settings_jLblHostFrameSize.setPreferredSize(new java.awt.Dimension(350, 50));
+
+        settings_jCmbBxPlayerFrameSize.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_jCmbBxPlayerFrameSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3840x2160", "2560x1440", "1920x1080", "1280x720" }));
+        settings_jCmbBxPlayerFrameSize.setSelectedIndex(3);
+        settings_jCmbBxPlayerFrameSize.setPreferredSize(new java.awt.Dimension(200, 50));
+
+        settings_jCmbBxHostFrameSize.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        settings_jCmbBxHostFrameSize.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "3840x2160", "2560x1440", "1920x1080", "1280x720" }));
+        settings_jCmbBxHostFrameSize.setSelectedIndex(3);
+        settings_jCmbBxHostFrameSize.setPreferredSize(new java.awt.Dimension(200, 50));
 
         javax.swing.GroupLayout settings_kGrdntPnlLayout = new javax.swing.GroupLayout(settings_kGrdntPnl);
         settings_kGrdntPnl.setLayout(settings_kGrdntPnlLayout);
         settings_kGrdntPnlLayout.setHorizontalGroup(
             settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(settings_jLblClearQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(settings_jLblClearGames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(settings_jLblImportQuizesFromNapiKviz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(settings_jLblImportQuizes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(settings_kBttnClearGames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(settings_kBttnImportQuizes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(settings_kBttnClearQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(settings_kBttnImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 206, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settings_kGrdntPnlLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap(594, Short.MAX_VALUE)
                         .addComponent(settings_kBttnBack, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(settings_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
+                                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(settings_jLblClearQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(settings_jLblClearGames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(settings_jLblImportQuizesFromNapiKviz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(settings_jLblImportQuizes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(settings_kBttnClearGames, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(settings_kBttnImportQuizes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(settings_kBttnClearQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(settings_kBttnImportQuizesFromNapiKviz, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(settings_kGrdntPnlLayout.createSequentialGroup()
+                                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(settings_jLblHostFrameSize, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(settings_jLblPlayerFrameSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(settings_jCmbBxPlayerFrameSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(settings_jCmbBxHostFrameSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         settings_kGrdntPnlLayout.setVerticalGroup(
             settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, settings_kGrdntPnlLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(settings_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
+                .addGap(132, 132, 132)
+                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(settings_jLblPlayerFrameSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settings_jCmbBxPlayerFrameSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(settings_jLblHostFrameSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(settings_jCmbBxHostFrameSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(settings_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(settings_kBttnImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(settings_jLblImportQuizes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -1130,9 +1163,9 @@ public class JFrameMain extends javax.swing.JFrame {
             infoBox("Válassz egy játékot!");
             return;
         }
-        
+
         gameLoader.loadGameForPlay(gameIndex);
-        startGame();        
+        startGame();
         this.dispose();
     }//GEN-LAST:event_loadGame_kBttnLoadGameMouseClicked
 
@@ -1144,7 +1177,7 @@ public class JFrameMain extends javax.swing.JFrame {
             return;
         }
         gameLoader.deleteGame(gameIndex);
-        
+
         loadGame_jLstPreviousGames.setModel(gameLoader.loadGamesToList());
     }//GEN-LAST:event_loadGame_kBttnDeleteGameMouseClicked
 
@@ -1303,11 +1336,14 @@ public class JFrameMain extends javax.swing.JFrame {
     private com.k33ptoo.components.KGradientPanel newGame_kGrdntPnlCategories;
     private com.k33ptoo.components.KGradientPanel newGame_kGrdntPnlGameName;
     private com.k33ptoo.components.KGradientPanel newGame_kGrdntPnlSources;
-    private javax.swing.JLabel settings_JLblLogo;
+    private javax.swing.JComboBox<String> settings_jCmbBxHostFrameSize;
+    private javax.swing.JComboBox<String> settings_jCmbBxPlayerFrameSize;
     private javax.swing.JLabel settings_jLblClearGames;
     private javax.swing.JLabel settings_jLblClearQuestion;
+    private javax.swing.JLabel settings_jLblHostFrameSize;
     private javax.swing.JLabel settings_jLblImportQuizes;
     private javax.swing.JLabel settings_jLblImportQuizesFromNapiKviz;
+    private javax.swing.JLabel settings_jLblPlayerFrameSize;
     private com.k33ptoo.components.KButton settings_kBttnBack;
     private com.k33ptoo.components.KButton settings_kBttnClearGames;
     private com.k33ptoo.components.KButton settings_kBttnClearQuestion;

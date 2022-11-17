@@ -21,7 +21,6 @@ import javax.swing.JLabel;
  *
  * @author kkris
  */
-
 //Absztrakt osztály a Host- és Playerframe számára
 public abstract class BaseGameJFrame extends javax.swing.JFrame {
 
@@ -73,7 +72,7 @@ public abstract class BaseGameJFrame extends javax.swing.JFrame {
         for (int i = 0; i < answers.length; i++) {
             KGradientPanel kPanel = getAnswersKPanelToFrame(i, answers[i]);
             int x = (-frameWidth / 3) + frameWidth / 3 * i;
-            changeBound(kPanel, x, (frameHeight / 3 / 2 + frameHeight / 36) * -1, frameWidth / 4, frameHeight / 3);
+            changeBound(kPanel, x, (frameHeight / 3 / 2) * -1, frameWidth / 4, frameHeight / 3);
             panels[i] = kPanel;
         }
         return panels;
@@ -84,7 +83,7 @@ public abstract class BaseGameJFrame extends javax.swing.JFrame {
         for (int i = 0; i < answers.length; i++) {
             KGradientPanel kPanel = getAnswersKPanelToFrame(i, answers[i]);
             int x = (int) (-frameWidth / 4 * 1.5) + frameWidth / 4 * i;
-            changeBound(kPanel, x, 0, frameWidth / 5, frameHeight / 3);
+            changeBound(kPanel, x, (frameHeight / 3 / 2) * -1, frameWidth / 5, frameHeight / 3);
             panels[i] = kPanel;
         }
         return panels;

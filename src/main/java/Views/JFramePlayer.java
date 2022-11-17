@@ -31,7 +31,6 @@ import javax.swing.DefaultListModel;
  *
  * @author Jani
  */
-
 //Játékos UI és függvényei
 public class JFramePlayer extends BaseGameJFrame {
 
@@ -107,6 +106,7 @@ public class JFramePlayer extends BaseGameJFrame {
         game_jLblPlayerName = new javax.swing.JLabel();
         game_jLblRefill = new javax.swing.JLabel();
         game_jLblRefillNumber = new javax.swing.JLabel();
+        game_jLblCategory = new javax.swing.JLabel();
         playerFinished_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         playerFinished_jLblEarnedPoints = new javax.swing.JLabel();
         playerFinished_jLblGameOver = new javax.swing.JLabel();
@@ -129,6 +129,7 @@ public class JFramePlayer extends BaseGameJFrame {
         scores_jLstScoreBoard = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Játékos");
         setIconImage(icon.getImage());
         setName("frame"); // NOI18N
         setResizable(false);
@@ -252,6 +253,11 @@ public class JFramePlayer extends BaseGameJFrame {
         game_jLblRefillNumber.setText("*R.Sz.*");
         game_jLblRefillNumber.setPreferredSize(new java.awt.Dimension(50, 50));
 
+        game_jLblCategory.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        game_jLblCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        game_jLblCategory.setText("*insert category*");
+        game_jLblCategory.setPreferredSize(new java.awt.Dimension(150, 50));
+
         javax.swing.GroupLayout game_kGrdntPnlLayout = new javax.swing.GroupLayout(game_kGrdntPnl);
         game_kGrdntPnl.setLayout(game_kGrdntPnlLayout);
         game_kGrdntPnlLayout.setHorizontalGroup(
@@ -283,6 +289,10 @@ public class JFramePlayer extends BaseGameJFrame {
                             .addComponent(game_jLblCupNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(game_jLblRefillNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
+            .addGroup(game_kGrdntPnlLayout.createSequentialGroup()
+                .addGap(300, 300, 300)
+                .addComponent(game_jLblCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         game_kGrdntPnlLayout.setVerticalGroup(
             game_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -304,7 +314,9 @@ public class JFramePlayer extends BaseGameJFrame {
                     .addComponent(game_jLblCall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(game_jLblQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(308, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                .addComponent(game_jLblCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         playerFinished_kGrdntPnl.setkEndColor(new java.awt.Color(0, 100, 0));
@@ -581,14 +593,14 @@ public class JFramePlayer extends BaseGameJFrame {
         if (!game_jLblHalf.isEnabled()) {
             return;
         }
-        
+
         if (cupsForThisTurn != gameHandlerInstance.getActualPlayer().getCupsLeft()) {
             infoBox("Vedd vissza a poharaid!");
             return;
         }
-          
+
         game_jLblHalf.setEnabled(false);
-        
+
         useAnswerToHalfHelp();
     }//GEN-LAST:event_game_jLblHalfMouseClicked
 
@@ -758,14 +770,17 @@ public class JFramePlayer extends BaseGameJFrame {
                 frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
                 frameHeight / 12 * 3 + frameHeight / 36 * 2, frameHeight / 12);
         changeBound(game_jLblQuestion, 0,
-                frameHeight / 2 - frameHeight / 4 / 2 - frameHeight / 36 * 2 - frameHeight / 12 * 2 - frameHeight / 36,
-                frameWidth - frameWidth / 32, frameHeight / 4);
+                (frameHeight / 12 + frameHeight / 36) / 2 + frameHeight / 36,
+                frameWidth - frameWidth / 32, frameHeight / 12 + frameHeight / 36);
         changeBound(game_jLblRefill, frameWidth / 2 - frameHeight / 12 / 2 - frameWidth / 64 * 2 - frameHeight / 12,
                 frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
                 frameHeight / 12, frameHeight / 12);
         changeBound(game_jLblRefillNumber, frameWidth / 2 - frameHeight / 12 / 2 - frameWidth / 64,
                 frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
                 frameHeight / 12, frameHeight / 12);
+        changeBound(game_jLblCategory, 0,
+                frameHeight / 12 / 2 + frameHeight / 12 * 2,
+                frameWidth - frameWidth / 32, frameHeight / 12);
 
         //playerFinished
         changeBound(playerFinished_jLblEarnedPoints, 0,
@@ -931,11 +946,10 @@ public class JFramePlayer extends BaseGameJFrame {
     }
 
     ///EVENTEK VÉGE
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.utils.ComponentMoverUtil componentMoverUtil1;
     private javax.swing.JLabel game_jLblCall;
+    private javax.swing.JLabel game_jLblCategory;
     private javax.swing.JLabel game_jLblCup;
     private javax.swing.JLabel game_jLblCupNumber;
     private javax.swing.JLabel game_jLblGameName;

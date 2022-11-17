@@ -23,7 +23,6 @@ import javax.swing.JLabel;
  *
  * @author Jani
  */
-
 //Játékot írányító UI és függvényei
 public class JFrameHost extends BaseGameJFrame {
 
@@ -81,6 +80,7 @@ public class JFrameHost extends BaseGameJFrame {
         gameHost_jLblCupNumber = new javax.swing.JLabel();
         gameHost_kBttnRefill = new com.k33ptoo.components.KButton();
         gameHost_jLblPoint = new javax.swing.JLabel();
+        gameHost_jLblCategory = new javax.swing.JLabel();
         exit_kGrdntPnl = new com.k33ptoo.components.KGradientPanel();
         exit_kBttnExit = new com.k33ptoo.components.KButton();
         exit_kBttnNewGame = new com.k33ptoo.components.KButton();
@@ -88,6 +88,7 @@ public class JFrameHost extends BaseGameJFrame {
         exit_kBttnEndGame = new com.k33ptoo.components.KButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Játékvezető");
         setIconImage(icon.getImage());
         setName("frame"); // NOI18N
         setResizable(false);
@@ -240,6 +241,11 @@ public class JFrameHost extends BaseGameJFrame {
         gameHost_jLblPoint.setText("Pontok:");
         gameHost_jLblPoint.setPreferredSize(new java.awt.Dimension(150, 50));
 
+        gameHost_jLblCategory.setFont(new java.awt.Font("Century Gothic", 3, 18)); // NOI18N
+        gameHost_jLblCategory.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        gameHost_jLblCategory.setText("*insert category*");
+        gameHost_jLblCategory.setPreferredSize(new java.awt.Dimension(366, 50));
+
         javax.swing.GroupLayout gameHost_kGrdntPnlLayout = new javax.swing.GroupLayout(gameHost_kGrdntPnl);
         gameHost_kGrdntPnl.setLayout(gameHost_kGrdntPnlLayout);
         gameHost_kGrdntPnlLayout.setHorizontalGroup(
@@ -247,12 +253,6 @@ public class JFrameHost extends BaseGameJFrame {
             .addGroup(gameHost_kGrdntPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(gameHost_kGrdntPnlLayout.createSequentialGroup()
-                        .addComponent(gameHost_kBttnShowAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94)
-                        .addComponent(gameHost_kBttnRefill, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
-                        .addComponent(gameHost_kBttnNextQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(gameHost_jLblQuestion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, gameHost_kGrdntPnlLayout.createSequentialGroup()
                         .addComponent(gameHost_jLblPlayerName, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,7 +276,15 @@ public class JFrameHost extends BaseGameJFrame {
                         .addGap(18, 18, 18)
                         .addComponent(gameHost_jLblCupNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(gameHost_kBttnEndPlayerGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(gameHost_kBttnEndPlayerGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(gameHost_kGrdntPnlLayout.createSequentialGroup()
+                        .addComponent(gameHost_kBttnShowAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(94, 94, 94)
+                        .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(gameHost_jLblCategory, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(gameHost_kBttnRefill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                        .addComponent(gameHost_kBttnNextQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         gameHost_kGrdntPnlLayout.setVerticalGroup(
@@ -302,7 +310,9 @@ public class JFrameHost extends BaseGameJFrame {
                             .addComponent(gameHost_jLblCall, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(gameHost_jLblQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 252, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 184, Short.MAX_VALUE)
+                        .addComponent(gameHost_jLblCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addGroup(gameHost_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(gameHost_kBttnNextQuestion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(gameHost_kBttnShowAnswer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -582,8 +592,8 @@ public class JFrameHost extends BaseGameJFrame {
                 frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36,
                 frameHeight / 12 * 3 + frameHeight / 36 * 2, frameHeight / 12);
         changeBound(gameHost_jLblQuestion, 0,
-                frameHeight / 2 - frameHeight / 4 / 2 - frameHeight / 36 * 2 - frameHeight / 12 * 2 - frameHeight / 36,
-                frameWidth - frameWidth / 32, frameHeight / 4);
+                (frameHeight / 12 + frameHeight / 36) / 2 + frameHeight / 36,
+                frameWidth - frameWidth / 32, frameHeight / 12 + frameHeight / 36);
         changeBound(gameHost_jLblCup, frameHeight / 12 / 2 + frameHeight / 12 * 4 - frameHeight / 36,
                 frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
                 frameHeight / 12, frameHeight / 12);
@@ -602,6 +612,9 @@ public class JFrameHost extends BaseGameJFrame {
         changeBound(gameHost_kBttnEndPlayerGame, frameWidth / 2 - frameHeight / 12 * 4 / 2 - frameWidth / 64,
                 frameHeight / 2 - frameHeight / 12 / 2 - frameHeight / 36 * 2 - frameHeight / 12,
                 frameHeight / 12 * 4, frameHeight / 12);
+        changeBound(gameHost_jLblCategory, 0,
+                frameHeight / 12 / 2 + frameHeight / 12 * 2,
+                frameWidth - frameWidth / 32, frameHeight / 12);
 
         //exit
         changeBound(exit_JLblLogo, 0,
@@ -684,6 +697,7 @@ public class JFrameHost extends BaseGameJFrame {
     private com.k33ptoo.components.KButton exit_kBttnNewGame;
     private com.k33ptoo.components.KGradientPanel exit_kGrdntPnl;
     private javax.swing.JLabel gameHost_jLblCall;
+    private javax.swing.JLabel gameHost_jLblCategory;
     private javax.swing.JLabel gameHost_jLblCup;
     private javax.swing.JLabel gameHost_jLblCupNumber;
     private javax.swing.JLabel gameHost_jLblGameName;
