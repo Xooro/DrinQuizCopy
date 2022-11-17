@@ -688,6 +688,7 @@ public class JFramePlayer extends BaseGameJFrame {
         game_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
         game_jLblPlayerName.setText("Játékos neve: " + gameHandlerInstance.getActualPlayer().getPlayerName());
         game_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
+        game_jLblCategory.setText(gameHandlerInstance.getActualQuestion().getCategory());
         game_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
         game_jLblCupNumber.setText(cupsForThisTurn + "/" + gameHandlerInstance.getActualPlayer().getCupsLeft());
         game_jLblRefillNumber.setText("" + gameHandlerInstance.getActualPlayer().getRefillsLeft());
@@ -856,7 +857,7 @@ public class JFramePlayer extends BaseGameJFrame {
             for (int i = 0; i < 3; ++i) {
                 if (noDuplicatesScores.length > i && p.getScore() == noDuplicatesScores[i]) {
                     playersOnPodium[i] += p.getPlayerName();
-                    playersOnPodium[i] += "\t";
+                    playersOnPodium[i] += "  ";
                 }
             }
         }

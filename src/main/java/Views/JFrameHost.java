@@ -516,6 +516,7 @@ public class JFrameHost extends BaseGameJFrame {
         cupsLeft = gameHandlerInstance.getActualPlayer().getCupsLeft();
 
         gameHost_jLblQuestion.setText(gameHandlerInstance.getActualQuestion().getQuestion());
+        gameHost_jLblCategory.setText(gameHandlerInstance.getActualQuestion().getCategory());
         gameHost_jLblGameName.setText("Játék neve: " + gameHandlerInstance.getGame().getGameName());
         gameHost_jLblPlayerName.setText("Játékos neve: " + gameHandlerInstance.getActualPlayer().getPlayerName());
         gameHost_jLblPoint.setText("Pontok: " + gameHandlerInstance.getActualPlayer().getScore());
