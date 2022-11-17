@@ -10,6 +10,7 @@ import Helpers.GameHandler;
 import Helpers.DatabaseHandler;
 import Helpers.GameLoader;
 import static Helpers.ViewHelper.infoBox;
+import static Helpers.ViewHelper.scaleImageInLabel;
 import static Helpers.ViewHelper.switchPanelView;
 import Models.Game;
 import com.formdev.flatlaf.FlatDarkLaf;
@@ -48,6 +49,8 @@ public class JFrameMain extends javax.swing.JFrame {
         newGame_kGrdntPnlSources.setVisible(false);
         newGame_kGrdntPnlCategories.setVisible(false);
         newGame_kGrdntPnlGameName.setVisible(false);
+
+        scaleImageInLabel(".//resources/images/hint.png", menu_jLblHint);
     }
 
     /**
@@ -66,6 +69,7 @@ public class JFrameMain extends javax.swing.JFrame {
         menu_bttnLoadGame = new com.k33ptoo.components.KButton();
         menu_bttnNewGame = new com.k33ptoo.components.KButton();
         menu_JLblLogo = new javax.swing.JLabel();
+        menu_jLblHint = new javax.swing.JLabel();
         newGame_jLyrdPn = new javax.swing.JLayeredPane();
         newGame_kGrdntPnlSources = new com.k33ptoo.components.KGradientPanel();
         newGame_Sources_kBttnBack = new com.k33ptoo.components.KButton();
@@ -195,6 +199,10 @@ public class JFrameMain extends javax.swing.JFrame {
         menu_JLblLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         menu_JLblLogo.setIcon(new ImageIcon("resources/images/DrinQuiz.gif"));
 
+        menu_jLblHint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menu_jLblHint.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        menu_jLblHint.setPreferredSize(new java.awt.Dimension(50, 50));
+
         javax.swing.GroupLayout menu_kGrdntPnlLayout = new javax.swing.GroupLayout(menu_kGrdntPnl);
         menu_kGrdntPnl.setLayout(menu_kGrdntPnlLayout);
         menu_kGrdntPnlLayout.setHorizontalGroup(
@@ -202,7 +210,9 @@ public class JFrameMain extends javax.swing.JFrame {
             .addGroup(menu_kGrdntPnlLayout.createSequentialGroup()
                 .addGroup(menu_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, menu_kGrdntPnlLayout.createSequentialGroup()
-                        .addGap(298, 594, Short.MAX_VALUE)
+                        .addContainerGap()
+                        .addComponent(menu_jLblHint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(menu_bttnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(menu_kGrdntPnlLayout.createSequentialGroup()
                         .addGap(300, 300, 300)
@@ -210,7 +220,7 @@ public class JFrameMain extends javax.swing.JFrame {
                             .addComponent(menu_bttnSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(menu_bttnLoadGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(menu_bttnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(0, 294, Short.MAX_VALUE))
                     .addGroup(menu_kGrdntPnlLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(menu_JLblLogo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -221,14 +231,19 @@ public class JFrameMain extends javax.swing.JFrame {
             .addGroup(menu_kGrdntPnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(menu_JLblLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(menu_bttnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(menu_bttnLoadGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(menu_bttnSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                .addComponent(menu_bttnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(menu_kGrdntPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(menu_kGrdntPnlLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addComponent(menu_bttnNewGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(menu_bttnLoadGame, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(menu_bttnSettings, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                        .addComponent(menu_bttnExit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(menu_kGrdntPnlLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(menu_jLblHint, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -1311,6 +1326,7 @@ public class JFrameMain extends javax.swing.JFrame {
     private com.k33ptoo.components.KButton menu_bttnLoadGame;
     public com.k33ptoo.components.KButton menu_bttnNewGame;
     private com.k33ptoo.components.KButton menu_bttnSettings;
+    private javax.swing.JLabel menu_jLblHint;
     private com.k33ptoo.components.KGradientPanel menu_kGrdntPnl;
     private javax.swing.JLabel newGame_Categories_JLblLogo;
     private javax.swing.JLabel newGame_Categories_jLblChooseSource;
