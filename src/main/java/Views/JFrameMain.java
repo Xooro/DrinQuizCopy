@@ -1230,11 +1230,11 @@ public class JFrameMain extends javax.swing.JFrame {
     private void menu_jLblHintMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menu_jLblHintMouseClicked
         // TODO add your handling code here:
         infoBox("<HTML>Üdvözöllek a DrinQuiz játékunkban!<br><br>"
-                + "A játék menetéhez szükség van egy játékvezetőre, aki irányítja a játékot,<br>"
-                + "illetve önként jelenkezőkre az ittasodáshoz, mint játékosok.<br><br>"
-                + "A játék folyamán kérdéseket kaptok, amelyek között szétt kell osztanotok<br>"
-                + "a poharaitokat, majd viselni a következményeket:<br>"
-                + "amely poharak rossz helyre mennek, azokat meg kell inni!<br><br>"
+                + "A játék menetéhez szükségetek van egy játékvezetőre, aki irányítja a játékot,<br>"
+                + "illetve egy önként jelenkezőkre az ittasodáshoz, mint játékos.<br><br>"
+                + "A játék folyamán kérdéseket kaptok, több válasz lehetőséggel, amelyek között<br>"
+                + "szét kell osztanotok a poharaitokat, majd viselni a következményeket:<br>"
+                + "amely poharak rossz helyre mentek, azoknak a tartalmát meg kell inni!<br><br>"
                 + "Egy játékos játéka addig tart, amíg még vannak poharai és újratöltései<br>"
                 + "(amennyiben kidölne, bármikor belehet fejezni a játékát a kör végén)<br>"
                 + "Bármikor újra lehet tölteni a poharakat, ha hiszel magadban!<br><br>"
