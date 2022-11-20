@@ -665,6 +665,7 @@ public class JFrameHost extends BaseGameJFrame {
     }
 
     ///EVENTEK VÉGE
+    
     /**
      * @param args the command line arguments
      */

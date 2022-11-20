@@ -1319,7 +1319,6 @@ public class JFrameMain extends javax.swing.JFrame {
                 }
             }
         }
-
     }
 
     private void startGame() {
@@ -1337,6 +1336,7 @@ public class JFrameMain extends javax.swing.JFrame {
     }
 
     ///SAJÁT ELJÁRÁSOK VÉGE
+    
     /**
      * @param args the command line arguments
      */

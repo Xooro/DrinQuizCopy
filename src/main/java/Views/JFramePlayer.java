@@ -624,39 +624,6 @@ public class JFramePlayer extends BaseGameJFrame {
         gameHandlerInstance.callFromPlayerToHost_GroupHelpUsed();
     }//GEN-LAST:event_game_jLblGroupMouseClicked
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            UIManager.setLookAndFeel(new FlatDarkLaf());
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFramePlayer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    jFramePlayerInstance = new JFramePlayer();
-                    jFramePlayerInstance.start();
-                } catch (IOException ex) {
-                    Logger.getLogger(JFramePlayer.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        });
-    }
-
-    private void start() {
-        jFramePlayerInstance.setVisible(true);
-    }
-
     ///SAJÁT ELJÁRÁSOK
     protected void generateGameFrame() {
         try {
@@ -945,6 +912,39 @@ public class JFramePlayer extends BaseGameJFrame {
     }
 
     ///EVENTEK VÉGE
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            UIManager.setLookAndFeel(new FlatDarkLaf());
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(JFramePlayer.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    jFramePlayerInstance = new JFramePlayer();
+                    jFramePlayerInstance.start();
+                } catch (IOException ex) {
+                    Logger.getLogger(JFramePlayer.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
+    }
+
+    private void start() {
+        jFramePlayerInstance.setVisible(true);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.k33ptoo.utils.ComponentMoverUtil componentMoverUtil1;
     private javax.swing.JLabel game_jLblCall;
