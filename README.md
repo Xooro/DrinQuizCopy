@@ -1,3 +1,6 @@
+Másolat célja, hogy látszódjok a projekt a saját profilomon is. Eredeti projekt:
+https://github.com/KKr1ss/ProjectDrinQuiz
+
 # ProjectDrinQuiz
 
 Egy olyan kvíz alkalmazást hoztunk létre, amely képes kérdéseket megjeleníteni egy helyi adatbázisból, majd engedi a játékosnak, hogy kiossza a poharait a kártyákra, melyeket rossz válasz esetén meg kell innia. Ha megszakadna a játék, akkor lehetőség van visszatölteni 
